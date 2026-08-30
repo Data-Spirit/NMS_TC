@@ -37,11 +37,12 @@ More languages may be added over time. Each language folder has its own detailed
 
 ```
 NMS_TC/
-├── Bank_icons/           → Standalone icon assets (transparent PNGs)
-├── Docs/                 → Additional documentation
+├── BANK_ICONS/           → Standalone icon assets (transparent PNGs)
+├── docs/                 → Additional documentation
 ├── LANG/
-│   ├── _FR/              → French guide (HTML + detailed README)
-│   └── _EN/              → English guide (coming soon)
+│   ├── FR/               → French guide (HTML + detailed README)
+│   └── EN/               → English guide (coming soon)
+├── index.html            → Index file for GitHub Pages.
 ├── LICENSE.md
 └── README.md             → this file
 ```
