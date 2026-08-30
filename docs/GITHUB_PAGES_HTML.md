@@ -960,6 +960,66 @@ Si `/docs` est la source de publication, les fichiers à publier doivent se trou
 
 ---
 
+## ❌ Un dossier commence par `_`
+
+Lorsque GitHub Pages utilise Jekyll, les fichiers et dossiers dont le nom commence par un underscore (`_`) sont traités de manière particulière par Jekyll et peuvent être exclus du site généré.
+
+Par exemple, cette structure peut provoquer une erreur `404` :
+
+```text
+MON_REPO/
+└── LANG/
+    └── _FR/
+        └── guide_FR.html
+```
+
+Même si le fichier existe bien dans le repository GitHub et que le déploiement GitHub Pages se termine correctement, l'URL suivante peut ne pas être accessible :
+
+```text
+https://UTILISATEUR.github.io/MON_REPO/LANG/_FR/guide_FR.html
+```
+
+Cela peut être particulièrement trompeur car :
+
+```text
+☑ Le fichier existe bien sur GitHub
+☑ La bonne branche est utilisée
+☑ La bonne source GitHub Pages est sélectionnée
+☑ Le déploiement se termine avec succès
+☒ La page publiée renvoie une erreur 404
+```
+
+Le problème vient alors du `_` placé au début du nom du dossier.
+
+### Solution recommandée
+
+Si l'underscore n'est pas nécessaire à la convention de nommage du projet, utiliser un nom de dossier qui ne commence pas par `_` :
+
+```text
+MON_REPO/
+└── LANG/
+    ├── FR/
+    │   └── guide_FR.html
+    ├── EN/
+    │   └── guide_EN.html
+    └── DE/
+        └── guide_DE.html
+```
+
+La page correspondante pourra alors être accessible normalement :
+
+```text
+https://UTILISATEUR.github.io/MON_REPO/LANG/FR/guide_FR.html
+```
+
+### Conserver le préfixe `_`
+
+Il est possible de conserver des noms de dossiers commençant par `_` en configurant Jekyll afin de les inclure explicitement. Cependant, cela nécessite une configuration Jekyll supplémentaire qui n'est généralement pas nécessaire lorsque l'underscore est uniquement utilisé comme convention de nommage.
+
+Pour de simples pages HTML statiques, éviter un `_` au début du nom des dossiers reste donc généralement la solution la plus simple.
+
+---
+
 ## ❌ « L'URL GitHub et l'URL GitHub Pages sont identiques »
 
 Non.
