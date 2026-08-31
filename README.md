@@ -26,7 +26,7 @@ No Man's Sky lets players color and decorate names (bases, ships, freighters, st
 
 | | Language | | 💾 Download |
 |:---:|---|---|---|
-| 🇫🇷 | **Français** | [Guide de formatage de texte →](https://data-spirit.github.io/NMS_TC/LANG/FR/NMS_txt_code_FR.html) | [:arrow_down:](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_FR.html) |
+| 🇫🇷 | **Français** | [Guide de formatage de texte →](https://data-spirit.github.io/NMS_TC/LANG/FR/NMS_txt_code_FR.html) | [![Download](./assets/download-loop.svg)](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_FR.html) |
 | 🇬🇧 | **English** | 🚧 *Coming soon* |
 
 More languages may be added over time. Each language folder has its own detailed README describing that guide's features in full.
@@ -37,6 +37,7 @@ More languages may be added over time. Each language folder has its own detailed
 
 ```
 NMS_TC/
+├── assets/               → Graphic elements of NMS_TC
 ├── BANK_ICONS/           → Standalone icon assets (transparent PNGs)
 ├── docs/                 → Additional documentation
 ├── LANG/

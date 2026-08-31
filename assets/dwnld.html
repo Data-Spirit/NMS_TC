@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Download</title>
+</head>
+<body>
+
+<script>
+	window.addEventListener("load", function () {
+		const link = document.createElement("a");
+		link.href = "NMS_txt_code_FR.html";
+		link.download = "NMS_txt_code_FR.html";
+
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+
+		setTimeout(function () {
+			window.close();
+		}, 0);
+	});
+</script>
+
+</body>
+</html>
