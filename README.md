@@ -28,10 +28,27 @@ No Man's Sky lets players color and decorate names (bases, ships, freighters, st
 
 ## 📖 Guide by language
 
-| | Language | | 💾 Download |
-|:---:|---|---|:---:|
-| 🇫🇷 | **Français** | [Guide de formatage de texte →](https://data-spirit.github.io/NMS_TC/LANG/FR/NMS_txt_code_FR.html) | [![Download](./assets/download-loop.svg)](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_FR.html) |
-| 🇬🇧 | **English** | 🚧 *Coming soon* | [![Download](./assets/download-loop.svg)](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_FR.html) |
+<details>
+<summary>📋 Table Legend : </summary>
+
+🛠️ **Info** — Detailed documentation and language-specific information about the guide.  
+📖 **Guide** — Open the complete guide online through GitHub Pages.  
+💾 **Download** — Download the standalone HTML guide for offline use.
+
+**Status**
+- ✅ **Available** — The resource is complete and available.
+- 🚧 **Work in progress** — The resource is currently being developed or translated.
+- 🔜 **Planned** — The resource is planned but work has not started yet.
+
+</details>
+
+| | Language | 🛠️ Info | 📖 Guide | 💾 Download |
+|:---:|---|:---:|:---:|:---:|
+| 🇫🇷 | **Français** | 📝 [README_FR](./LANG/FR/README_FR.md) | [🌐 Guide : FR ↗️](https://data-spirit.github.io/NMS_TC/LANG/FR/NMS_txt_code_FR.html) | [![Download](./assets/download-loop.svg)](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_FR.html) |
+| 🇬🇧 | **English** | 📝 [README_EN](./LANG/EN/README_EN.md) | 🚧 Work in progress | [![Download](./assets/download-loop.svg)](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_FR.html) |
+| 🇪🇸 | **Español** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
+| 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
+| 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
 More languages may be added over time. Each language folder has its own detailed README describing that guide's features in full.
 
