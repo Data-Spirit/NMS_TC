@@ -46,7 +46,7 @@ No Man's Sky lets players color and decorate names (bases, ships, freighters, st
 |:---:|---|:---:|:---:|:---:|
 | 🇬🇧 | **English** | 📝 [README_EN](./LANG/EN/README_EN.md) | [🌐 Guide : EN ↗️](https://data-spirit.github.io/NMS_TC/LANG/EN/NMS_txt_code_EN.html) | [![Download](./assets/download-loop.svg)](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_EN.html) |
 | 🇫🇷 | **Français** | 📝 [README_FR](./LANG/FR/README_FR.md) | [🌐 Guide : FR ↗️](https://data-spirit.github.io/NMS_TC/LANG/FR/NMS_txt_code_FR.html) | [![Download](./assets/download-loop.svg)](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.0/NMS_txt_code_FR.html) |
-| 🇪🇸 | **Español** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
+| 🇪🇸 | **Español** | 🚧 Work in progress | 🚧 Work in progress | 🚧 Work in progress |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
