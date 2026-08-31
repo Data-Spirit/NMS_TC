@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NMS // TEXT CODES — Guide des balises No Man's Sky</title>
+<title>NMS // TEXT CODES — No Man's Sky Tag Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -361,26 +361,26 @@
 <body>
 
 <header class="hero">
-  <div class="eyebrow">Guide de Spirit : Formatage des codes textuels No Man's Sky</div>
+  <div class="eyebrow">Spirit's Guide: No Man's Sky Text Code Formatting</div>
   <h1>NMS <span>//</span> TEXT CODES</h1>
-  <p class="lede">Toutes les balises de couleur et d'icônes utilisables dans les champs de texte de No Man's Sky (noms de bases, vaisseaux, coffres, sauvegardes…), compilées à partir des tableaux de configuration du jeu et vérifiées par la communauté.</p>
+  <p class="lede">Every color and icon tag usable in No Man's Sky's text fields (base names, ships, containers, saves…), compiled from the game's configuration tables and verified by the community.</p>
 
   <div class="simulator">
-    <div class="label">Simulateur — tapez du texte avec des balises</div>
+    <div class="label">Simulator — type text with tags</div>
     <input type="text" id="sim-input" value="<PET1><IMG>TECH1<> Techs</> <VISOR><IMG>DWAYPOINT<> Elmt/Comp</>">
     <div class="preview-frame" id="sim-preview"></div>
     <div class="sim-hint">
-      <div>Syntaxe couleur : <code><span class="syn-bracket">&lt;</span><span class="syn-tag">NAME_COLOR</span><span class="syn-bracket">&gt;</span><span class="syn-text">Text</span><span class="syn-bracket">&lt;/&gt;</span></code></div>
-      <div>Syntaxe icône : <code><span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">NAME_ICON</span><span class="syn-bracket">&lt;&gt;</span></code></div>
+      <div>Color syntax: <code><span class="syn-bracket">&lt;</span><span class="syn-tag">NAME_COLOR</span><span class="syn-bracket">&gt;</span><span class="syn-text">Text</span><span class="syn-bracket">&lt;/&gt;</span></code></div>
+      <div>Icon syntax: <code><span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">NAME_ICON</span><span class="syn-bracket">&lt;&gt;</span></code></div>
     </div>
   </div>
 </header>
 
 <nav class="tabs">
-  <button class="tab-btn active" data-tab="infos">Infos</button>
-  <button class="tab-btn" data-tab="colors">Couleurs</button>
-  <button class="tab-btn" data-tab="icons">Icônes</button>
-  <button class="tab-btn" data-tab="notes">À propos</button>
+  <button class="tab-btn active" data-tab="infos">Info</button>
+  <button class="tab-btn" data-tab="colors">Colors</button>
+  <button class="tab-btn" data-tab="icons">Icons</button>
+  <button class="tab-btn" data-tab="notes">About</button>
 </nav>
 
 <main>
@@ -388,62 +388,62 @@
   <!-- ============ INFOS TAB ============ -->
   <section id="tab-infos" class="tab-panel active">
     <div class="notes">
-      <h2>Comment utiliser les balises</h2>
+      <h2>How to use the tags</h2>
 
-      <h3>Syntaxe</h3>
+      <h3>Syntax</h3>
       <ul>
-        <li><strong>Couleur :</strong> <code><span class="syn-bracket">&lt;</span><span class="syn-tag">NAME_COLOR</span><span class="syn-bracket">&gt;</span><span class="syn-text">Text</span><span class="syn-bracket">&lt;/&gt;</span></code> — s'ouvre avec le nom du tag, se ferme avec <code>&lt;/&gt;</code>.</li>
-        <li><strong>Icône :</strong> <code><span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">NAME_ICON</span><span class="syn-bracket">&lt;&gt;</span></code> — s'ouvre avec <code>&lt;IMG&gt;</code>, se ferme avec <code>&lt;&gt;</code> (pas <code>&lt;/&gt;</code>).</li>
-        <li>Les deux se combinent librement dans un même champ, à condition de rester sous la limite de caractères du champ concerné.</li>
-        <li>Cela fonctionne dans tout champ de texte éditable du jeu (noms de bases, vaisseaux, coffres, sauvegardes…), sur toutes les plateformes où le jeu est disponible (PC, PlayStation, Xbox et Nintendo Switch).</li>
-        <li><strong class="highlight">Respectez la casse et l'orthographe exactes (majuscules, underscores) : une faute de frappe et le code ne fonctionnera pas.<br>En cas d'erreur, la balise apparaîtra telle quelle, en texte brut.</strong></li>
+        <li><strong>Color:</strong> <code><span class="syn-bracket">&lt;</span><span class="syn-tag">NAME_COLOR</span><span class="syn-bracket">&gt;</span><span class="syn-text">Text</span><span class="syn-bracket">&lt;/&gt;</span></code> — opens with the tag name, closes with <code>&lt;/&gt;</code>.</li>
+        <li><strong>Icon:</strong> <code><span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">NAME_ICON</span><span class="syn-bracket">&lt;&gt;</span></code> — opens with <code>&lt;IMG&gt;</code>, closes with <code>&lt;&gt;</code> (not <code>&lt;/&gt;</code>).</li>
+        <li>Both can be freely combined in the same field, as long as you stay under that field's character limit.</li>
+        <li>This works in any editable text field in the game (base names, ships, containers, saves…), on every platform the game is available on (PC, PlayStation, Xbox, and Nintendo Switch).</li>
+        <li><strong class="highlight">Match the exact case and spelling (capitals, underscores): a single typo and the code won't work.<br>If it's wrong, the tag will just show up as-is, in plain text.</strong></li>
       </ul>
 
       <div class="protip">
         <span class="protip-icon">💡</span>
         <div>
-          <strong>Astuce :</strong>
+          <strong>Tip:</strong>
           <ul>
-            <li><strong>Les champs de texte du jeu ont une limite de caractères, et les balises comptent dedans.</strong></li>
-            <li><strong>Pour ne pas la saturer trop vite cette limite de caractères, privilégiez des balises courtes.</strong><br>(Surtout si vous combinez plusieurs balises dans un même nom.)
+            <li><strong>In-game text fields have a character limit, and tags count toward it.</strong></li>
+            <li><strong>To avoid hitting that limit too fast, favor short tags.</strong><br>(Especially if you're combining several tags in the same name.)
               <ul class="sub-arrow">
-                <li>Exemple : (<code>RED</code>, <code>PET1</code>, <code>PET2</code>, <code>SCLASS</code>…) plutôt que des noms à rallonge (<code>MISSIONSECOND</code>, <code>GAL_TITLE_VISIT</code>…)</li>
+                <li>Example: (<code>RED</code>, <code>PET1</code>, <code>PET2</code>, <code>SCLASS</code>…) rather than long-winded names (<code>MISSIONSECOND</code>, <code>GAL_TITLE_VISIT</code>…)</li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
 
-      <h3>Technique avancée : teinter une icône avec une balise couleur</h3>
+      <h3>Advanced technique: tinting an icon with a color tag</h3>
       <ul>
-        <li>Une balise de couleur placée juste avant un icône (donc juste avant une balise <code><span class="syn-bracket">&lt;IMG&gt;</span></code>), collée sans espace, applique sa couleur sur l'icône — un peu comme un filtre semi-transparent posé dessus.
+        <li>A color tag placed right before an icon (i.e. right before an <code><span class="syn-bracket">&lt;IMG&gt;</span></code> tag), with no space between them, applies its color to the icon — a bit like a semi-transparent filter laid over it.
           <ul class="sub-arrow">
-            <li>Sur les icônes blanches/monochromes, ça fonctionne systématiquement.</li>
-            <li>Sur les icônes qui ont déjà leur propre couleur, la teinte a plutôt tendance à <strong>remplacer</strong> la couleur d'origine plutôt qu'à se mélanger avec.</li>
+            <li>On white/monochrome icons, this works every time.</li>
+            <li>On icons that already have their own color, the tint tends to <strong>replace</strong> the original color rather than blend with it.</li>
           </ul>
         </li>
-        <li>Chaque balise garde son obligation d'être refermée — <code><span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">NAME_ICON</span><span class="syn-bracket">&lt;&gt;</span></code> se referme toujours par son propre <code><span class="syn-bracket">&lt;&gt;</span></code>, et la couleur se referme toujours par son propre <code><span class="syn-bracket">&lt;/&gt;</span></code>.</li>
+        <li>Every tag still needs to be properly closed — <code><span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">NAME_ICON</span><span class="syn-bracket">&lt;&gt;</span></code> always closes with its own <code><span class="syn-bracket">&lt;&gt;</span></code>, and the color always closes with its own <code><span class="syn-bracket">&lt;/&gt;</span></code>.</li>
       </ul>
 
       <div class="important-box">
         <span class="protip-icon">★</span>
         <div>
-          <strong>Important :</strong> la seule liberté, c'est où on place la balise de fermeture <code><span class="syn-bracket">&lt;/&gt;</span></code> de la couleur :
+          <strong>Important:</strong> the only thing you get to choose is where you place the color's closing tag <code><span class="syn-bracket">&lt;/&gt;</span></code>:
           <ul>
-            <li>juste après l'icône (elle seule est teintée),</li>
-            <li>ou après un morceau de texte qui suit (l'icône ET le texte prennent alors la couleur).</li>
+            <li>right after the icon (only the icon gets tinted),</li>
+            <li>or after a stretch of text that follows (the icon AND the text both take the color).</li>
           </ul>
         </div>
       </div>
 
       <div class="tint-compare">
         <div class="tint-card">
-          <div class="tint-label">Icône seule teintée</div>
+          <div class="tint-label">Icon tinted alone</div>
           <div class="tint-preview" id="tint-example-1"></div>
           <code><span class="syn-bracket">&lt;</span><span class="syn-tag">PET1</span><span class="syn-bracket">&gt;&lt;IMG&gt;</span><span class="syn-tag">TECH1</span><span class="syn-bracket">&lt;&gt;&lt;/&gt;</span> <span class="syn-text">Techs</span></code>
         </div>
         <div class="tint-card">
-          <div class="tint-label">Icône + texte teintés</div>
+          <div class="tint-label">Icon + text tinted</div>
           <div class="tint-preview" id="tint-example-2"></div>
           <code><span class="syn-bracket">&lt;</span><span class="syn-tag">PET1</span><span class="syn-bracket">&gt;&lt;IMG&gt;</span><span class="syn-tag">TECH1</span><span class="syn-bracket">&lt;&gt;</span> <span class="syn-text">Techs</span><span class="syn-bracket">&lt;/&gt;</span></code>
         </div>
@@ -451,11 +451,11 @@
 
       <div class="warn-box">
         <span class="protip-icon">⚠</span>
-        <div><strong>Non garanti à 100 % :</strong> ce comportement est observé en jeu par des joueurs, mais n'est documenté nulle part officiellement.<br>Certaines icônes déjà colorées semblent résister à la teinte (l'icône PlayStation en est un exemple connu) sans qu'on ait de liste exhaustive de toutes les exceptions.<br>N'hésitez pas à tester en jeu pour être sûr du rendu.<br><br><strong>Note sur ce simulateur :</strong> par souci de lisibilité, il n'applique volontairement pas la teinte sur les icônes déjà fortement colorées (badges de classe, icônes de ressources, etc.) et les affiche avec leur couleur d'origine.<br>En jeu la teinte peut réellement s'y appliquer et donner un résultat différent de ce qui est prévisualisé ici.</div>
+        <div><strong>Not 100% guaranteed:</strong> this behavior has been observed in-game by players, but isn't documented anywhere officially.<br>Some already-colored icons seem to resist the tint (the PlayStation icon is a known example), and there's no exhaustive list of every exception.<br>Feel free to test it in-game to be sure of the result.<br><br><strong>Note on this simulator:</strong> for readability, it deliberately doesn't apply the tint to icons that are already strongly colored (class badges, resource icons, etc.) and shows them in their original color instead.<br>In-game, the tint may genuinely apply there and produce a different result than what's previewed here.</div>
       </div>
 
-      <h3>Exemples concrets</h3>
-      <p>Dix intitulés réellement utilisés pour renommer des conteneurs de stockage en jeu, afin d'avoir des catégories visuelles plus claires que « Conteneur 1, 2, 3… » — bon aperçu de ce que donne la combinaison couleur + icône teintée + texte.</p>
+      <h3>Real-world examples</h3>
+      <p>Ten headings actually used to rename in-game storage containers, for clearer visual categories than "Container 1, 2, 3…" — a good showcase of what combining color + tinted icon + text actually looks like.</p>
       <div class="example-list" id="example-list"></div>
     </div>
   </section>
@@ -464,17 +464,17 @@
   <section id="tab-colors" class="tab-panel">
     <div class="info-box">
       <span class="protip-icon">ℹ</span>
-      <div>Classées comme un spectre lumineux (du rouge, en passant par l'orange, le jaune, le vert, le cyan, le bleu, le violet), puis les tons neutres (noir / gris / blanc) à la fin.<br>Cliquez sur un intitulé ci-dessous pour changer l'ordre de tri.</div>
+      <div>Sorted like a light spectrum (red, through orange, yellow, green, cyan, blue, purple), then neutral tones (black / grey / white) at the end.<br>Click a heading below to change the sort order.</div>
     </div>
     <div class="toolbar">
-      <input type="text" class="search-box" id="color-search" placeholder="Rechercher une balise couleur (ex: RED, VISOR, PET2)…">
+      <input type="text" class="search-box" id="color-search" placeholder="Search a color tag (e.g. RED, VISOR, PET2)…">
       <span class="count-pill" id="color-count"></span>
     </div>
     <div class="color-head-wrap">
       <span class="color-head-spacer"></span>
       <div class="color-head">
-        <div class="col"><button class="sort-btn" data-sort="name">Balise<span class="arrow"></span></button></div>
-        <div class="col"><button class="sort-btn" data-sort="spectrum">Couleur<span class="arrow"></span></button></div>
+        <div class="col"><button class="sort-btn" data-sort="name">Tag<span class="arrow"></span></button></div>
+        <div class="col"><button class="sort-btn" data-sort="spectrum">Color<span class="arrow"></span></button></div>
         <div class="col">
           <span class="hex-sort-group">
             <button class="sort-btn" data-sort="hex-alpha">Hex A→Z<span class="arrow"></span></button>
@@ -482,7 +482,7 @@
           </span>
         </div>
         <div class="col"><span class="static-label">Alpha</span></div>
-        <div class="col"><span class="static-label">Catégorie</span></div>
+        <div class="col"><span class="static-label">Category</span></div>
       </div>
     </div>
     <div id="color-table-wrap" class="color-strip"></div>
@@ -491,7 +491,7 @@
   <!-- ============ ICONS TAB ============ -->
   <section id="tab-icons" class="tab-panel">
     <div class="toolbar">
-      <input type="text" class="search-box" id="icon-search" placeholder="Rechercher une balise icône (ex: FUEL, SCLASS, HOT_1)…">
+      <input type="text" class="search-box" id="icon-search" placeholder="Search an icon tag (e.g. FUEL, SCLASS, HOT_1)…">
       <select class="cat-select" id="icon-cat-filter"></select>
       <span class="count-pill" id="icon-count"></span>
     </div>
@@ -501,42 +501,42 @@
   <!-- ============ NOTES TAB ============ -->
   <section id="tab-notes" class="tab-panel">
     <div class="notes">
-      <h2>À propos de ce guide</h2>
-      <p>Ce système de balisage n'est <strong>documenté nulle part officiellement</strong> par Hello Games. Les données ci-dessus proviennent de tableaux de configuration internes du jeu (feuilles listant chaque tag, sa cible mémoire RGBA et, pour les icônes, le chemin du fichier texture <code>.DDS</code>) qui circulent et sont maintenues par la communauté depuis plusieurs années.<br><strong class="highlight">Elles fonctionnent sur toutes les plateformes où le jeu est disponible (PC, PlayStation, Xbox et Nintendo Switch), dans tout champ de texte éditable.</strong></p>
+      <h2>About this guide</h2>
+      <p>This tagging system is <strong>not officially documented anywhere</strong> by Hello Games. The data above comes from internal game configuration tables (sheets listing each tag, its RGBA memory target, and, for icons, the <code>.DDS</code> texture file path) that have circulated and been maintained by the community for several years.<br><strong class="highlight">They work on every platform the game is available on (PC, PlayStation, Xbox, and Nintendo Switch), in any editable text field.</strong></p>
 
-      <h3>Banque d'icônes</h3>
+      <h3>Icon bank</h3>
       <ul>
-        <li>Les 145 icônes utilisées dans l'onglet « Icônes » ont été détourées (fond transparent) directement à partir de plusieurs captures d'écran.</li>
-        <li>Les icônes sont directement intégrées dans ce fichier HTML (le fichier HTML est autosuffisant ; aucun dossier externe requis). Vous pouvez donc déplacer ou renommer librement ce fichier.</li>
-        <li>Les 145 icônes sont encodées en base64 et intégrées directement dans le code JavaScript du fichier HTML, sous forme d'un objet <code>ICON_DATA</code> qui associe chaque nom de fichier à une chaîne <code>data:image/png;base64,...</code>.</li>
+        <li>The 145 icons used in the "Icons" tab were cut out (transparent background) directly from several screenshots.</li>
+        <li>The icons are embedded directly in this HTML file (the HTML file is self-contained; no external folder required). So you're free to move or rename this file.</li>
+        <li>The 145 icons are base64-encoded and embedded directly in the HTML file's JavaScript code, as an <code>ICON_DATA</code> object mapping each filename to a <code>data:image/png;base64,...</code> string.</li>
       </ul>
 
       <div class="info-box">
         <span class="protip-icon">ℹ</span>
-        <div>Concrètement, chaque PNG (déjà détouré, fond transparent) est converti en une longue chaîne de texte encodée en base64, et cette chaîne est utilisée directement comme attribut <code>src</code> des balises <code>&lt;img&gt;</code> — exactement comme si l'image était hébergée en ligne, sauf qu'elle est « écrite en dur » dans le fichier lui-même.</div>
+        <div>In practice, each PNG (already cut out, transparent background) is converted into a long base64-encoded text string, and that string is used directly as the <code>src</code> attribute of <code>&lt;img&gt;</code> tags — exactly as if the image were hosted online, except it's "hard-coded" straight into the file itself.</div>
       </div>
 
       <div class="info-box">
         <span class="protip-icon">ℹ</span>
-        <div>Les icônes sont fournies en parallèle sous forme de PNG individuels (un par balise), nommés en minuscules (ex. <code>sclass.png</code>) dans une archive séparée (à utiliser comme banque d'icônes réutilisable dans d'autres projets).</div>
+        <div>The icons are also provided as individual PNGs (one per tag), named in lowercase (e.g. <code>sclass.png</code>) in a separate archive (to use as a reusable icon bank in other projects).</div>
       </div>
 
-      <h3>Doublons repérés</h3>
-      <p>Plusieurs balises pointent en réalité vers le <strong>même fichier texture</strong> (donc vers la même icône ou couleur visuellement), sous des noms différents.<br>C'est signalé par un badge <span class="flag dup">doublon</span> dans les tableaux.</p>
-      <p>Exemples : <code>DMINERAL</code> / <code>MINERAL</code>, <code>TRADE1</code> / <code>TRADEABLE</code>, <code>MINERAL1</code> / <code>COMMODITY</code>, <code>TECH1</code> / <code>TECHNOLOGY</code>, <code>SALVAGE</code> / <code>BONES</code>.</p>
+      <h3>Duplicates found</h3>
+      <p>Several tags actually point to the <strong>exact same texture file</strong> (so the same icon or color visually), under different names.<br>This is flagged with a <span class="flag dup">duplicate</span> badge in the tables.</p>
+      <p>Examples: <code>DMINERAL</code> / <code>MINERAL</code>, <code>TRADE1</code> / <code>TRADEABLE</code>, <code>MINERAL1</code> / <code>COMMODITY</code>, <code>TECH1</code> / <code>TECHNOLOGY</code>, <code>SALVAGE</code> / <code>BONES</code>.</p>
 
-      <h3>Symboles de portail (PR_0 à PR_15)</h3>
-      <p>La série <code>PR_0</code> à <code>PR_15</code> correspond aux symboles utilisés sur les bornes de portail.<br>Confirmés fonctionnels en jeu par la communauté (plusieurs joueurs les ont utilisés pour renommer des systèmes stellaires).<br>Ils ont leur propre catégorie dans l'onglet Icônes.</p>
+      <h3>Portal glyphs (PR_0 through PR_15)</h3>
+      <p>The <code>PR_0</code> through <code>PR_15</code> series corresponds to the glyphs used on portal terminals.<br>Confirmed functional in-game by the community (several players have used them to rename star systems).<br>They have their own category in the Icons tab.</p>
 
-      <h3>Balises listées mais non fonctionnelles</h3>
-      <p>Un groupe de balises (boutons manette génériques : <code>CIRCLE_W</code>, <code>SQUARE_W</code>, <code>TRIANGLE_W</code>, <code>CROSS_W</code>, <code>LS_W</code>, <code>RS_W</code>, <code>L1_W</code>–<code>L3_W</code>, <code>R1_W</code>–<code>R3_W</code>, <code>UP_W</code>, <code>DOWN_W</code>, <code>LEFT_W</code>, <code>RIGHT_W</code>) apparaît dans les tables de configuration mais <strong>sans chemin de texture assigné</strong>.<br>Elles sont marquées <span class="flag warn">non fonctionnel</span> : probablement des emplacements réservés, non actifs dans la version actuelle du jeu.</p>
+      <h3>Tags listed but non-functional</h3>
+      <p>A group of tags (generic controller buttons: <code>CIRCLE_W</code>, <code>SQUARE_W</code>, <code>TRIANGLE_W</code>, <code>CROSS_W</code>, <code>LS_W</code>, <code>RS_W</code>, <code>L1_W</code>–<code>L3_W</code>, <code>R1_W</code>–<code>R3_W</code>, <code>UP_W</code>, <code>DOWN_W</code>, <code>LEFT_W</code>, <code>RIGHT_W</code>) shows up in the configuration tables but <strong>with no texture path assigned</strong>.<br>They're marked <span class="flag warn">non-functional</span>: likely reserved placeholders, not active in the game's current version.</p>
 
       <h3>Sources</h3>
-      <p>Ce guide est basé sur la compilation et le recueil de plusieurs sources d'informations et de tests effectués par moi-même et par la communauté. Les différentes sources sont :</p>
+      <p>This guide is based on compiling and cross-referencing several sources of information and tests carried out by myself and by the community. The different sources are:</p>
       <ul class="source-list">
-        <li>Le très utile guide communautaire « Azure's Text Styles Formatting Guide » (référence largement reprise, y compris sur Nexus Mods).</li>
-        <li>Discussions communautaires (Steam, Reddit ...) confirmant le fonctionnement actuel des balises de code ainsi que leurs utilisations en jeu.</li>
-        <li>Multiples captures du jeu et de tableaux divers trouvés sur le web.</li>
+        <li>The very useful community guide "Azure's Text Styles Formatting Guide" (a widely cited reference, including on Nexus Mods).</li>
+        <li>Community discussions (Steam, Reddit...) confirming the current behavior of the code tags as well as their in-game uses.</li>
+        <li>Multiple game screenshots and various tables found around the web.</li>
       </ul>
     </div>
   </section>
@@ -544,9 +544,9 @@
 </main>
 
 <footer>
-  Guide non officiel créé par <span class="footer-name">Spirit</span><br>
+  Unofficial guide created by <span class="footer-name">Spirit</span><br>
   <span class="footer-line2">— <a href="https://github.com/Data-Spirit/NMS_TC" class="footer-github" target="_blank" rel="noopener">GitHub</a> —</span>
-  <span class="footer-copyright">© No Man's Sky et tous les assets associés appartiennent à Hello Games.</span>
+  <span class="footer-copyright">© No Man's Sky and all associated assets belong to Hello Games.</span>
 </footer>
 
 <script>
@@ -554,92 +554,92 @@
 
 // ---- Colors: [tag, hex, alpha(0-1), category] — pre-sorted as a spectrum (hue, then greys last) ----
 const COLORS = [
-  ["PLAYER_04","#CA5F5D",1,"Joueurs"],
-  ["RED","#FF776F",1,"Génériques"],
-  ["FUEL","#FF776F",1,"Marchandises / Tech"],
+  ["PLAYER_04","#CA5F5D",1,"Players"],
+  ["RED","#FF776F",1,"Generic"],
+  ["FUEL","#FF776F",1,"Goods / Tech"],
   ["TRANS_WAR","#FF4825",1,"Transmissions / Missions"],
-  ["PET5","#FF7F30",1,"Compagnons"],
-  ["GAL_TITLE_YOU","#F97F20",1,"Carte galactique"],
-  ["CATALYST","#FFBA56",1,"Ressources"],
-  ["VAL_OFF","#FFC35E",1,"États / valeurs"],
+  ["PET5","#FF7F30",1,"Companions"],
+  ["GAL_TITLE_YOU","#F97F20",1,"Galactic Map"],
+  ["CATALYST","#FFBA56",1,"Resources"],
+  ["VAL_OFF","#FFC35E",1,"States / Values"],
   ["TRANS_DIP","#FFD787",1,"Transmissions / Missions"],
-  ["CR_TITLE","#FFD787",1,"Titres"],
-  ["CR_HEAD","#FFD787",1,"Titres"],
-  ["TRADE_SPECIALS","#FBBA36",1,"Marchandises / Tech"],
-  ["EXPED","#D5B265",1,"Génériques"],
-  ["COMMODITY","#FFBC25",1,"Marchandises / Tech"],
+  ["CR_TITLE","#FFD787",1,"Titles"],
+  ["CR_HEAD","#FFD787",1,"Titles"],
+  ["TRADE_SPECIALS","#FBBA36",1,"Goods / Tech"],
+  ["EXPED","#D5B265",1,"Generic"],
+  ["COMMODITY","#FFBC25",1,"Goods / Tech"],
   ["HIGHLIGHT","#FFBC25",1,"Missions"],
   ["MISSIONPRIMARY","#FFBC25",1,"Missions"],
-  ["PET1","#FFBC25",1,"Compagnons"],
-  ["DISC_STAT","#E3AA28",1,"États / valeurs"],
-  ["STAT","#FFC323",1,"États / valeurs"],
-  ["PLAYER_01","#E1B83C",1,"Joueurs"],
-  ["METAL","#DCD9CF",1,"Ressources"],
-  ["STELLAR","#FFFFB7",1,"Ressources"],
-  ["STORY_HIGH","#FFFFEA",1,"Génériques"],
-  ["PLAYER_03","#7AB85F",1,"Joueurs"],
+  ["PET1","#FFBC25",1,"Companions"],
+  ["DISC_STAT","#E3AA28",1,"States / Values"],
+  ["STAT","#FFC323",1,"States / Values"],
+  ["PLAYER_01","#E1B83C",1,"Players"],
+  ["METAL","#DCD9CF",1,"Resources"],
+  ["STELLAR","#FFFFB7",1,"Resources"],
+  ["STORY_HIGH","#FFFFEA",1,"Generic"],
+  ["PLAYER_03","#7AB85F",1,"Players"],
   ["TRANS_TRA","#8BF667",1,"Transmissions / Missions"],
-  ["TRADE","#8BF667",1,"Marchandises / Tech"],
-  ["TRADEABLE","#8BF667",1,"Marchandises / Tech"],
-  ["PET0","#8BF667",1,"Compagnons"],
-  ["FLORA","#8AF667",1,"Ressources"],
-  ["GREEN","#00FF00",1,"Génériques"],
-  ["POS_AVG","#00FF3C",1,"États / valeurs"],
-  ["VISOR","#46FFFF",1,"Génériques"],
-  ["EARTH","#A9C4E5",1,"Ressources"],
-  ["DARK_TECH","#82ADE3",1,"Marchandises / Tech"],
-  ["TECHNOLOGY","#ADCDF6",1,"Marchandises / Tech"],
-  ["PET2","#2E87FF",1,"Compagnons"],
-  ["PLAYER_02","#6F82CC",1,"Joueurs"],
-  ["SPECIAL","#BE9BFF",1,"Marchandises / Tech"],
-  ["EXOTIC","#BE9BFF",1,"Marchandises / Tech"],
+  ["TRADE","#8BF667",1,"Goods / Tech"],
+  ["TRADEABLE","#8BF667",1,"Goods / Tech"],
+  ["PET0","#8BF667",1,"Companions"],
+  ["FLORA","#8AF667",1,"Resources"],
+  ["GREEN","#00FF00",1,"Generic"],
+  ["POS_AVG","#00FF3C",1,"States / Values"],
+  ["VISOR","#46FFFF",1,"Generic"],
+  ["EARTH","#A9C4E5",1,"Resources"],
+  ["DARK_TECH","#82ADE3",1,"Goods / Tech"],
+  ["TECHNOLOGY","#ADCDF6",1,"Goods / Tech"],
+  ["PET2","#2E87FF",1,"Companions"],
+  ["PLAYER_02","#6F82CC",1,"Players"],
+  ["SPECIAL","#BE9BFF",1,"Goods / Tech"],
+  ["EXOTIC","#BE9BFF",1,"Goods / Tech"],
   ["TRANS_EXP","#DDB7FF",1,"Transmissions / Missions"],
-  ["RARE","#DDB7FF",1,"Marchandises / Tech"],
-  ["PET4","#6008A0",0.8,"Compagnons"],
-  ["NEG_AVG","#FF003C",1,"États / valeurs"],
-  ["PET3","#D61519",1,"Compagnons"],
-  ["VAL_NO","#000000",1,"États / valeurs"],
-  ["TITLE","#ACACAC",1,"Titres"],
-  ["GAL_TITLE_VISIT","#BBBBBB",1,"Carte galactique"],
-  ["PLAYER_00","#C7C7C7",1,"Joueurs"],
-  ["TITLE_BRIGHT","#C8C8C8",1,"Titres"],
+  ["RARE","#DDB7FF",1,"Goods / Tech"],
+  ["PET4","#6008A0",0.8,"Companions"],
+  ["NEG_AVG","#FF003C",1,"States / Values"],
+  ["PET3","#D61519",1,"Companions"],
+  ["VAL_NO","#000000",1,"States / Values"],
+  ["TITLE","#ACACAC",1,"Titles"],
+  ["GAL_TITLE_VISIT","#BBBBBB",1,"Galactic Map"],
+  ["PLAYER_00","#C7C7C7",1,"Players"],
+  ["TITLE_BRIGHT","#C8C8C8",1,"Titles"],
   ["MISSIONSECOND","#D8D8D8",1,"Missions"],
-  ["NEU_AVG","#E8E8E8",1,"États / valeurs"],
+  ["NEU_AVG","#E8E8E8",1,"States / Values"],
   ["TRANS_ANM","#FFFFFF",1,"Transmissions / Missions"],
-  ["CONSOLE","#FFFFFF",1,"Génériques"],
-  ["AMT_MAX","#FFFFFF",1,"États / valeurs"],
-  ["AMT_LESS","#FFFFFF",0.5,"États / valeurs"],
-  ["VAL_ON","#FFFFFF",1,"États / valeurs"],
-  ["GAL_MODE_SELECT","#FFFFFF",1,"Carte galactique"],
-  ["GAL_MODE_OPTION","#FFFFFF",0.6,"Carte galactique"],
-  ["GAL_MODE_BLOCK","#FFFFFF",0.392,"Carte galactique"],
+  ["CONSOLE","#FFFFFF",1,"Generic"],
+  ["AMT_MAX","#FFFFFF",1,"States / Values"],
+  ["AMT_LESS","#FFFFFF",0.5,"States / Values"],
+  ["VAL_ON","#FFFFFF",1,"States / Values"],
+  ["GAL_MODE_SELECT","#FFFFFF",1,"Galactic Map"],
+  ["GAL_MODE_OPTION","#FFFFFF",0.6,"Galactic Map"],
+  ["GAL_MODE_BLOCK","#FFFFFF",0.392,"Galactic Map"],
 ];
 
 // ---- Icons: [tag, file, category, path, flag]  flag: "" | "dup" | "warn" | "unk" ----
 const ICONS = [
-  // Ressources
-  ["HARVESTPLANT","harvestplant.png","Ressources","TEXTURES/UI/FONTS/WHEAT.DDS",""],
-  ["DWAYPOINT","dwaypoint.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.WAYPOINT.DDS",""],
-  ["DFLORA","dflora.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.FLORA.DDS",""],
-  ["DFAUNA","dfauna.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.FAUNA.DDS",""],
-  ["DMINERAL","dmineral.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.MINERAL.DDS","dup"],
-  ["MINERAL","mineral.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.MINERAL.DDS","dup"],
-  ["FUEL","fuel.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.FUEL.DDS","dup"],
-  ["FUEL1","fuel1.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.FUEL.DDS","dup"],
-  ["SPECIAL","special.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
-  ["METAL","metal.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
-  ["CATALYST","catalyst.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
-  ["STELLAR","stellar.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
-  ["EARTH","earth.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
-  ["EXOTIC","exotic.png","Ressources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
-  ["FLORA","flora.png","Ressources","TEXTURES/UI/FONTS/WHEAT.DDS","dup"],
-  ["DOT","dot.png","Ressources","TEXTURES/UI/HUD/MENUS/LABELDOT.DDS",""],
-  ["MINERAL1","mineral1.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.MINERAL.DDS","dup"],
-  ["COMMODITY","commodity.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.MINERAL.DDS","dup"],
-  ["TECH1","tech1.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TECH.DDS","dup"],
-  ["TECHNOLOGY","technology.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TECH.DDS","dup"],
-  ["TRADE1","trade1.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TRADE.DDS","dup"],
-  ["TRADEABLE","tradeable.png","Ressources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TRADE.DDS","dup"],
+  // Resources
+  ["HARVESTPLANT","harvestplant.png","Resources","TEXTURES/UI/FONTS/WHEAT.DDS",""],
+  ["DWAYPOINT","dwaypoint.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.WAYPOINT.DDS",""],
+  ["DFLORA","dflora.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.FLORA.DDS",""],
+  ["DFAUNA","dfauna.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.FAUNA.DDS",""],
+  ["DMINERAL","dmineral.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.MINERAL.DDS","dup"],
+  ["MINERAL","mineral.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.MINERAL.DDS","dup"],
+  ["FUEL","fuel.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.FUEL.DDS","dup"],
+  ["FUEL1","fuel1.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.FUEL.DDS","dup"],
+  ["SPECIAL","special.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
+  ["METAL","metal.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
+  ["CATALYST","catalyst.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
+  ["STELLAR","stellar.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
+  ["EARTH","earth.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
+  ["EXOTIC","exotic.png","Resources","TEXTURES/UI/FONTS/DISCOTYPE.TERRAIN.DDS","dup"],
+  ["FLORA","flora.png","Resources","TEXTURES/UI/FONTS/WHEAT.DDS","dup"],
+  ["DOT","dot.png","Resources","TEXTURES/UI/HUD/MENUS/LABELDOT.DDS",""],
+  ["MINERAL1","mineral1.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.MINERAL.DDS","dup"],
+  ["COMMODITY","commodity.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.MINERAL.DDS","dup"],
+  ["TECH1","tech1.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TECH.DDS","dup"],
+  ["TECHNOLOGY","technology.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TECH.DDS","dup"],
+  ["TRADE1","trade1.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TRADE.DDS","dup"],
+  ["TRADEABLE","tradeable.png","Resources","TEXTURES/UI/HUD/MENUS/SUBSTANCETYPESIMPLE.TRADE.DDS","dup"],
 
   // Interface
   ["TICK","tick.png","Interface","TEXTURES/UI/HUD/MENUS/TICKBOX.TICKANDBOX.DDS",""],
@@ -670,121 +670,121 @@ const ICONS = [
   ["PADLOCK","padlock.png","Interface","TEXTURES/UI/FONTS/MODE.LOCKED.DDS",""],
   ["ASTERISK","asterisk.png","Interface","TEXTURES/UI/FONTS/MODE.ASTERISK.DDS",""],
   ["PINICON","pinicon.png","Interface","TEXTURES/UI/FRONTEND/COMPONENTS/PINNEW.DDS",""],
-  ["LOOK","look.png","Interface","(chemin non listé)","unk"],
+  ["LOOK","look.png","Interface","(path not listed)","unk"],
 
-  // Frégates
-  ["FRIGDEFAULT","frigdefault.png","Frégates","TEXTURES/UI/FONTS/FRIGATETYPE.DEFAULT.DDS",""],
-  ["FRIGCOMBAT","frigcombat.png","Frégates","TEXTURES/UI/FONTS/FRIGATETYPE.COMBAT.DDS",""],
-  ["FRIGMINE","frigmine.png","Frégates","TEXTURES/UI/FONTS/FRIGATETYPE.MINING.DDS",""],
-  ["FRIGEXPLORE","frigexplore.png","Frégates","TEXTURES/UI/FONTS/FRIGATETYPE.EXPLORE.DDS",""],
-  ["FRIGTRADE","frigtrade.png","Frégates","TEXTURES/UI/FONTS/FRIGATETYPE.TRADE.DDS",""],
-  ["FRIGDEEP","frigdeep.png","Frégates","TEXTURES/UI/FONTS/FRIGATETYPE.DEEPSPACE.DDS",""],
-  ["FRIGPIRATE","frigpirate.png","Frégates","(chemin non listé)","unk"],
+  // Frigates
+  ["FRIGDEFAULT","frigdefault.png","Frigates","TEXTURES/UI/FONTS/FRIGATETYPE.DEFAULT.DDS",""],
+  ["FRIGCOMBAT","frigcombat.png","Frigates","TEXTURES/UI/FONTS/FRIGATETYPE.COMBAT.DDS",""],
+  ["FRIGMINE","frigmine.png","Frigates","TEXTURES/UI/FONTS/FRIGATETYPE.MINING.DDS",""],
+  ["FRIGEXPLORE","frigexplore.png","Frigates","TEXTURES/UI/FONTS/FRIGATETYPE.EXPLORE.DDS",""],
+  ["FRIGTRADE","frigtrade.png","Frigates","TEXTURES/UI/FONTS/FRIGATETYPE.TRADE.DDS",""],
+  ["FRIGDEEP","frigdeep.png","Frigates","TEXTURES/UI/FONTS/FRIGATETYPE.DEEPSPACE.DDS",""],
+  ["FRIGPIRATE","frigpirate.png","Frigates","(path not listed)","unk"],
 
-  // Symboles de portail (confirmés en jeu — utilisés pour renommer des systèmes stellaires)
-  ["PR_0","pr_0.png","Symboles de portail","— symbole de portail",""],
-  ["PR_1","pr_1.png","Symboles de portail","— symbole de portail",""],
-  ["PR_2","pr_2.png","Symboles de portail","— symbole de portail",""],
-  ["PR_3","pr_3.png","Symboles de portail","— symbole de portail",""],
-  ["PR_4","pr_4.png","Symboles de portail","— symbole de portail",""],
-  ["PR_5","pr_5.png","Symboles de portail","— symbole de portail",""],
-  ["PR_6","pr_6.png","Symboles de portail","— symbole de portail",""],
-  ["PR_7","pr_7.png","Symboles de portail","— symbole de portail",""],
-  ["PR_8","pr_8.png","Symboles de portail","— symbole de portail",""],
-  ["PR_9","pr_9.png","Symboles de portail","— symbole de portail",""],
-  ["PR_10","pr_10.png","Symboles de portail","— symbole de portail",""],
-  ["PR_11","pr_11.png","Symboles de portail","— symbole de portail",""],
-  ["PR_12","pr_12.png","Symboles de portail","— symbole de portail",""],
-  ["PR_13","pr_13.png","Symboles de portail","— symbole de portail",""],
-  ["PR_14","pr_14.png","Symboles de portail","— symbole de portail",""],
-  ["PR_15","pr_15.png","Symboles de portail","— symbole de portail",""],
+  // Portal glyphs (confirmed in-game — used to rename star systems)
+  ["PR_0","pr_0.png","Portal Glyphs","— portal glyph",""],
+  ["PR_1","pr_1.png","Portal Glyphs","— portal glyph",""],
+  ["PR_2","pr_2.png","Portal Glyphs","— portal glyph",""],
+  ["PR_3","pr_3.png","Portal Glyphs","— portal glyph",""],
+  ["PR_4","pr_4.png","Portal Glyphs","— portal glyph",""],
+  ["PR_5","pr_5.png","Portal Glyphs","— portal glyph",""],
+  ["PR_6","pr_6.png","Portal Glyphs","— portal glyph",""],
+  ["PR_7","pr_7.png","Portal Glyphs","— portal glyph",""],
+  ["PR_8","pr_8.png","Portal Glyphs","— portal glyph",""],
+  ["PR_9","pr_9.png","Portal Glyphs","— portal glyph",""],
+  ["PR_10","pr_10.png","Portal Glyphs","— portal glyph",""],
+  ["PR_11","pr_11.png","Portal Glyphs","— portal glyph",""],
+  ["PR_12","pr_12.png","Portal Glyphs","— portal glyph",""],
+  ["PR_13","pr_13.png","Portal Glyphs","— portal glyph",""],
+  ["PR_14","pr_14.png","Portal Glyphs","— portal glyph",""],
+  ["PR_15","pr_15.png","Portal Glyphs","— portal glyph",""],
 
-  // Inventaire
-  ["INVBACKPACK","invbackpack.png","Inventaire","TEXTURES/UI/FONTS/INVENTORY.DDS",""],
-  ["INVSHIP","invship.png","Inventaire","TEXTURES/UI/FONTS/INVENTORY.SHIP.DDS",""],
-  ["INVFREIGHT","invfreight.png","Inventaire","TEXTURES/UI/FONTS/INVENTORY.FREIGHTER.DDS",""],
-  ["NANITE","nanite.png","Inventaire","TEXTURES/UI/FONTS/NANITES.DDS",""],
-  ["NANITESMALL","nanitesmall.png","Inventaire","TEXTURES/UI/FONTS/NANITESMALL.DDS",""],
-  ["UNITSMALL","unitsmall.png","Inventaire","TEXTURES/UI/FONTS/UNITSSMALL.DDS",""],
-  ["PRODUCTSMALL","productsmall.png","Inventaire","TEXTURES/UI/FONTS/PRODUCTSMALL.DDS",""],
-  ["INVGENERAL","invgeneral.png","Inventaire","TEXTURES/UI/FONTS/INV.GENERAL.DDS",""],
-  ["INVTECH","invtech.png","Inventaire","TEXTURES/UI/FONTS/INV.TECH.DDS",""],
-  ["INVCARGO","invcargo.png","Inventaire","TEXTURES/UI/FONTS/INV.CARGO.DDS",""],
-  ["QUIKCSILVER","quikcsilver.png","Inventaire","TEXTURES/UI/FONTS/SPECIALS.DDS",""],
+  // Inventory
+  ["INVBACKPACK","invbackpack.png","Inventory","TEXTURES/UI/FONTS/INVENTORY.DDS",""],
+  ["INVSHIP","invship.png","Inventory","TEXTURES/UI/FONTS/INVENTORY.SHIP.DDS",""],
+  ["INVFREIGHT","invfreight.png","Inventory","TEXTURES/UI/FONTS/INVENTORY.FREIGHTER.DDS",""],
+  ["NANITE","nanite.png","Inventory","TEXTURES/UI/FONTS/NANITES.DDS",""],
+  ["NANITESMALL","nanitesmall.png","Inventory","TEXTURES/UI/FONTS/NANITESMALL.DDS",""],
+  ["UNITSMALL","unitsmall.png","Inventory","TEXTURES/UI/FONTS/UNITSSMALL.DDS",""],
+  ["PRODUCTSMALL","productsmall.png","Inventory","TEXTURES/UI/FONTS/PRODUCTSMALL.DDS",""],
+  ["INVGENERAL","invgeneral.png","Inventory","TEXTURES/UI/FONTS/INV.GENERAL.DDS",""],
+  ["INVTECH","invtech.png","Inventory","TEXTURES/UI/FONTS/INV.TECH.DDS",""],
+  ["INVCARGO","invcargo.png","Inventory","TEXTURES/UI/FONTS/INV.CARGO.DDS",""],
+  ["QUIKCSILVER","quikcsilver.png","Inventory","TEXTURES/UI/FONTS/SPECIALS.DDS",""],
 
-  // Voix / réseau
-  ["VC_ON","vc_on.png","Voix / Réseau","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.ON.DDS",""],
-  ["VC_TALK","vc_talk.png","Voix / Réseau","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.ACTIVE.DDS","dup"],
-  ["SPEAKER","speaker.png","Voix / Réseau","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.ACTIVE.DDS","dup"],
-  ["VC_MUTE","vc_mute.png","Voix / Réseau","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.OFF.DDS",""],
-  ["PLAYER0","player0.png","Voix / Réseau","TEXTURES/UI/FONTS/NETWORKPLAYER.0.DDS",""],
-  ["PLAYER1","player1.png","Voix / Réseau","TEXTURES/UI/FONTS/NETWORKPLAYER.1.DDS",""],
-  ["PLAYER2","player2.png","Voix / Réseau","TEXTURES/UI/FONTS/NETWORKPLAYER.2.DDS",""],
-  ["PLAYER3","player3.png","Voix / Réseau","TEXTURES/UI/FONTS/NETWORKPLAYER.3.DDS",""],
-  ["PLAYER4","player4.png","Voix / Réseau","TEXTURES/UI/FONTS/NETWORKPLAYER.4.DDS",""],
+  // Voice / network
+  ["VC_ON","vc_on.png","Voice / Network","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.ON.DDS",""],
+  ["VC_TALK","vc_talk.png","Voice / Network","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.ACTIVE.DDS","dup"],
+  ["SPEAKER","speaker.png","Voice / Network","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.ACTIVE.DDS","dup"],
+  ["VC_MUTE","vc_mute.png","Voice / Network","TEXTURES/UI/FRONTEND/COMPONENTS/SPEAKER.OFF.DDS",""],
+  ["PLAYER0","player0.png","Voice / Network","TEXTURES/UI/FONTS/NETWORKPLAYER.0.DDS",""],
+  ["PLAYER1","player1.png","Voice / Network","TEXTURES/UI/FONTS/NETWORKPLAYER.1.DDS",""],
+  ["PLAYER2","player2.png","Voice / Network","TEXTURES/UI/FONTS/NETWORKPLAYER.2.DDS",""],
+  ["PLAYER3","player3.png","Voice / Network","TEXTURES/UI/FONTS/NETWORKPLAYER.3.DDS",""],
+  ["PLAYER4","player4.png","Voice / Network","TEXTURES/UI/FONTS/NETWORKPLAYER.4.DDS",""],
 
-  // Butin
-  ["SALVAGE","salvage.png","Butin","TEXTURES/UI/FONTS/DISCOTYPE.BURIED.DDS","dup"],
-  ["BONES","bones.png","Butin","TEXTURES/UI/FONTS/DISCOTYPE.BURIED.DDS","dup"],
-  ["GRUBS","grubs.png","Butin","(chemin non listé)","unk"],
+  // Loot
+  ["SALVAGE","salvage.png","Loot","TEXTURES/UI/FONTS/DISCOTYPE.BURIED.DDS","dup"],
+  ["BONES","bones.png","Loot","TEXTURES/UI/FONTS/DISCOTYPE.BURIED.DDS","dup"],
+  ["GRUBS","grubs.png","Loot","(path not listed)","unk"],
 
-  // Plateformes / contrôles
-  ["ICON_GOG","icon_gog.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.GOG.DDS",""],
-  ["ICON_PS","icon_ps.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.PS.DDS",""],
-  ["ICON_STEAM","icon_steam.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.STEAM.DDS",""],
-  ["ICON_XBL","icon_xbl.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.XBOX.DDS",""],
-  ["ICON_KBM","icon_kbm.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.GENERICKBM.DDS",""],
-  ["ICON_GEN","icon_gen.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.GENERIC.DDS",""],
-  ["ICON_NIN","icon_nin.png","Plateformes / Contrôles","(chemin non listé)","unk"],
-  ["HOTKEY1","hotkey1.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEYWIDE.CTRL.DDS",""],
-  ["HOTKEY2","hotkey2.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEYWIDE.0TO9.DDS",""],
-  ["HOT_1","hot_1.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.1.DDS",""],
-  ["HOT_2","hot_2.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.2.DDS",""],
-  ["HOT_3","hot_3.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.3.DDS",""],
-  ["HOT_4","hot_4.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.4.DDS",""],
-  ["HOT_5","hot_5.png","Plateformes / Contrôles","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.5.DDS",""],
+  // Platforms / controls
+  ["ICON_GOG","icon_gog.png","Platforms / Controls","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.GOG.DDS",""],
+  ["ICON_PS","icon_ps.png","Platforms / Controls","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.PS.DDS",""],
+  ["ICON_STEAM","icon_steam.png","Platforms / Controls","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.STEAM.DDS",""],
+  ["ICON_XBL","icon_xbl.png","Platforms / Controls","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.XBOX.DDS",""],
+  ["ICON_KBM","icon_kbm.png","Platforms / Controls","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.GENERICKBM.DDS",""],
+  ["ICON_GEN","icon_gen.png","Platforms / Controls","TEXTURES/UI/FRONTEND/CROSSPLAY/PLATFORM.GENERIC.DDS",""],
+  ["ICON_NIN","icon_nin.png","Platforms / Controls","(path not listed)","unk"],
+  ["HOTKEY1","hotkey1.png","Platforms / Controls","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEYWIDE.CTRL.DDS",""],
+  ["HOTKEY2","hotkey2.png","Platforms / Controls","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEYWIDE.0TO9.DDS",""],
+  ["HOT_1","hot_1.png","Platforms / Controls","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.1.DDS",""],
+  ["HOT_2","hot_2.png","Platforms / Controls","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.2.DDS",""],
+  ["HOT_3","hot_3.png","Platforms / Controls","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.3.DDS",""],
+  ["HOT_4","hot_4.png","Platforms / Controls","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.4.DDS",""],
+  ["HOT_5","hot_5.png","Platforms / Controls","TEXTURES/UI/FRONTEND/INTEXTBUTTONS/KEYBOARD/KEY.5.DDS",""],
 
   // Classes
-  ["CCLASS","cclass.png","Classe (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.C.DDS",""],
-  ["BCLASS","bclass.png","Classe (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.B.DDS",""],
-  ["ACLASS","aclass.png","Classe (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.A.DDS",""],
-  ["SCLASS","sclass.png","Classe (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.S.DDS",""],
+  ["CCLASS","cclass.png","Class (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.C.DDS",""],
+  ["BCLASS","bclass.png","Class (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.B.DDS",""],
+  ["ACLASS","aclass.png","Class (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.A.DDS",""],
+  ["SCLASS","sclass.png","Class (C→S)","TEXTURES/UI/FRONTEND/ICONS/CLASS/CLASSMINI.S.DDS",""],
 
-  // Modes de jeu
-  ["NORMAL","normal.png","Modes de jeu","TEXTURES/UI/FONTS/MODE.ATLAS.DDS",""],
-  ["RELAXED","relaxed.png","Modes de jeu","TEXTURES/UI/FONTS/MODE.RELAXED.DDS",""],
-  ["SURVIVAL","survival.png","Modes de jeu","TEXTURES/UI/FONTS/MODE.SURVIVAL.DDS",""],
-  ["CREATIVE","creative.png","Modes de jeu","TEXTURES/UI/FONTS/MODE.CREATIVE.DDS",""],
-  ["CUSTOM","custom.png","Modes de jeu","TEXTURES/UI/FONTS/MODE.CUSTOM.DDS",""],
-  ["PERMADEATH","permadeath.png","Modes de jeu","TEXTURES/UI/FONTS/MODE.PERMADEATH.DDS",""],
+  // Game modes
+  ["NORMAL","normal.png","Game Modes","TEXTURES/UI/FONTS/MODE.ATLAS.DDS",""],
+  ["RELAXED","relaxed.png","Game Modes","TEXTURES/UI/FONTS/MODE.RELAXED.DDS",""],
+  ["SURVIVAL","survival.png","Game Modes","TEXTURES/UI/FONTS/MODE.SURVIVAL.DDS",""],
+  ["CREATIVE","creative.png","Game Modes","TEXTURES/UI/FONTS/MODE.CREATIVE.DDS",""],
+  ["CUSTOM","custom.png","Game Modes","TEXTURES/UI/FONTS/MODE.CUSTOM.DDS",""],
+  ["PERMADEATH","permadeath.png","Game Modes","TEXTURES/UI/FONTS/MODE.PERMADEATH.DDS",""],
 
-  // Édition de base
-  ["DUPLICATE","duplicate.png","Édition de base","(chemin non listé)","unk"],
-  ["FLIPVERT","flipvert.png","Édition de base","(chemin non listé)","unk"],
-  ["MOVE","move.png","Édition de base","(chemin non listé)","unk"],
-  ["BUILD","build.png","Édition de base","(chemin non listé)","unk"],
-  ["DELETE","delete.png","Édition de base","(chemin non listé)","unk"],
-  ["MIRROR","mirror.png","Édition de base","(chemin non listé)","unk"],
-  ["ROTATE","rotate.png","Édition de base","(chemin non listé)","unk"],
-  ["SCALE","scale.png","Édition de base","(chemin non listé)","unk"],
+  // Base building
+  ["DUPLICATE","duplicate.png","Base Building","(path not listed)","unk"],
+  ["FLIPVERT","flipvert.png","Base Building","(path not listed)","unk"],
+  ["MOVE","move.png","Base Building","(path not listed)","unk"],
+  ["BUILD","build.png","Base Building","(path not listed)","unk"],
+  ["DELETE","delete.png","Base Building","(path not listed)","unk"],
+  ["MIRROR","mirror.png","Base Building","(path not listed)","unk"],
+  ["ROTATE","rotate.png","Base Building","(path not listed)","unk"],
+  ["SCALE","scale.png","Base Building","(path not listed)","unk"],
 
-  // Non fonctionnels (pas d'icône réelle dans le jeu)
-  ["CIRCLE_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["SQUARE_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["TRIANGLE_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["CROSS_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["LS_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["RS_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["L1_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["L2_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["L3_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["R1_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["R2_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["R3_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["UP_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["DOWN_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["LEFT_W","","Non fonctionnel","— aucun chemin assigné","warn"],
-  ["RIGHT_W","","Non fonctionnel","— aucun chemin assigné","warn"],
+  // Non-functional (no real icon in the game)
+  ["CIRCLE_W","","Non-functional","— no path assigned","warn"],
+  ["SQUARE_W","","Non-functional","— no path assigned","warn"],
+  ["TRIANGLE_W","","Non-functional","— no path assigned","warn"],
+  ["CROSS_W","","Non-functional","— no path assigned","warn"],
+  ["LS_W","","Non-functional","— no path assigned","warn"],
+  ["RS_W","","Non-functional","— no path assigned","warn"],
+  ["L1_W","","Non-functional","— no path assigned","warn"],
+  ["L2_W","","Non-functional","— no path assigned","warn"],
+  ["L3_W","","Non-functional","— no path assigned","warn"],
+  ["R1_W","","Non-functional","— no path assigned","warn"],
+  ["R2_W","","Non-functional","— no path assigned","warn"],
+  ["R3_W","","Non-functional","— no path assigned","warn"],
+  ["UP_W","","Non-functional","— no path assigned","warn"],
+  ["DOWN_W","","Non-functional","— no path assigned","warn"],
+  ["LEFT_W","","Non-functional","— no path assigned","warn"],
+  ["RIGHT_W","","Non-functional","— no path assigned","warn"],
 
 ];
 
@@ -953,11 +953,11 @@ function relLuminance(hex){
   return 0.299*r + 0.587*g + 0.114*b;
 }
 
-// Ordre de référence défini manuellement (curation visuelle) — plus fiable
-// qu'un algorithme perceptuel pour capturer les nuances (vivacité, teinte
-// quasi-identique, neutres teintés...) qu'aucune formule simple ne rend
-// parfaitement. Toute balise absente de cette liste (ajout futur) est
-// simplement repoussée à la fin, dans son ordre d'origine.
+// Manually curated reference order (visual curation) — more reliable
+// than a perceptual algorithm at capturing nuances (vividness, near-identical
+// hue, tinted neutrals...) that no simple formula renders
+// perfectly. Any tag missing from this list (future addition) is
+// simply pushed to the end, in its original order.
 const SPECTRUM_ORDER = [
   "PET3","NEG_AVG","PLAYER_04","FUEL","RED","TRANS_WAR","PET5","GAL_TITLE_YOU",
   "DISC_STAT","TRADE_SPECIALS","COMMODITY","HIGHLIGHT","MISSIONPRIMARY","PET1",
@@ -1017,15 +1017,15 @@ function renderColors(filter=""){
   const f = filter.trim().toUpperCase();
   let rows = COLORS.filter(([tag]) => tag.includes(f));
   rows = sortColorRows(rows, colorSort.key, colorSort.dir);
-  document.getElementById('color-count').textContent = rows.length + ' / ' + COLORS.length + ' balises';
+  document.getElementById('color-count').textContent = rows.length + ' / ' + COLORS.length + ' tags';
 
   let html = '';
   rows.forEach(([tag,hex,alpha,cat]) => {
     const rgba = hexToRgba(hex, alpha);
-    const alphaPill = alpha < 1 ? `<span class="color-alpha-pill">transparence ${Math.round(alpha*100)}%</span>` : '';
-    const copyText = `<${tag}>Texte</>`;
+    const alphaPill = alpha < 1 ? `<span class="color-alpha-pill">transparency ${Math.round(alpha*100)}%</span>` : '';
+    const copyText = `<${tag}>Text</>`;
     html += `<div class="color-row-wrap">
-      <button class="copy-btn" data-copy="${escapeAttr(copyText)}" title="Copier : ${escapeAttr(copyText)}">⧉</button>
+      <button class="copy-btn" data-copy="${escapeAttr(copyText)}" title="Copy: ${escapeAttr(copyText)}">⧉</button>
       <div class="color-row">
         <div class="color-tagname">${tag}</div>
         <div class="color-bar"><div class="fill" style="background:${rgba}"></div></div>
@@ -1082,7 +1082,7 @@ function hexToRgba(hex, alpha){
 
 /* ================= RENDER: ICONS TABLE (grouped) ================= */
 const CATEGORY_DESCRIPTIONS = {
-  "Classe (C→S)": "Note de qualité générique du jeu (C = la plus faible, S = la plus élevée) — s'applique aux vaisseaux, multi-outils, frégates, armes et technologies, pas seulement aux vaisseaux.",
+  "Class (C→S)": "The game's generic quality rating (C = lowest, S = highest) — applies to ships, multi-tools, frigates, weapons, and technology, not just ships.",
 };
 
 function renderIcons(filter="", catFilter="ALL"){
@@ -1090,7 +1090,7 @@ function renderIcons(filter="", catFilter="ALL"){
   let rows = ICONS.filter(([tag]) => tag.includes(f));
   if(catFilter !== "ALL") rows = rows.filter(([,,cat]) => cat === catFilter);
 
-  document.getElementById('icon-count').textContent = rows.length + ' / ' + ICONS.length + ' balises';
+  document.getElementById('icon-count').textContent = rows.length + ' / ' + ICONS.length + ' tags';
 
   const order = [];
   const groups = {};
@@ -1104,16 +1104,16 @@ function renderIcons(filter="", catFilter="ALL"){
   order.forEach(cat => {
     const desc = CATEGORY_DESCRIPTIONS[cat];
     const descHtml = desc ? `<p class="cat-desc">${desc}</p>` : '';
-    html += `<section class="cat-block"><h3>${cat}</h3>${descHtml}<div class="table-scroll"><table><thead><tr><th></th><th>Aperçu</th><th>Balise</th><th>Chemin texture</th><th></th></tr></thead><tbody>`;
+    html += `<section class="cat-block"><h3>${cat}</h3>${descHtml}<div class="table-scroll"><table><thead><tr><th></th><th>Preview</th><th>Tag</th><th>Texture path</th><th></th></tr></thead><tbody>`;
     groups[cat].forEach(([tag,file,,path,flag]) => {
-      const flagHtml = flag === "dup" ? '<span class="flag dup">doublon</span>'
-                      : flag === "warn" ? '<span class="flag warn">non fonctionnel</span>'
-                      : flag === "unk" ? '<span class="flag unk">à vérifier</span>' : '';
+      const flagHtml = flag === "dup" ? '<span class="flag dup">duplicate</span>'
+                      : flag === "warn" ? '<span class="flag warn">non-functional</span>'
+                      : flag === "unk" ? '<span class="flag unk">to verify</span>' : '';
       const thumb = file ? `<span class="icon-thumb"><img src="${ICON_DATA[file]}" alt="${tag}" loading="lazy"></span>`
                           : `<span class="icon-thumb empty">∅</span>`;
       const copyText = `<IMG>${tag}<>`;
       html += `<tr>
-        <td><button class="copy-btn" data-copy="${escapeAttr(copyText)}" title="Copier : ${escapeAttr(copyText)}">⧉</button></td>
+        <td><button class="copy-btn" data-copy="${escapeAttr(copyText)}" title="Copy: ${escapeAttr(copyText)}">⧉</button></td>
         <td>${thumb}</td>
         <td class="tag-cell">${tag}</td>
         <td class="path-cell">${path}</td>
@@ -1122,18 +1122,18 @@ function renderIcons(filter="", catFilter="ALL"){
     });
     html += '</tbody></table></div></section>';
   });
-  document.getElementById('icon-table-wrap').innerHTML = html || '<p style="color:var(--text-dim)">Aucun résultat.</p>';
+  document.getElementById('icon-table-wrap').innerHTML = html || '<p style="color:var(--text-dim)">No results.</p>';
 }
 
 function populateCatFilter(){
   const cats = [...new Set(ICONS.map(r => r[2]))];
   const sel = document.getElementById('icon-cat-filter');
-  sel.innerHTML = '<option value="ALL">Toutes catégories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
+  sel.innerHTML = '<option value="ALL">All categories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
   sel.addEventListener('change', () => renderIcons(document.getElementById('icon-search').value, sel.value));
 }
 
-// Icônes déjà colorées à l'origine (badges de classe, plateformes, ressources, etc.) —
-// la teinte par balise couleur ne s'y applique pas, pour garder leur couleur d'origine lisible.
+// Icons that are already colored natively (class badges, platforms, resources, etc.) —
+// the color-tag tint doesn't apply to them, to keep their original color legible.
 const ICON_ALREADY_COLORED = new Set([
   "aclass.png","bclass.png","cclass.png","sclass.png",
   "commodity.png","mineral1.png","tech1.png","technology.png","trade1.png","tradeable.png",
@@ -1157,7 +1157,7 @@ function renderNMSMarkup(raw, opts){
     let iconHtml;
     if(file && c && !ICON_ALREADY_COLORED.has(file)){
       // monochrome icon → apply the color as a tint via CSS mask
-      iconHtml = `<span class="icon-inline${lg}" title="${iconTag} teinté ${colorTag}"><span class="icon-mask" style="background-color:${hexToRgba(c.hex,c.alpha)};-webkit-mask-image:url('${ICON_DATA[file]}');mask-image:url('${ICON_DATA[file]}')"></span></span>`;
+      iconHtml = `<span class="icon-inline${lg}" title="${iconTag} tinted ${colorTag}"><span class="icon-mask" style="background-color:${hexToRgba(c.hex,c.alpha)};-webkit-mask-image:url('${ICON_DATA[file]}');mask-image:url('${ICON_DATA[file]}')"></span></span>`;
     } else if(file){
       // already-colored icon → keep its native colors, no tint
       iconHtml = `<span class="icon-inline${lg}" title="${iconTag}"><img src="${ICON_DATA[file]}" alt="${iconTag}"></span>`;
