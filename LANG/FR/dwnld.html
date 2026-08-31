@@ -1,15 +1,22 @@
 ```html
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Download NMS_txt_code_FR.html</title>
+    <title>Download</title>
 </head>
 <body>
 
-<a href="NMS_txt_code_FR.html" download="NMS_txt_code_FR.html">
-    Download NMS_txt_code_FR.html
-</a>
+<script>
+    window.onload = function () {
+        const link = document.createElement("a");
+        link.href = "NMS_txt_code_FR.html";
+        link.download = "NMS_txt_code_FR.html";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    };
+</script>
 
 </body>
 </html>
