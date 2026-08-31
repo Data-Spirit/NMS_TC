@@ -25,7 +25,7 @@ No Man's Sky lets players color and decorate names (bases, ships, freighters, st
 ## 📖 Guide by language
 
 | | Language | | 💾 Download |
-|:---:|---|---|
+|:---:|---|---|---|
 | 🇫🇷 | **Français** | [Guide de formatage de texte →](https://data-spirit.github.io/NMS_TC/LANG/FR/NMS_txt_code_FR.html) | [⬇️ Download](https://data-spirit.github.io/NMS_TC/LANG/FR/dwnld.html) |
 | 🇬🇧 | **English** | 🚧 *Coming soon* |
 
