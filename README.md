@@ -6,9 +6,18 @@
 
 **A complete, community-driven reference for No Man's Sky's in-game text formatting codes** — every color tag and every icon tag, documented, extracted, and packaged into a single self-contained interactive HTML guide.
 
-![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)
-![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
-![Unofficial](https://img.shields.io/badge/unofficial-fan--made-orange.svg)
+<!-- BADGES CENTRES + LIENS HYPERTEXT INCLUS -->
+<p align="center">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0">
+  </a>
+  <a href="https://github.com/Data-Spirit/NMS_TC">
+    <img src="https://img.shields.io/badge/status-active-brightgreen.svg" alt="Status">
+  </a>
+  <a href="https://github.com/Data-Spirit/NMS_TC">
+    <img src="https://img.shields.io/badge/unofficial-fan--made-orange.svg" alt="Unofficial">
+  </a>
+</p>
 
 > ⚠️ **Unofficial, fan-made project.** Not affiliated with, endorsed by, or sponsored by Hello Games.
 
