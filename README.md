@@ -24,6 +24,7 @@
 
 ---
 
+<!-- PRESENTATION + HOW TO USE -->
 ## 🎮 What is this?
 
 > **No Man's Sky lets you customize names** (bases, ships, freighters, multi-tools, storage containers, star systems, and more) using an in-game text-tag system for **colors and icons** that Hello Games has never officially documented.
@@ -34,11 +35,11 @@
 
 ## 🛠️ How to Use
 
-**Download** → _open the HTML file in your browser_ → _search or browse the tables_ → _click to copy_ → _paste in-game_.
-
-**No installation is required**, and the guide is designed to work **fully offline** once downloaded.
-
-_You can also browse the hosted version directly from your browser through **🌐Online Version**._
+> **Download** → _open the HTML file in your browser_ → _search or browse the tables_ → _click to copy_ → _paste in-game_.
+> 
+> **No installation is required**, and the guide is designed to work **fully offline** once downloaded.
+> 
+> _You can also browse the hosted version directly from your browser through **🌐Online Version**._
 
 ---
 
@@ -73,8 +74,11 @@ _You can also browse the hosted version directly from your browser through **�
 
 More languages may be added over time. Each language folder has its own detailed README describing that guide's features in full.
 
+**Long-term goal** : _make NMS // TEXT CODES available in every language officially supported by Hello Games in No Man's Sky, so that players around the world can use the guide in their own language._
+
 ---
 
+<!-- LISTE d'AVANTAGES DU GUIDE -->
 ## ✨ Why this guide stands out
 
 * 📦 **A single, fully self-contained HTML file :** no installation, no critical external dependencies. Open it in your browser, **offline, anywhere**.
@@ -89,6 +93,7 @@ More languages may be added over time. Each language folder has its own detailed
 
 ---
 
+<!-- STRUCTURE DU REPO -->
 ## 📁 Repository structure
 
 ```
@@ -106,6 +111,7 @@ NMS_TC/
 
 ---
 
+<!-- RAPPEL LICENCE -->
 ## 📜 License
 
 > Original content created by **Spirit** is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE.md](./LICENSE.md) for the full terms.
