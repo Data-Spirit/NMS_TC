@@ -1,5 +1,6 @@
+<!-- BANNIERE CENTRE + TITRE CENTRE -->
 <p align="center">
-  <img src="./assets/banner_01.png" alt="NMS_TC Banner">
+  <img src="https://github.com/Data-Spirit/NMS_TC/blob/main/assets/banner_01.png" alt="NMS_TC Banner">
 </p>
 
 <h1 align="center">NMS // TEXT CODES</h1>
@@ -23,18 +24,25 @@
 
 ---
 
-## What is this?
+## 🎮 What is this?
 
-No Man's Sky lets players color and decorate names (bases, ships, freighters, storage containers, star systems...) using an undocumented in-game text-tag system. **NMS_TC** compiles every known tag into a single interactive guide:
+> **No Man's Sky lets you customize names** (bases, ships, freighters, multi-tools, storage containers, star systems, and more) using an in-game text-tag system for **colors and icons** that Hello Games has never officially documented.
+> 
+> _The information exists, but has historically been scattered across screenshots, player trial-and-error, forums, and community guides._
+> 
+> **NMS // TEXT CODES** brings this information together into a **single structured and interactive reference guide** — designed to work both as a reference and as a practical tool while you play.
 
-- 🎨 **~60 color tags** — sorted as a visual spectrum, with sortable columns (name, hue, hex, luminosity) and one-click copy
-- 🖼️ **145 icon tags** — individually extracted and cleaned from in-game screenshots, grouped by category
-- ⚡ **A live simulator** — preview color + icon combinations, including the icon-tinting trick, before pasting them in-game
-- 📦 **A reusable icon bank** — standalone transparent PNGs, free to reuse in other projects
-- 🌐 **Fully self-contained** — a single HTML file per language, works fully offline, no installation required
+## 🛠️ How to Use
+
+**Download** → _open the HTML file in your browser_ → _search or browse the tables_ → _click to copy_ → _paste in-game_.
+
+**No installation is required**, and the guide is designed to work **fully offline** once downloaded.
+
+_You can also browse the hosted version directly from your browser through **🌐Online Version**._
 
 ---
 
+<!-- TABLEAU RECAPITULATIF -->
 ## 📖 Guide by language
 
 <details>
@@ -43,11 +51,6 @@ No Man's Sky lets players color and decorate names (bases, ships, freighters, st
 - 🛠️ **Info** — Detailed documentation and language-specific information about the guide.  
 - 📖 **Guide** — Open the complete guide online through GitHub Pages.  
 - 💾 **Download** — Download the standalone HTML guide for offline use.
-
-**Status**
-- ✅ **Available** — The resource is complete and available.
-- 🚧 **Work in progress** — The resource is currently being developed or translated.
-- 🔜 **Planned** — The resource is planned but work has not started yet.
 
 </details>
 
@@ -59,7 +62,30 @@ No Man's Sky lets players color and decorate names (bases, ships, freighters, st
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
+<details>
+<summary>🛠️ Status : </summary>
+
+- ✅ **Available** — The resource is complete and available.
+- 🚧 **Work in progress** — The resource is currently being developed or translated.
+- 🔜 **Planned** — The resource is planned but work has not started yet.
+
+</details>
+
 More languages may be added over time. Each language folder has its own detailed README describing that guide's features in full.
+
+---
+
+## ✨ Why this guide stands out
+
+* 📦 **A single, fully self-contained HTML file :** no installation, no critical external dependencies. Open it in your browser, **offline, anywhere**.
+* 🎨 **59 color tags** documented with **exact HEX code, transparency and category**, plus **4 clickable sort modes** *(name, color, HEX, luminosity)* and instant search.
+* 🖼️ **145 real in-game icons**, individually extracted and cleaned by hand *(not generic placeholders)*, grouped into **12 categories**, with **duplicate / non-functional / unconfirmed status badges :**  all 145 icons are embedded directly in the file, with **no external images needed**.
+* ⚡ **A live simulator :** type your tags and see the result rendered instantly, before pasting it in-game — including the well-known **icon-tinting trick**.
+* 📝 **Examples :** includes **10 real, in-game usage examples** to get you started.
+* ⧉ **One-click copy :** on every row of the color and icon tables.
+* 🎭 **A "meta" visual identity :** the interface's own accent colors are borrowed directly from the **real in-game tags** it documents.
+* 💾 **Built to last :** no ephemeral spreadsheet links, no forum posts scattered across years of replies: just **one file** you can download and consult offline, whenever you need it.
+* 🔍 **Full transparency** about what's confirmed, uncertain, or non-functional — nothing is presented with more certainty than it deserves.
 
 ---
 
@@ -80,10 +106,10 @@ NMS_TC/
 
 ---
 
-## License
+## 📜 License
 
-Original content created by **Spirit** is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE.md](./LICENSE.md) for the full terms.
-
-No Man's Sky and all related game assets, trademarks, and intellectual property remain the property of Hello Games and/or their respective rights holders.
-
-This is an unofficial community-created resource and is not affiliated with or endorsed by Hello Games.
+> Original content created by **Spirit** is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE.md](./LICENSE.md) for the full terms.
+> 
+> No Man's Sky and all related game assets, trademarks, and intellectual property remain the property of Hello Games and/or their respective rights holders.
+> 
+> This is an unofficial community-created resource and is not affiliated with or endorsed by Hello Games.
