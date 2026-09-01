@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/badge/status-active-brightgreen.svg" alt="Status">
   </a>
   <a href="https://github.com/Data-Spirit/NMS_TC">
-    <img src="https://img.shields.io/badge/unofficial-fan--made-orange.svg" alt="Unofficial">
+    <img src="https://img.shields.io/badge/unofficial-fan--made-blue.svg" alt="Unofficial">
   </a>
 </p>
 
