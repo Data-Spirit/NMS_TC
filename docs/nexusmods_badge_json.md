@@ -317,8 +317,8 @@ réutiliser un PNG encodé en base64 trouvé ailleurs) et on l'a intégré en
 }
 ```
 
-🎨 `0f0f10` :  couleur à gauche (noir)
-🎨 `c07131` :  couleur à droite (orange/doré)
+* 🎨 `0f0f10` :  couleur à gauche (noir)
+* 🎨 `c07131` :  couleur à droite (orange/doré)
 correspondent aux couleurs retenues pour le badge Nexus Mods.
 
 **Adresse raw du JSON hébergé sur le repo NMS_TC :**
