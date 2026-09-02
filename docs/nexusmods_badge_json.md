@@ -344,13 +344,13 @@ réutiliser un PNG encodé en base64 trouvé ailleurs) et on l'a intégré en
 
 ⚠️ correspondent aux couleurs Nexus Mods retenues pour le badge.
 
-### 9.a **Adresse raw du JSON hébergé sur le repo NMS_TC :**
+### 9a. **Adresse raw du JSON hébergé sur le repo NMS_TC :**
 
 ```
 https://raw.githubusercontent.com/Data-Spirit/NMS_TC/main/assets/nexusmods_badge.json
 ```
 
-### 9.b **URL finale du badge** 
+### 9b. **URL finale du badge** 
 une fois cette adresse URL-encodée et injectée dans `img.shields.io/endpoint`, avec quelques paramètres ajoutés/surchargés
 directement en query string (`style`, `logoSize`, `label`, `labelColor`, `color`) :
 
