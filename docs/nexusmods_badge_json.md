@@ -1,5 +1,7 @@
 # Guide — Créer un badge Shields.io custom via un Endpoint JSON
 
+---
+
 ## 1. C'est quoi, un badge Shields.io ?
 
 Un badge est ce petit rectangle coloré qu'on voit en haut des README GitHub
@@ -19,9 +21,15 @@ Il existe plusieurs façons de générer un badge Shields :
   logo, style). Shields se contente de le lire et de le dessiner. C'est
   cette dernière méthode qu'on documente ici.
 
-**Liens utiles :**
+<details>
+<summary>🌐 Liens utiles : </summary>
+
 - Shields.io : <https://shields.io>
 - Simple Icons : <https://simpleicons.org/>
+
+</details>
+
+---
 
 ## 2. Pourquoi passer par un Endpoint JSON plutôt qu'un badge statique ?
 
@@ -38,6 +46,8 @@ suffit plus.
 L'Endpoint badge résout ça grâce au champ `logoSvg` : on peut fournir
 **notre propre SVG**, peu importe son origine, et Shields l'affichera comme
 logo du badge.
+
+---
 
 ## 3. Piège courant : un "SVG" peut être un PNG déguisé
 
@@ -62,6 +72,8 @@ facilement.
 SVG vectoriel (tracés `<path>`, `<circle>`, etc.) plutôt qu'un PNG
 camouflé dans un conteneur SVG.
 
+---
+
 ## 4. Cas A — Badge avec logo SVG custom (`logoSvg`)
 
 ### 4.1 Modèle JSON (copiable, tous les champs pertinents pour ce cas)
@@ -75,7 +87,7 @@ camouflé dans un conteneur SVG.
   "color": "blue",
   "isError": false,
   "style": "flat",
-  "cacheSeconds": 3600,
+  "cacheSeconds": 300,
   "logoSvg": "<svg width=\"100%\" height=\"100%\" viewBox=\"0 0 42 42\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"...\" fill=\"#000\"/></svg>"
 }
 ```
@@ -93,6 +105,8 @@ camouflé dans un conteneur SVG.
 | `style` | Le gabarit visuel du badge. | Valeurs possibles : `flat` (défaut), `flat-square`, `plastic`, `for-the-badge`, `social`. Surchargeable via `?style=`. |
 | `cacheSeconds` | Durée pendant laquelle Shields garde le badge en cache avant de revenir lire ton JSON. Une valeur basse = mise à jour plus rapide du badge en cas de changement ; une valeur haute = moins de sollicitation de ton hébergement. | **Défaut et minimum : 300 secondes (5 min).** Toute valeur inférieure à 300 est ignorée (Shields retombe sur 300). Surchargeable via `?cacheSeconds=` dans l'URL, mais **uniquement vers le haut** (un visiteur peut demander plus long, jamais plus court que ce que tu as défini). |
 | `logoSvg` | Le SVG custom, sous forme de chaîne de caractères échappée. | Voir §7 pour la génération correcte de cette chaîne. Prioritaire sur `namedLogo`. |
+
+---
 
 ## 5. Cas B — Badge avec logo de la bibliothèque simple-icons (`namedLogo`)
 
@@ -127,6 +141,8 @@ bibliothèque plutôt qu'à un `logoSvg` custom :
 | `logoColor` | Couleur du logo. | Fonctionne **uniquement** avec `namedLogo`. Sans effet si `logoSvg` est utilisé. |
 | `logoSize` | `"auto"` = redimensionnement adaptatif du logo. | Fonctionne **uniquement** avec `namedLogo`. Utile pour des logos larges (ex: `amd`, `amg`). Sans effet si `logoSvg` est utilisé. |
 
+---
+
 ## 6. `namedLogo` vs `logoSvg` : lequel utiliser ?
 
 - **`namedLogo`** (§5) : rapide, léger, aucune donnée à héberger toi-même
@@ -140,6 +156,8 @@ faire planter le badge, mais dans les faits `logoSvg` prend le dessus :
 autant ne renseigner que celui dont tu as besoin, pour garder le fichier
 lisible.
 
+---
+
 ## 7. Générer correctement la chaîne `logoSvg`
 
 Le champ `logoSvg` doit contenir **tout le contenu du fichier `.svg` sur
@@ -150,7 +168,7 @@ selon ce que tu as sous la main — toutes donnent exactement le même
 résultat, à copier-coller tel quel comme valeur de `logoSvg`.
 
 <details>
-<summary>**Laquelle choisir ?** </summary>
+<summary> Laquelle choisir ? </summary>
 
 - **[7a] (PowerShell)** : Si tu es sous Windows et que tu ne veux rien installer, cette méthode est la plus directe (l'outil est déjà présent sur le système). 
 - **[7b] (Node.js)** : est équivalent en simplicité si tu l'as déjà installé (souvent le cas pour du dev web).
@@ -221,6 +239,8 @@ Si Node.js est installé sur ta machine :
    ```
 
 4. Copie le résultat affiché.
+
+---
 
 ## 8. Héberger le JSON et construire l'URL du badge
 
@@ -298,6 +318,8 @@ Les deux tombent dans le même ordre de grandeur : après une modification du
 JSON, compte jusqu'à ~5 minutes avant que le badge affiché ne se
 mette à jour, quel que soit le réglage de `cacheSeconds`.
 
+---
+
 ## 9. Exemple concret — badge Nexus Mods (NMS_TC)
 
 Cas réel utilisé dans ce projet : le logo Nexus Mods n'existe pas dans
@@ -319,24 +341,26 @@ réutiliser un PNG encodé en base64 trouvé ailleurs) et on l'a intégré en
 
 * 🎨 `0f0f10` :  couleur à gauche (noir)
 * 🎨 `c07131` :  couleur à droite (orange/doré)
-correspondent aux couleurs retenues pour le badge Nexus Mods.
 
-**Adresse raw du JSON hébergé sur le repo NMS_TC :**
+⚠️ correspondent aux couleurs Nexus Mods retenues pour le badge.
+
+### 9.a **Adresse raw du JSON hébergé sur le repo NMS_TC :**
 
 ```
 https://raw.githubusercontent.com/Data-Spirit/NMS_TC/main/assets/nexusmods_badge.json
 ```
 
-**URL finale du badge**, une fois cette adresse URL-encodée et injectée dans
-`img.shields.io/endpoint`, avec quelques paramètres ajoutés/surchargés
-directement en query string (`style`, `logoSize`, `label`, `labelColor`,
-`color`) :
+### 9.b **URL finale du badge** 
+une fois cette adresse URL-encodée et injectée dans `img.shields.io/endpoint`, avec quelques paramètres ajoutés/surchargés
+directement en query string (`style`, `logoSize`, `label`, `labelColor`, `color`) :
 
 ```
 https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
 ```
 
-Un lien surchargé en query strings est utile car il permet a celui qui le souhaite de changer a la volée (directement dans le lien), les couleurs, le message etc, sans toucher au fichier `.json`.
+⚠️ Un lien surchargé en query strings est utile car il permet a celui qui le souhaite de changer a la volée (directement dans le lien), les couleurs, le message etc, sans toucher au fichier `.json`.
+
+---
 
 ## 10. Sources
 
