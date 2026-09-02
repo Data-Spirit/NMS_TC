@@ -367,15 +367,15 @@ Deux versions possibles :
    **Version simple, lien cliquable classique (Markdown) :**
 
    ```markdown
-   [![Mon badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://exemple.com)
+   [![Mon badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
    ```
 
    **Version centrée, lien cliquable (HTML — compatible README GitHub) :**
 
    ```html
    <p align="center">
-     <a href="https://exemple.com">
-       <img alt="Mon badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131">
+     <a href="https://URL_MOD_NEXUSMOD.com">
+       <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131" alt="Mon badge">
      </a>
    </p>
    ```
