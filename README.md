@@ -9,15 +9,31 @@
 
 <!-- BADGES CENTRES + LIENS HYPERTEXT INCLUS -->
 <p align="center">
+
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
     <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0">
   </a>
+  
   <a href="https://github.com/Data-Spirit/NMS_TC">
     <img src="https://img.shields.io/badge/status-active-brightgreen.svg" alt="Status">
   </a>
+  
   <a href="https://github.com/Data-Spirit/NMS_TC">
     <img src="https://img.shields.io/badge/unofficial-fan--made-blue.svg" alt="Unofficial">
   </a>
+
+  <a href="https://github.com/Data-Spirit/NMS_TC/releases/latest">
+    <img src="https://img.shields.io/github/v/release/Data-Spirit/NMS_TC?sort=semver&display_name=tag&style=flat&logo=github&logoSize=auto&labelColor=grey&color=green" alt="Latest Release">
+  </a>
+  
+  <a href="https://URL_NEXUSMOD">
+    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131" alt="Nexus Mods">
+  </a>
+  
+  <a href="https://github.com/Data-Spirit/NMS_TC/releases/latest">
+    <img src="https://img.shields.io/github/downloads/Data-Spirit/NMS_TC/total?style=flat&logoSize=auto&label=Downloads&labelColor=1b6078&color=grey" alt="Downloads">
+  </a>
+  
 </p>
 
 > ⚠️ **Unofficial, fan-made project.** Not affiliated with, endorsed by, or sponsored by Hello Games.
