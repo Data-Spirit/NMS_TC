@@ -330,7 +330,7 @@ directement en query string (`style`, `logoSize`, `label`, `labelColor`,
 `color`) :
 
 ```
-https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=plastic&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
+https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
 ```
 
 ## 10. Sources
