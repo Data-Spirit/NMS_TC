@@ -1,0 +1,11 @@
+# GitHub Linguist configuration for NMS // TEXT CODES
+
+# Markdown
+*.md linguist-detectable=true
+*.md linguist-documentation=false
+
+# JSON
+*.json linguist-detectable=true
+
+# SVG
+*.svg linguist-detectable=true
