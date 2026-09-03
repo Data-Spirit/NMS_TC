@@ -448,16 +448,16 @@ Two options are possible:
 
 **Examples:**
 
-- 💎 `&style=plastic`
+- `&style=plastic`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=plastic&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
 
-- ◽ `&style=flat`
+- `&style=flat`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
 
-- ◾ `&style=flat-square`
+- `&style=flat-square`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat-square&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
 
-- 📛 `&style=for-the-badge`
+- `&style=for-the-badge`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=for-the-badge&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
 
 <p align="right"><sub><a href="#top">⬆️ Back to Top</a></sub></p>
