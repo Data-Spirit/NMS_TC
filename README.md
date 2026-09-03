@@ -1,6 +1,6 @@
 <!-- BANNIERE CENTRE + TITRE CENTRE -->
 <p align="center">
-  <img src="https://github.com/Data-Spirit/NMS_TC/blob/main/assets/NMS_TC_banner_01.png" alt="NMS_TC Banner">
+  <img src="https://github.com/Data-Spirit/NMS_TC/blob/main/assets/NMS_TC_banner_02-1.jpg" alt="NMS_TC Banner">
 </p>
 
 <h1 align="center">NMS // TEXT CODES</h1>
