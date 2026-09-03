@@ -33,13 +33,13 @@ on the fly: you give it a URL, and it returns a ready-to-display `.svg`.
 
 There are several ways to generate a Shields badge:
 
-- **Static badge** (`img.shields.io/badge/...`): everything is in the URL,
-handy for a simple, fixed badge.
-- **Dynamic badge** (`dynamic-json`, `dynamic-xml`...): Shields reads a
-value from an external data file (e.g., a package's download count).
-- **Endpoint badge** (`img.shields.io/endpoint?url=...`): *you* provide a
-small JSON file that fully describes the badge (text, colors, logo, style).
-Shields simply reads it and draws it. This is the method documented here.
+> - **Static badge** (`img.shields.io/badge/...`): everything is in the URL,
+> handy for a simple, fixed badge.
+> - **Dynamic badge** (`dynamic-json`, `dynamic-xml`...): Shields reads a
+> value from an external data file (e.g., a package's download count).
+> - **Endpoint badge** (`img.shields.io/endpoint?url=...`): *you* provide a
+> small JSON file that fully describes the badge (text, colors, logo, style).
+> Shields simply reads it and draws it. This is the method documented here.
 
 <details>
 <summary><b>🌐 Useful Links:</b></summary>
