@@ -1,5 +1,6 @@
 <a id="top"></a>
-# Guide — Create a Custom Shields.io Badge via an Endpoint JSON
+
+<h1 align="center">Guide — Create a Custom Shields.io Badge via an Endpoint JSON</h1>
 
 <!-- BADGES CENTRE -->
 <p align="center">
