@@ -1,14 +1,15 @@
 <a id="top"></a>
+<!-- TITRE DU GUIDE -->
 <h1 align="center">Afficher une page HTML avec GitHub Pages</h1>
 
+<!-- BADGES CENTRE -->
 <p align="center">
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License"></a>
   <a href="https://github.com/Data-Spirit"><img src="https://img.shields.io/badge/Guide%20%3A-GitHub_Pages-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide"></a>
   <a href="https://github.com/Data-Spirit/NMS_TC"><img src="https://img.shields.io/badge/URL%20%3A-NMS_TC-blue?style=flat&logo=github&logoColor=white&logoSize=auto&label=Repo%20%3A&labelColor=grey&color=mediumseagreen" alt="Repo"></a>
 </p>
 
-<p align="center"><sub>📘 Guide technique · 🌐 GitHub Pages · NMS_TC</sub></p>
-
+<!-- SOMMAIRE -->
 <details>
 <summary><b>📑 Sommaire</b></summary>
 
@@ -642,32 +643,41 @@ Par exemple :
 ```text
 MON_REPO/
 └── LANG/
-    ├── _FR/
+    ├── FR/
     │   └── guide_FR.html
-    ├── _EN/
+    ├── EN/
     │   └── guide_EN.html
-    ├── _DE/
+    ├── DE/
     │   └── guide_DE.html
-    └── _ES/
+    └── ES/
         └── guide_ES.html
 ```
+
+> [!CAUTION]
+> Attention : Par convention, Github Pages ignore les dossiers dont le nom commence par un underscore `_`.\
+> Par conséquent, celles-ci ne seront pas "<i>publiées</i>" par GitHub Pages !\
+> Les dossiers et leurs contenus seront donc ignorés dans la publication automatique par GitHub-Pages !
+
+> [!IMPORTANT]
+> Les dossiers commençants par un underscore, seront néanmoins toujours présent dans le repo.\
+> Ils seront simplement ignorés par l'indexation de Github-Pages et ne seront donc pas consultable via ce biais.
 
 Chaque fichier possède alors sa propre URL :
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_FR/guide_FR.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/FR/guide_FR.html
 ```
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_EN/guide_EN.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/EN/guide_EN.html
 ```
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_DE/guide_DE.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/DE/guide_DE.html
 ```
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_ES/guide_ES.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/ES/guide_ES.html
 ```
 
 Il n'est pas nécessaire de modifier `index.html` à chaque ajout d'une nouvelle langue pour que ces fichiers soient publiés.
@@ -684,9 +694,9 @@ Si une page d'accueil existe, on peut évidemment créer des liens vers les diff
 Par exemple :
 
 ```html
-<a href="LANG/_FR/guide_FR.html">Français</a>
-<a href="LANG/_EN/guide_EN.html">English</a>
-<a href="LANG/_DE/guide_DE.html">Deutsch</a>
+<a href="LANG/FR/guide_FR.html">Français</a>
+<a href="LANG/EN/guide_EN.html">English</a>
+<a href="LANG/DE/guide_DE.html">Deutsch</a>
 ```
 
 Cela permet aux visiteurs de naviguer depuis la page d'accueil.
@@ -780,16 +790,13 @@ MON_REPO/
 ├── index.html
 │
 ├── LANG/
-│   ├── _FR/
+│   ├── FR/
 │   │   └── guide_FR.html
-│   │
-│   ├── _EN/
+│   ├── EN/
 │   │   └── guide_EN.html
-│   │
-│   ├── _DE/
+│   ├── DE/
 │   │   └── guide_DE.html
-│   │
-│   └── _ES/
+│   └── ES/
 │       └── guide_ES.html
 │
 └── DOCS/
@@ -805,19 +812,19 @@ master / (root)
 les pages HTML peuvent être directement accessibles :
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_FR/guide_FR.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/FR/guide_FR.html
 ```
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_EN/guide_EN.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/EN/guide_EN.html
 ```
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_DE/guide_DE.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/DE/guide_DE.html
 ```
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_ES/guide_ES.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/ES/guide_ES.html
 ```
 
 La présence ou l'absence de `index.html` n'empêche pas ces URLs individuelles de fonctionner, à condition que le site GitHub Pages soit correctement publié.
@@ -837,9 +844,9 @@ MON_REPO/
 ├── README.md
 │
 └── LANG/
-    ├── _FR/
+    ├── FR/
     │   └── guide_FR.html
-    └── _EN/
+    └── EN/
         └── guide_EN.html
 ```
 
@@ -929,13 +936,13 @@ Le déploiement peut prendre un certain temps.
 Si le fichier se trouve ici :
 
 ```text
-MON_REPO/LANG_FR/guide_FR.html
+MON_REPO/LANG/FR/guide_FR.html
 ```
 
 l'URL correspondante est :
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG_FR/guide_FR.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/FR/guide_FR.html
 ```
 
 ---
@@ -970,8 +977,8 @@ Exemple Markdown :
 ```markdown
 ## Guides
 
-- [Guide français](https://UTILISATEUR.github.io/MON_REPO/LANG_FR/guide_FR.html)
-- [Guide anglais](https://UTILISATEUR.github.io/MON_REPO/LANG_EN/guide_EN.html)
+- [Guide français](https://UTILISATEUR.github.io/MON_REPO/LANG/FR/guide_FR.html)
+- [Guide anglais](https://UTILISATEUR.github.io/MON_REPO/LANG/EN/guide_EN.html)
 ```
 
 Le visiteur peut alors partir directement du repository GitHub et accéder à la version web du guide.
@@ -985,73 +992,64 @@ Le repository reste l'endroit où le code source est stocké, tandis que GitHub 
 <a id="sec-17"></a>
 # 17. ❌ Erreurs et confusions fréquentes
 
-## ❌ « GitHub devrait afficher mon HTML comme une page »
+### ❌ « GitHub devrait afficher mon HTML comme une page »
 
-Pas depuis l'interface classique du repository.
-
-GitHub affiche le fichier comme un fichier source.
-
-Pour obtenir le rendu HTML, il faut passer par GitHub Pages.
+> Pas depuis l'interface classique du repository.\
+> GitHub affiche le fichier comme un fichier source.\
+> Pour obtenir le rendu HTML, il faut passer par GitHub Pages.
 
 ---
 
-## ❌ « Je dois ajouter chaque fichier HTML dans `index.html` »
+### ❌ « Je dois ajouter chaque fichier HTML dans `index.html` »
 
-Non.
-
-Un fichier HTML peut être directement accessible par son URL sans apparaître dans `index.html`.
-
-Ajouter un lien dans `index.html` permet seulement de faciliter la navigation.
+> Non.\
+> Un fichier HTML peut être directement accessible par son URL sans apparaître dans `index.html`.\
+> Ajouter un lien dans `index.html` permet seulement de faciliter la navigation.
 
 ---
 
-## ❌ « Je dois avoir `index.html` pour que tous mes guides fonctionnent »
+### ❌ « Je dois avoir `index.html` pour que tous mes guides fonctionnent »
 
-Non.
-
-Pour une URL directe comme :
+> Non.\
+> Pour une URL directe comme :
 
 ```text
 https://UTILISATEUR.github.io/MON_REPO/LANG_FR/guide_FR.html
 ```
 
-`index.html` n'est pas nécessaire simplement pour afficher `guide_FR.html`.
+> `index.html` n'est pas nécessaire simplement pour afficher `guide_FR.html`.
 
 ---
 
-## ❌ « `index.html` sert à déclarer les fichiers du site »
+### ❌ « `index.html` sert à déclarer les fichiers du site »
 
-Non.
-
-Il s'agit simplement d'une page web, généralement utilisée comme page d'entrée.
+> Non.\
+> Il s'agit simplement d'une page web, généralement utilisée comme page d'entrée.
 
 ---
 
-## ❌ « Si j'utilise `/docs`, `docs` apparaîtra dans l'URL »
+### ❌ « Si j'utilise `/docs`, `docs` apparaîtra dans l'URL »
 
-Non.
-
-Avec :
+> Non.\
+> Avec :\
 
 ```text
 master / docs
 ```
 
-le dossier `docs` devient la racine du site publié.
-
-Il ne fait donc pas partie du chemin public.
-
----
-
-## ❌ « Je peux laisser mes fichiers à la racine si Pages utilise `/docs` »
-
-Non.
-
-Si `/docs` est la source de publication, les fichiers à publier doivent se trouver dans `docs` ou dans ses sous-dossiers.
+> le dossier `docs` devient la racine du site publié.\
+> Il ne fait donc pas partie du chemin public.
 
 ---
 
-## ❌ Un dossier commence par `_`
+### ❌ « Je peux laisser mes fichiers à la racine si Pages utilise `/docs` »
+
+> Non.
+> Si `/docs` est la source de publication, les fichiers à publier doivent se trouver dans `docs` ou dans ses sous-dossiers.
+
+---
+
+### ❌ Un dossier commence par `_`
 
 > [!CAUTION]
 > Lorsque GitHub Pages utilise Jekyll, les fichiers et dossiers dont le nom commence par un underscore (`_`) sont traités de manière particulière par Jekyll et peuvent être exclus du site généré.
@@ -1061,11 +1059,12 @@ Par exemple, cette structure peut provoquer une erreur `404` :
 ```text
 MON_REPO/
 └── LANG/
-    └── _FR/
+    └── _FR/               <-- Dossier non ignoré par GitHub-Pages
         └── guide_FR.html
 ```
 
-Même si le fichier existe bien dans le repository GitHub et que le déploiement GitHub Pages se termine correctement, l'URL suivante peut ne pas être accessible :
+> [!IMPORTANT]
+> Même si le fichier existe bien dans le repository GitHub et que le déploiement GitHub Pages se termine correctement, l'URL suivante peut ne pas être accessible :
 
 ```text
 https://UTILISATEUR.github.io/MON_REPO/LANG/_FR/guide_FR.html
@@ -1081,9 +1080,10 @@ Cela peut être particulièrement trompeur car :
 ☒ La page publiée renvoie une erreur 404
 ```
 
-Le problème vient alors du `_` placé au début du nom du dossier.
+> [!WARNING]
+> Le problème vient alors du `_` placé au début du nom du dossier.
 
-### Solution recommandée
+#### Solution recommandée
 
 Si l'underscore n'est pas nécessaire à la convention de nommage du projet, utiliser un nom de dossier qui ne commence pas par `_` :
 
@@ -1104,33 +1104,31 @@ La page correspondante pourra alors être accessible normalement :
 https://UTILISATEUR.github.io/MON_REPO/LANG/FR/guide_FR.html
 ```
 
-### Conserver le préfixe `_`
+#### Conserver le préfixe `_`
 
-Il est possible de conserver des noms de dossiers commençant par `_` en configurant Jekyll afin de les inclure explicitement. Cependant, cela nécessite une configuration Jekyll supplémentaire qui n'est généralement pas nécessaire lorsque l'underscore est uniquement utilisé comme convention de nommage.
-
-Pour de simples pages HTML statiques, éviter un `_` au début du nom des dossiers reste donc généralement la solution la plus simple.
+> [!NOTE]
+> Il est possible de conserver des noms de dossiers commençant par `_` en configurant Jekyll afin de les inclure explicitement. Cependant, cela nécessite une configuration Jekyll supplémentaire qui n'est généralement pas nécessaire lorsque l'underscore est uniquement utilisé comme convention de nommage.\
+> Pour de simples pages HTML statiques, éviter un `_` au début du nom des dossiers reste donc généralement la solution la plus simple.
 
 ---
 
-## ❌ « L'URL GitHub et l'URL GitHub Pages sont identiques »
+### ❌ « L'URL GitHub et l'URL GitHub Pages sont identiques »
 
-Non.
-
-Exemple GitHub :
+> Non.
+> Exemple GitHub :
 
 ```text
 https://github.com/UTILISATEUR/MON_REPO/blob/master/LANG_FR/guide_FR.html
 ```
 
-Exemple GitHub Pages :
+> Exemple GitHub Pages :
 
 ```text
 https://UTILISATEUR.github.io/MON_REPO/LANG_FR/guide_FR.html
 ```
 
-La première permet de consulter le code dans l'interface GitHub.
-
-La seconde permet d'afficher la page publiée.
+> La première permet de consulter le code dans l'interface GitHub.\
+> La seconde permet d'afficher la page publiée.
 
 <p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
@@ -1193,13 +1191,11 @@ MON_REPO/
 ├── index.html
 │
 ├── LANG/
-│   ├── _FR/
+│   ├── FR/
 │   │   └── guide_FR.html
-│   │
-│   ├── _EN/
+│   ├── EN/
 │   │   └── guide_EN.html
-│   │
-│   └── _DE/
+│   └── DE/
 │       └── guide_DE.html
 │
 └── DOCS/
@@ -1222,22 +1218,26 @@ https://UTILISATEUR.github.io/MON_REPO/
 → `index.html`
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_FR/guide_FR.html
+https://UTILISATEUR.github.io/MON_REPO/
 ```
 
 → guide français
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_EN/guide_EN.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/FR/guide_FR.html
 ```
 
 → guide anglais
 
 ```text
-https://UTILISATEUR.github.io/MON_REPO/LANG/_DE/guide_DE.html
+https://UTILISATEUR.github.io/MON_REPO/LANG/EN/guide_EN.html
 ```
 
 → guide allemand
+
+```text
+https://UTILISATEUR.github.io/MON_REPO/LANG/DE/guide_DE.html
+```
 
 Les trois guides sont accessibles directement, indépendamment du fait qu'ils soient ou non référencés dans `index.html`.
 
