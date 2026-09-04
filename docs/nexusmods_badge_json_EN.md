@@ -549,6 +549,6 @@ Two options are possible:
 <p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 <details>
-<sumary><b>Licence :</b></summary>
+<summary><b>Licence :</b></summary>
 This guide is distributed under the [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
 </details>

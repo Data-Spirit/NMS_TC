@@ -555,6 +555,6 @@ Deux versions possibles :
 <p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 <details>
-<sumary><b>Licence :</b></summary>
+<summary><b>Licence :</b></summary>
 Ce guide est distribué sous licence [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 </details>
