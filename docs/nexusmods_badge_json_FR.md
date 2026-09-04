@@ -473,7 +473,7 @@ On peux le faire manuellement ou via le site shield.io directement (voir les cha
 > Méthode Simplifié via Shield.io\
 > Encoder l'URL via le site shield.io est vraiment plus simple et plus rapide.\
 > Aller sur [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) pour creer votre URL de badge custom.\
-> Pour cela vous aurez juste besoin de l'url `RAW` de votre fichier `nexusmods_badge.json`, et de l'entrer dans le champ `url — query` du site.\
+> Pour cela vous aurez juste besoin de l'url `RAW` de votre fichier `nexusmods_badge.json`, et de l'entrer dans le champ `url — query` du site.
 
 > [!TIP]
 > En cliquant sur `show optional parameters` vous pourrez personnaliser le style, les couleurs etc.
