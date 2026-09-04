@@ -548,7 +548,8 @@ Two options are possible:
 
 <p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
-<details>
-<summary><b>Licence :</b></summary>
+<details><summary><b>Licence :</b></summary>
+
 This guide is distributed under the [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
+
 </details>
