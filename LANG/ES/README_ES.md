@@ -1,7 +1,5 @@
 # NMS // TEXT CODES — Guía en Español
 
-**Una guía interactiva, autónoma y exhaustiva de los códigos de formato de texto de No Man's Sky** — colores e iconos, completamente documentados, probados y reunidos en un único archivo HTML.
-
 <!-- BADGES CENTRE -->
 <p align="center">
 
@@ -18,6 +16,8 @@
   </a>
   
 </p>
+
+**Una guía interactiva, autónoma y exhaustiva de los códigos de formato de texto de No Man's Sky** — colores e iconos, completamente documentados, probados y reunidos en un único archivo HTML.
 
 `NMS_txt_code_ES.html` · ~312 KB · sin dependencias externas críticas · funciona sin conexión
 
