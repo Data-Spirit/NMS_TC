@@ -2,6 +2,23 @@
 
 **Un guide interactif, autonome et exhaustif des codes de formatage de texte de No Man's Sky** — couleurs et icônes, entièrement documentés, testés, et rassemblés dans un unique fichier HTML.
 
+<!-- BADGES CENTRE -->
+<p align="center">
+
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0">
+  </a>
+  
+  <a href="https://github.com/Data-Spirit">
+    <img src="https://img.shields.io/badge/Guide%20%3A-README_FR.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide : USER">
+  </a>
+  
+  <a href="https://github.com/Data-Spirit/NMS_TC">
+    <img src="https://img.shields.io/badge/URL%20%3A-NMS_TC-blue?style=flat&logo=shieldsdotio&logoColor=white&logoSize=auto&label=Repo%20%3A&labelColor=grey&color=mediumseagreen" alt="Site">
+  </a>
+  
+</p>
+
 `NMS_txt_code_FR.html` · ~312 Ko · aucune dépendance externe critique · fonctionne hors-ligne
 
 ---

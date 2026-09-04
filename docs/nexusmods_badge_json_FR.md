@@ -1,7 +1,22 @@
 <a id="top"></a>
 # Guide — Créer un badge Shields.io custom via un Endpoint JSON
 
-<p align="center"><sub>📘 Guide technique · 🔧 Shields.io · NMS_TC</sub></p>
+<!-- BADGES CENTRE -->
+<p align="center">
+
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0">
+  </a>
+  
+  <a href="https://github.com/Data-Spirit">
+    <img src="https://img.shields.io/badge/Guide%20%3A-Nexusmods%20Shields-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide : USER">
+  </a>
+  
+  <a href="https://shields.io/badges">
+    <img src="https://img.shields.io/badge/URL%20%3A-Shields.io-blue?style=flat&logo=shieldsdotio&logoColor=white&logoSize=auto&label=Site%20%3A&labelColor=grey&color=mediumseagreen" alt="Site">
+  </a>
+  
+</p>
 
 <details>
 <summary><b>📑 Sommaire</b></summary>
@@ -537,3 +552,8 @@ Deux versions possibles :
 </details>
 
 <p align="right"><sub><a href="#top">⬆️</a></sub></p>
+
+<details>
+<sumary><b>Licence :</b></summary>
+Ce guide est distribué sous licence [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+</details>

@@ -2,6 +2,23 @@
 
 **An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file.
 
+<!-- BADGES CENTRE -->
+<p align="center">
+
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0">
+  </a>
+  
+  <a href="https://github.com/Data-Spirit">
+    <img src="https://img.shields.io/badge/Guide%20%3A-README_FR.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide : USER">
+  </a>
+  
+  <a href="https://github.com/Data-Spirit/NMS_TC">
+    <img src="https://img.shields.io/badge/URL%20%3A-NMS_TC-blue?style=flat&logo=shieldsdotio&logoColor=white&logoSize=auto&label=Repo%20%3A&labelColor=grey&color=mediumseagreen" alt="Site">
+  </a>
+  
+</p>
+
 `NMS_txt_code_EN.html` · ~312 KB · no critical external dependencies · works offline
 
 ---
@@ -209,6 +226,6 @@ The guide aims to be upfront about what's confirmed and what isn't:
 
 ## License
 
-This guide is distributed under the **CC BY-NC-SA 4.0** license. See the [`LICENSE.md`](../../LICENSE.md) file at the root of the repository for the full terms.
+This guide is distributed under the [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. See the [`LICENSE.md`](../../LICENSE.md) file at the root of the repository for the full terms.
 
 No Man's Sky and all associated assets, trademarks, and intellectual property belong to Hello Games and/or their respective rights holders. This guide is an unofficial community resource, not affiliated with Hello Games.
