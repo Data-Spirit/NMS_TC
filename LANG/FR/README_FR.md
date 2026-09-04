@@ -1,6 +1,5 @@
 <h1 align="center">NMS // TEXT CODES — Guide Français</h1>
 
-
 <!-- BADGES CENTRE -->
 <p align="center">
 

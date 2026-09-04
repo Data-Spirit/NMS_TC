@@ -1,4 +1,4 @@
-# NMS // TEXT CODES — Guía en Español
+<h1 align="center">NMS // TEXT CODES — Guía en Español</h1>
 
 <!-- BADGES CENTRE -->
 <p align="center">
