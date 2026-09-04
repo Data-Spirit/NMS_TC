@@ -209,6 +209,6 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 
 ## Licence
 
-Ce guide est distribué sous licence **CC BY-NC-SA 4.0**. Voir le fichier [`LICENSE.md`](../../LICENSE.md) à la racine du dépôt pour les termes complets.
+Ce guide est distribué sous licence [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/). Voir le fichier [`LICENSE.md`](../../LICENSE.md) à la racine du dépôt pour les termes complets.
 
 No Man's Sky et tous les assets, marques et propriétés intellectuelles associés appartiennent à Hello Games et/ou leurs ayants droit respectifs. Ce guide est une ressource communautaire non officielle, sans lien avec Hello Games.
