@@ -195,7 +195,7 @@ custom `logoSvg`:
 
 > [!NOTE]
 > Both fields can technically coexist in the same JSON without breaking the
-> badge, but in practice `logoSvg` takes precedence — you might as well only
+> badge, but in practice `logoSvg` takes precedence : you might as well only
 > fill in the one you actually need, to keep the file readable.
 
 <p align="right"><sub><a href="#top">⬆️</a></sub></p>
@@ -352,7 +352,7 @@ If Node.js is installed on your machine:
    [uri]::EscapeDataString("https://raw.githubusercontent.com/user/repo/main/assets/my-badge.json")
    ```
 
-   <ins>**3b. The Method via the shield.io Website**</ins>
+   <ins>**3b. The Method via the shield.io Website**</ins> _(easy method)_
 
 > [!NOTE]
 > Go to [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) to create your custom badge URL.\
@@ -448,7 +448,7 @@ Now that we have a `RAW` address for our `.json` file, we need to encode it in o
 This can be done manually or directly via the shield.io website (see chapters 8-3a and 8-3b of the guide).
 
 > [!NOTE]
-> Simplified Method via Shield.io
+> Simplified Method via Shield.io\
 > Encoding the URL via the shield.io website is much simpler and faster.\
 > Go to [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) to create your custom badge URL.\
 > To do this, you'll just need the `RAW` url of your `nexusmods_badge.json` file, and enter it in the site's `url — query` field.\

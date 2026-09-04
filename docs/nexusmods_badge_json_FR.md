@@ -358,7 +358,7 @@ Si Node.js est installé sur ta machine :
    [uri]::EscapeDataString("https://raw.githubusercontent.com/user/repo/main/assets/mon-badge.json")
    ```
 
-   <ins>**3b. La méthode via le site shield.io**</ins>
+   <ins>**3b. La méthode via le site shield.io**</ins> _(Méthode facile)_
    
 > [!NOTE]
 > Aller sur [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) pour creer votre URL de badge custom.\
@@ -454,8 +454,8 @@ Maintenant qu'on a une adresse `RAW` du notre fichier `.json`, pour l'injecter d
 On peux le faire manuellement ou via le site shield.io directement (voir les chapitres 8-3a et 8-3b du guide).
 
 > [!NOTE]
-> Méthode Simplifié via Shield.io
-> Encoder l'URL via le site shield.io est vraiment plus simple et plus rapide.\ 
+> Méthode Simplifié via Shield.io\
+> Encoder l'URL via le site shield.io est vraiment plus simple et plus rapide.\
 > Aller sur [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) pour creer votre URL de badge custom.\
 > Pour cela vous aurez juste besoin de l'url `RAW` de votre fichier `nexusmods_badge.json`, et de l'entrer dans le champ `url — query` du site.\
 
@@ -466,7 +466,7 @@ On peux le faire manuellement ou via le site shield.io directement (voir les cha
 Une fois cette adresse URL-encodée et injectée dans `img.shields.io/endpoint`,
 avec quelques paramètres ajoutés/surchargés directement en query string
 (`style`, `logoSize`, `label`, `labelColor`, `color`),\
-Vous obtiendrez un adresse du type :
+Vous obtiendrez une adresse du type :
 
 ```
 https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
