@@ -301,52 +301,66 @@ If Node.js is installed on your machine:
 1. Put your final `.json` file in your repo (e.g. `assets/my-badge.json`)
    and commit/push to GitHub.
 2. Get its raw URL (`raw.githubusercontent.com/...`).
-3. Build the badge URL:
+3. Build the badge URL, 2 methods:
 
+> _Shield.io URL Type:_
    ```
    https://img.shields.io/endpoint?url=<ENCODED_JSON_URL>
    ```
 
->    [!IMPORTANT]
->    Your JSON file's URL must be **URL-encoded** before being placed in the
->    `url=` parameter, because certain characters (`:`, `/`, `?`, `&`...)
->    have special meaning in a URL and must be replaced with their `%XX`
->    equivalent so they aren't misinterpreted.
+> [!NOTE]
+> There are two methods to build the badge URL: a manual method, and a method via the shield.io website.
 
->    [!TIP]
->    The most common replacements for a GitHub raw URL:
-> 
->    - `:` becomes `%3A`
->    - `/` becomes `%2F`
->    - `?` becomes `%3F`
->    - `&` becomes `%26`
->    - (space) becomes `%20`
+   <ins>**3a. The Manual Method:**</ins>
+
+> [!IMPORTANT]
+> Your JSON file's URL must be **URL-encoded** before being placed
+> in the `url=` parameter, because certain characters (`:`, `/`, `?`, `&`...)
+> have special meaning in a URL and must be replaced with their
+> `%XX` equivalent so they aren't misinterpreted.
+
+> [!TIP]
+> The most common replacements for a GitHub raw URL:
+> - `:` becomes `%3A`
+> - `/` becomes `%2F`
+> - `?` becomes `%3F`
+> - `&` becomes `%26`
+> - (space) becomes `%20`
 
    Before/after example:
-
    ```
    Before: https://raw.githubusercontent.com/user/repo/main/assets/my-badge.json
    After: https%3A%2F%2Fraw.githubusercontent.com%2Fuser%2Frepo%2Fmain%2Fassets%2Fmy-badge.json
    ```
-
+	
    Rather than doing these replacements by hand, use one of these
    one-line tools:
-
+	
    ```javascript
    // Browser console, or Node.js
    encodeURIComponent("https://raw.githubusercontent.com/user/repo/main/assets/my-badge.json")
    ```
-
+	
    ```python
    # Python
    from urllib.parse import quote
    print(quote("https://raw.githubusercontent.com/user/repo/main/assets/my-badge.json", safe=""))
    ```
-
+	
    ```powershell
    # PowerShell
    [uri]::EscapeDataString("https://raw.githubusercontent.com/user/repo/main/assets/my-badge.json")
    ```
+
+   <ins>**3b. The Method via the shield.io Website**</ins>
+
+> [!NOTE]
+> Go to [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) to create your custom badge URL.\
+> To do this, you'll just need the `RAW` url of your `nexusmods_badge.json` file, and enter it in the site's `url — query` field.\
+
+> [!TIP]
+> Clicking on `show optional parameters` lets you customize the style, colors, etc.
+
 
 4. Add the badge to your `README.md`. Two options are possible:
 
@@ -430,9 +444,23 @@ https://raw.githubusercontent.com/Data-Spirit/NMS_TC/main/assets/nexusmods_badge
 
 ### 9.2 **Final badge URL**
 
+Now that we have a `RAW` address for our `.json` file, we need to encode it in order to inject it into a shield.io URL.\
+This can be done manually or directly via the shield.io website (see chapters 8-3a and 8-3b of the guide).
+
+> [!NOTE]
+> Simplified Method via Shield.io
+> Encoding the URL via the shield.io website is much simpler and faster.\
+> Go to [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) to create your custom badge URL.\
+> To do this, you'll just need the `RAW` url of your `nexusmods_badge.json` file, and enter it in the site's `url — query` field.\
+
+> [!TIP]
+> Clicking on `show optional parameters` lets you customize the style, colors, etc.
+
+
 Once this address is URL-encoded and injected into `img.shields.io/endpoint`,
 with a few parameters added/overridden directly in the query string
-(`style`, `logoSize`, `label`, `labelColor`, `color`):
+(`style`, `logoSize`, `label`, `labelColor`, `color`),\
+you'll get an address like this:
 
 ```
 https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
@@ -440,6 +468,7 @@ https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDa
 
 > [!TIP]
 > A link with overridden query strings is handy because it lets anyone who wants to change the colors, the message, etc. on the fly (directly in the link), without touching the `.json` file.
+
 
 ### 9.3 **Adding It to the `README.md`.**
 

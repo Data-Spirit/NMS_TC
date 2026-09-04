@@ -307,27 +307,33 @@ Si Node.js est installé sur ta machine :
 1. Place ton fichier `.json` final dans ton repo (par ex.
    `assets/mon-badge.json`) et commit/push sur GitHub.
 2. Récupère son URL brute (`raw.githubusercontent.com/...`).
-3. Construis l'URL du badge :
+3. Construis l'URL du badge, 2 méthodes :
 
+> _URL Shield.io Type :_
    ```
    https://img.shields.io/endpoint?url=<URL_JSON_ENCODÉE>
    ```
->    [!IMPORTANT]
->    L'URL de ton fichier JSON doit être **URL-encodée** avant d'être placée
->    dans le paramètre `url=`, car certains caractères (`:`, `/`, `?`, `&`...)
->    ont un sens spécial dans une URL et doivent être remplacés par leur
->    équivalent `%XX` pour ne pas être mal interprétés.
+   
+> [!NOTE]
+> Il y a deux méthodes pour construire l'URL du badge, une méthode manuelle, et une méthode via le site shield.io.
 
->    [!TIP]
->    Les remplacements les plus courants pour une URL GitHub raw :
->    - `:` devient `%3A`
->    - `/` devient `%2F`
->    - `?` devient `%3F`
->    - `&` devient `%26`
->    - (espace) devient `%20`
+   <ins>**3a. La methode manuelle :**</ins>
+   
+> [!IMPORTANT]
+> L'URL de ton fichier JSON doit être **URL-encodée** avant d'être placée
+> dans le paramètre `url=`, car certains caractères (`:`, `/`, `?`, `&`...)
+> ont un sens spécial dans une URL et doivent être remplacés par leur
+> équivalent `%XX` pour ne pas être mal interprétés.
+
+> [!TIP]
+> Les remplacements les plus courants pour une URL GitHub raw :
+> - `:` devient `%3A`
+> - `/` devient `%2F`
+> - `?` devient `%3F`
+> - `&` devient `%26`
+> - (espace) devient `%20`
 
    Exemple avant/après :
-
    ```
    Avant : https://raw.githubusercontent.com/user/repo/main/assets/mon-badge.json
    Après : https%3A%2F%2Fraw.githubusercontent.com%2Fuser%2Frepo%2Fmain%2Fassets%2Fmon-badge.json
@@ -351,6 +357,16 @@ Si Node.js est installé sur ta machine :
    # PowerShell
    [uri]::EscapeDataString("https://raw.githubusercontent.com/user/repo/main/assets/mon-badge.json")
    ```
+
+   <ins>**3b. La méthode via le site shield.io**</ins>
+   
+> [!NOTE]
+> Aller sur [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) pour creer votre URL de badge custom.\
+> Pour cela vous aurez juste besoin de l'url `RAW` de votre fichier `nexusmods_badge.json`, et de l'entrer dans le champ `url — query` du site.\
+
+> [!TIP]
+> En cliquant sur `show optional parameters` vous pourrez personnaliser le style, les couleurs etc.
+
 
 4. Intègre le badge dans ton `README.md`. Deux versions possibles :
 
@@ -434,9 +450,23 @@ https://raw.githubusercontent.com/Data-Spirit/NMS_TC/main/assets/nexusmods_badge
 
 ### 9.2 **URL finale du badge** 
 
+Maintenant qu'on a une adresse `RAW` du notre fichier `.json`, pour l'injecter dans une URL shield.io il faut l'encoder.\
+On peux le faire manuellement ou via le site shield.io directement (voir les chapitres 8-3a et 8-3b du guide).
+
+> [!NOTE]
+> Méthode Simplifié via Shield.io
+> Encoder l'URL via le site shield.io est vraiment plus simple et plus rapide.\ 
+> Aller sur [shield.io/endpoint](https://img.shields.io/badges/endpoint-badge) pour creer votre URL de badge custom.\
+> Pour cela vous aurez juste besoin de l'url `RAW` de votre fichier `nexusmods_badge.json`, et de l'entrer dans le champ `url — query` du site.\
+
+> [!TIP]
+> En cliquant sur `show optional parameters` vous pourrez personnaliser le style, les couleurs etc.
+
+
 Une fois cette adresse URL-encodée et injectée dans `img.shields.io/endpoint`,
 avec quelques paramètres ajoutés/surchargés directement en query string
-(`style`, `logoSize`, `label`, `labelColor`, `color`) :
+(`style`, `logoSize`, `label`, `labelColor`, `color`),\
+Vous obtiendrez un adresse du type :
 
 ```
 https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
@@ -444,6 +474,7 @@ https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDa
 
 > [!TIP]
 > Un lien surchargé en query strings est utile car il permet a celui qui le souhaite de changer a la volée (directement dans le lien), les couleurs, le message etc, sans toucher au fichier `.json`.
+
 
 ### 9.3 **Intègration dans le `README.md`.**
 
