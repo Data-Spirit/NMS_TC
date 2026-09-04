@@ -256,8 +256,7 @@ If Node.js is installed on your machine:
 <details>
 <summary><b>🐍 7c. With Python (requires creating a small script, reusable afterward)</b></summary>
 
-1. In the same folder as your `.svg`, create a text file named
-   `svg_to_logosvg.py` with this content:
+1. In the same folder as your `.svg`, create a text file named `svg_to_logosvg.py` with this content:
 
    ```python
    #!/usr/bin/env python3
@@ -475,6 +474,7 @@ Two options are possible:
 - simple-icons icon library: <https://simpleicons.org/>
 - List of simple-icons slugs: <https://github.com/simple-icons/simple-icons/blob/master/slugs.md>
 - Directory of Shields-compatible endpoints (community examples): <https://github.com/badges/endpoint-badges-directory>
+- Nexus Mods Shield Mini-Guide : <https://gist.github.com/radj307/e9a80731ee236cc67fb00b698e75201e>
 
 </details>
 

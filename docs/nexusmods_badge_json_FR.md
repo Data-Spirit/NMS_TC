@@ -46,20 +46,21 @@ Il existe plusieurs façons de générer un badge Shields :
 <details>
 <summary><b>🌐 Liens utiles :</b></summary>
 
-- Shields.io : <https://shields.io>
-- Simple Icons : <https://simpleicons.org/>
+- [Shields.io](https://shields.io)
+- [Simple Icons](https://simpleicons.org/)
 
 </details>
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
 <a id="sec-2"></a>
 ## 2. 🔍 Pourquoi passer par un Endpoint JSON plutôt qu'un badge statique ?
 
-La raison principale, dans notre cas : **afficher un logo qui n'existe pas
-dans la bibliothèque d'icônes standard de Shields**.
+> [!IMPORTANT]
+> La raison principale, dans notre cas : **afficher un logo qui n'existe pas
+> dans la bibliothèque d'icônes standard de Shields**.
 
 Shields sait afficher nativement des centaines de logos via le paramètre
 `logo=` (ou `namedLogo` dans le JSON), en piochant dans
@@ -73,16 +74,17 @@ L'Endpoint badge résout ça grâce au champ `logoSvg` : on peut fournir
 **notre propre SVG**, peu importe son origine, et Shields l'affichera comme
 logo du badge.
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
 <a id="sec-3"></a>
 ## 3. 🖼️ Piège courant : un "SVG" peut être un PNG déguisé
 
-Attention en récupérant un logo SVG "tout fait" sur internet (forums,
-gists, dépôts tiers) : beaucoup de ces fichiers ne sont **pas** de vrais
-SVG vectoriels.
+> [!WARNING]
+> Attention en récupérant un logo SVG "tout fait" sur internet (forums,
+> gists, dépôts tiers) : beaucoup de ces fichiers ne sont **pas** de vrais
+> SVG vectoriels.
 
 Ils contiennent en réalité une balise `<image>` avec une image PNG encodée
 en base64 à l'intérieur d'un simple conteneur `<svg>` :
@@ -104,7 +106,7 @@ facilement.
 > vectoriel (tracés `<path>`, `<circle>`, etc.) plutôt qu'un PNG camouflé
 > dans un conteneur SVG.
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -141,7 +143,7 @@ facilement.
 | `cacheSeconds` | Durée pendant laquelle Shields garde le badge en cache avant de revenir lire ton JSON. Une valeur basse = mise à jour plus rapide du badge en cas de changement ; une valeur haute = moins de sollicitation de ton hébergement. | **Défaut et minimum : 300 secondes (5 min).** Toute valeur inférieure à 300 est ignorée (Shields retombe sur 300). Surchargeable via `?cacheSeconds=` dans l'URL, mais **uniquement vers le haut** (un visiteur peut demander plus long, jamais plus court que ce que tu as défini). |
 | `logoSvg` | Le SVG custom, sous forme de chaîne de caractères échappée. | Voir §7 pour la génération correcte de cette chaîne. Prioritaire sur `namedLogo`. |
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -181,7 +183,7 @@ plutôt qu'à un `logoSvg` custom :
 | `logoColor` | Couleur du logo. | Fonctionne **uniquement** avec `namedLogo`. Sans effet si `logoSvg` est utilisé. |
 | `logoSize` | `"auto"` = redimensionnement adaptatif du logo. | Fonctionne **uniquement** avec `namedLogo`. Utile pour des logos larges (ex: `amd`, `amg`). Sans effet si `logoSvg` est utilisé. |
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -190,16 +192,18 @@ plutôt qu'à un `logoSvg` custom :
 
 - **`namedLogo`** (§5) : rapide, léger, aucune donnée à héberger toi-même
   — mais limité aux icônes déjà répertoriées sur simple-icons.
+  
 - **`logoSvg`** (§4) : total contrôle sur le visuel (couleurs, formes, logo
   maison ou introuvable ailleurs) — en échange il faut fournir et héberger
   le SVG toi-même.
 
-Les deux champs peuvent techniquement coexister dans le même JSON sans
-faire planter le badge, mais dans les faits `logoSvg` prend le dessus :
-autant ne renseigner que celui dont tu as besoin, pour garder le fichier
-lisible.
+> [!NOTE]
+> Les deux champs peuvent techniquement coexister dans le même JSON sans
+> faire planter le badge, mais dans les faits `logoSvg` prend le dessus :
+> autant ne renseigner que celui dont tu as besoin, pour garder le fichier
+> lisible.
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -209,21 +213,17 @@ lisible.
 Le champ `logoSvg` doit contenir **tout le contenu du fichier `.svg` sur
 une seule ligne**, avec les guillemets internes `"` échappés en `\"`.
 
-Le faire à la main est risqué (un guillemet oublié, un retour à la ligne
-qui traîne, et le JSON entier devient invalide).
+> [!CAUTION]
+> Le faire à la main est risqué (un guillemet oublié, un retour à la ligne
+> qui traîne, et le JSON entier devient invalide).
 
-Voici trois méthodes au choix selon ce que tu as sous la main — toutes
-donnent exactement le même résultat, à copier-coller tel quel comme valeur
-de `logoSvg`.
+Voici trois méthodes au choix selon ce que tu as sous la main.\
+Toutes donnent exactement le même résultat, à copier-coller tel quel comme valeur de `logoSvg`.
 
-<details>
-<summary><b>Laquelle choisir ?</b></summary>
-
-- **[7a] (PowerShell)** : Si tu es sous Windows et que tu ne veux rien installer, cette méthode est la plus directe (l'outil est déjà présent sur le système). 
-- **[7b] (Node.js)** : est équivalent en simplicité si tu l'as déjà installé (souvent le cas pour du dev web).
-- **[7c] (Python)**  : demande une étape de plus (créer le fichier script), mais devient réutilisable d'un simple `python3 svg_to_logosvg.py autre_logo.svg` par la suite.
-
-</details>
+👉 <ins>**Laquelle choisir ?**</ins>
+> - **7a- [ PowerShell ]** : _Si tu es sous Windows et que tu ne veux rien installer, cette méthode est la plus directe (l'outil est déjà présent sur le système)._ 
+> - **7b- [ Node.js ]** : _est équivalent en simplicité si tu l'as déjà installé (souvent le cas pour du dev web)._
+> - **7c- [ Python ]**  : _demande une étape de plus (créer le fichier script), mais devient réutilisable d'un simple `python3 svg_to_logosvg.py autre_logo.svg` par la suite._
 
 <details>
 <summary><b>🪟 7a. Avec PowerShell (Windows, la plus simple — rien à installer)</b></summary>
@@ -263,8 +263,7 @@ Si Node.js est installé sur ta machine :
 <details>
 <summary><b>🐍 7c. Avec Python (nécessite de créer un petit script, réutilisable ensuite)</b></summary>
 
-1. Dans le même dossier que ton `.svg`, crée un fichier texte nommé
-   `svg_to_logosvg.py` avec ce contenu :
+1. Dans le même dossier que ton `.svg`, crée un fichier texte nommé `svg_to_logosvg.py` avec ce contenu :
 
    ```python
    #!/usr/bin/env python3
@@ -298,7 +297,7 @@ Si Node.js est installé sur ta machine :
 
 </details>
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -313,19 +312,19 @@ Si Node.js est installé sur ta machine :
    ```
    https://img.shields.io/endpoint?url=<URL_JSON_ENCODÉE>
    ```
+>    [!IMPORTANT]
+>    L'URL de ton fichier JSON doit être **URL-encodée** avant d'être placée
+>    dans le paramètre `url=`, car certains caractères (`:`, `/`, `?`, `&`...)
+>    ont un sens spécial dans une URL et doivent être remplacés par leur
+>    équivalent `%XX` pour ne pas être mal interprétés.
 
-   L'URL de ton fichier JSON doit être **URL-encodée** avant d'être placée
-   dans le paramètre `url=`, car certains caractères (`:`, `/`, `?`, `&`...)
-   ont un sens spécial dans une URL et doivent être remplacés par leur
-   équivalent `%XX` pour ne pas être mal interprétés.
-
-   Les remplacements les plus courants pour une URL GitHub raw :
-
-   - `:` devient `%3A`
-   - `/` devient `%2F`
-   - `?` devient `%3F`
-   - `&` devient `%26`
-   - (espace) devient `%20`
+>    [!TIP]
+>    Les remplacements les plus courants pour une URL GitHub raw :
+>    - `:` devient `%3A`
+>    - `/` devient `%2F`
+>    - `?` devient `%3F`
+>    - `&` devient `%26`
+>    - (espace) devient `%20`
 
    Exemple avant/après :
 
@@ -378,7 +377,7 @@ Si Node.js est installé sur ta machine :
 >
 > Les deux tombent dans le même ordre de grandeur : après une modification du JSON, compte jusqu'à ~5 minutes avant que le badge affiché ne se mette à jour, quel que soit le réglage de `cacheSeconds`.
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -447,7 +446,7 @@ Deux versions possibles :
    </p>
    ```
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -468,7 +467,7 @@ Deux versions possibles :
 - `&style=for-the-badge`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=for-the-badge&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
 ---
 
@@ -478,12 +477,13 @@ Deux versions possibles :
 <details>
 <summary><b>🌐 Liens externes :</b></summary>
 
-- Documentation Endpoint Badge : <https://shields.io/badges/endpoint-badge>
-- Documentation Badge statique : <https://shields.io/badges/static-badge>
-- Bibliothèque d'icônes simple-icons : <https://simpleicons.org/>
-- Liste des slugs simple-icons : <https://github.com/simple-icons/simple-icons/blob/master/slugs.md>
-- Répertoire d'endpoints compatibles Shields (exemples communautaires) : <https://github.com/badges/endpoint-badges-directory>
+- [Documentation Endpoint Badge](https://shields.io/badges/endpoint-badge)
+- [Documentation Badge statique](https://shields.io/badges/static-badge)
+- [Bibliothèque d'icônes simple-icons](https://simpleicons.org/)
+- [Liste des slugs simple-icons](https://github.com/simple-icons/simple-icons/blob/master/slugs.md)
+- [Répertoire d'endpoints compatibles Shields (exemples communautaires)](https://github.com/badges/endpoint-badges-directory)
+- [Mini-Guide du badge NexusMods](https://gist.github.com/radj307/e9a80731ee236cc67fb00b698e75201e)
 
 </details>
 
-<p align="right"><sub><a href="#top">⬆️ Retour en haut</a></sub></p>
+<p align="right"><sub><a href="#top">⬆️</a></sub></p>
