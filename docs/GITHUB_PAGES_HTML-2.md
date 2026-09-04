@@ -1059,7 +1059,7 @@ Par exemple, cette structure peut provoquer une erreur `404` :
 ```text
 MON_REPO/
 └── LANG/
-    └── _FR/               <-- Dossier non ignoré par GitHub-Pages
+    └── _FR/               <-- Dossier ignoré par GitHub-Pages
         └── guide_FR.html
 ```
 
