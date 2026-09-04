@@ -513,19 +513,82 @@ Two options are possible:
 <a id="sec-10"></a>
 ## 10. 🎭 Badge Style Variants
 
-**Examples:**
-
 - `&style=plastic`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=plastic&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
+
+   **Simple version, classic clickable link (Markdown):**
+
+   ```markdown
+   [![My badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=plastic&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
+   ```
+
+   **Centered version, clickable link (HTML — GitHub README compatible):**
+
+   ```html
+   <p align="center">
+     <a href="https://URL_MOD_NEXUSMOD.com">
+       <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=plastic&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131" alt="My badge">
+     </a>
+   </p>
+   ```
 
 - `&style=flat`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
 
+   **Simple version, classic clickable link (Markdown):**
+
+   ```markdown
+   [![My badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
+   ```
+
+   **Centered version, clickable link (HTML — GitHub README compatible):**
+
+   ```html
+   <p align="center">
+     <a href="https://URL_MOD_NEXUSMOD.com">
+       <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131" alt="My badge">
+     </a>
+   </p>
+   ```
+
 - `&style=flat-square`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat-square&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
 
+   **Simple version, classic clickable link (Markdown):**
+
+   ```markdown
+   [![My badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat-square&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
+   ```
+
+   **Centered version, clickable link (HTML — GitHub README compatible):**
+
+   ```html
+   <p align="center">
+     <a href="https://URL_MOD_NEXUSMOD.com">
+       <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat-square&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131" alt="My badge">
+     </a>
+   </p>
+   ```
+
+
 - `&style=for-the-badge`
   [![Nexus_Mods](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=for-the-badge&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
+
+   **Simple version, classic clickable link (Markdown):**
+
+   ```markdown
+   [![My badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=for-the-badge&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131)](https://URL_MOD_NEXUSMOD.com)
+   ```
+
+   **Centered version, clickable link (HTML — GitHub README compatible):**
+
+   ```html
+   <p align="center">
+     <a href="https://URL_MOD_NEXUSMOD.com">
+       <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=for-the-badge&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131" alt="My badge">
+     </a>
+   </p>
+   ```
 
 <p align="right"><sub><a href="#top">⬆️</a></sub></p>
 
