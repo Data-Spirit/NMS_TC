@@ -51,17 +51,41 @@ de ton ressort.
 
 1. **Sommaire replié** dans un `<details><summary><b>📑 Sommaire</b></summary>`
    juste sous le titre, avec un lien par section.
+1bis. **Le texte de chaque entrée du sommaire doit être une copie exacte,
+   caractère pour caractère, du titre de la section qu'elle référence** —
+   backticks de code inclus, ponctuation incluse, rien de paraphrasé ou
+   raccourci de mémoire. Le lien du sommaire peut pointer vers la bonne
+   ancre tout en affichant un texte légèrement différent du vrai titre : ce
+   décalage est trompeur pour le lecteur et doit être évité systématiquement.
+   En pratique : construire le sommaire en extrayant littéralement le texte
+   des titres déjà modifiés (après ajout d'emoji), jamais en le retapant à
+   la main dans une étape séparée.
 2. **Ancres HTML explicites** (`<a id="sec-N"></a>` avant chaque titre de
    section, `<a id="top"></a>` en tout début de fichier) plutôt que de
    dépendre du slug auto-généré par GitHub — indispensable dès que les
    titres contiennent des emoji, dont le comportement de slugification est
    imprévisible.
+2bis. **Les niveaux de titre (H1/H2/H3/H4...) peuvent être ajustés pour
+   améliorer la hiérarchie visuelle**, tant que l'ordre logique
+   parent-enfant reste identique à l'original — ce n'est pas un changement
+   de contenu, seulement de profondeur de nidification visuelle. Exemple
+   typique : une liste de plusieurs items parallèles (FAQ, erreurs
+   fréquentes) gagne à être descendue d'un cran (H2→H3) pour bien la
+   distinguer des sections qui portent un vrai sous-thème propre — auquel
+   cas leurs propres sous-parties descendent aussi d'un cran (H3→H4) pour
+   préserver la cohérence de l'emboîtement.
 3. **Retour en haut minimaliste** : `<p align="right"><sub><a href="#top">⬆️</a></sub></p>`
    (icône seule, sans texte) en fin de chaque section — le texte répété à
    chaque occurrence devient du bruit visuel une fois le pattern compris.
 4. Séparateurs `---` uniformisés entre toutes les sections de même niveau.
+4bis. **Un seul `---` entre deux sections, jamais deux à la suite.** Si la
+   section d'origine se terminait déjà par son propre `---`, le retirer
+   avant d'ajouter le lien de retour en haut et le séparateur standard —
+   ne jamais empiler l'ancien et le nouveau.
 5. Bandeau décoratif discret sous le H1 (`<p align="center"><sub>📘 ... ·
-   🔧 ... · Nom_projet</sub></p>`).
+   🔧 ... · Nom_projet</sub></p>`) — **optionnel**, à omettre si les 3
+   badges (§L) suffisent déjà à identifier le guide ; ne pas l'ajouter
+   systématiquement par automatisme si ça fait doublon.
 
 ---
 
@@ -92,11 +116,28 @@ de ton ressort.
    maximum dans tout le guide) reste acceptable quand plusieurs informations
    sont réellement trop importantes et trop complémentaires pour partager
    une seule alerte.
+9bis. **Cas explicitement encouragé, pas seulement toléré** : un `NOTE` ou
+   un `IMPORTANT` directement suivi d'un `TIP` qui rebondit dessus avec une
+   astuce pratique liée. Ce n'est pas de l'empilement par excès de zèle mais
+   un enchaînement logique naturel (information → astuce actionnable qui en
+   découle) — ne pas hésiter à l'utiliser dès que la situation s'y prête.
 
 10. Citation en bloc simple (`>`, sans mot-clé `[!TYPE]`) comme outil
     intermédiaire entre texte nu et alerte colorée — utile pour isoler
     visuellement une liste illustrative sans lui donner le poids sémantique
     d'un `NOTE` ou d'un `TIP`.
+10bis. **Pour une réponse courte de type question/réponse ou constat/
+    explication** (ex: une entrée de FAQ, une confusion fréquente suivie de
+    sa correction), regrouper les 2-3 phrases dans **une seule citation**
+    plutôt que de les scinder en plusieurs paragraphes séparés, en utilisant
+    un retour à la ligne forcé (`\` en fin de ligne) entre chaque phrase :
+    ```
+    > Non.\
+    > Explication de la première phrase.\
+    > Explication de la deuxième phrase.
+    ```
+    Effet "carte réponse" compacte, plus adapté à ce format court que la
+    règle d'aération générale (§E) qui viserait à les séparer.
 
 11. **Aérer aussi l'intérieur d'une alerte** avec une ligne `>` vide pour
     créer un saut de paragraphe interne, si son contenu est long ou dense.
@@ -119,6 +160,13 @@ de ton ressort.
     elle accompagne une sélection ou un choix suivi immédiatement d'un
     contenu concret (fichier affiché, menu déroulant, choix multiples).
     Bien diriger visuellement un lecteur n'est jamais superflu.
+15bis. **Flèche courbée vers le bas (⤵️) quasi obligatoire** entre un nom de
+    fichier en code en ligne (`mon_fichier.extension`) et le bloc de code
+    qui affiche son contenu juste en dessous — lie visuellement l'étiquette
+    et son contenu sans ambiguïté possible. Rappel de la règle déjà en
+    vigueur (§F) : si ce fichier existe réellement sur un repo ou un site
+    officiel fiable, son nom doit en plus être un lien hypertexte vers son
+    emplacement de téléchargement.
 
 ---
 
@@ -169,6 +217,12 @@ de ton ressort.
 26. Listes de liens toujours en **format hyperlien propre**
     (`- [Libellé](url)`) plutôt qu'en texte brut avec URL exposée
     (`- Libellé : <url>`).
+26bis. **Annotation en ligne directement dans un bloc de code ou un
+    diagramme en arborescence** (ex : `└── dossier/    <-- commentaire`)
+    pour pointer l'élément précis concerné par l'explication qui suit, sans
+    avoir à sortir du bloc ni à dupliquer le nom de l'élément en dehors.
+    Particulièrement utile pour les diagrammes de structure de fichiers où
+    un seul élément parmi plusieurs est la cible de l'explication.
 
 ---
 
@@ -194,6 +248,11 @@ de ton ressort.
     *chaque* passe d'édition (pas seulement à la toute fin), revérifier que
     le nombre de blocs de code est resté identique, que les ancres résolvent
     toujours vers les bons titres, et que les blocs JSON restent valides.
+30bis. **Commentaires HTML invisibles comme repères de navigation dans le
+    fichier source** (ex : `<!-- TITRE DU GUIDE -->`, `<!-- BADGES -->`,
+    `<!-- SOMMAIRE -->`) placés avant les grands blocs structurels de
+    l'en-tête — n'apparaissent jamais au rendu, mais aident quiconque édite
+    le fichier brut par la suite à s'y retrouver rapidement.
 
 ---
 
@@ -201,7 +260,10 @@ de ton ressort.
 
 31. Ne jamais toucher au contenu, au savoir ou à la structure d'explication
     d'un guide lors d'une passe de mise en page — uniquement la
-    présentation, les balises, l'aération et l'emphase visuelle.
+    présentation, les balises, l'aération et l'emphase visuelle. **Exception
+    explicite** : ajuster la profondeur des niveaux de titre (§A, règle
+    2bis) est une opération de forme, pas de fond, et reste donc autorisé
+    tant que l'ordre logique des sections n'est pas modifié.
 
 ---
 
@@ -321,6 +383,10 @@ Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
       supprimé ou reformulé par rapport à la source.
 - [ ] Le nombre de blocs de code est strictement identique à la source.
 - [ ] Toutes les ancres (`#top`, `#sec-N`) résolvent vers le bon titre.
+- [ ] **Chaque entrée du sommaire est une copie exacte, caractère pour
+      caractère, du titre réel de sa section** (backticks et ponctuation
+      inclus) — vérification automatisée recommandée, pas seulement visuelle.
+- [ ] **Aucun `---` consécutif en doublon** entre deux sections.
 - [ ] Tous les blocs JSON restent syntaxiquement valides.
 - [ ] Les mots-clés d'alerte GitHub sont en anglais partout.
 - [ ] Aucune alerte n'est restée vide ou mal typée par rapport à la grille
@@ -340,6 +406,6 @@ Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
 ## LIVRABLE ATTENDU
 
 Un unique fichier, au même format que la source, nommé selon
-`output_filename`, visuellement enrichi selon les 37 règles ci-dessus,
-strictement fidèle au contenu et au sens du guide d'origine, prêt à être
-commité dans le dépôt sans retouche supplémentaire.
+`output_filename`, visuellement enrichi selon les 37 règles (+ 8 précisions
+« bis ») ci-dessus, strictement fidèle au contenu et au sens du guide
+d'origine, prêt à être commité dans le dépôt sans retouche supplémentaire.
