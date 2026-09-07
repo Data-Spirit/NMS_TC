@@ -110,6 +110,8 @@ Une table de référence complète des 59 balises de couleur, avec :
 
 **Le tri "Couleur" mérite une explication à part.** Après plusieurs itérations infructueuses avec des algorithmes de tri par teinte (HSL classique, puis teinte+luminosité, puis regroupement par familles perceptuelles avec seuils de proximité de teinte), il s'est avéré qu'aucune formule mathématique simple ne reproduisait fidèlement la perception humaine d'un dégradé "bien rangé" — deux couleurs à la même teinte exacte mais à saturation très différente (un bleu vif et un bleu délavé, par exemple) ne se classaient jamais de façon satisfaisante par un calcul automatique seul. La solution retenue a été **un ordre de référence classé manuellement**, couleur par couleur, à l'œil — plus fiable qu'un algorithme pour capturer des nuances comme la vivacité d'une couleur ou les neutres légèrement teintés (ivoire, blanc cassé) qui doivent se distinguer des gris parfaitement neutres.
 
+> **🔧 Détail technique :** contrairement au tri "Couleur", le tri par **luminosité** repose bien sur un calcul automatique — la formule de luminance perceptuelle standard ITU-R BT.601 (`0.299×R + 0.587×G + 0.114×B`), qui pondère plus fortement le vert que le rouge et le bleu, conformément à la sensibilité de l'œil humain à chaque composante de couleur.
+
 ### 🖼️ Onglet Icônes
 
 Une table de référence complète des 145 balises d'icônes, groupées en **12 catégories** (Ressources, Interface, Frégates, Inventaire, Voix/Réseau, Butin, Plateformes/Contrôles, Symboles de portail, Classe (C→S), Modes de jeu, Édition de base, Non fonctionnel), avec pour chaque icône :
@@ -145,6 +147,9 @@ Situé en haut de page, visible depuis n'importe quel onglet, le simulateur perm
 - Reconnaît et affiche correctement les balises couleur, les balises icône, et leur combinaison (y compris la technique de teinte, voir ci-dessous).
 - Les icônes affichées sont les vraies icônes extraites du jeu (pas des approximations).
 - Utile pour composer un nom complexe (plusieurs balises combinées) et vérifier son rendu avant de le recopier en jeu.
+- **Texte saisi toujours neutralisé avant affichage** : coller n'importe quel texte dans le champ, même volontairement "cassé" ou copié depuis une source peu fiable, ne peut jamais interférer avec la page elle-même.
+
+> **🔧 Détail technique :** le texte tapé est d'abord intégralement échappé (transformation des caractères spéciaux HTML), puis la reconnaissance des balises `<COULEUR>` et `<IMG>...<>` s'effectue sur cette version échappée plutôt que sur le texte brut. Tout ce qui n'est pas reconnu comme une vraie balise NMS reste donc affiché en texte inerte, jamais interprété comme du HTML actif.
 
 ---
 
@@ -195,6 +200,14 @@ Les 145 icônes ne sont pas des symboles génériques : ce sont les **vraies ic�
 
 Cette approche explique à la fois le poids du fichier (~312 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
 
+Ce bloc de données (`ICON_DATA`) est volontairement isolé en toute fin du fichier, séparé de toute la logique JavaScript qui le précède — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces quelques milliers de lignes de texte binaire, et pour faciliter l'ajout futur d'icônes par la communauté.
+
+> **🔧 Détail technique :** en JavaScript, une constante doit seulement être déclarée avant d'être utilisée à l'exécution — pas nécessairement avant les fonctions qui la référencent dans leur code. `ICON_DATA` peut donc être placé tout en bas du fichier sans rien casser, tant qu'il reste déclaré avant les tout derniers appels qui déclenchent l'affichage initial du guide.
+
+Les 16 balises listées comme non fonctionnelles ne sont pas toutes de simples entrées vides : une partie d'entre elles (icônes génériques de boutons manette) ont malgré tout leur image déjà présente en base64 dans `ICON_DATA`, sans y être reliées dans le tableau des icônes.
+
+> **🔧 Détail technique :** ces images sont conservées en réserve plutôt que supprimées, au cas où Hello Games leur assignerait un jour une texture officielle en jeu — les relier deviendrait alors une simple correction d'une ligne, sans avoir à ré-extraire ou ré-encoder quoi que ce soit.
+
 ---
 
 ## Fiabilité de l'information et limites connues
@@ -212,6 +225,7 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 
 - **Responsive** : mise en page adaptée aux écrans étroits (colonnes secondaires masquées sur mobile dans le tableau des couleurs, défilement horizontal de sécurité sur les tableaux d'icônes).
 - **Navigateurs modernes** : Chrome, Firefox, Edge, Safari — s'appuie sur CSS Grid, `mask-image` et l'API Clipboard, disponibles dans toutes les versions récentes.
+- **Accessibilité de base** : les deux barres de recherche et le filtre de catégorie sont annoncés correctement aux lecteurs d'écran (`aria-label`), et le champ du simulateur est associé à un vrai `<label>` plutôt qu'à un simple texte flottant.
 - **Aucune donnée envoyée nulle part** : tout s'exécute localement dans le navigateur, aucune connexion réseau requise après le premier chargement des polices.
 
 ---
@@ -221,6 +235,9 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 - **HTML/CSS/JavaScript vanilla** — aucun framework, aucune dépendance de build, aucune étape de compilation.
 - **Polices** : Rajdhani (titres), IBM Plex Sans (texte courant), JetBrains Mono (code), via Google Fonts CDN.
 - **Aucune bibliothèque tierce** : le tri, la recherche, le filtrage, le simulateur et la coloration syntaxique sont tous du JavaScript natif écrit spécifiquement pour ce guide.
+- **Chargement des polices optimisé** : deux `<link rel="preconnect">` établissent la connexion vers les domaines Google Fonts avant même le chargement de la feuille de style, réduisant la latence perçue au premier affichage.
+- **Images non bloquantes** : les 145 icônes intégrées utilisent `decoding="async"`, pour que leur décodage ne retarde jamais le rendu du reste de la page.
+- **Code validé par des outils standards** : le HTML passe une validation HTML5 stricte sans erreur, et le CSS a été audité avec Stylelint sans anomalie de fond (seules des préférences de formatage, laissées telles quelles par choix de style cohérent).
 
 ---
 

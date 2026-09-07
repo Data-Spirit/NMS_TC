@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NMS // TEXT CODES — Guide des balises No Man's Sky</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -34,7 +35,7 @@
     font-family:'IBM Plex Sans', sans-serif;
     line-height:1.5;
   }
-  h1,h2,h3,.mono-label{ font-family:'Rajdhani', sans-serif; letter-spacing:0.03em; }
+  h1,h2,h3{ font-family:'Rajdhani', sans-serif; letter-spacing:0.03em; }
   code, .mono, input, .tag-cell, .path-cell{ font-family:'JetBrains Mono', monospace; }
 
   /* ---- HERO ---- */
@@ -366,7 +367,7 @@
   <p class="lede">Toutes les balises de couleur et d'icônes utilisables dans les champs de texte de No Man's Sky (noms de bases, vaisseaux, coffres, sauvegardes…), compilées à partir des tableaux de configuration du jeu et vérifiées par la communauté.</p>
 
   <div class="simulator">
-    <div class="label">Simulateur — tapez du texte avec des balises</div>
+    <label class="label" for="sim-input">Simulateur — tapez du texte avec des balises</label>
     <input type="text" id="sim-input" value="<PET1><IMG>TECH1<> Techs</> <VISOR><IMG>DWAYPOINT<> Elmt/Comp</>">
     <div class="preview-frame" id="sim-preview"></div>
     <div class="sim-hint">
@@ -377,10 +378,10 @@
 </header>
 
 <nav class="tabs">
-  <button class="tab-btn active" data-tab="infos">Infos</button>
-  <button class="tab-btn" data-tab="colors">Couleurs</button>
-  <button class="tab-btn" data-tab="icons">Icônes</button>
-  <button class="tab-btn" data-tab="notes">À propos</button>
+  <button type="button" class="tab-btn active" data-tab="infos">Infos</button>
+  <button type="button" class="tab-btn" data-tab="colors">Couleurs</button>
+  <button type="button" class="tab-btn" data-tab="icons">Icônes</button>
+  <button type="button" class="tab-btn" data-tab="notes">À propos</button>
 </nav>
 
 <main>
@@ -467,18 +468,18 @@
       <div>Classées comme un spectre lumineux (du rouge, en passant par l'orange, le jaune, le vert, le cyan, le bleu, le violet), puis les tons neutres (noir / gris / blanc) à la fin.<br>Cliquez sur un intitulé ci-dessous pour changer l'ordre de tri.</div>
     </div>
     <div class="toolbar">
-      <input type="text" class="search-box" id="color-search" placeholder="Rechercher une balise couleur (ex: RED, VISOR, PET2)…">
+      <input type="text" class="search-box" id="color-search" placeholder="Rechercher une balise couleur (ex: RED, VISOR, PET2)…" aria-label="Rechercher une balise couleur">
       <span class="count-pill" id="color-count"></span>
     </div>
     <div class="color-head-wrap">
       <span class="color-head-spacer"></span>
       <div class="color-head">
-        <div class="col"><button class="sort-btn" data-sort="name">Balise<span class="arrow"></span></button></div>
-        <div class="col"><button class="sort-btn" data-sort="spectrum">Couleur<span class="arrow"></span></button></div>
+        <div class="col"><button type="button" class="sort-btn" data-sort="name">Balise<span class="arrow"></span></button></div>
+        <div class="col"><button type="button" class="sort-btn" data-sort="spectrum">Couleur<span class="arrow"></span></button></div>
         <div class="col">
           <span class="hex-sort-group">
-            <button class="sort-btn" data-sort="hex-alpha">Hex A→Z<span class="arrow"></span></button>
-            <button class="sort-btn" data-sort="hex-lum">Hex ☀ Lum<span class="arrow"></span></button>
+            <button type="button" class="sort-btn" data-sort="hex-alpha">Hex A→Z<span class="arrow"></span></button>
+            <button type="button" class="sort-btn" data-sort="hex-lum">Hex ☀ Lum<span class="arrow"></span></button>
           </span>
         </div>
         <div class="col"><span class="static-label">Alpha</span></div>
@@ -491,8 +492,8 @@
   <!-- ============ ICONS TAB ============ -->
   <section id="tab-icons" class="tab-panel">
     <div class="toolbar">
-      <input type="text" class="search-box" id="icon-search" placeholder="Rechercher une balise icône (ex: FUEL, SCLASS, HOT_1)…">
-      <select class="cat-select" id="icon-cat-filter"></select>
+      <input type="text" class="search-box" id="icon-search" placeholder="Rechercher une balise icône (ex: FUEL, SCLASS, HOT_1)…" aria-label="Rechercher une balise icône">
+      <select class="cat-select" id="icon-cat-filter" aria-label="Filtrer par catégorie d'icônes"></select>
       <span class="count-pill" id="icon-count"></span>
     </div>
     <div id="icon-table-wrap"></div>
@@ -788,6 +789,354 @@ const ICONS = [
 
 ];
 
+// Icônes déjà colorées à l'origine (badges de classe, plateformes, ressources, etc.) —
+// la teinte par balise couleur ne s'y applique pas, pour garder leur couleur d'origine lisible.
+const ICON_ALREADY_COLORED = new Set([
+  "aclass.png","bclass.png","cclass.png","sclass.png",
+  "commodity.png","mineral1.png","tech1.png","technology.png","trade1.png","tradeable.png",
+  "fuel.png","fuel1.png","tick.png","vc_mute.png","missionend.png","look.png","pinicon.png",
+  "player1.png","player2.png","player3.png","player4.png","icon_ps.png",
+  "creature.png","interactable.png","sentinel.png"
+]);
+
+// Ordre de référence défini manuellement (curation visuelle) — plus fiable
+// qu'un algorithme perceptuel pour capturer les nuances (vivacité, teinte
+// quasi-identique, neutres teintés...) qu'aucune formule simple ne rend
+// parfaitement. Toute balise absente de cette liste (ajout futur) est
+// simplement repoussée à la fin, dans son ordre d'origine.
+const SPECTRUM_ORDER = [
+  "PET3","NEG_AVG","PLAYER_04","FUEL","RED","TRANS_WAR","PET5","GAL_TITLE_YOU",
+  "DISC_STAT","TRADE_SPECIALS","COMMODITY","HIGHLIGHT","MISSIONPRIMARY","PET1",
+  "STAT","PLAYER_01","CATALYST","VAL_OFF","EXPED","CR_HEAD","CR_TITLE","TRANS_DIP",
+  "STELLAR","PLAYER_03","GREEN","POS_AVG","PET0","TRADE","TRADEABLE","TRANS_TRA",
+  "FLORA","VISOR","PET2","DARK_TECH","EARTH","TECHNOLOGY","PLAYER_02","RARE",
+  "TRANS_EXP","EXOTIC","SPECIAL","PET4","STORY_HIGH","METAL","VAL_NO","TITLE",
+  "GAL_TITLE_VISIT","PLAYER_00","TITLE_BRIGHT","MISSIONSECOND","NEU_AVG","AMT_MAX",
+  "CONSOLE","GAL_MODE_SELECT","TRANS_ANM","VAL_ON","GAL_MODE_OPTION","AMT_LESS",
+  "GAL_MODE_BLOCK"
+];
+
+const CATEGORY_DESCRIPTIONS = {
+  "Classe (C→S)": "Note de qualité générique du jeu (C = la plus faible, S = la plus élevée) — s'applique aux vaisseaux, multi-outils, frégates, armes et technologies, pas seulement aux vaisseaux.",
+};
+
+const CONTAINER_EXAMPLES = [
+  "<PET1><IMG>TECH1<> Techs</>",
+  "<PET2><IMG>FRIGMINE<> Metals 1</>",
+  "<PET2><IMG>FRIGMINE<> Metals 2</>",
+  "<VISOR><IMG>DWAYPOINT<> Elmt/Comp</>",
+  "<PET1><IMG>INVGENERAL<> Alloys</>",
+  "<METAL><IMG>NANITE<> DATAs</>",
+  "<METAL><IMG>INVTECH<> Upgrade 1</>",
+  "<METAL><IMG>INVTECH<> Upgrade 2</>",
+  "<SPECIAL><IMG>INVCARGO<> MISC</>",
+  "<PET0><IMG>DFLORA<> Plants</>",
+];
+
+/* ================= UTILS ================= */
+function escapeHtml(str){
+  return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function relLuminance(hex){
+  const h = hex.replace('#','');
+  const r = parseInt(h.substring(0,2),16), g = parseInt(h.substring(2,4),16), b = parseInt(h.substring(4,6),16);
+  return 0.299*r + 0.587*g + 0.114*b;
+}
+
+function hexToRgba(hex, alpha){
+  const h = hex.replace('#','');
+  const r = parseInt(h.substring(0,2),16);
+  const g = parseInt(h.substring(2,4),16);
+  const b = parseInt(h.substring(4,6),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+/* ================= LOOKUPS (for simulator) ================= */
+const COLOR_MAP = {};
+COLORS.forEach(([tag,hex,alpha]) => COLOR_MAP[tag] = {hex, alpha});
+const ICON_MAP = {};
+ICONS.forEach(([tag,file]) => { if(!(tag in ICON_MAP)) ICON_MAP[tag] = file; });
+
+/* ================= RENDER: COLORS (spectrum strip) ================= */
+let colorSort = { key: 'spectrum', dir: 1 };
+
+function sortColorRows(rows, key, dir){
+  if(key === 'spectrum'){
+    const arr = rows.slice();
+    arr.sort((a,b) => {
+      let idxA = SPECTRUM_ORDER.indexOf(a[0]);
+      let idxB = SPECTRUM_ORDER.indexOf(b[0]);
+      if(idxA === -1) idxA = SPECTRUM_ORDER.length;
+      if(idxB === -1) idxB = SPECTRUM_ORDER.length;
+      return (idxA - idxB) * dir;
+    });
+    return arr;
+  }
+  const arr = rows.slice();
+  arr.sort((a,b) => {
+    const [tagA,hexA] = a, [tagB,hexB] = b;
+    let cmp = 0;
+    if(key === 'name') cmp = tagA.localeCompare(tagB);
+    else if(key === 'hex-alpha') cmp = hexA.localeCompare(hexB);
+    else if(key === 'hex-lum') cmp = relLuminance(hexA) - relLuminance(hexB);
+    return cmp * dir;
+  });
+  return arr;
+}
+
+function updateColorSortHeader(){
+  document.querySelectorAll('.color-head .sort-btn').forEach(btn => {
+    const key = btn.dataset.sort;
+    const arrowEl = btn.querySelector('.arrow');
+    if(key === colorSort.key){
+      btn.classList.add('active');
+      arrowEl.textContent = colorSort.dir === 1 ? '▲' : '▼';
+    } else {
+      btn.classList.remove('active');
+      arrowEl.textContent = '';
+    }
+  });
+}
+
+function renderColors(filter=""){
+  const f = filter.trim().toUpperCase();
+  let rows = COLORS.filter(([tag]) => tag.includes(f));
+  rows = sortColorRows(rows, colorSort.key, colorSort.dir);
+  document.getElementById('color-count').textContent = rows.length + ' / ' + COLORS.length + ' balises';
+
+  let html = '';
+  rows.forEach(([tag,hex,alpha,cat]) => {
+    const rgba = hexToRgba(hex, alpha);
+    const alphaPill = alpha < 1 ? `<span class="color-alpha-pill">transparence ${Math.round(alpha*100)}%</span>` : '';
+    const copyText = `<${tag}>Texte</>`;
+    html += `<div class="color-row-wrap">
+      ${copyButtonHtml(copyText)}
+      <div class="color-row">
+        <div class="color-tagname">${tag}</div>
+        <div class="color-bar"><div class="fill" style="background:${rgba}"></div></div>
+        <div class="color-hex">${hex}</div>
+        <div>${alphaPill}</div>
+        <div class="color-cat">${cat}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('color-table-wrap').innerHTML = html;
+  updateColorSortHeader();
+}
+
+/* ================= COPY TO CLIPBOARD ================= */
+function copyButtonHtml(copyText){
+  const safe = escapeHtml(copyText);
+  return `<button type="button" class="copy-btn" data-copy="${safe}" title="Copier : ${safe}">⧉</button>`;
+}
+
+async function copyToClipboard(text, btn){
+  try{
+    await navigator.clipboard.writeText(text);
+  }catch(e){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e2){}
+    document.body.removeChild(ta);
+  }
+  btn.textContent = '✓';
+  btn.classList.add('copied');
+  clearTimeout(btn._copyTimeout);
+  btn._copyTimeout = setTimeout(() => {
+    btn.textContent = '⧉';
+    btn.classList.remove('copied');
+  }, 1400);
+}
+
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.copy-btn');
+  if(!btn) return;
+  copyToClipboard(btn.dataset.copy, btn);
+});
+
+/* ================= RENDER: ICONS TABLE (grouped) ================= */
+const FLAG_LABELS = { dup: 'doublon', warn: 'non fonctionnel', unk: 'à vérifier' };
+
+function renderIcons(filter="", catFilter="ALL"){
+  const f = filter.trim().toUpperCase();
+  let rows = ICONS.filter(([tag]) => tag.includes(f));
+  if(catFilter !== "ALL") rows = rows.filter(([,,cat]) => cat === catFilter);
+
+  document.getElementById('icon-count').textContent = rows.length + ' / ' + ICONS.length + ' balises';
+
+  const order = [];
+  const groups = {};
+  rows.forEach(r => {
+    const cat = r[2];
+    if(!groups[cat]){ groups[cat] = []; order.push(cat); }
+    groups[cat].push(r);
+  });
+
+  let html = '';
+  order.forEach(cat => {
+    const desc = CATEGORY_DESCRIPTIONS[cat];
+    const descHtml = desc ? `<p class="cat-desc">${desc}</p>` : '';
+    html += `<section class="cat-block"><h3>${cat}</h3>${descHtml}<div class="table-scroll"><table><thead><tr><th></th><th>Aperçu</th><th>Balise</th><th>Chemin texture</th><th></th></tr></thead><tbody>`;
+    groups[cat].forEach(([tag,file,,path,flag]) => {
+      const flagHtml = flag ? `<span class="flag ${flag}">${FLAG_LABELS[flag]}</span>` : '';
+      const thumb = file ? `<span class="icon-thumb"><img src="${ICON_DATA[file]}" alt="${tag}" loading="lazy" decoding="async"></span>`
+                          : `<span class="icon-thumb empty">∅</span>`;
+      const copyText = `<IMG>${tag}<>`;
+      html += `<tr>
+        <td>${copyButtonHtml(copyText)}</td>
+        <td>${thumb}</td>
+        <td class="tag-cell">${tag}</td>
+        <td class="path-cell">${path}</td>
+        <td>${flagHtml}</td>
+      </tr>`;
+    });
+    html += '</tbody></table></div></section>';
+  });
+  document.getElementById('icon-table-wrap').innerHTML = html || '<p style="color:var(--text-dim)">Aucun résultat.</p>';
+}
+
+function populateCatFilter(){
+  const cats = [...new Set(ICONS.map(r => r[2]))];
+  const sel = document.getElementById('icon-cat-filter');
+  sel.innerHTML = '<option value="ALL">Toutes catégories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
+  sel.addEventListener('change', () => renderIcons(document.getElementById('icon-search').value, sel.value));
+}
+
+/* ================= SHARED RENDER ENGINE ================= */
+// Renders NMS tag markup to HTML. Handles: standalone <IMG>NAME<>,
+// color-wrapped icon tinting <TAG><IMG>NAME<>...</>, and plain color text <TAG>text</>.
+function renderNMSMarkup(raw, opts){
+  opts = opts || {};
+  const lg = opts.lg ? ' lg' : '';
+  // Sécurité : le texte brut est intégralement échappé avant tout traitement.
+  // Toute portion qui ne correspond à aucune balise NMS reconnue par les
+  // regex ci-dessous reste donc du texte HTML inerte (ex: "&lt;img&gt;")
+  // plutôt que d'être injectée telle quelle dans innerHTML — ce qui empêche
+  // un texte collé dans le simulateur (ex: "<img src=x onerror=...>") de
+  // s'exécuter comme du HTML/JS actif.
+  let out = escapeHtml(raw);
+
+  // Step 1: color tag immediately wrapping an icon tag (tint), with optional trailing text
+  out = out.replace(/&lt;([A-Z0-9_]+)&gt;&lt;IMG&gt;([A-Z0-9_]+)&lt;&gt;(.*?)&lt;\/&gt;/g, (m, colorTag, iconTag, trailing) => {
+    const c = COLOR_MAP[colorTag];
+    const file = ICON_MAP[iconTag];
+    let iconHtml;
+    if(file && c && !ICON_ALREADY_COLORED.has(file)){
+      // monochrome icon → apply the color as a tint via CSS mask
+      iconHtml = `<span class="icon-inline${lg}" title="${iconTag} teinté ${colorTag}"><span class="icon-mask" style="background-color:${hexToRgba(c.hex,c.alpha)};-webkit-mask-image:url('${ICON_DATA[file]}');mask-image:url('${ICON_DATA[file]}')"></span></span>`;
+    } else if(file){
+      // already-colored icon → keep its native colors, no tint
+      iconHtml = `<span class="icon-inline${lg}" title="${iconTag}"><img src="${ICON_DATA[file]}" alt="${iconTag}" decoding="async"></span>`;
+    } else {
+      iconHtml = `<span class="icon-inline${lg}" title="${iconTag}">?</span>`;
+    }
+    let textHtml = trailing || '';
+    if(trailing && trailing.trim().length > 0 && c){
+      textHtml = `<span style="color:${hexToRgba(c.hex,c.alpha)}">${trailing}</span>`;
+    }
+    return iconHtml + textHtml;
+  });
+
+  // Step 2: any remaining standalone icons (not wrapped in a color tag)
+  out = out.replace(/&lt;IMG&gt;([A-Z0-9_]+)&lt;&gt;/g, (m, tag) => {
+    const file = ICON_MAP[tag];
+    if(file) return `<span class="icon-inline${lg}" title="${tag}"><img src="${ICON_DATA[file]}" alt="${tag}" decoding="async"></span>`;
+    return `<span class="icon-inline${lg}" title="${tag}">?</span>`;
+  });
+
+  // Step 3: any remaining plain color-text wraps
+  out = out.replace(/&lt;([A-Z0-9_]+)&gt;(.*?)&lt;\/&gt;/g, (m, tag, inner) => {
+    const c = COLOR_MAP[tag];
+    if(c) return `<span style="color:${hexToRgba(c.hex,c.alpha)}">${inner}</span>`;
+    return inner;
+  });
+
+  return out;
+}
+
+/* ================= SIMULATOR ================= */
+function renderSimulator(){
+  const raw = document.getElementById('sim-input').value;
+  document.getElementById('sim-preview').innerHTML = renderNMSMarkup(raw);
+}
+
+/* ================= ADVANCED TECHNIQUE EXAMPLES ================= */
+function renderTintExamples(){
+  const el1 = document.getElementById('tint-example-1');
+  const el2 = document.getElementById('tint-example-2');
+  if(el1) el1.innerHTML = renderNMSMarkup("<PET1><IMG>TECH1<></> Techs");
+  if(el2) el2.innerHTML = renderNMSMarkup("<PET1><IMG>TECH1<> Techs</>");
+}
+
+/* ================= CONCRETE EXAMPLES LIST ================= */
+function highlightSyntax(raw){
+  const tokens = raw.split(/(<IMG>[A-Z0-9_]+<>|<\/>|<[A-Z0-9_]+>)/g).filter(t => t.length > 0);
+  return tokens.map(tok => {
+    let m;
+    if(m = tok.match(/^<IMG>([A-Z0-9_]+)<>$/)){
+      return `<span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">${m[1]}</span><span class="syn-bracket">&lt;&gt;</span>`;
+    }
+    if(tok === '</>'){
+      return `<span class="syn-bracket">&lt;/&gt;</span>`;
+    }
+    if(m = tok.match(/^<([A-Z0-9_]+)>$/)){
+      return `<span class="syn-bracket">&lt;</span><span class="syn-tag">${m[1]}</span><span class="syn-bracket">&gt;</span>`;
+    }
+    if(tok.trim().length === 0) return tok;
+    // Défensif : échappement du texte libre pour d'éventuels futurs exemples
+    // ajoutés par la communauté (cette fonction n'est aujourd'hui appelée que
+    // sur des exemples statiques et fiables, cf. CONTAINER_EXAMPLES).
+    return `<span class="syn-text">${escapeHtml(tok)}</span>`;
+  }).join('');
+}
+
+function renderExampleList(){
+  const wrap = document.getElementById('example-list');
+  if(!wrap) return;
+  let html = '';
+  CONTAINER_EXAMPLES.forEach(code => {
+    html += `<div class="example-row">
+      <div class="example-preview">${renderNMSMarkup(code, {lg:true})}</div>
+      <div class="example-code">${highlightSyntax(code)}</div>
+    </div>`;
+  });
+  wrap.innerHTML = html;
+}
+
+/* ================= TABS ================= */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ================= EVENT LISTENERS (search / sort / filter / simulator) ================= */
+document.getElementById('color-search').addEventListener('input', e => renderColors(e.target.value));
+document.querySelectorAll('.color-head .sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.sort;
+    if(colorSort.key === key){ colorSort.dir *= -1; }
+    else { colorSort.key = key; colorSort.dir = 1; }
+    renderColors(document.getElementById('color-search').value);
+  });
+});
+document.getElementById('icon-search').addEventListener('input', e => renderIcons(e.target.value, document.getElementById('icon-cat-filter').value));
+document.getElementById('sim-input').addEventListener('input', renderSimulator);
+
+/* ================= ICON DATA (base64) =================
+   Stockage volumineux (145 PNG détourés encodés en base64), volontairement
+   isolé en toute fin de script pour ne pas noyer la logique ci-dessus.
+   Voir README_FR.md § "Comment les icônes ont été extraites et intégrées".
+   Doit rester déclaré avant les appels d'initialisation ci-dessous (les
+   fonctions de rendu qui l'utilisent ne s'exécutent qu'à cet instant). */
 const ICON_DATA = {
 "aclass.png":"data:image/png;base64,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",
 "arrowleft.png":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAbCAYAAACX6BTbAAABwklEQVR4nO2VP4viQADF3wQHwqmbQmFJoY2IpSASB4tgYUBcyxXBJoUs6FewusLGxsLyartrrvD8FsL1go1ILITg38mK7mzlLuIticrCFvvKmfd+8zKZSYBvfXlRSqVPXaBarW5UVb13813cotVqCU3TflQqlZmb1+cVahjGL13XnwqFAhzHwWq1cs14godCoTvDMJ5KpRJisRgsywKl9Ha4aZoin89D13VEo1EAwGKxwHa7vQ3eaDSEpmlgjCESiZzMCSGug6uqem+a5iyVSl0N/hBeq9VmuVwOyWQS4XD4bP5quK7rP+PxOBhj8Pv9AIDD4QAhBHy+d7uXBc7OuWVZfzjn4JyfjBNCbm8+Go3+DYdDAABjDIlEArIsn3iEENc1B4BeryfX63UyGAwwmUzextfrtafGHzaXZVninD8TQtBsNsl8PhflchmZTAaBQODowW63uxzuOM4L8L6vnU6HUErFZrNBOp2GoigIBoNQFOUkRwg52yrXG0oIQbvdJpxzYds2isUi9vv921Mc9b934Ao/hrrdLhmPx38BFCVJgm3bblHvX0UA6Pf7D9Pp9DGbzf5eLpeXRL3p0/9E37pJr1LEpqSms6GCAAAAAElFTkSuQmCC",
@@ -936,340 +1285,7 @@ const ICON_DATA = {
 "vertical.png":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAiCAYAAABBY8kOAAADD0lEQVR4nO2Wb2hNYRzHv885rlvujbTFS9FCy3jhz4QMIX9KkReiJbyQF8qfFoVJ/uRP04gVKW94QRGpIRGjtvybEA1tZjZttt0/2+4595zzPF8vztl1dy/7YybJ9/TU85znOefze37n9/x+B/ivf07ZOVOZnTOVAwqZlbeApbcf8Mq1W8ydOWdgYEuWLef9R48Zl6StyNt3H3L+oqW/F7ZyVT6fv3xD0yHjkjQd0ib5pPIll69cTQgh+g3ZsHEz3777SElSsqtsSb54VcVVa9b1b2ebNm/jh48NdDxIKoh03fi+5jPz1236NdjO3fsYajMp6borFWR7g8655pDBrQV7+gY7WnSa7QapPItTIcljSdLx+pEOyYJdB3oH23+omHUNEdZ9CbG2volNXyN0VLrLlEeKmQ5bwzF+qm9hQ2OEr6vquKVgbxpsUOqN8vJyVFRUQCkHisS8vNlYv34tMjOGeSsUAA1Cc0c11dU4frwYNbV10HUdSmjQfhCEaaDSG5cSq4TQAyMzM9ot205CeDgJSCXREYuhsrISz5+VdxviaaBkkbJDCAElJVTKnKYDQuiwLAuapnf3mp5BACCEgBAisRPANZwKEBrg8/mg6drPHv9uWI8rehI1tw04qJf6e0B+vx+OFwxuQLhHRGiJ7u8BGYYBn8/3wzmlAE3XoJTTf1AwGICSMhUBABAC0AQRDAZ6BKUdst2Fx5iVlYXBfg2KEmOzxmDChGz4/T7PMs+BdMO+NRxFWdkjGKYFqQDDNFBV9QFFhwu7r1FzF67gnftP3SKn3ITZ2dxkKilpk1SM21YiwZoOGY7ZvH7zHnPzFvbu602ePp+Xr5YyalhdMrSTALmXWy7cXtSweP7iZU6cNqtvpSJn0gyeOXeBUcOiYau0XcUdk7ayaUvJ1nCUJ0vOcMz4nEifIJ0alz2FJ06dZUukPQX0vR41Nbew+GQJh2eMWPxLkE4NCQ4bfeBwERtbokwuS44iQ5E27j94hIHA0FH9giSrcN8RhtpMmnEX9LU5zG3bdwzsj+R//VF9A1J5pnd2WoeEAAAAAElFTkSuQmCC",
 };
 
-// ICON_DIR removed — icons are embedded via ICON_DATA (base64)
-
-/* ================= LOOKUPS (for simulator) ================= */
-const COLOR_MAP = {};
-COLORS.forEach(([tag,hex,alpha]) => COLOR_MAP[tag] = {hex, alpha});
-const ICON_MAP = {};
-ICONS.forEach(([tag,file]) => { if(!(tag in ICON_MAP)) ICON_MAP[tag] = file; });
-
-/* ================= RENDER: COLORS (spectrum strip) ================= */
-let colorSort = { key: 'spectrum', dir: 1 };
-
-function relLuminance(hex){
-  const h = hex.replace('#','');
-  const r = parseInt(h.substring(0,2),16), g = parseInt(h.substring(2,4),16), b = parseInt(h.substring(4,6),16);
-  return 0.299*r + 0.587*g + 0.114*b;
-}
-
-// Ordre de référence défini manuellement (curation visuelle) — plus fiable
-// qu'un algorithme perceptuel pour capturer les nuances (vivacité, teinte
-// quasi-identique, neutres teintés...) qu'aucune formule simple ne rend
-// parfaitement. Toute balise absente de cette liste (ajout futur) est
-// simplement repoussée à la fin, dans son ordre d'origine.
-const SPECTRUM_ORDER = [
-  "PET3","NEG_AVG","PLAYER_04","FUEL","RED","TRANS_WAR","PET5","GAL_TITLE_YOU",
-  "DISC_STAT","TRADE_SPECIALS","COMMODITY","HIGHLIGHT","MISSIONPRIMARY","PET1",
-  "STAT","PLAYER_01","CATALYST","VAL_OFF","EXPED","CR_HEAD","CR_TITLE","TRANS_DIP",
-  "STELLAR","PLAYER_03","GREEN","POS_AVG","PET0","TRADE","TRADEABLE","TRANS_TRA",
-  "FLORA","VISOR","PET2","DARK_TECH","EARTH","TECHNOLOGY","PLAYER_02","RARE",
-  "TRANS_EXP","EXOTIC","SPECIAL","PET4","STORY_HIGH","METAL","VAL_NO","TITLE",
-  "GAL_TITLE_VISIT","PLAYER_00","TITLE_BRIGHT","MISSIONSECOND","NEU_AVG","AMT_MAX",
-  "CONSOLE","GAL_MODE_SELECT","TRANS_ANM","VAL_ON","GAL_MODE_OPTION","AMT_LESS",
-  "GAL_MODE_BLOCK"
-];
-
-function compareArrays(a,b){
-  for(let i=0;i<a.length;i++){ if(a[i]<b[i]) return -1; if(a[i]>b[i]) return 1; }
-  return 0;
-}
-
-function sortColorRows(rows, key, dir){
-  if(key === 'spectrum'){
-    const arr = rows.slice();
-    arr.sort((a,b) => {
-      let idxA = SPECTRUM_ORDER.indexOf(a[0]);
-      let idxB = SPECTRUM_ORDER.indexOf(b[0]);
-      if(idxA === -1) idxA = SPECTRUM_ORDER.length;
-      if(idxB === -1) idxB = SPECTRUM_ORDER.length;
-      return (idxA - idxB) * dir;
-    });
-    return arr;
-  }
-  const arr = rows.slice();
-  arr.sort((a,b) => {
-    const [tagA,hexA] = a, [tagB,hexB] = b;
-    let cmp = 0;
-    if(key === 'name') cmp = tagA.localeCompare(tagB);
-    else if(key === 'hex-alpha') cmp = hexA.localeCompare(hexB);
-    else if(key === 'hex-lum') cmp = relLuminance(hexA) - relLuminance(hexB);
-    return cmp * dir;
-  });
-  return arr;
-}
-
-function updateColorSortHeader(){
-  document.querySelectorAll('.color-head .sort-btn').forEach(btn => {
-    const key = btn.dataset.sort;
-    const arrowEl = btn.querySelector('.arrow');
-    if(key === colorSort.key){
-      btn.classList.add('active');
-      arrowEl.textContent = colorSort.dir === 1 ? '▲' : '▼';
-    } else {
-      btn.classList.remove('active');
-      arrowEl.textContent = '';
-    }
-  });
-}
-
-function renderColors(filter=""){
-  const f = filter.trim().toUpperCase();
-  let rows = COLORS.filter(([tag]) => tag.includes(f));
-  rows = sortColorRows(rows, colorSort.key, colorSort.dir);
-  document.getElementById('color-count').textContent = rows.length + ' / ' + COLORS.length + ' balises';
-
-  let html = '';
-  rows.forEach(([tag,hex,alpha,cat]) => {
-    const rgba = hexToRgba(hex, alpha);
-    const alphaPill = alpha < 1 ? `<span class="color-alpha-pill">transparence ${Math.round(alpha*100)}%</span>` : '';
-    const copyText = `<${tag}>Texte</>`;
-    html += `<div class="color-row-wrap">
-      <button class="copy-btn" data-copy="${escapeAttr(copyText)}" title="Copier : ${escapeAttr(copyText)}">⧉</button>
-      <div class="color-row">
-        <div class="color-tagname">${tag}</div>
-        <div class="color-bar"><div class="fill" style="background:${rgba}"></div></div>
-        <div class="color-hex">${hex}</div>
-        <div>${alphaPill}</div>
-        <div class="color-cat">${cat}</div>
-      </div>
-    </div>`;
-  });
-  document.getElementById('color-table-wrap').innerHTML = html;
-  updateColorSortHeader();
-}
-
-/* ================= COPY TO CLIPBOARD ================= */
-function escapeAttr(str){
-  return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-async function copyToClipboard(text, btn){
-  try{
-    await navigator.clipboard.writeText(text);
-  }catch(e){
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.left = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand('copy'); }catch(e2){}
-    document.body.removeChild(ta);
-  }
-  btn.textContent = '✓';
-  btn.classList.add('copied');
-  clearTimeout(btn._copyTimeout);
-  btn._copyTimeout = setTimeout(() => {
-    btn.textContent = '⧉';
-    btn.classList.remove('copied');
-  }, 1400);
-}
-
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('.copy-btn');
-  if(!btn) return;
-  copyToClipboard(btn.dataset.copy, btn);
-});
-
-function hexToRgba(hex, alpha){
-  const h = hex.replace('#','');
-  const r = parseInt(h.substring(0,2),16);
-  const g = parseInt(h.substring(2,4),16);
-  const b = parseInt(h.substring(4,6),16);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-
-/* ================= RENDER: ICONS TABLE (grouped) ================= */
-const CATEGORY_DESCRIPTIONS = {
-  "Classe (C→S)": "Note de qualité générique du jeu (C = la plus faible, S = la plus élevée) — s'applique aux vaisseaux, multi-outils, frégates, armes et technologies, pas seulement aux vaisseaux.",
-};
-
-function renderIcons(filter="", catFilter="ALL"){
-  const f = filter.trim().toUpperCase();
-  let rows = ICONS.filter(([tag]) => tag.includes(f));
-  if(catFilter !== "ALL") rows = rows.filter(([,,cat]) => cat === catFilter);
-
-  document.getElementById('icon-count').textContent = rows.length + ' / ' + ICONS.length + ' balises';
-
-  const order = [];
-  const groups = {};
-  rows.forEach(r => {
-    const cat = r[2];
-    if(!groups[cat]){ groups[cat] = []; order.push(cat); }
-    groups[cat].push(r);
-  });
-
-  let html = '';
-  order.forEach(cat => {
-    const desc = CATEGORY_DESCRIPTIONS[cat];
-    const descHtml = desc ? `<p class="cat-desc">${desc}</p>` : '';
-    html += `<section class="cat-block"><h3>${cat}</h3>${descHtml}<div class="table-scroll"><table><thead><tr><th></th><th>Aperçu</th><th>Balise</th><th>Chemin texture</th><th></th></tr></thead><tbody>`;
-    groups[cat].forEach(([tag,file,,path,flag]) => {
-      const flagHtml = flag === "dup" ? '<span class="flag dup">doublon</span>'
-                      : flag === "warn" ? '<span class="flag warn">non fonctionnel</span>'
-                      : flag === "unk" ? '<span class="flag unk">à vérifier</span>' : '';
-      const thumb = file ? `<span class="icon-thumb"><img src="${ICON_DATA[file]}" alt="${tag}" loading="lazy"></span>`
-                          : `<span class="icon-thumb empty">∅</span>`;
-      const copyText = `<IMG>${tag}<>`;
-      html += `<tr>
-        <td><button class="copy-btn" data-copy="${escapeAttr(copyText)}" title="Copier : ${escapeAttr(copyText)}">⧉</button></td>
-        <td>${thumb}</td>
-        <td class="tag-cell">${tag}</td>
-        <td class="path-cell">${path}</td>
-        <td>${flagHtml}</td>
-      </tr>`;
-    });
-    html += '</tbody></table></div></section>';
-  });
-  document.getElementById('icon-table-wrap').innerHTML = html || '<p style="color:var(--text-dim)">Aucun résultat.</p>';
-}
-
-function populateCatFilter(){
-  const cats = [...new Set(ICONS.map(r => r[2]))];
-  const sel = document.getElementById('icon-cat-filter');
-  sel.innerHTML = '<option value="ALL">Toutes catégories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
-  sel.addEventListener('change', () => renderIcons(document.getElementById('icon-search').value, sel.value));
-}
-
-// Icônes déjà colorées à l'origine (badges de classe, plateformes, ressources, etc.) —
-// la teinte par balise couleur ne s'y applique pas, pour garder leur couleur d'origine lisible.
-const ICON_ALREADY_COLORED = new Set([
-  "aclass.png","bclass.png","cclass.png","sclass.png",
-  "commodity.png","mineral1.png","tech1.png","technology.png","trade1.png","tradeable.png",
-  "fuel.png","fuel1.png","tick.png","vc_mute.png","missionend.png","look.png","pinicon.png",
-  "player1.png","player2.png","player3.png","player4.png","icon_ps.png",
-  "creature.png","interactable.png","sentinel.png"
-]);
-
-/* ================= SHARED RENDER ENGINE ================= */
-// Renders NMS tag markup to HTML. Handles: standalone <IMG>NAME<>,
-// color-wrapped icon tinting <TAG><IMG>NAME<>...</>, and plain color text <TAG>text</>.
-function renderNMSMarkup(raw, opts){
-  opts = opts || {};
-  const lg = opts.lg ? ' lg' : '';
-  let out = raw;
-
-  // Step 1: color tag immediately wrapping an icon tag (tint), with optional trailing text
-  out = out.replace(/<([A-Z0-9_]+)><IMG>([A-Z0-9_]+)<>([^<]*)<\/>/g, (m, colorTag, iconTag, trailing) => {
-    const c = COLOR_MAP[colorTag];
-    const file = ICON_MAP[iconTag];
-    let iconHtml;
-    if(file && c && !ICON_ALREADY_COLORED.has(file)){
-      // monochrome icon → apply the color as a tint via CSS mask
-      iconHtml = `<span class="icon-inline${lg}" title="${iconTag} teinté ${colorTag}"><span class="icon-mask" style="background-color:${hexToRgba(c.hex,c.alpha)};-webkit-mask-image:url('${ICON_DATA[file]}');mask-image:url('${ICON_DATA[file]}')"></span></span>`;
-    } else if(file){
-      // already-colored icon → keep its native colors, no tint
-      iconHtml = `<span class="icon-inline${lg}" title="${iconTag}"><img src="${ICON_DATA[file]}" alt="${iconTag}"></span>`;
-    } else {
-      iconHtml = `<span class="icon-inline${lg}" title="${iconTag}">?</span>`;
-    }
-    let textHtml = trailing || '';
-    if(trailing && trailing.trim().length > 0 && c){
-      textHtml = `<span style="color:${hexToRgba(c.hex,c.alpha)}">${trailing}</span>`;
-    }
-    return iconHtml + textHtml;
-  });
-
-  // Step 2: any remaining standalone icons (not wrapped in a color tag)
-  out = out.replace(/<IMG>([A-Z0-9_]+)<>/g, (m, tag) => {
-    const file = ICON_MAP[tag];
-    if(file) return `<span class="icon-inline${lg}" title="${tag}"><img src="${ICON_DATA[file]}" alt="${tag}"></span>`;
-    return `<span class="icon-inline${lg}" title="${tag}">?</span>`;
-  });
-
-  // Step 3: any remaining plain color-text wraps
-  out = out.replace(/<([A-Z0-9_]+)>([^<]*)<\/>/g, (m, tag, inner) => {
-    const c = COLOR_MAP[tag];
-    if(c) return `<span style="color:${hexToRgba(c.hex,c.alpha)}">${inner}</span>`;
-    return inner;
-  });
-
-  return out;
-}
-
-/* ================= SIMULATOR ================= */
-function renderSimulator(){
-  const raw = document.getElementById('sim-input').value;
-  document.getElementById('sim-preview').innerHTML = renderNMSMarkup(raw);
-}
-
-/* ================= ADVANCED TECHNIQUE EXAMPLES ================= */
-function renderTintExamples(){
-  const el1 = document.getElementById('tint-example-1');
-  const el2 = document.getElementById('tint-example-2');
-  if(el1) el1.innerHTML = renderNMSMarkup("<PET1><IMG>TECH1<></> Techs");
-  if(el2) el2.innerHTML = renderNMSMarkup("<PET1><IMG>TECH1<> Techs</>");
-}
-
-/* ================= CONCRETE EXAMPLES LIST ================= */
-const CONTAINER_EXAMPLES = [
-  "<PET1><IMG>TECH1<> Techs</>",
-  "<PET2><IMG>FRIGMINE<> Metals 1</>",
-  "<PET2><IMG>FRIGMINE<> Metals 2</>",
-  "<VISOR><IMG>DWAYPOINT<> Elmt/Comp</>",
-  "<PET1><IMG>INVGENERAL<> Alloys</>",
-  "<METAL><IMG>NANITE<> DATAs</>",
-  "<METAL><IMG>INVTECH<> Upgrade 1</>",
-  "<METAL><IMG>INVTECH<> Upgrade 2</>",
-  "<SPECIAL><IMG>INVCARGO<> MISC</>",
-  "<PET0><IMG>DFLORA<> Plants</>",
-];
-
-function highlightSyntax(raw){
-  const tokens = raw.split(/(<IMG>[A-Z0-9_]+<>|<\/>|<[A-Z0-9_]+>)/g).filter(t => t.length > 0);
-  return tokens.map(tok => {
-    let m;
-    if(m = tok.match(/^<IMG>([A-Z0-9_]+)<>$/)){
-      return `<span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">${m[1]}</span><span class="syn-bracket">&lt;&gt;</span>`;
-    }
-    if(tok === '</>'){
-      return `<span class="syn-bracket">&lt;/&gt;</span>`;
-    }
-    if(m = tok.match(/^<([A-Z0-9_]+)>$/)){
-      return `<span class="syn-bracket">&lt;</span><span class="syn-tag">${m[1]}</span><span class="syn-bracket">&gt;</span>`;
-    }
-    if(tok.trim().length === 0) return tok;
-    return `<span class="syn-text">${tok}</span>`;
-  }).join('');
-}
-
-function renderExampleList(){
-  const wrap = document.getElementById('example-list');
-  if(!wrap) return;
-  let html = '';
-  CONTAINER_EXAMPLES.forEach(code => {
-    html += `<div class="example-row">
-      <div class="example-preview">${renderNMSMarkup(code, {lg:true})}</div>
-      <div class="example-code">${highlightSyntax(code)}</div>
-    </div>`;
-  });
-  wrap.innerHTML = html;
-}
-
-/* ================= TABS ================= */
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-  });
-});
-
 /* ================= INIT ================= */
-document.getElementById('color-search').addEventListener('input', e => renderColors(e.target.value));
-document.querySelectorAll('.color-head .sort-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const key = btn.dataset.sort;
-    if(colorSort.key === key){ colorSort.dir *= -1; }
-    else { colorSort.key = key; colorSort.dir = 1; }
-    renderColors(document.getElementById('color-search').value);
-  });
-});
-document.getElementById('icon-search').addEventListener('input', e => renderIcons(e.target.value, document.getElementById('icon-cat-filter').value));
-document.getElementById('sim-input').addEventListener('input', renderSimulator);
-
 populateCatFilter();
 renderColors();
 renderIcons();
