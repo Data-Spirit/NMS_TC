@@ -313,6 +313,14 @@ elles se présentent.
 45. En l'absence de référence connue pour un langage non listé ici,
     utiliser le guide de style officiel le plus largement adopté par la
     communauté de ce langage, et le nommer explicitement dans le rapport.
+45bis. **Utiliser en priorité les outils nommés dans le tableau du §44**
+    (Stylelint, validateur W3C, ESLint, Ruff, clang-tidy, etc.) plutôt
+    qu'une vérification maison équivalente (script ad hoc, regex,
+    parseur improvisé) — même quand cette dernière produit un résultat
+    correct. Si l'outil nommé n'est pas disponible dans l'environnement
+    d'exécution, ne jamais substituer silencieusement : le signaler
+    explicitement dans le rapport et documenter la méthode de
+    substitution réellement utilisée à la place.
 
 ---
 
@@ -431,7 +439,10 @@ elles se présentent.
 - [ ] L'organisation chronologique du code reflète la logique humaine du
       programme/document, sauf contrainte technique documentée (§K).
 - [ ] Le rapport final cite, pour chaque référence de standard utilisée,
-      le guide de style ou l'outil correspondant (§L).
+      l'outil correspondant réellement exécuté (§L.44) — ou, si l'outil
+      nommé était indisponible dans l'environnement, la méthode de
+      substitution utilisée à sa place, explicitement signalée comme
+      telle plutôt que présentée comme équivalente sans le dire (§L.45bis).
 
 ---
 

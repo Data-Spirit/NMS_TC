@@ -5,6 +5,8 @@ Pour une nouvelle traduction : copier ce fichier, changer uniquement le bloc `TA
 
 Ce prompt est le pendant technique de `translation_prompt_README_LANG.md`. Les deux partagent la même exigence de qualité et la même terminologie (voir §6 Cohérence terminologique), mais celui-ci s'applique à un fichier **HTML/CSS/JS fonctionnel**, pas à un texte pur : une erreur ici peut casser une fonctionnalité, pas seulement une phrase.
 
+> **Note (depuis l'audit de code du fichier source FR)** : le fichier `NMS_txt_code_FR.html` a été réorganisé structurellement — notamment le bloc `ICON_DATA` (données base64 des icônes), déplacé du milieu du script vers la toute fin, juste avant les appels d'initialisation. Ceci ne change rien aux règles de traduction ci-dessous, mais si vous comparez avec d'anciennes versions traduites (EN/ES antérieures à cet audit), ne vous étonnez pas de retrouver certains blocs à un autre endroit du fichier : c'est un réagencement volontaire, pas une anomalie.
+
 ---
 
 ## TARGET
@@ -33,18 +35,19 @@ Tu es à la fois **traducteur technique** et **développeur front-end rigoureux*
 - Tout le texte des 4 onglets (Infos/Couleurs/Icônes/À propos) : titres `h1`/`h2`/`h3`, paragraphes, listes, encadrés (`.protip`, `.important-box`, `.warn-box`, `.info-box`), libellés de la barre de simulateur, texte du footer.
 - Libellés des boutons d'onglets (`Infos`, `Couleurs`, `Icônes`, `À propos`).
 - Placeholders des champs de recherche (`placeholder="..."`).
+- Attributs `aria-label` sur les champs de recherche (`#color-search`, `#icon-search`) et sur le filtre de catégorie (`#icon-cat-filter`) — destinés aux lecteurs d'écran. À traduire avec la même rigueur que les placeholders, et à garder cohérents avec la traduction du placeholder du même champ (ce sont des doublons sémantiques, pas des textes indépendants).
 - Attribut `lang` de la balise `<html>` → utiliser `html_lang_attribute` défini dans `TARGET`.
 
 ### B. Texte généré dynamiquement en JavaScript (chaînes littérales dans le code)
 Ces chaînes n'apparaissent pas comme texte HTML statique mais sont injectées au rendu — elles doivent être traduites avec la même rigueur que le texte visible :
-- Libellés de badges de statut : `doublon`, `non fonctionnel`, `à vérifier`.
+- Libellés de badges de statut : `doublon`, `non fonctionnel`, `à vérifier`. *(Depuis l'audit de code : ces trois libellés sont désormais regroupés dans une seule constante `FLAG_LABELS` en début de section de rendu des icônes, au lieu d'un enchaînement de conditions dispersé dans le code — plus facile à repérer d'un coup d'œil.)*
 - En-têtes de tableau générés en JS : `Aperçu`, `Balise`, `Chemin texture`.
 - Option par défaut du filtre catégorie : `Toutes catégories`.
 - Message d'absence de résultat : `Aucun résultat.`
 - Compteurs dynamiques : le suffixe `' balises'` (dans `rows.length + ' / ' + COLORS.length + ' balises'` et son équivalent pour les icônes).
 - Pastille de transparence : `transparence ${...}%`.
 - Gabarit de texte copié pour les couleurs : `Texte` dans `` `<${tag}>Texte</>` `` (c'est un exemple de texte que l'utilisateur va coller puis remplacer en jeu — traduire ce mot-témoin, ex. `Text` en anglais).
-- Préfixe des tooltips de copie : `Copier : ${...}` → traduire uniquement `Copier :`, jamais le contenu de `${...}` (qui est un fragment de code de balise).
+- Préfixe des tooltips de copie : `Copier : ${...}` → traduire uniquement `Copier :`, jamais le contenu de `${...}` (qui est un fragment de code de balise). *(Depuis l'audit de code : ce préfixe est désormais centralisé dans une seule fonction `copyButtonHtml()` au lieu d'être dupliqué à deux endroits du fichier — une seule occurrence à vérifier, ce qui réduit le risque d'oubli.)*
 - Attribut `title` généré pour l'aperçu d'icône teintée : `title="${iconTag} teinté ${colorTag}"` → traduire uniquement le mot `teinté`.
 
 ### C. Noms de catégories (le point le plus sensible du fichier)
@@ -111,6 +114,7 @@ Certaines chaînes traduites s'affichent dans des espaces contraints par du CSS 
 - [ ] `<title>` traduit.
 - [ ] Les 4 onglets, tous les encadrés, le footer et le simulateur sont intégralement traduits — aucune phrase française oubliée.
 - [ ] Toutes les chaînes JS listées en §B (badges, en-têtes de tableau, compteurs, tooltips, placeholder de copie, "Toutes catégories", "Aucun résultat.") sont traduites.
+- [ ] Les 3 `aria-label` (recherche couleurs, recherche icônes, filtre catégorie) sont traduits et cohérents avec le placeholder correspondant sur le même champ.
 - [ ] Chaque nom de catégorie a été traduit **à l'identique partout** où il apparaît (tableaux `COLORS`/`ICONS`, commentaires de section, et surtout la clé de `CATEGORY_DESCRIPTIONS`) — vérifier caractère par caractère, en particulier les espaces autour de `/` et la flèche `→`.
 - [ ] Aucun nom de balise NMS, chemin `.DDS`, code hex, nom de fichier PNG, ID HTML, classe CSS, nom de variable/fonction JS n'a été traduit ou modifié.
 - [ ] Les 10 entrées de `CONTAINER_EXAMPLES` sont restées strictement identiques à la source.
