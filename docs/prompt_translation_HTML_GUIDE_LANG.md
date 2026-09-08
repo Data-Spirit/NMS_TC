@@ -18,7 +18,26 @@ lang_code: EN                       # code à 2 lettres majuscules — DOIT êtr
 output_filename: NMS_txt_code_EN.html   # convention : NMS_txt_code_<lang_code>.html
 source_file: NMS_txt_code_FR.html
 html_lang_attribute: en             # code ISO 639-1 minuscule pour l'attribut <html lang="...">
+tone: passionate/stylized           # ex: passionate/stylized, neutral/technical, compromise — ton éditorial à conserver ou adapter
+fidelity_style: idiomatic           # ex: idiomatic (adaptation naturelle), literal (fidèle/littérale), case-by-case
 ```
+
+---
+
+## RÈGLE DE DÉMARRAGE OBLIGATOIRE — à exécuter avant toute traduction, même répétée
+
+**Ne jamais présumer que les valeurs de `TARGET` (notamment `tone` et `fidelity_style`) restent valables d'une session à l'autre, même si cette même personne a déjà utilisé ce prompt auparavant avec des valeurs identiques.** Une session de traduction précédente ne vaut pas confirmation pour la session en cours.
+
+Avant de commencer toute traduction, reformuler explicitement à la personne les valeurs actuelles de `target_language`, `target_variant`, `tone` et `fidelity_style` (en précisant, le cas échéant, le choix fait lors d'un usage précédent comme simple rappel, jamais comme valeur acquise), et demander confirmation ou modification. Ne démarrer la traduction qu'après cette confirmation explicite.
+
+## RÈGLE DE VÉRIFICATION DU FICHIER SOURCE — à exécuter avant toute traduction
+
+Avant de commencer, confirmer explicitement à la personne :
+1. Le nom exact du fichier source utilisé.
+2. Son nombre de lignes (ou une autre métrique simple : taille en octets, hash).
+3. Au moins un élément structurel distinctif permettant de confirmer qu'il s'agit bien de la dernière version en date (ex. présence de `FLAG_LABELS`, de `copyButtonHtml()`, position du bloc `ICON_DATA`) — en particulier dans une conversation longue où plusieurs versions du fichier ou du prompt ont pu circuler.
+
+Ne jamais réutiliser silencieusement un fichier ou une traduction produite lors d'un tour précédent de la conversation sans revalider explicitement qu'il s'agit bien de la version la plus récente fournie.
 
 ---
 
@@ -35,7 +54,13 @@ Tu es à la fois **traducteur technique** et **développeur front-end rigoureux*
 - Tout le texte des 4 onglets (Infos/Couleurs/Icônes/À propos) : titres `h1`/`h2`/`h3`, paragraphes, listes, encadrés (`.protip`, `.important-box`, `.warn-box`, `.info-box`), libellés de la barre de simulateur, texte du footer.
 - Libellés des boutons d'onglets (`Infos`, `Couleurs`, `Icônes`, `À propos`).
 - Placeholders des champs de recherche (`placeholder="..."`).
-- Attributs `aria-label` sur les champs de recherche (`#color-search`, `#icon-search`) et sur le filtre de catégorie (`#icon-cat-filter`) — destinés aux lecteurs d'écran. À traduire avec la même rigueur que les placeholders, et à garder cohérents avec la traduction du placeholder du même champ (ce sont des doublons sémantiques, pas des textes indépendants).
+- Attributs `aria-label` sur les champs de recherche (`#color-search`, `#icon-search`) et sur le filtre de catégorie (`#icon-cat-filter`) — destinés aux lecteurs d'écran.
+
+  **Choix de style à valider avec la personne avant de traduire** (ce n'est pas qu'une question de langue, c'est un choix d'accessibilité) :
+  - **Option A — miroir du placeholder** : reprendre le texte du placeholder correspondant, sans la partie exemples (ex. `Search a color tag`). Cohérence visuelle/sonore maximale entre les deux.
+  - **Option B — libellé autonome pensé pour l'oral** : rédiger un texte indépendant, optimisé pour être compris hors contexte visuel par une voix de synthèse (ex. `Color tag search field`). Recommandé par les bonnes pratiques WCAG, car un lecteur d'écran n'a pas le contexte visuel du placeholder à côté.
+
+  Ne pas choisir par défaut : demander la préférence à la personne avant de traduire ces 3 attributs, sauf si un choix a déjà été explicitement validé pour ce projet — auquel cas le rappeler comme au §RÈGLE DE DÉMARRAGE ci-dessus (rappel, pas présomption).
 - Attribut `lang` de la balise `<html>` → utiliser `html_lang_attribute` défini dans `TARGET`.
 
 ### B. Texte généré dynamiquement en JavaScript (chaînes littérales dans le code)
@@ -63,8 +88,10 @@ Les catégories suivantes apparaissent comme **4ᵉ champ dans le tableau `COLOR
 3. Le commentaire de section juste au-dessus du bloc correspondant dans `ICONS` (ex. `// Ressources`, `// Frégates`).
 4. **La clé de l'objet `CATEGORY_DESCRIPTIONS`** — actuellement `"Classe (C→S)"`. Cette clé DOIT être remplacée par la traduction exacte utilisée pour cette catégorie dans le tableau `ICONS`, au caractère près (mêmes espaces, mêmes parenthèses, même flèche `→`). Si la clé ne correspond plus exactement à la valeur de catégorie utilisée dans les lignes `ICONS`, la description associée disparaît silencieusement du rendu — sans erreur, sans avertissement. **Vérifier ce point explicitement avant de livrer.**
 
-### D. Commentaires de code JavaScript/CSS
-Traduire l'intégralité des commentaires (`//` et `/* */`) pour livrer un fichier source cohérent, entièrement en langue cible — y compris les commentaires de section (`/* ==== DATA ==== */` reste tel quel s'il est déjà en anglais générique, mais les commentaires en français comme `// Ordre de référence défini manuellement...` doivent être traduits).
+### D. Commentaires de code (HTML / JavaScript / CSS)
+Traduire l'intégralité des commentaires, sous toutes leurs formes, pour livrer un fichier source cohérent, entièrement en langue cible :
+- Commentaires JS/CSS (`//` et `/* */`) — y compris les commentaires de section (`/* ==== DATA ==== */` reste tel quel s'il est déjà en anglais générique, mais les commentaires en français comme `// Ordre de référence défini manuellement...` doivent être traduits).
+- **Commentaires HTML (`<!-- ... -->`)** — présents notamment comme marqueurs de section dans le `<body>` (ex. `<!-- ============ INFOS TAB ============ -->`). Ces marqueurs doivent rester cohérents avec le libellé d'onglet traduit correspondant : si l'onglet visible devient `Info` (singulier) en anglais, le commentaire doit devenir `<!-- ============ INFO TAB ============ -->` et non rester sur l'ancien libellé `INFOS TAB`.
 
 ---
 
@@ -118,7 +145,7 @@ Certaines chaînes traduites s'affichent dans des espaces contraints par du CSS 
 - [ ] Chaque nom de catégorie a été traduit **à l'identique partout** où il apparaît (tableaux `COLORS`/`ICONS`, commentaires de section, et surtout la clé de `CATEGORY_DESCRIPTIONS`) — vérifier caractère par caractère, en particulier les espaces autour de `/` et la flèche `→`.
 - [ ] Aucun nom de balise NMS, chemin `.DDS`, code hex, nom de fichier PNG, ID HTML, classe CSS, nom de variable/fonction JS n'a été traduit ou modifié.
 - [ ] Les 10 entrées de `CONTAINER_EXAMPLES` sont restées strictement identiques à la source.
-- [ ] Tous les commentaires de code sont traduits (§D).
+- [ ] Tous les commentaires de code sont traduits, HTML compris (§D) — vérifier en particulier que les marqueurs `<!-- ... TAB ... -->` correspondent au libellé d'onglet traduit.
 - [ ] La terminologie utilisée correspond à celle du `README_<lang_code>.md` déjà livré pour cette langue.
 - [ ] Aucune balise HTML, accolade JS ou guillemet n'a été cassé par une chaîne traduite mal échappée — relire spécifiquement les lignes où une traduction contient une apostrophe.
 - [ ] Le fichier reste un unique `.html` autonome, structurellement identique à la source (aucune section ajoutée/supprimée/déplacée).
@@ -128,3 +155,13 @@ Certaines chaînes traduites s'affichent dans des espaces contraints par du CSS 
 ## LIVRABLE ATTENDU
 
 Un unique fichier `.html` nommé selon `output_filename`, fonctionnellement identique au fichier source (même simulateur, mêmes tris, mêmes filtres, mêmes tableaux, mêmes 145 icônes intégrées), avec l'intégralité du texte visible et des chaînes de code traduites en langue cible, prêt à être ouvert directement dans un navigateur sans aucune retouche supplémentaire.
+
+---
+
+## HISTORIQUE D'UTILISATION
+
+Table à compléter à chaque usage de ce prompt, pour tracer quelle version de quel fichier a été traduite, avec quels réglages — évite toute ambiguïté en cas de reprise de ce prompt dans une conversation ultérieure ou par une autre personne.
+
+| Date | Fichier source (nom + repère de version) | Fichier produit | `target_language` | `target_variant` | `tone` | `fidelity_style` |
+|---|---|---|---|---|---|---|
+| 2026-09-08 | `NMS_txt_code_FR.html` (1298 lignes, avec `FLAG_LABELS`/`copyButtonHtml()`/`ICON_DATA` en fin de fichier) | `NMS_txt_code_EN.html` | English | neutral/standard | passionate/stylized | idiomatic |
