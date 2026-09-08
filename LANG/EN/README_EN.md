@@ -1,6 +1,6 @@
 <h1 align="center">NMS // TEXT CODES — English Guide</h1>
 
-<!-- BADGES CENTRE -->
+<!-- CENTERED BADGES -->
 <p align="center">
 
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
@@ -8,7 +8,7 @@
   </a>
   
   <a href="https://github.com/Data-Spirit">
-    <img src="https://img.shields.io/badge/Guide%20%3A-README_FR.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide : USER">
+    <img src="https://img.shields.io/badge/Guide%20%3A-README_EN.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide : USER">
   </a>
   
   <a href="https://github.com/Data-Spirit/NMS_TC">
@@ -29,10 +29,10 @@
 - [Key feature: a 100% self-contained file](#key-feature-a-100-self-contained-file)
 - [Key numbers](#key-numbers)
 - [Interface structure](#interface-structure)
-  - [Info tab](#-info-tab)
-  - [Colors tab](#-colors-tab)
-  - [Icons tab](#-icons-tab)
-  - [About tab](#-about-tab)
+  - [Info Tab](#-info-tab)
+  - [Colors Tab](#-colors-tab)
+  - [Icons Tab](#-icons-tab)
+  - [About Tab](#-about-tab)
 - [The live simulator](#the-live-simulator)
 - [The icon tinting technique](#the-icon-tinting-technique)
 - [One-click copy](#one-click-copy)
@@ -87,7 +87,7 @@ This design choice (embedding everything rather than relying on an external asse
 
 The guide is organized into **4 tabs**, designed as a logical reading path: you learn the syntax before diving into the reference tables.
 
-### 📘 Info tab
+### 📘 Info Tab
 
 The guide's entry point. It brings together everything you need to know to use the tags, without having to dig around:
 
@@ -97,7 +97,7 @@ The guide's entry point. It brings together everything you need to know to use t
 - **Tip callout** on the character limit of in-game text fields, recommending short tags where possible.
 - **"Real-world examples" section**: ten headings actually used to organize in-game storage containers, each shown with its live visual render *and* its raw, syntax-highlighted code — the best practical demonstration of everything above.
 
-### 🎨 Colors tab
+### 🎨 Colors Tab
 
 A complete reference table of the 59 color tags, featuring:
 
@@ -110,7 +110,9 @@ A complete reference table of the 59 color tags, featuring:
 
 **The "Color" sort deserves its own explanation.** After several unsuccessful iterations with hue-based sorting algorithms (classic HSL, then hue+lightness, then grouping into perceptual families with hue-proximity thresholds), it turned out that no simple mathematical formula faithfully reproduced human perception of a "well-ordered" gradient — two colors with the exact same hue but very different saturation (a vivid blue versus a washed-out blue, for instance) never sorted satisfactorily through automated calculation alone. The solution was **a manually curated reference order**, color by color, by eye — more reliable than an algorithm at capturing nuances like a color's vividness, or slightly-tinted neutrals (ivory, off-white) that need to read as distinct from perfectly neutral grays.
 
-### 🖼️ Icons tab
+> **🔧 Technical detail:** unlike the "Color" sort, the **brightness** sort does rely on an automated calculation — the standard ITU-R BT.601 perceptual luminance formula (`0.299×R + 0.587×G + 0.114×B`), which weights green more heavily than red and blue, matching the human eye's sensitivity to each color component.
+
+### 🖼️ Icons Tab
 
 A complete reference table of the 145 icon tags, grouped into **12 categories** (Resources, Interface, Frigates, Inventory, Voice/Network, Loot, Platforms/Controls, Portal Glyphs, Class (C→S), Game Modes, Base Building, Non-functional), with the following for each icon:
 
@@ -125,7 +127,7 @@ As with the Colors tab, a **search bar** and a **category filter** let you navig
 
 **Column alignment**: each category table uses fixed, identical column widths (`table-layout: fixed`), with the "Tag" column sized to the longest tag name in the entire guide (`BULLETPOINT_OFF`, 15 characters) — guaranteeing that no name is ever truncated and that alignment stays perfectly consistent from one category to the next, regardless of the category title's length or its rows' content.
 
-### ℹ️ About tab
+### ℹ️ About Tab
 
 The guide's context and methodological transparency:
 
@@ -145,6 +147,9 @@ Located at the top of the page and visible from any tab, the simulator lets you 
 - Correctly recognizes and renders color tags, icon tags, and combinations of the two (including the tinting technique, see below).
 - The icons shown are the actual icons extracted from the game (not approximations).
 - Useful for composing a complex name (several tags combined) and checking the result before copying it into the game.
+- **Input text is always sanitized before display**: pasting any text into the field, even deliberately "broken" or copied from an untrusted source, can never interfere with the page itself.
+
+> **🔧 Technical detail:** the typed text is first fully escaped (HTML special characters are converted), and `<COLOR>` and `<IMG>...<>` tag recognition runs on that escaped version rather than on the raw text. Anything not recognized as a genuine NMS tag is therefore displayed as inert text, never interpreted as active HTML.
 
 ---
 
@@ -195,6 +200,14 @@ The 145 icons aren't generic placeholder symbols: they are the **actual icons fr
 
 This approach accounts for both the file's size (~312 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
 
+This data block (`ICON_DATA`) is deliberately isolated at the very end of the file, separate from all the JavaScript logic that precedes it — an organization designed so that reading the code is never drowned out by these few thousand lines of binary text, and to make it easier for the community to add icons in the future.
+
+> **🔧 Technical detail:** in JavaScript, a constant only needs to be declared before it's used at runtime — not necessarily before the functions that reference it in their code. `ICON_DATA` can therefore be placed at the very bottom of the file without breaking anything, as long as it stays declared before the very last calls that trigger the guide's initial rendering.
+
+The 16 tags listed as non-functional aren't all simply empty entries: some of them (generic gamepad-button icons) actually have their image already present as base64 in `ICON_DATA`, without being linked to it in the icon table.
+
+> **🔧 Technical detail:** these images are kept in reserve rather than deleted, in case Hello Games ever assigns them an official in-game texture — linking them would then become a simple one-line fix, without having to re-extract or re-encode anything.
+
 ---
 
 ## Information reliability and known limitations
@@ -212,6 +225,7 @@ The guide aims to be upfront about what's confirmed and what isn't:
 
 - **Responsive**: layout adapted for narrow screens (secondary columns hidden on mobile in the color table, safety horizontal scroll on the icon tables).
 - **Modern browsers**: Chrome, Firefox, Edge, Safari — relies on CSS Grid, `mask-image`, and the Clipboard API, all available in every recent version.
+- **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), and the simulator field is tied to a real `<label>` rather than plain floating text.
 - **No data sent anywhere**: everything runs locally in the browser; no network connection is required after the initial font load.
 
 ---
@@ -221,11 +235,14 @@ The guide aims to be upfront about what's confirmed and what isn't:
 - **Vanilla HTML/CSS/JavaScript** — no framework, no build dependency, no compilation step.
 - **Fonts**: Rajdhani (headings), IBM Plex Sans (body text), JetBrains Mono (code), via Google Fonts CDN.
 - **No third-party libraries**: sorting, search, filtering, the simulator, and syntax highlighting are all native JavaScript written specifically for this guide.
+- **Optimized font loading**: two `<link rel="preconnect">` tags open the connection to Google Fonts' domains before the stylesheet even loads, reducing perceived latency on first render.
+- **Non-blocking images**: the 145 embedded icons use `decoding="async"`, so their decoding never delays the rendering of the rest of the page.
+- **Code validated with standard tools**: the HTML passes strict HTML5 validation with zero errors, and the CSS has been audited with Stylelint with no substantive issues (only formatting preferences, deliberately left as-is for stylistic consistency).
 
 ---
 
 ## License
 
-This guide is distributed under the [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. See the [`LICENSE.md`](../../LICENSE.md) file at the root of the repository for the full terms.
+This guide is distributed under the **CC BY-NC-SA 4.0** license. See the [`LICENSE.md`](../../LICENSE.md) file at the root of the repository for the full terms.
 
 No Man's Sky and all associated assets, trademarks, and intellectual property belong to Hello Games and/or their respective rights holders. This guide is an unofficial community resource, not affiliated with Hello Games.
