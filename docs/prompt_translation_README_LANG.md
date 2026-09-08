@@ -3,6 +3,8 @@
 Prompt réutilisable pour traduire le README du projet NMS_TC dans une nouvelle langue.
 Pour une nouvelle traduction : copier ce fichier, changer uniquement le bloc `TARGET`, et donner ce fichier + le `README_FR.md` source à Claude.
 
+> **Note (README_FR mis à jour)** : le fichier `README_FR.md` a évolué depuis les premières traductions — notamment l'ajout d'encadrés `> **🔧 Détail technique :** ...` documentant le fix XSS, le déplacement du bloc `ICON_DATA` en fin de script, la formule de luminance `ITU-R BT.601`, et la décision de conserver 16 icônes de boutons manette en réserve. Si vous comparez avec d'anciennes traductions (EN/ES antérieures à cette mise à jour), ne soyez pas surpris d'y trouver du contenu absent des versions précédentes : ce n'est pas une divergence à corriger dans la source, c'est le README qui s'est enrichi. Toute retraduction doit repartir de cette version à jour, jamais porter/compléter une ancienne traduction existante.
+
 ---
 
 ## TARGET
@@ -13,7 +15,29 @@ target_variant: neutral/standard  # ex: US, UK, neutral/standard, none (pour lan
 lang_code: EN                     # code de langue à 2 lettres majuscules (EN, ES, DE, JA...) — voir règle §0 ci-dessous
 output_filename: README_EN.md     # convention : README_<lang_code>.md
 source_file: README_FR.md
+tone: passionate/stylized         # ex: passionate/stylized, neutral/technical, compromise — ton éditorial à conserver ou adapter (voir §2)
+fidelity_style: idiomatic         # ex: idiomatic (adaptation naturelle), literal (fidèle/littérale), case-by-case (voir §1)
+companion_html_guide: NMS_txt_code_EN.html   # guide HTML déjà traduit dans cette langue, s'il existe — pour cohérence terminologique (voir §7)
 ```
+
+---
+
+## RÈGLE DE DÉMARRAGE OBLIGATOIRE — à exécuter avant toute traduction, même répétée
+
+**Ne jamais présumer que les valeurs de `TARGET` (notamment `tone` et `fidelity_style`) restent valables d'une session à l'autre, même si cette même personne a déjà utilisé ce prompt auparavant avec des valeurs identiques.** Une session de traduction précédente ne vaut pas confirmation pour la session en cours.
+
+Avant de commencer toute traduction, reformuler explicitement à la personne les valeurs actuelles de `target_language`, `target_variant`, `tone` et `fidelity_style` (en précisant, le cas échéant, le choix fait lors d'un usage précédent comme simple rappel, jamais comme valeur acquise), et demander confirmation ou modification. Ne démarrer la traduction qu'après cette confirmation explicite.
+
+## RÈGLE DE VÉRIFICATION DU FICHIER SOURCE — à exécuter avant toute traduction
+
+Avant de commencer, confirmer explicitement à la personne :
+1. Le nom exact du fichier source utilisé.
+2. Son nombre de lignes (ou une autre métrique simple : taille en octets, nombre de mots).
+3. Au moins un élément de contenu distinctif permettant de confirmer qu'il s'agit bien de la dernière version en date (ex. présence des encadrés `> **🔧 Détail technique :**`, mention du fix XSS, de la formule `ITU-R BT.601`, ou de la décision des 16 icônes en réserve) — en particulier dans une conversation longue où plusieurs versions du fichier ou du prompt ont pu circuler.
+
+Ne jamais réutiliser silencieusement un fichier ou une traduction produite lors d'un tour précédent de la conversation sans revalider explicitement qu'il s'agit bien de la version la plus récente fournie.
+
+---
 
 ### 0. Règle de correspondance des suffixes de langue (IMPORTANT)
 
@@ -81,6 +105,7 @@ Tu es traducteur technique spécialisé dans la documentation logicielle/communa
 ### 7. Cohérence terminologique
 - Une fois qu'un terme récurrent est traduit d'une certaine façon (ex. « balise » → « tag »), garder cette même traduction partout dans le document sans varier.
 - Construire mentalement (ou explicitement si utile) un petit glossaire des termes récurrents du projet avant de traduire, pour garantir cette cohérence sur tout le fichier.
+- **Cohérence bidirectionnelle avec le guide HTML déjà traduit** : si `companion_html_guide` (défini dans `TARGET`) existe déjà, le consulter **avant** de traduire et reprendre à l'identique ses choix de terminologie déjà établis — noms de catégories (ex. `Frigates`, `Portal Glyphs`, `Class (C→S)`), libellés de badges (`duplicate`, `non-functional`, `to verify`), et termes récurrents (`tag`, `tint/tinting`). Le README et le guide HTML décrivent le même produit et doivent employer un vocabulaire strictement identique — cette règle fonctionne dans les deux sens selon lequel des deux documents a été traduit en premier, pas seulement du README vers le HTML.
 
 ### 8. Vérification finale (auto-relecture obligatoire avant livraison)
 - Le nom du fichier `.html` en tête de document porte-t-il bien le suffixe `<lang_code>` cible (et non celui de la langue source) ? (voir règle §0)
@@ -91,9 +116,20 @@ Tu es traducteur technique spécialisé dans la documentation logicielle/communa
 - Chaque encadré `🔧 Détail technique` conserve-t-il l'emoji, le format blockquote, et le libellé traduit à l'identique à chaque occurrence — avec un registre plus neutre que le texte courant qui l'entoure ?
 - Aucune formule ou notation technique (ex. la formule de luminance, `ITU-R BT.601`) n'a été altérée ou dont le séparateur décimal aurait été localisé par erreur ?
 - Les placeholders pédagogiques génériques (`Texte`, `NOM_COULEUR`/`COULEUR`) ont-ils bien été adaptés en langue cible, sans être confondus avec de vraies balises intouchables ?
+- La terminologie utilisée correspond-elle strictement à celle du guide HTML déjà traduit (`companion_html_guide`), quand celui-ci existe déjà — noms de catégories, badges de statut, termes récurrents ?
 
 ---
 
 ## LIVRABLE ATTENDU
 
 Un unique fichier Markdown nommé selon `output_filename`, contenant la traduction complète, prêt à être commité dans le dépôt sans retouche supplémentaire.
+
+---
+
+## HISTORIQUE D'UTILISATION
+
+Table à compléter à chaque usage de ce prompt, pour tracer quelle version de quel fichier a été traduite, avec quels réglages — évite toute ambiguïté en cas de reprise de ce prompt dans une conversation ultérieure ou par une autre personne.
+
+| Date | Fichier source (nom + repère de version) | Fichier produit | `target_language` | `target_variant` | `tone` | `fidelity_style` |
+|---|---|---|---|---|---|---|
+| 2026-09-08 | `README_FR.md` (248 lignes, 4 encadrés `🔧 Détail technique`, mention ITU-R BT.601/XSS/16 icônes réserve) | `README_EN.md` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic |
