@@ -20,6 +20,7 @@ source_file: NMS_txt_code_FR.html
 html_lang_attribute: en             # code ISO 639-1 minuscule pour l'attribut <html lang="...">
 tone: passionate/stylized           # ex: passionate/stylized, neutral/technical, compromise — ton éditorial à conserver ou adapter
 fidelity_style: idiomatic           # ex: idiomatic (adaptation naturelle), literal (fidèle/littérale), case-by-case
+companion_readme: README_EN.md      # README déjà traduit dans cette langue, s'il existe — pour cohérence terminologique (voir §3 et règle ci-dessous)
 ```
 
 ---
@@ -116,8 +117,11 @@ Adaptation naturelle idiomatique, comme pour le README : reformuler pour un rend
 ### 2. Ton et registre
 Conserver le même ton que celui déjà établi pour le README de cette langue (passionné, direct, vulgarisé sans être familier). Les deux documents décrivent le même projet et doivent sonner comme écrits par la même personne.
 
-### 3. Cohérence terminologique avec le README déjà traduit
-**Avant de traduire, relire le `README_<lang_code>.md` déjà produit pour cette langue** et réutiliser exactement les mêmes choix de traduction pour les termes récurrents du projet (ex. si « balise » a été traduit par « tag » dans le README, utiliser « tag » partout ici aussi ; idem pour « teinte/teinter » → « tint/tinting », « doublon » → « duplicate », etc.). Les deux fichiers sont deux faces du même projet et doivent utiliser un vocabulaire identique.
+### 3. Cohérence terminologique bidirectionnelle avec le README correspondant
+Le README et ce guide HTML décrivent le même produit et doivent employer un vocabulaire strictement identique — cette règle fonctionne dans les deux sens selon lequel des deux documents a été traduit en premier, pas seulement du HTML vers le README.
+
+- **Si `companion_readme` (défini dans `TARGET`) existe déjà et a déjà été traduit** : le relire avant de traduire ce fichier HTML, et réutiliser exactement les mêmes choix de traduction pour les termes récurrents du projet (ex. si « balise » a été traduit par « tag » dans le README, utiliser « tag » partout ici aussi ; idem pour « teinte/teinter » → « tint/tinting », « doublon » → « duplicate », etc.).
+- **Si ce fichier HTML est traduit en premier, avant tout README dans cette langue** : les choix de terminologie faits ici (noms de catégories, libellés de badges, termes récurrents) font alors référence — le prompt `translation_prompt_README_LANG.md` s'appuiera dessus via son propre champ `companion_html_guide` lors de la traduction ultérieure du README. Pas d'action spécifique à faire ici dans ce cas, si ce n'est de traduire avec la même rigueur terminologique que si le README existait déjà, puisque ce fichier deviendra lui-même la référence.
 
 ### 4. Longueur des chaînes d'interface
 Certaines chaînes traduites s'affichent dans des espaces contraints par du CSS (`.color-cat`, `.flag`, boutons, onglets). Privilégier, quand plusieurs formulations naturelles existent, celle qui reste raisonnablement courte et proche en longueur de l'original — sans sacrifier la clarté pour autant. Ne pas modifier le CSS pour compenser : signaler seulement si une chaîne semble poser un risque de débordement visuel.
@@ -146,7 +150,7 @@ Certaines chaînes traduites s'affichent dans des espaces contraints par du CSS 
 - [ ] Aucun nom de balise NMS, chemin `.DDS`, code hex, nom de fichier PNG, ID HTML, classe CSS, nom de variable/fonction JS n'a été traduit ou modifié.
 - [ ] Les 10 entrées de `CONTAINER_EXAMPLES` sont restées strictement identiques à la source.
 - [ ] Tous les commentaires de code sont traduits, HTML compris (§D) — vérifier en particulier que les marqueurs `<!-- ... TAB ... -->` correspondent au libellé d'onglet traduit.
-- [ ] La terminologie utilisée correspond à celle du `README_<lang_code>.md` déjà livré pour cette langue.
+- [ ] La terminologie utilisée correspond à celle de `companion_readme` quand ce README existe déjà pour cette langue — sinon, la terminologie choisie ici est cohérente en interne et prête à servir de référence pour la traduction ultérieure du README.
 - [ ] Aucune balise HTML, accolade JS ou guillemet n'a été cassé par une chaîne traduite mal échappée — relire spécifiquement les lignes où une traduction contient une apostrophe.
 - [ ] Le fichier reste un unique `.html` autonome, structurellement identique à la source (aucune section ajoutée/supprimée/déplacée).
 
