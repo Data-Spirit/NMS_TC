@@ -103,23 +103,25 @@ Una tabla de referencia completa de las 59 etiquetas de color, con:
 
 - **Una muestra de color a todo lo ancho** por fila (en lugar de un pequeño cuadrado), con un fondo a cuadros para visualizar correctamente la transparencia de los colores que la tienen.
 - **Código hexadecimal exacto** y **porcentaje de transparencia** (mostrado solo cuando es inferior al 100 %, para no sobrecargar la visualización innecesariamente).
-- **Categoría de pertenencia** de cada etiqueta (Transmisiones/Misiones, Recursos, Jugadores, Compañeros, Mapa galáctico, etc.), alineada en el extremo derecho de cada fila.
+- **Categoría de pertenencia** de cada etiqueta (Transmisiones / Misiones, Recursos, Jugadores, Compañeros, Mapa galáctico, etc.), alineada en el extremo derecho de cada fila.
 - **Una franja de encabezado dedicada**, visualmente distinta (fondo y borde propios, separadores verticales entre columnas) en lugar de un simple texto flotante encima de la tabla.
 - **Cuatro modos de ordenación en los que se puede hacer clic**: por nombre (alfabético), por color (ver más abajo), por código hexadecimal (alfabético) y por luminosidad (de más oscuro a más claro). Hacer clic una segunda vez sobre el mismo criterio invierte el orden.
 - **Una barra de búsqueda** que filtra la lista al instante por nombre de etiqueta.
 
 **La ordenación "Color" merece una explicación aparte.** Tras varias iteraciones fallidas con algoritmos de ordenación por matiz (HSL clásico, luego matiz+luminosidad, y después agrupación por familias perceptuales con umbrales de proximidad de matiz), quedó claro que ninguna fórmula matemática sencilla reproducía fielmente la percepción humana de un degradado "bien ordenado" — dos colores con exactamente el mismo matiz pero con saturación muy distinta (un azul vivo y un azul desvaído, por ejemplo) nunca se clasificaban de forma satisfactoria mediante un cálculo automático por sí solo. La solución adoptada fue **un orden de referencia clasificado manualmente**, color por color, a ojo — más fiable que un algoritmo para captar matices como la vivacidad de un color o los neutros ligeramente teñidos (marfil, blanco roto) que deben distinguirse de los grises perfectamente neutros.
 
+> **🔧 Detalle técnico:** a diferencia de la ordenación "Color", la ordenación por **luminosidad** sí se basa en un cálculo automático — la fórmula de luminancia perceptual estándar ITU-R BT.601 (`0.299×R + 0.587×G + 0.114×B`), que pondera el verde más fuertemente que el rojo y el azul, conforme a la sensibilidad del ojo humano a cada componente de color.
+
 ### 🖼️ Pestaña Iconos
 
-Una tabla de referencia completa de las 145 etiquetas de iconos, agrupadas en **12 categorías** (Recursos, Interfaz, Fragatas, Inventario, Voz/Red, Botín, Plataformas/Controles, Símbolos de portal, Clase (C→S), Modos de juego, Edición de base, No funcional), con para cada icono:
+Una tabla de referencia completa de las 145 etiquetas de iconos, agrupadas en **12 categorías** (Recursos, Interfaz, Fragatas, Inventario, Voz / Red, Botín, Plataformas / Controles, Símbolos de portal, Clase (C→S), Modos de juego, Edición de base, No funcional), con para cada icono:
 
 - Una **miniatura de vista previa real** del icono (ver la sección dedicada a la extracción más abajo — no son símbolos genéricos, sino los iconos reales del juego, recortados).
 - El **nombre exacto de la etiqueta**.
 - La **ruta del archivo de textura** original (referencia `.DDS` interna del juego), cuando se ha podido identificar.
 - Una **insignia de estado** en su caso: `duplicado` (la etiqueta apunta exactamente a la misma textura que otra, bajo un nombre distinto), `no funcional` (etiqueta presente en los datos pero sin textura asignada — probablemente un marcador de posición reservado por los desarrolladores) o `por verificar` (ruta de textura no confirmada en las fuentes disponibles).
 
-La categoría **"Clase (C→S)"** ilustra una corrección de nomenclatura deliberada: originalmente llamada "Clases de naves", fue renombrada con una descripción en subtexto que aclara que en realidad se trata de una notación de calidad genérica del juego (naves, multiherramientas, fragatas, armas, tecnologías) y no de un sistema exclusivo de las naves.
+La categoría **"Clase (C→S)"** ilustra una corrección de nomenclatura deliberada: originalmente llamada «Clases de naves», fue renombrada con una descripción en subtexto que aclara que en realidad se trata de una notación de calidad genérica del juego (naves, multiherramientas, fragatas, armas, tecnologías) y no de un sistema exclusivo de las naves.
 
 Igual que en la pestaña Colores, una **barra de búsqueda** y un **filtro por categoría** permiten navegar rápidamente por la lista.
 
@@ -145,6 +147,9 @@ Situado en la parte superior de la página, visible desde cualquier pestaña, el
 - Reconoce y muestra correctamente las etiquetas de color, las etiquetas de icono y su combinación (incluida la técnica de teñido, ver más abajo).
 - Los iconos mostrados son los iconos reales extraídos del juego (no son aproximaciones).
 - Útil para componer un nombre complejo (varias etiquetas combinadas) y comprobar su renderizado antes de copiarlo en el juego.
+- **El texto introducido siempre se neutraliza antes de mostrarse**: pegar cualquier texto en el campo, incluso deliberadamente "roto" o copiado de una fuente poco fiable, nunca puede interferir con la página en sí.
+
+> **🔧 Detalle técnico:** el texto escrito se escapa primero por completo (transformación de los caracteres especiales HTML), y solo entonces se realiza el reconocimiento de las etiquetas `<COLOR>` y `<IMG>...<>` sobre esa versión ya escapada, en lugar de sobre el texto en bruto. Todo lo que no se reconozca como una etiqueta NMS real permanece, por tanto, como texto inerte, nunca interpretado como HTML activo.
 
 ---
 
@@ -195,6 +200,14 @@ Los 145 iconos no son símbolos genéricos: son los **iconos reales del juego**,
 
 Este enfoque explica tanto el peso del archivo (~312 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
 
+Este bloque de datos (`ICON_DATA`) está deliberadamente aislado al final del archivo, separado de toda la lógica JavaScript que lo precede — una organización pensada para que la lectura del código nunca quede saturada por esos varios miles de líneas de texto binario, y para facilitar que la comunidad añada iconos en el futuro.
+
+> **🔧 Detalle técnico:** en JavaScript, una constante solo necesita estar declarada antes de usarse en tiempo de ejecución — no necesariamente antes de las funciones que la referencian en su código. Por eso `ICON_DATA` puede colocarse al final del archivo sin romper nada, siempre que permanezca declarado antes de las últimas llamadas que activan la visualización inicial de la guía.
+
+Las 16 etiquetas listadas como no funcionales no son todas simples entradas vacías: una parte de ellas (iconos genéricos de botones de mando) tienen, pese a todo, su imagen ya presente en base64 dentro de `ICON_DATA`, sin estar vinculadas a ella en la tabla de iconos.
+
+> **🔧 Detalle técnico:** estas imágenes se conservan en reserva en lugar de eliminarse, por si Hello Games les asignara algún día una textura oficial en el juego — vincularlas se convertiría entonces en una simple corrección de una línea, sin tener que volver a extraer ni recodificar nada.
+
 ---
 
 ## Fiabilidad de la información y limitaciones conocidas
@@ -212,6 +225,7 @@ La guía se esfuerza por ser honesta sobre lo que está confirmado y lo que no:
 
 - **Responsive**: diseño adaptado a pantallas estrechas (columnas secundarias ocultas en móvil en la tabla de colores, desplazamiento horizontal de seguridad en las tablas de iconos).
 - **Navegadores modernos**: Chrome, Firefox, Edge, Safari — se apoya en CSS Grid, `mask-image` y la API Clipboard, disponibles en todas las versiones recientes.
+- **Accesibilidad básica**: las dos barras de búsqueda y el filtro de categoría se anuncian correctamente a los lectores de pantalla (`aria-label`), y el campo del simulador está asociado a un verdadero `<label>` en lugar de a un simple texto flotante.
 - **No se envía ningún dato a ningún sitio**: todo se ejecuta localmente en el navegador, sin necesidad de conexión de red tras la primera carga de las fuentes tipográficas.
 
 ---
@@ -221,6 +235,9 @@ La guía se esfuerza por ser honesta sobre lo que está confirmado y lo que no:
 - **HTML/CSS/JavaScript vanilla** — sin frameworks, sin dependencias de compilación, sin ningún paso de build.
 - **Fuentes tipográficas**: Rajdhani (títulos), IBM Plex Sans (texto general), JetBrains Mono (código), vía Google Fonts CDN.
 - **Ninguna biblioteca de terceros**: la ordenación, la búsqueda, el filtrado, el simulador y la coloración de sintaxis son todos JavaScript nativo escrito específicamente para esta guía.
+- **Carga de fuentes optimizada**: dos `<link rel="preconnect">` establecen la conexión con los dominios de Google Fonts incluso antes de cargar la hoja de estilos, reduciendo la latencia percibida en la primera visualización.
+- **Imágenes no bloqueantes**: los 145 iconos integrados usan `decoding="async"`, para que su decodificación nunca retrase el renderizado del resto de la página.
+- **Código validado con herramientas estándar**: el HTML pasa una validación HTML5 estricta sin errores, y el CSS ha sido auditado con Stylelint sin anomalías de fondo (solo preferencias de formato, dejadas tal cual por coherencia de estilo).
 
 ---
 
