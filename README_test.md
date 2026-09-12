@@ -12,7 +12,12 @@
 <!-- BADGES CENTRES + LIENS HYPERTEXT INCLUS -->
 <div align="center">
 
-[![License: CC BY-NC-SA 4.0][badge_license]][url_license] [![Status][badge_status]][github_repo] [![Unofficial][badge_unofficial]][github_repo] [![Latest Release][badge_release]][github_release] [![Nexus Mods][badge_nexusmods]][url_nexusmods] [![Downloads][badge_downloads]][github_release]
+[![License: CC BY-NC-SA 4.0][badge_license]][url_license]
+[![Status][badge_status]][github_repo]
+[![Unofficial][badge_unofficial]][github_repo]
+[![Latest Release][badge_release]][github_release]
+[![Nexus Mods][badge_nexusmods]][url_nexusmods]
+[![Downloads][badge_downloads]][github_release]
 
 </div>
 
@@ -53,9 +58,9 @@
 
 | | Language | 🛠️ Info | 📖 Guide | 💾 Download |
 |:---:|---|:---:|:---:|:---:|
-| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | [🌐 Guide : EN ↗️][guide_en] | [![Download][icon_download]][github_download_EN] |
-| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | [🌐 Guide : FR ↗️][guide_fr] | [![Download][icon_download]][github_download_FR] |
-| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | [🌐 Guide : ES ↗️][guide_es] | [![Download][icon_download]][github_download_ES] |
+| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | [🌐 Guide : EN ↗️][guide_en] | [![Download][icon_download]](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_EN.html) |
+| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | [🌐 Guide : FR ↗️][guide_fr] | [![Download][icon_download]](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_FR.html) |
+| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | [🌐 Guide : ES ↗️][guide_es] | [![Download][icon_download]](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_ES.html) |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
@@ -139,6 +144,11 @@ NMS_TC/
 [github_license]: ./LICENSE.md
 [github_user]: https://github.com/Data-Spirit
 [github_banner]: assets/NMS_TC_banner_01.webp
+
+<!-- Mémo : liens de téléchargement direct par langue, non utilisés en référence dans le tableau, -->
+<!-- car "image en référence + lien en référence" casse dans une cellule de tableau GitHub ; -->
+<!-- le tableau utilise ces mêmes URLs en direct. Gardées ici pour ne modifier qu'un seul endroit -->
+<!-- en cas de changement de version de release. -->
 [github_download_EN]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_EN.html
 [github_download_FR]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_FR.html
 [github_download_ES]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_ES.html
