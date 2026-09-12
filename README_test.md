@@ -138,7 +138,7 @@ NMS_TC/
 [github_release]: https://github.com/Data-Spirit/NMS_TC/releases/latest
 [github_license]: ./LICENSE.md
 [github_user]: https://github.com/Data-Spirit
-[github_banner]: assets/NMS_TC_01.webp
+[github_banner]: assets/NMS_TC_banner_01.webp
 
 <!-- Language README files -->
 [readme_en]: ./LANG/EN/README_EN.md
