@@ -105,10 +105,10 @@ More languages may be added over time. Each language folder has its own detailed
     <th style="width: 25%; text-align: center; padding: 8px;">About</th>
   </tr>
   <tr>
-    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/pannel-1_infos_01-1.jpg" width="120"></td>
-    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/pannel-2_colors_01-1.jpg" width="120"></td>
-    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/pannel-3_icons_01-1.jpg" width="120"></td>
-    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/pannel-4_about_01.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_panel/panel-1_infos_01-1.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_panel/panel-2_colors_01-1.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_panel/panel-3_icons_01-1.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_panel/panel-4_about_01.jpg" width="120"></td>
   </tr>
 </table>
 
