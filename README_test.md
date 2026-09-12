@@ -53,9 +53,9 @@
 
 | | Language | 🛠️ Info | 📖 Guide | 💾 Download |
 |:---:|---|:---:|:---:|:---:|
-| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | [🌐 Guide : EN ↗️][guide_en] | [![Download][icon_download]](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_EN.html) |
-| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | [🌐 Guide : FR ↗️][guide_fr] | [![Download][icon_download]](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_FR.html) |
-| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | [🌐 Guide : ES ↗️][guide_es] | [![Download][icon_download]](https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_ES.html) |
+| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | [🌐 Guide : EN ↗️][guide_en] | [![Download][icon_download]][github_download_EN] |
+| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | [🌐 Guide : FR ↗️][guide_fr] | [![Download][icon_download]][github_download_FR] |
+| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | [🌐 Guide : ES ↗️][guide_es] | [![Download][icon_download]][github_download_ES] |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
@@ -139,6 +139,9 @@ NMS_TC/
 [github_license]: ./LICENSE.md
 [github_user]: https://github.com/Data-Spirit
 [github_banner]: assets/NMS_TC_banner_01.webp
+[github_download_EN]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_EN.html
+[github_download_FR]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_FR.html
+[github_download_ES]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_ES.html
 
 <!-- Language README files -->
 [readme_en]: ./LANG/EN/README_EN.md
@@ -151,5 +154,5 @@ NMS_TC/
 [guide_es]: https://data-spirit.github.io/NMS_TC/LANG/ES/NMS_txt_code_ES.html
 
 <!-- Shared download icon -->
-[icon_download]: https://github.com/Data-Spirit/NMS_TC/blob/main/assets/download-loop.svg
+[icon_download]: ./assets/download-loop.svg <!-- url_lien_absolu: https://raw.githubusercontent.com/Data-Spirit/NMS_TC/main/assets/download-loop.svg -->
 
