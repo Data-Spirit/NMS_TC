@@ -108,7 +108,7 @@ Structure attendue :
 
 ```markdown
 <!-- ============================== -->
-<!-- Link & Badge Definitions -->
+<!--    Link & Badge Definitions    -->
 <!-- ============================== -->
 
 <!-- Badges (shields.io images) -->

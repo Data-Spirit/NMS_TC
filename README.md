@@ -123,7 +123,7 @@ NMS_TC/
 > This is an unofficial community-created resource and is not affiliated with or endorsed by Hello Games.
 
 <!-- ============================== -->
-<!-- Link & Badge Definitions -->
+<!--    Link & Badge Definitions    -->
 <!-- ============================== -->
 
 <!-- Badges (shields.io images) -->
