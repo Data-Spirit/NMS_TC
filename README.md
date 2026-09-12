@@ -138,6 +138,8 @@ NMS_TC/
 ├── assets/               → Graphic elements of NMS_TC
 ├── BANK_ICONS/           → Standalone icon assets (transparent PNGs)
 ├── docs/                 → Additional documentation
+│   ├── img/              → All banner/InGame_screenshot/Guide_screenshot etc.
+│   └── prompts/          → All prompt for translation and code verification
 ├── LANG/
 │   ├── FR/               → French guide (HTML + detailed README)
 │   ├── EN/               → English guide (HTML + detailed README)
