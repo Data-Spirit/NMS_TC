@@ -94,6 +94,42 @@ More languages may be added over time. Each language folder has its own detailed
 
 ---
 
+## 📸 Screenshots
+
+<h3 align="center"><code> 🔍 Guide Preview 🔎 </code></h3>
+<table align="center" style="width: 100%; border-collapse: collapse; margin-bottom: 1em; margin-left: auto; margin-right: auto;">
+  <tr>
+    <th style="width: 25%; text-align: center; padding: 8px;">Infos</th>
+    <th style="width: 25%; text-align: center; padding: 8px;">Colors</th>
+    <th style="width: 25%; text-align: center; padding: 8px;">Icons</th>
+    <th style="width: 25%; text-align: center; padding: 8px;">About</th>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/panel-1_infos_01-1.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/panel-2_colors_01-1.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/panel-3_icons_01-1.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/NMS_TC_pannel/panel-4_about_01.jpg" width="120"></td>
+  </tr>
+</table>
+
+<h3 align="center"><code> 🔍 In-Game Preview 🔎 </code></h3>
+<table align="center" style="width: 100%; border-collapse: collapse; margin-bottom: 1em; margin-left: auto; margin-right: auto;">
+  <tr>
+    <th style="width: 25%; text-align: center; padding: 8px;">Preview 1</th>
+    <th style="width: 25%; text-align: center; padding: 8px;">Preview 2</th>
+    <th style="width: 25%; text-align: center; padding: 8px;">Preview 3</th>
+    <th style="width: 25%; text-align: center; padding: 8px;">Preview 4</th>
+  </tr>
+  <tr>
+    <td style="padding: 8px;"><img src="docs/img/InGame_preview/prev_all.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/InGame_preview/prev_1.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/InGame_preview/prev_2.jpg" width="120"></td>
+    <td style="padding: 8px;"><img src="docs/img/InGame_preview/prev_3.jpg" width="120"></td>
+  </tr>
+</table>
+
+---
+
 <!-- STRUCTURE DU REPO -->
 ## 📁 Repository structure
 
@@ -143,7 +179,7 @@ NMS_TC/
 [github_release]: https://github.com/Data-Spirit/NMS_TC/releases/latest
 [github_license]: ./LICENSE.md
 [github_user]: https://github.com/Data-Spirit
-[github_banner]: assets/NMS_TC_banner_01.webp
+[github_banner]: docs/img/NMS_TC_banner/NMS_TC_banner_01.webp
 
 <!-- Liens de téléchargement direct par langue (utilisés en référence dans le tableau) -->
 [download_en]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_EN.html
