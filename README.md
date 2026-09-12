@@ -56,6 +56,9 @@
 
 </details>
 
+<!-- TABLEAU CENTRE -->
+<div align="center">
+
 | | Language | 🛠️ Info | 📖 Guide | 💾 Download |
 |:---:|---|:---:|:---:|:---:|
 | 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_en] | [![Download](./assets/download-loop.svg)][download_en] |
@@ -63,6 +66,8 @@
 | 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_es] | [![Download](./assets/download-loop.svg)][download_es] |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
+
+</div>
 
 <details>
 <summary>🛠️ Status : </summary>
@@ -94,6 +99,7 @@ More languages may be added over time. Each language folder has its own detailed
 
 ---
 
+<!-- TABLEAU SCREENS CENTRE -->
 ## 📸 Screenshots
 
 <h3 align="center"><code> 🔍 Guide Preview 🔎 </code></h3>
