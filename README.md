@@ -36,7 +36,7 @@
 
 ## 🛠️ How to Use
 
-> **Download** → _open the HTML file in your browser_ → _search or browse the tables_ → _click to copy_ → _paste in-game_.
+> **`Download`** → _`open the HTML file in your browser`_ → _`search or browse the tables`_ → _`click to copy`_ → _`paste in-game`_.
 > 
 > **No installation is required**, and the guide is designed to work **fully offline** once downloaded.
 > 
