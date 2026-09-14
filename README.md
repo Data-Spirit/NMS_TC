@@ -39,7 +39,8 @@
 > **`Download`** → _`open the HTML file in your browser`_ → _`search or browse the tables`_ → _`click to copy`_ → _`paste in-game`_.
 > 
 > **No installation is required**, and the guide is designed to work **fully offline** once downloaded.
-> 
+
+> [!TIP]
 > _You can also browse the hosted version directly from your browser through **🌐Online Version**._
 
 ---
@@ -78,9 +79,10 @@
 
 </details>
 
-More languages may be added over time. Each language folder has its own detailed README describing that guide's features in full.
+> [!NOTE]
+> More languages may be added over time. Each language folder has its own detailed README describing that guide's features in full.
 
-**Long-term goal** : _make NMS // TEXT CODES available in every language officially supported by Hello Games in No Man's Sky, so that players around the world can use the guide in their own language._
+> **Long-term goal** : _make NMS // TEXT CODES available in every language officially supported by Hello Games in No Man's Sky, so that players around the world can use the guide in their own language._
 
 ---
 
