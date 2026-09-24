@@ -1,0 +1,156 @@
+
+
+
+
+1. Prompt BANNIÈRE (4 panneaux)prompt
+
+Ultra-wide cinematic 21:9 banner, 8K HDR, photorealistic, Octane render, Unreal Engine 5 quality.
+
+Central dominant hexagonal metallic cyan logo with folder and </> symbol, large polished metallic title "NMS TEXT CODES", small GitHub and Nexus Mods logos below.
+
+Four floating holographic glass panels in dynamic elegant fan composition (two on left, two on right), slightly tilted in true 3D perspective with strong depth.
+
+STRICT RULES:
+- Use the four exact provided reference screenshots as the content of the panels.
+- Do not redraw, reinvent or alter any text, icons, colors or UI elements.
+- Intelligent cropping is allowed and recommended: prioritize the upper/most important part of each screenshot so the content stays large and readable. Cut the lower part if necessary (especially for the very long Icons and Colors screenshots).
+
+Panel assignment:
+- Far left panel = exact Info screenshot (smart crop)
+- Mid-left panel = exact Colors screenshot (smart crop, keep top)
+- Mid-right panel = exact Icons screenshot (smart crop, keep top)
+- Far right panel = exact About screenshot (smart crop)
+
+Panel material: highly refractive translucent holographic glass with physical thickness, bright emissive glowing edges (cyan on left panels, warm orange-gold on right panels), soft internal glow, light bloom, realistic reflections and refractions.
+
+Background: epic deep space, large detailed planet with atmospheric glow, intense orange sunrise, volumetric god rays, stars, soft nebula, floating red crystal. Cinematic cyan/blue + orange/gold color grading, dramatic rim lighting, soft contact shadows.
+
+Premium professional look, hyper-detailed, photorealistic sci-fi presentation.
+
+============================================================================================================
+
+2. Prompts individuels
+
+
+INFO prompt
+
+Square or 16:9 4K HDR photorealistic image, Octane render, Unreal Engine 5 quality, cinematic No Man's Sky style.
+
+A single large floating holographic glass panel levitating in deep space as the clear hero element, containing the exact provided Info screenshot.
+
+STRICT: Use only the exact Info reference screenshot. Do not redraw or invent any content. Intelligent crop allowed: prioritize the upper and most important parts (title, simulator, How to use the tags, tip box) so the text stays large and clearly readable.
+
+Panel: highly refractive translucent holographic energy glass, bright cyan emissive borders, soft internal glow, light bloom, realistic refractions, floating with soft contact shadow.
+
+Background: dark starfield, large detailed planet, distant warm orange nebula glow, volumetric god rays. Cyan and orange color grading, dramatic cinematic lighting, hyper-detailed, premium sci-fi presentation.
+
+============================================================================================================
+
+COLORS prompt
+
+Square or 16:9 4K HDR photorealistic image, Octane render, Unreal Engine 5 quality, cinematic No Man's Sky style.
+
+A single large floating holographic glass panel levitating in deep space as the clear hero element, containing the exact provided Colors screenshot.
+
+STRICT: Use only the exact Colors reference screenshot. Do not redraw or invent any content. Intelligent crop strongly recommended: keep the upper part of the color list (most important tags and spectrum) so the content stays large and readable. Cut the lower part if needed.
+
+Panel: highly refractive translucent holographic energy glass, bright cyan emissive borders, soft internal glow, light bloom, realistic refractions, floating with soft contact shadow.
+
+Background: dark starfield, large detailed planet, distant warm orange nebula glow, volumetric god rays. Cyan and orange color grading, dramatic cinematic lighting, hyper-detailed, premium sci-fi presentation.
+
+============================================================================================================
+
+ICONS prompt
+
+Square or 16:9 4K HDR photorealistic image, Octane render, Unreal Engine 5 quality, cinematic No Man's Sky style.
+
+A single large floating holographic glass panel levitating in deep space as the clear hero element, containing the exact provided Icons screenshot.
+
+STRICT: Use only the exact Icons reference screenshot. Do not redraw or invent any content. Intelligent crop strongly recommended: keep the upper/most important categories so the icons and tags stay large and readable. Cut the very long lower part if necessary.
+
+Panel: highly refractive translucent holographic energy glass, bright cyan emissive borders, soft internal glow, light bloom, realistic refractions, floating with soft contact shadow.
+
+Background: dark starfield, large detailed planet, distant warm orange nebula glow, volumetric god rays. Cyan and orange color grading, dramatic cinematic lighting, hyper-detailed, premium sci-fi presentation.
+
+============================================================================================================
+
+ABOUT prompt
+
+Square or 16:9 4K HDR photorealistic image, Octane render, Unreal Engine 5 quality, cinematic No Man's Sky style.
+
+A single large floating holographic glass panel levitating in deep space as the clear hero element, containing the exact provided About screenshot.
+
+STRICT: Use only the exact About reference screenshot. Do not redraw or invent any content. Intelligent crop allowed: prioritize the main text sections so everything stays large and clearly readable.
+
+Panel: highly refractive translucent holographic energy glass, bright cyan emissive borders, soft internal glow, light bloom, realistic refractions, floating with soft contact shadow.
+
+Background: dark starfield, large detailed planet, distant warm orange nebula glow, volumetric god rays. Cyan and orange color grading, dramatic cinematic lighting, hyper-detailed, premium sci-fi presentation.
+
+============================================================================================================
+
+
+
+=======================================================================================================================
+prompt avec preview images
+=======================================================================================================================
+Ultra-wide 21:9 cinematic banner, 8K HDR, photorealistic, No Man's Sky style.
+
+Three large floating holographic glass frames arranged in a gentle arc / cylindrical perspective, as if the viewer is in the center looking at them (same style of perspective as classic multi-panel sci-fi banners).
+
+Orientation:
+- Left frame: tilted backward in depth + slightly angled toward the left
+- Center frame: almost facing the viewer, with only a very slight backward tilt
+- Right frame: tilted backward in depth + slightly angled toward the right
+
+Frame style: thick solid holographic glass borders, bright emissive glowing edges (cyan on left and middle frames, warm orange-gold on the right frame), strong light bloom, realistic reflections and refractions.
+
+ABSOLUTE CRITICAL RULE:
+You must use the exact three uploaded screenshots as the only content inside the panels.
+Do NOT redraw, reinvent or generate any new items, icons or text.
+Exact mapping:
+left panel = the first uploaded screenshot (prev_1.jpg - TECHNO inventory)
+Center panel = the second uploaded screenshot (prev_2.jpg - ELMT/COMP inventory)
+Right panel = the third uploaded screenshot (prev_3.jpg - PLANTS/DIVERS inventory)
+
+Copy the real pixels. Only intelligent cropping is allowed. All original icons, quantities and text must remain 100% identical and readable.
+
+Three floating holographic glass panels in elegant fan composition, thick glowing borders (cyan on left, center and right), realistic glass material, light bloom and reflections.
+
+Background: deep space, large planet on the left, intense orange sunrise, volumetric god rays, stars. Cyan/blue + orange/gold color grading.
+The real screenshots must be clearly recognizable as the main content of the three panels.
+
+Clean premium composition.
+
+
+
+
+=======================================================================================================================
+prompt avec trou dans panneaux
+=======================================================================================================================
+Ultra-wide 21:9 cinematic banner, 8K HDR, photorealistic, No Man's Sky style.
+
+Three large floating holographic glass frames arranged in a gentle arc / cylindrical perspective, as if the viewer is in the center looking at them (same style of perspective as classic multi-panel sci-fi banners).
+
+Orientation:
+- Left frame: tilted backward in depth + slightly angled toward the left
+- Center frame: almost facing the viewer, with only a very slight backward tilt
+- Right frame: tilted backward in depth + slightly angled toward the right
+
+Frame style: thick solid holographic glass borders, bright emissive glowing edges (cyan on left and middle frames, warm orange-gold on the right frame), strong light bloom, realistic reflections and refractions.
+
+ABSOLUTE CRITICAL INSTRUCTION (MUST FOLLOW):
+The inside of every frame must be completely filled with solid pure black (#000000). 
+No background, no stars, no planet, no nebula, no texture, no transparency, no gradient, no glow inside the frames. 
+Only flat uniform black inside the three frames.
+
+Copy the real pixels. Only intelligent cropping is allowed. All original icons, quantities and text must remain 100% identical and readable.
+
+Three floating holographic glass panels in elegant fan composition, thick glowing borders (cyan on left and center, orange-gold on right), realistic glass material, light bloom and reflections.
+
+Background (only outside the frames): deep space, large planet on the left, intense orange sunrise, volumetric god rays, stars. Cyan/blue + orange/gold color grading.
+The real screenshots must be clearly recognizable as the main content of the three panels.
+
+Clean premium composition.
+
+=======================================================================================================================
+
