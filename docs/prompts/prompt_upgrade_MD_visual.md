@@ -1,3 +1,8 @@
+<!-- Version du fichier -->
+
+> **Version : 4**\
+> *Dernière modification : 2026-09-25*
+
 # Upgrade Prompt — Mise en Page & Habillage Visuel de Guide
 
 Prompt réutilisable pour améliorer la **présentation, l'aération et l'habillage
@@ -5,9 +10,12 @@ visuel** d'un guide Markdown (avec HTML léger) existant, sans jamais toucher
 à son contenu, à son savoir, ou à sa structure d'explication.
 
 Ce prompt fonctionne en **complément** de `translation_prompt_4allguides.md`
-(qui traduit) et des prompts spécifiques du projet (qui traduisent aussi) :
-celui-ci ne traduit rien et ne réécrit rien sur le fond — il ne fait
-qu'embellir la forme d'un guide déjà rédigé, dans n'importe quelle langue.
+(qui traduit) et de `prompt_upgrade_MD_code` (qui factorise les liens/URLs en
+variables de référence) : celui-ci ne traduit rien, ne réécrit rien sur le
+fond, et ne touche à aucun lien — il ne fait qu'embellir la forme d'un guide
+déjà rédigé, dans n'importe quelle langue. **Si le même guide est aussi passé
+au prompt de factorisation**, voir la note de compatibilité §M (règle 36ter)
+sur le choix `<div>` vs `<p>` pour les blocs centrés contenant des liens.
 
 Pour une nouvelle passe de mise en page : copier ce fichier, remplir le bloc
 `TARGET`, et donner ce fichier + le guide source à Claude.
@@ -20,13 +28,24 @@ Pour une nouvelle passe de mise en page : copier ce fichier, remplir le bloc
 source_file: mon_guide.md
 output_filename: mon_guide.md         # peut être identique si mise à jour en place
 guide_title: "Créer un badge Shields.io custom via un Endpoint JSON"
-guide_short_title: "Badge_JSON"       # titre ultra-court pour le badge 2, voir §L
-main_source_type: repo                # repo / site / game — voir §L, badge 3
+guide_short_title: "Badge_JSON"       # texte affiché sur le badge 2 — texte pur,
+                                       # SANS extension de fichier (voir
+                                       # output_filename pour le nom de fichier),
+                                       # voir §M
+main_source_type: repo                # repo / site / game — source du sujet ET/OU
+                                       # outil/marque central du guide, voir §M badge 3
 main_source_name: "NMS_TC"            # nom court affiché sur le badge 3
 main_source_url: "https://github.com/Data-Spirit/NMS_TC"
 author_github_url: "https://github.com/Data-Spirit"
 license_name: "CC BY-NC-SA 4.0"
 license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+# — Optionnel : uniquement si la source du sujet ET l'outil/marque central du
+#   guide sont deux entités clairement distinctes (voir §M, règle 36bis) —
+badge4_name: ""                       # nom court affiché sur le badge 4
+badge4_url: ""                        # redirection du badge 4
+badge4_logo: ""                       # slug simple-icons si disponible, sinon vide
+badge4_color: ""                      # couleur de marque officielle si disponible
 ```
 
 ---
@@ -47,10 +66,81 @@ de ton ressort.
 
 ---
 
-## A. Structure & navigation
+## A. Versioning du fichier
 
-1. **Sommaire replié** dans un `<details><summary><b>📑 Sommaire</b></summary>`
-   juste sous le titre, avec un lien par section.
+V1. Tout guide/prompt traité par ce prompt porte, **tout en haut du
+    fichier, avant même le titre H1**, un repère de version au format
+    suivant :
+
+```
+<!-- Version du fichier -->
+
+> **Version : X.X**\
+> *Dernière modification : AAAA-MM-JJ*
+```
+
+    Date toujours au format **ISO 8601** (`AAAA-MM-JJ`), quelle que soit la
+    langue du guide — non ambigu, contrairement à un format `JJ/MM/AAAA` ou
+    `MM/DD/YYYY` qui varie selon les conventions régionales et prête à
+    confusion dès qu'un guide existe en plusieurs langues.
+
+V1bis. **Deux pièges de syntaxe à éviter systématiquement sur ce gabarit** :
+    (1) le commentaire HTML `<!-- Version du fichier -->` doit être séparé
+    de la citation qui suit par une **ligne vide** — collé directement à un
+    `>`, il peut perturber le rendu et rester visible au lieu d'être
+    invisible comme un commentaire HTML normal ; (2) les deux lignes de la
+    citation (version et date) doivent être reliées par un **`\` en fin de
+    première ligne** pour forcer un vrai retour à la ligne à l'intérieur
+    du même bloc de citation — sans ce `\`, Markdown fusionne les deux
+    lignes `>` consécutives en un seul paragraphe et les affiche l'une à
+    la suite de l'autre sur la même ligne rendue.
+
+V2. **La balise `<details>` est explicitement écartée** pour ce rôle : son
+    contenu est replié par défaut (ou perçu comme "à déplier" même en
+    `open`), ce qui va à l'encontre de l'objectif de lisibilité immédiate
+    de la version. La citation (`>`), toujours visible sans interaction,
+    est la forme retenue.
+
+V3. **Numérotation majeure/mineure — suggestion indicative, jamais une
+    règle rigide.** Repère possible : un changement structurel ou de fond
+    (nouvelle section, réorganisation, changement de méthode) oriente vers
+    un incrément majeur (ex : 5 → 6) ; une retouche ou un ajustement de
+    forme sans impact structurel oriente vers un incrément mineur (ex :
+    5.1 → 5.2). **La décision finale du numéro appartient toujours à
+    l'utilisateur** — ce repère n'est qu'une direction, jamais une
+    obligation.
+
+V4. **Si le fichier fourni ne contient pas encore ce repère de version**,
+    ne jamais en inventer un ni partir sur une valeur par défaut (type
+    `1.0`) : **poser la question explicitement** à l'utilisateur avant de
+    l'ajouter.
+
+V5. **Si le fichier fourni contient déjà ce repère**, proposer un
+    incrément (selon V3) à chaque évolution notable livrée, sans jamais
+    l'imposer — l'utilisateur valide ou ajuste le numéro final.
+
+V6. **Ce repère reste distinct de la ligne "Dernière vérification
+    fonctionnelle"** placée sous le H1 (voir §B, règle 5bis) : le repère de
+    version/date de modification décrit l'état d'édition du document ;
+    la ligne de vérification fonctionnelle décrit si la manip qu'il
+    documente marche encore techniquement. Les deux cohabitent sans
+    jamais fusionner ni se confondre.
+
+V7. **Lors d'une traduction du guide** (via le prompt de traduction) : le
+    numéro de version et la date de dernière modification restent
+    **strictement identiques** entre toutes les versions linguistiques
+    d'un même guide — seule la langue change, pas l'état du contenu que ce
+    repère décrit.
+
+---
+
+## B. Structure & navigation
+
+1. **Sommaire** dans un `<details open><summary><b>📑 Sommaire</b></summary>`
+   juste sous le titre, avec un lien par section — **ouvert (déplié) par
+   défaut**. Un guide précis peut demander explicitement un sommaire fermé
+   par défaut en instruction ponctuelle ; en l'absence d'une telle demande,
+   toujours partir sur `open`.
 1bis. **Le texte de chaque entrée du sommaire doit être une copie exacte,
    caractère pour caractère, du titre de la section qu'elle référence** —
    backticks de code inclus, ponctuation incluse, rien de paraphrasé ou
@@ -83,13 +173,17 @@ de ton ressort.
    avant d'ajouter le lien de retour en haut et le séparateur standard —
    ne jamais empiler l'ancien et le nouveau.
 5. Bandeau décoratif discret sous le H1 (`<p align="center"><sub>📘 ... ·
-   🔧 ... · Nom_projet</sub></p>`) — **optionnel**, à omettre si les 3
-   badges (§L) suffisent déjà à identifier le guide ; ne pas l'ajouter
+   🔧 ... · Nom_projet</sub></p>`) — **optionnel**, à omettre si les badges
+   (§M) suffisent déjà à identifier le guide ; ne pas l'ajouter
    systématiquement par automatisme si ça fait doublon.
+5bis. La ligne **"Dernière vérification fonctionnelle"** (quand le guide en
+   contient une) se place sous le H1, dans le même esprit que le bandeau
+   décoratif — à ne jamais confondre avec le repère de version en tête de
+   fichier (§A, règle V6), qui répond à une question différente.
 
 ---
 
-## B. Alertes GitHub natives (callouts)
+## C. Alertes GitHub natives (callouts)
 
 6. Convertir toute remarque isolée digne d'attention en alerte GFM
    (`> [!TYPE]`) — le texte non encadré reste la description neutre du
@@ -137,16 +231,16 @@ de ton ressort.
     > Explication de la deuxième phrase.
     ```
     Effet "carte réponse" compacte, plus adapté à ce format court que la
-    règle d'aération générale (§E) qui viserait à les séparer.
+    règle d'aération générale (§F) qui viserait à les séparer.
 
 11. **Aérer aussi l'intérieur d'une alerte** avec une ligne `>` vide pour
     créer un saut de paragraphe interne, si son contenu est long ou dense.
-    La règle d'aération (voir §E) s'applique dans les encadrés, pas
+    La règle d'aération (voir §F) s'applique dans les encadrés, pas
     seulement dans le texte courant.
 
 ---
 
-## C. Emoji & repères visuels
+## D. Emoji & repères visuels
 
 12. Emoji thématique dans chaque titre de section (H2), cohérent avec le
     sujet traité.
@@ -164,13 +258,13 @@ de ton ressort.
     fichier en code en ligne (`mon_fichier.extension`) et le bloc de code
     qui affiche son contenu juste en dessous — lie visuellement l'étiquette
     et son contenu sans ambiguïté possible. Rappel de la règle déjà en
-    vigueur (§F) : si ce fichier existe réellement sur un repo ou un site
+    vigueur (§G) : si ce fichier existe réellement sur un repo ou un site
     officiel fiable, son nom doit en plus être un lien hypertexte vers son
     emplacement de téléchargement.
 
 ---
 
-## D. Variété typographique
+## E. Variété typographique
 
 16. `<ins>` (soulignement) comme troisième outil d'emphase, en complément du
     gras et de l'italique — utile pour des "sous-titres" informels (ex :
@@ -187,7 +281,7 @@ de ton ressort.
 
 ---
 
-## E. Aération du texte
+## F. Aération du texte
 
 20. Scinder les paragraphes denses en plusieurs paragraphes plus courts via
     un vrai saut de paragraphe (ligne vide), sans jamais reformuler le
@@ -199,7 +293,7 @@ de ton ressort.
 
 ---
 
-## F. Traçabilité & liens
+## G. Traçabilité & liens
 
 22. Lien direct vers le fichier source du repo (`<ins>[Fichier :](url)</ins>`)
     juste avant d'afficher son contenu en bloc de code.
@@ -226,7 +320,7 @@ de ton ressort.
 
 ---
 
-## G. Sections repliables
+## H. Sections repliables
 
 27. Méthodes alternatives / approfondissements optionnels regroupés chacun
     dans son propre `<details>` — évite le mur de texte, laisse le lecteur
@@ -239,7 +333,7 @@ de ton ressort.
 
 ---
 
-## H. Nettoyage technique (invisible mais important)
+## I. Nettoyage technique (invisible mais important)
 
 29. Supprimer les tabulations parasites isolées (lignes ne contenant qu'une
     tabulation) qui traînent parfois après un copier-coller — cosmétique
@@ -249,25 +343,31 @@ de ton ressort.
     le nombre de blocs de code est resté identique, que les ancres résolvent
     toujours vers les bons titres, et que les blocs JSON restent valides.
 30bis. **Commentaires HTML invisibles comme repères de navigation dans le
-    fichier source** (ex : `<!-- TITRE DU GUIDE -->`, `<!-- BADGES -->`,
+    fichier source** (ex : `<!-- Version du fichier -->`, `<!-- BADGES -->`,
     `<!-- SOMMAIRE -->`) placés avant les grands blocs structurels de
     l'en-tête — n'apparaissent jamais au rendu, mais aident quiconque édite
     le fichier brut par la suite à s'y retrouver rapidement.
 
 ---
 
-## I. Principe transversal
+## J. Principe transversal
 
 31. Ne jamais toucher au contenu, au savoir ou à la structure d'explication
     d'un guide lors d'une passe de mise en page — uniquement la
     présentation, les balises, l'aération et l'emphase visuelle. **Exception
-    explicite** : ajuster la profondeur des niveaux de titre (§A, règle
+    explicite** : ajuster la profondeur des niveaux de titre (§B, règle
     2bis) est une opération de forme, pas de fond, et reste donc autorisé
     tant que l'ordre logique des sections n'est pas modifié.
+31bis. **En cas d'ambiguïté esthétique réelle** (couleur, gabarit de
+    badge, variante de style d'un élément visuel...) que ce prompt ne
+    tranche pas explicitement, proposer **2 variantes côte à côte** pour
+    comparaison plutôt que de trancher silencieusement seul — ce réflexe
+    s'applique à toute décision esthétique non couverte par une règle
+    précise ci-dessus, pas seulement aux badges.
 
 ---
 
-## J. Cohérence des glossaires visuels
+## K. Cohérence des glossaires visuels
 
 32. Chaque emoji utilisé comme repère structurel (dans les en-têtes de
     tableau, les puces de méthode, les pointeurs, etc.) garde **une seule
@@ -278,7 +378,7 @@ de ton ressort.
 
 ---
 
-## K. Accessibilité et robustesse de l'information
+## L. Accessibilité et robustesse de l'information
 
 33. Ne jamais faire reposer une information **uniquement** sur un emoji —
     toujours l'accompagner d'un texte qui porte le même sens, pour que le
@@ -291,16 +391,18 @@ de ton ressort.
 
 ---
 
-## L. Identité visuelle du guide
+## M. Identité visuelle du guide
 
 35. **Titre général du guide (H1) toujours centré.**
 
-36. **Toujours 3 badges centrés, sur la même ligne, juste sous le titre**,
-    chacun avec son propre gabarit d'apparence **fixe et unique** — seul
-    `style=flat` est commun aux trois ; les couleurs et le reste de
-    l'apparence de chaque badge ne changent jamais, seuls certains
-    paramètres de contenu (texte affiché, logo) sont adaptés au guide en
-    cours. Détail des 3 gabarits ci-dessous.
+36. **Au minimum 3 badges centrés, sur la même ligne, juste sous le
+    titre** — ce nombre est un plancher, pas un total figé : d'autres
+    badges peuvent s'ajouter selon les besoins spécifiques du guide (voir
+    36bis). Chaque badge a son propre gabarit d'apparence **fixe et
+    unique** — seul `style=flat` est commun à tous ; les couleurs et le
+    reste de l'apparence de chaque badge ne changent jamais, seuls
+    certains paramètres de contenu (texte affiché, logo) sont adaptés au
+    guide en cours. Détail des gabarits ci-dessous.
 
 **Badge 1 — Licence.** URL entièrement figée, jamais modifiée :
 
@@ -323,16 +425,20 @@ Redirige toujours vers `{{author_github_url}}` (la page d'accueil
 GitHub de l'auteur, jamais vers un repo précis — l'auteur doit être
 identifiable depuis n'importe quel guide).
 
-**Badge 3 — Source principale.** Gabarit fixe (`style=flat`,
-`logoColor=white`, `logoSize=auto`, `labelColor=grey`,
-`color=mediumseagreen`) — changent : le message (nom du site/repo,
+**Badge 3 — Source / Outil / Marque.** Représente la source du sujet
+traité par le guide (site officiel, repo, jeu documenté) **et/ou**
+l'outil, le service ou la marque central(e) utilisé(e) dans la procédure
+du guide — dans la grande majorité des cas, ces deux notions désignent
+la même chose et partagent donc un seul badge en 3ᵉ position. Gabarit
+fixe (`style=flat`, `logoColor=white`, `logoSize=auto`, `labelColor=grey`,
+`color=mediumseagreen`) — changent : le message (nom du site/repo/outil,
 raccourci si trop long pour rester condensé), le label (`Repo :` si
-`main_source_type: repo`, `Site :` sinon), et `namedLogo` (logo GitHub
-si c'est un repo, logo de la marque si présent sur simple-icons, sinon
+`main_source_type: repo`, `Site :` sinon), et `logo` (logo GitHub si
+c'est un repo, logo de la marque si présent sur simple-icons, sinon
 aucun logo) :
 
 ```
-https://img.shields.io/badge/URL%20%3A-{{main_source_name}}-blue?style=flat&logo={{logo_adaptatif}}&logoColor=white&logoSize=auto&label=Repo%20%3A&labelColor=grey&color=mediumseagreen
+https://img.shields.io/badge/{{label_adaptatif}}-{{main_source_name}}-blue?style=flat&logo={{logo_adaptatif}}&logoColor=white&logoSize=auto&label={{label_adaptatif}}&labelColor=grey&color=mediumseagreen
 ```
 
 Redirige vers `{{main_source_url}}` — le repo du projet si le guide en
@@ -340,21 +446,41 @@ documente un, le site officiel si le guide traite d'un outil/service
 précis (ex: shields.io), le site officiel d'un jeu si le guide en
 documente un système.
 
+36bis. **Badge 4 (et suivants) — uniquement si la source du sujet et
+l'outil/marque central sont deux entités clairement distinctes** (ex :
+un guide qui documente un jeu précis mais s'appuie sur un outil tiers
+totalement indépendant pour la procédure décrite). Dans ce cas, garder
+le Badge 3 pour l'une des deux entités et ajouter un Badge 4 pour
+l'autre, avec le même gabarit que le Badge 3 (adapté : logo et couleur
+de marque officielle si disponibles sur simple-icons, sinon un gabarit
+neutre). Champs `badge4_*` du bloc `TARGET`. **Ne jamais ajouter un
+badge supplémentaire par automatisme** si le sujet et l'outil se
+recoupent déjà dans le Badge 3 — un badge en trop dilue l'identité
+visuelle autant qu'un badge manquant la floute.
+
+36ter. **Compatibilité avec le prompt de factorisation par variables**
+(`prompt_upgrade_MD_code`) : si ce même guide est aussi traité par ce
+second prompt, tous les liens/images de badges seront convertis en
+syntaxe de référence (`[texte][id]`). Dans ce cas, le bloc de badges
+centrés — et plus généralement **tout bloc centré contenant des
+liens/images une fois la factorisation appliquée** — doit utiliser
+`<div align="center">...</div>`, **jamais** `<p align="center">` : un
+`<p>` HTML ne peut pas contenir le paragraphe Markdown imbriqué que
+génère la syntaxe de lien référencé, ce qui casse le rendu.
+
 ---
 
-## M. Pied de page
+## N. Pied de page
 
 37. Toujours terminer le guide par une **ligne de licence** — pas une
-    section à part entière avec son propre titre H2, simplement un bloc
-    replié placé juste après la partie sources/liens externes (puisque
-    presque tout guide se termine par une liste de sources). Format :
+    section à part entière avec son propre titre H2, simplement une ligne
+    placée juste après la partie sources/liens externes (puisque presque
+    tout guide se termine par une liste de sources), **toujours visible,
+    jamais repliée dans un `<details>`** — c'est une mention légale, pas un
+    contenu optionnel. Format :
 
-```html
-<details><summary><b>Licence :</b></summary>
-
+```
 Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
-
-</details>
 ```
 
 ---
@@ -364,11 +490,11 @@ Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
 
 1. Lire le guide source dans son intégralité avant toute modification.
 2. Identifier, section par section, les éléments relevant de chaque
-   catégorie A à M ci-dessus.
+   catégorie A à N ci-dessus.
 3. Appliquer les changements de forme un par un, en gardant systématiquement
-   sous les yeux le principe transversal (§I, règle 31) : à chaque édition,
+   sous les yeux le principe transversal (§J, règle 31) : à chaque édition,
    vérifier que pas un mot de sens n'a changé.
-4. Après chaque passe d'édition, exécuter le réflexe de vérification (§H,
+4. Après chaque passe d'édition, exécuter le réflexe de vérification (§I,
    règle 30).
 5. Une fois toutes les catégories traitées, faire une relecture finale
    complète du guide transformé pour s'assurer de la cohérence visuelle
@@ -386,19 +512,32 @@ Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
 - [ ] **Chaque entrée du sommaire est une copie exacte, caractère pour
       caractère, du titre réel de sa section** (backticks et ponctuation
       inclus) — vérification automatisée recommandée, pas seulement visuelle.
+- [ ] Le sommaire est **ouvert par défaut** (`<details open>`), sauf
+      demande contraire explicite pour ce guide précis.
 - [ ] **Aucun `---` consécutif en doublon** entre deux sections.
 - [ ] Tous les blocs JSON restent syntaxiquement valides.
 - [ ] Les mots-clés d'alerte GitHub sont en anglais partout.
 - [ ] Aucune alerte n'est restée vide ou mal typée par rapport à la grille
-      sémantique du §B.
+      sémantique du §C.
 - [ ] Aucun `<details>` replié ne contient d'information appartenant au
       chemin de lecture obligatoire.
 - [ ] Le glossaire visuel des emoji est resté cohérent sur tout le document
       (exceptions justifiées uniquement).
-- [ ] Le H1 est centré, et les 3 badges (licence/guide/source) sont présents,
+- [ ] Le H1 est centré, et **au moins 3 badges** (licence/guide/source-ou-
+      outil, + éventuels badges supplémentaires justifiés) sont présents,
       centrés, sur une même ligne, avec les bons gabarits fixes.
-- [ ] Le bloc de licence en pied de page est présent, replié, juste après la
-      section sources.
+- [ ] Le bloc de licence en pied de page est présent, **toujours visible
+      (non replié)**, juste après la section sources.
+- [ ] Si le guide est aussi factorisé par variables (autre prompt), les
+      blocs centrés contenant des liens/images utilisent
+      `<div align="center">`, jamais `<p align="center">`.
+- [ ] Toute ambiguïté esthétique non tranchée par ce prompt a été soumise
+      en 2 variantes côte à côte plutôt que tranchée seul.
+- [ ] **Le repère de version (§A) est présent en tête de fichier, au
+      format défini, date en ISO 8601** ; s'il était absent de la source,
+      la question a bien été posée à l'utilisateur avant tout ajout.
+- [ ] Si le guide existe en plusieurs langues, le repère de version/date
+      est strictement identique entre toutes les versions linguistiques.
 - [ ] Aucune tabulation parasite isolée ne subsiste dans le fichier.
 
 ---
@@ -406,6 +545,7 @@ Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
 ## LIVRABLE ATTENDU
 
 Un unique fichier, au même format que la source, nommé selon
-`output_filename`, visuellement enrichi selon les 37 règles (+ 8 précisions
-« bis ») ci-dessus, strictement fidèle au contenu et au sens du guide
-d'origine, prêt à être commité dans le dépôt sans retouche supplémentaire.
+`output_filename`, visuellement enrichi selon les 37 règles + 7 règles de
+versioning (§A, V1 à V7), et leurs 12 précisions « bis »/« ter »
+ci-dessus, strictement fidèle au contenu et au sens du guide d'origine,
+prêt à être commité dans le dépôt sans retouche supplémentaire.

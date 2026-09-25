@@ -1,3 +1,8 @@
+<!-- Version du fichier -->
+
+> **Version : 3.1** \
+> *Dernière modification : 2026-09-25*
+
 # Translation Prompt — Guide Universel (Markdown / HTML léger)
 
 Prompt réutilisable pour traduire **n'importe quel guide technique** au format

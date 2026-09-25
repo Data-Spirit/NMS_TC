@@ -1,3 +1,8 @@
+<!-- Version du fichier -->
+
+> **Version : 3.1** \
+> *Dernière modification : 2026-09-25*
+
 <a id="top"></a>
 
 <h1 align="center">Guide — Créer un badge Shields.io custom via un Endpoint JSON</h1>

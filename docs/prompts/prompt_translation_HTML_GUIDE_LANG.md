@@ -1,3 +1,9 @@
+<!-- Version du fichier -->
+
+> **Version : 3.1** \
+> *Dernière modification : 2026-09-25*
+
+
 # Translation Prompt — NMS_TC HTML Guide
 
 > **Dernière mise à jour de ce prompt : 2026-09-09 (4)** — correction de références internes obsolètes (`translation_prompt_README_LANG.md` → `prompt_translation_README_LANG.md`), ajout de la politique de retraduction depuis la version à jour (jamais porter/compléter une ancienne traduction), et ajout d'un §0 explicite de correspondance des suffixes de langue, en miroir du prompt README. S'ajoute aux changements précédents du même jour (protocole de fraîcheur, rôle des trois fichiers, protection des modifications de ce prompt, feu vert de traduction, règle des pseudo-noms NAME_COLOR/NAME_ICON, vérifications techniques recommandées, traçabilité `companion_readme` dans l'historique). Cette ligne doit être mise à jour à chaque modification validée de ce prompt (voir section « PROTECTION DES MODIFICATIONS DE CE PROMPT ») — si elle semble absente ou visiblement ancienne par rapport au contenu, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.

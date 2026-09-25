@@ -1,3 +1,9 @@
+<!-- Version du fichier -->
+
+> **Version : 3.1** \
+> *Dernière modification : 2026-09-25*
+
+
 <a id="top"></a>
 <!-- TITRE DU GUIDE -->
 <h1 align="center">Afficher une page HTML avec GitHub Pages</h1>

@@ -1,3 +1,8 @@
+<!-- Version du fichier -->
+
+> **Version : 2.1** \
+> *Dernière modification : 2026-09-25*
+
 # prompt_upgrade_md_v1.2 — Factorisation de fichiers Markdown par variables de référence
 
 ## Objectif de ce prompt

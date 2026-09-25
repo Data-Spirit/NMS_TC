@@ -1,3 +1,9 @@
+<!-- Version du fichier -->
+
+> **Version : 4.2** \
+> *Dernière modification : 2026-09-25*
+
+
 # Translation Prompt — NMS_TC README
 
 > **Dernière mise à jour de ce prompt : 2026-09-09 (2)** — ajout de l'entrée d'historique correspondant à la traduction ES du 2026-09-09 (`README_FR.md` → `README_ES.md`, hash `e36972f2f6f0f926335caa49aba5396f`, `companion_html_guide` `NMS_txt_code_ES.html` utilisé après confirmation de fraîcheur). S'ajoute aux changements précédents du même jour (auto-versionnage, section « LES FICHIERS FOURNIS », règle de fraîcheur étendue, restriction de `companion_html_guide` à la fourniture explicite, protection des modifications de ce prompt, feu vert de traduction, vérifications techniques recommandées, colonne de traçabilité, correction des noms de fichiers obsolètes, réorganisation des sections). Cette ligne doit être mise à jour à chaque modification validée de ce prompt (voir section « PROTECTION DES MODIFICATIONS DE CE PROMPT ») — si elle semble absente ou visiblement ancienne par rapport au contenu, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
