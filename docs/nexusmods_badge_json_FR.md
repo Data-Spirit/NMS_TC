@@ -1,7 +1,7 @@
-<!-- Version du fichier -->
-
-> **Version : 3.1** \
-> *Dernière modification : 2026-09-25*
+<!-- Version du fichier 
+> Version : 3.4
+> Dernière modification : 2026-09-25
+-->
 
 <a id="top"></a>
 

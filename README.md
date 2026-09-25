@@ -1,3 +1,8 @@
+<!-- Version du fichier 
+> Version : 3.5
+> Dernière modification : 2026-09-25
+-->
+
 <!-- BANNIERE CENTRE + TITRE CENTRE -->
 <div align="center">
 

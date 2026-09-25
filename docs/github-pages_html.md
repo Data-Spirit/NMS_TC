@@ -1,8 +1,7 @@
-<!-- Version du fichier -->
-
-> **Version : 3.1** \
-> *Dernière modification : 2026-09-25*
-
+<!-- Version du fichier 
+> Version : 3.3
+> Dernière modification : 2026-09-25
+-->
 
 <a id="top"></a>
 <!-- TITRE DU GUIDE -->

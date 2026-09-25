@@ -1,7 +1,7 @@
-<!-- Version du fichier -->
-
-> **Version : 4.1** \
-> *Dernière modification : 2026-09-25*
+<!-- Version du fichier 
+> Version : 4.2
+> Dernière modification : 2026-09-25
+-->
 
 <!-- TITRE -->
 <h1 align="center">— prompt_upgrade_MD_visual —<br>

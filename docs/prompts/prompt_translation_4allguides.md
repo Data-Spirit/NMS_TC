@@ -1,7 +1,7 @@
-<!-- Version du fichier -->
-
-> **Version : 3.1** \
-> *Dernière modification : 2026-09-25*
+<!-- Version du fichier 
+> Version : 3.2
+> Dernière modification : 2026-09-25
+-->
 
 # Translation Prompt — Guide Universel (Markdown / HTML léger)
 

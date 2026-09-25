@@ -1,8 +1,7 @@
-<!-- Version du fichier -->
-
-> **Version : 4.2** \
-> *Dernière modification : 2026-09-25*
-
+<!-- Version du fichier 
+> Version : 4.3
+> Dernière modification : 2026-09-25
+-->
 
 # Translation Prompt — NMS_TC README
 
