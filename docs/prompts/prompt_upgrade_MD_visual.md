@@ -77,7 +77,7 @@ V1. Tout guide/prompt traité par ce prompt porte, **tout en haut du
 ```
 <!-- Version du fichier -->
 
-> **Version : X.X**\
+> **Version : X.X** \
 > *Dernière modification : AAAA-MM-JJ*
 ```
 
