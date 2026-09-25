@@ -1,3 +1,8 @@
+<!-- Version du fichier 
+> Version : 1.1
+> Dernière modification : 2026-09-25
+-->
+
 <h1 align="center">NMS // TEXT CODES — Guide Français</h1>
 
 <!-- BADGES CENTRE -->

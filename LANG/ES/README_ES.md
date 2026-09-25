@@ -1,3 +1,8 @@
+<!-- Versión del archivo 
+> Versión : 1.1
+> Última modificación : 2026-09-25
+-->
+
 <h1 align="center">NMS // TEXT CODES — Guía en Español</h1>
 
 <!-- BADGES CENTRE -->

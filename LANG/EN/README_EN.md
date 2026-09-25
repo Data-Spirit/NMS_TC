@@ -1,3 +1,8 @@
+<!-- File version 
+> Version: 1.1
+> Last modified: 2026-09-25
+-->
+
 <h1 align="center">NMS // TEXT CODES — English Guide</h1>
 
 <!-- CENTERED BADGES -->

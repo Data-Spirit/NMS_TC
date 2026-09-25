@@ -1,4 +1,4 @@
-<!-- Version du fichier 
+<!-- Version du fichier
 > Version : 4.2
 > Dernière modification : 2026-09-25
 -->
@@ -71,31 +71,61 @@ de ton ressort.
 ## A. Versioning du fichier
 
 V1. Tout guide/prompt traité par ce prompt porte, **tout en haut du
-    fichier, avant même le titre H1**, un repère de version au format
-    suivant :
+    fichier, avant même le titre H1**, un repère de version. **Deux
+    présentations possibles, l'une cachée et l'autre visible — voir V1bis
+    pour savoir laquelle utiliser par défaut.**
 
-```
-<!-- Version du fichier -->
+    **Gabarit caché** — entièrement à l'intérieur d'un seul commentaire
+    HTML, donc jamais affiché au rendu (GitHub ou tout autre moteur
+    Markdown) :
 
-> **Version : X.X** \
-> *Dernière modification : AAAA-MM-JJ*
-```
+    ```
+    <!-- Version du fichier
+    > Version : X.X
+    > Dernière modification : AAAA-MM-JJ
+    -->
+    ```
+
+    Rien n'étant jamais rendu à l'intérieur d'un commentaire HTML, aucune
+    mise en forme n'a de sens ici : pas de gras, pas d'italique, pas de
+    `\` d'échappement — texte brut uniquement, comme dans le gabarit
+    ci-dessus.
+
+    **Gabarit visible** — uniquement sur demande explicite pour un projet
+    précis (voir V1bis) :
+
+    ```
+    <!-- Version du fichier -->
+
+    > **Version : X.X** \
+    > *Dernière modification : AAAA-MM-JJ*
+    ```
 
     Date toujours au format **ISO 8601** (`AAAA-MM-JJ`), quelle que soit la
     langue du guide — non ambigu, contrairement à un format `JJ/MM/AAAA` ou
     `MM/DD/YYYY` qui varie selon les conventions régionales et prête à
-    confusion dès qu'un guide existe en plusieurs langues.
+    confusion dès qu'un guide existe en plusieurs langues. Cette règle de
+    format de date s'applique **à l'identique dans les deux gabarits**.
 
-V1bis. **Deux pièges de syntaxe à éviter systématiquement sur ce gabarit** :
-    (1) le commentaire HTML `<!-- Version du fichier -->` doit être séparé
-    de la citation qui suit par une **ligne vide** — collé directement à un
-    `>`, il peut perturber le rendu et rester visible au lieu d'être
-    invisible comme un commentaire HTML normal ; (2) les deux lignes de la
-    citation (version et date) doivent être reliées par un **`\` en fin de
-    première ligne** pour forcer un vrai retour à la ligne à l'intérieur
-    du même bloc de citation — sans ce `\`, Markdown fusionne les deux
-    lignes `>` consécutives en un seul paragraphe et les affiche l'une à
-    la suite de l'autre sur la même ligne rendue.
+V1bis. **Le gabarit caché est le comportement par défaut**, pour tout
+    guide comme pour tout README — une mention de version n'a rien à faire
+    de manière visible dans un document destiné à être lu publiquement.
+    Le gabarit visible ne s'utilise que si une demande explicite est faite
+    pour un projet ou un fichier précis ; en l'absence d'une telle demande,
+    toujours partir sur le gabarit caché.
+
+V1ter. **Deux pièges de syntaxe à éviter systématiquement sur le gabarit
+    visible** (ces pièges ne concernent pas le gabarit caché, où rien
+    n'est jamais rendu) : (1) le commentaire HTML `<!-- Version du
+    fichier -->` doit être séparé de la citation qui suit par une **ligne
+    vide** — collé directement à un `>`, il peut perturber le rendu et
+    rester visible au lieu d'être invisible comme un commentaire HTML
+    normal ; (2) les deux lignes de la citation (version et date) doivent
+    être reliées par un **` \` (espace + backslash) en fin de première
+    ligne** pour forcer un vrai retour à la ligne à l'intérieur du même
+    bloc de citation — sans ce ` \`, Markdown fusionne les deux lignes `>`
+    consécutives en un seul paragraphe et les affiche l'une à la suite de
+    l'autre sur la même ligne rendue.
 
 V2. **La balise `<details>` est explicitement écartée** pour ce rôle : son
     contenu est replié par défaut (ou perçu comme "à déplier" même en
@@ -133,6 +163,13 @@ V7. **Lors d'une traduction du guide** (via le prompt de traduction) : le
     **strictement identiques** entre toutes les versions linguistiques
     d'un même guide — seule la langue change, pas l'état du contenu que ce
     repère décrit.
+
+V7bis. **Les règles V3 à V7 s'appliquent à l'identique, que le gabarit
+    utilisé soit caché ou visible** (V1bis) — seule la présentation change
+    entre les deux gabarits, jamais la logique de fond (format de date,
+    suggestion majeure/mineure, question obligatoire si absence de
+    version, proposition d'incrément si déjà présente, identité entre
+    versions linguistiques).
 
 ---
 
@@ -536,8 +573,9 @@ Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
 - [ ] Toute ambiguïté esthétique non tranchée par ce prompt a été soumise
       en 2 variantes côte à côte plutôt que tranchée seul.
 - [ ] **Le repère de version (§A) est présent en tête de fichier, au
-      format défini, date en ISO 8601** ; s'il était absent de la source,
-      la question a bien été posée à l'utilisateur avant tout ajout.
+      format caché par défaut (V1bis), date en ISO 8601** ; s'il était
+      absent de la source, la question a bien été posée à l'utilisateur
+      avant tout ajout.
 - [ ] Si le guide existe en plusieurs langues, le repère de version/date
       est strictement identique entre toutes les versions linguistiques.
 - [ ] Aucune tabulation parasite isolée ne subsiste dans le fichier.
@@ -548,6 +586,6 @@ Ce guide est distribué sous licence [**{{license_name}}**]({{license_url}}).
 
 Un unique fichier, au même format que la source, nommé selon
 `output_filename`, visuellement enrichi selon les 37 règles + 7 règles de
-versioning (§A, V1 à V7), et leurs 12 précisions « bis »/« ter »
+versioning (§A, V1 à V7), et leurs 14 précisions « bis »/« ter »
 ci-dessus, strictement fidèle au contenu et au sens du guide d'origine,
 prêt à être commité dans le dépôt sans retouche supplémentaire.
