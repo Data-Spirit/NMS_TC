@@ -1,9 +1,11 @@
 <!-- Version du fichier -->
 
-> **Version : 4**\
+> **Version : 4.1** \
 > *Dernière modification : 2026-09-25*
 
-# Upgrade Prompt — Mise en Page & Habillage Visuel de Guide
+<!-- TITRE -->
+<h1 align="center">— prompt_upgrade_MD_visual —<br>
+Mise en Page & Habillage Visuel de Guide</h1>
 
 Prompt réutilisable pour améliorer la **présentation, l'aération et l'habillage
 visuel** d'un guide Markdown (avec HTML léger) existant, sans jamais toucher
