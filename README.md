@@ -182,7 +182,7 @@ NMS_TC/
 [badge_status]: https://img.shields.io/badge/status-active-brightgreen.svg
 [badge_unofficial]: https://img.shields.io/badge/unofficial-fan--made-blue.svg
 [badge_release]: https://img.shields.io/github/v/release/Data-Spirit/NMS_TC?sort=semver&display_name=tag&style=flat&logo=github&logoSize=auto&labelColor=grey&color=green
-[badge_nexusmods]: https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
+[badge_nexusmods]: https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FData-Spirit%2FNMS_TC%2Fmain%2Fdocs%2Fassets%2Fnexusmods_badge.json&style=flat&logoSize=auto&label=nexus&labelColor=0f0f10&color=c07131
 [badge_downloads]: https://img.shields.io/github/downloads/Data-Spirit/NMS_TC/total?style=flat&logoSize=auto&label=Downloads&labelColor=1b6078&color=grey
 
 <!-- External URLs (services tiers, hors GitHub) -->
@@ -214,6 +214,6 @@ NMS_TC/
 <!-- Mémo : icône SVG de téléchargement, non utilisée en référence dans le tableau -->
 <!-- (une image en référence casse dans une cellule de tableau GitHub) ; le tableau utilise -->
 <!-- le chemin en direct. Gardée ici car réutilisable ailleurs dans le document. -->
-[icon_download]: ./assets/download-loop.svg
+[icon_download]: ./docs/assets/download-loop.svg
 <!-- url_lien_absolu: https://raw.githubusercontent.com/Data-Spirit/NMS_TC/main/assets/download-loop.svg -->
 
