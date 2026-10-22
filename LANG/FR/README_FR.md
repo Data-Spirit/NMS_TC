@@ -1,9 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.3
-> Dernière modification : 2026-10-17
+> Version : 2.0
+> Dernière modification : 2026-10-21
 -->
 
-<h1 align="center">NMS // TEXT CODES — Guide Français</h1>
+<h1 align="center">NMS // TEXT CODES — Documentation de conception</h1>
+
+<p align="center"><em>README en français : documentation de conception du guide interactif</em></p>
 
 <!-- BADGES CENTRE -->
 <p align="center">
@@ -13,7 +15,7 @@
   </a>
   
   <a href="https://github.com/Data-Spirit">
-    <img src="https://img.shields.io/badge/Guide%20%3A-README_FR.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide : USER">
+    <img src="https://img.shields.io/badge/README%20%3A-README_FR.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=README%20%3A&labelColor=black&color=darkcyan" alt="README : README_FR.md">
   </a>
   
   <a href="https://github.com/Data-Spirit/NMS_TC">
@@ -22,9 +24,13 @@
   
 </p>
 
-**Un guide interactif, autonome et exhaustif des codes de formatage de texte de No Man's Sky** — couleurs et icônes, entièrement documentés, testés, et rassemblés dans un unique fichier HTML.
+**Un guide interactif, autonome et exhaustif des codes de formatage de texte de No Man's Sky** — couleurs et icônes, entièrement documentés, testés, et rassemblés dans un unique fichier HTML. Il est **disponible en plusieurs langues**, grâce à un sélecteur de langue intégré au fichier.
 
-`NMS_txt_code_FR.html` · ~312 Ko · aucune dépendance externe critique · fonctionne hors-ligne
+`NMS_txt_code.html` · ~345 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
+
+> **Qui est quoi ?**
+> - **Le guide interactif** (`NMS_txt_code.html`) est le produit : un fichier HTML autonome, **multilingue**, avec un sélecteur de langue intégré.
+> - **Ce README** documente sa conception. Il est écrit **en français**. Il existe une version par langue (`README_EN.md`, etc.). **Seul le guide interactif est multilingue, pas les README.**
 
 ---
 
@@ -32,6 +38,7 @@
 
 - [Pourquoi ce projet](#pourquoi-ce-projet)
 - [Caractéristique principale : un fichier 100 % autonome](#caractéristique-principale--un-fichier-100--autonome)
+- [Le guide interactif est multilingue](#le-guide-interactif-est-multilingue)
 - [Chiffres clés](#chiffres-clés)
 - [Structure de l'interface](#structure-de-linterface)
   - [Onglet Infos](#-onglet-infos)
@@ -43,6 +50,7 @@
 - [Copier-coller en un clic](#copier-coller-en-un-clic)
 - [Identité visuelle : un design "méta"](#identité-visuelle--un-design-méta)
 - [Comment les icônes ont été extraites et intégrées](#comment-les-icônes-ont-été-extraites-et-intégrées)
+- [Ajouter ou mettre à jour une langue du guide interactif](#ajouter-ou-mettre-à-jour-une-langue-du-guide-interactif)
 - [Fiabilité de l'information et limites connues](#fiabilité-de-linformation-et-limites-connues)
 - [Compatibilité et accessibilité](#compatibilité-et-accessibilité)
 - [Stack technique](#stack-technique)
@@ -60,16 +68,31 @@ No Man's Sky permet de personnaliser les noms (bases, vaisseaux, frégates, mult
 
 ## Caractéristique principale : un fichier 100 % autonome
 
-Le guide est livré sous la forme d'**un seul fichier `.html`**, sans dossier annexe requis pour fonctionner.
+Le guide est livré sous la forme d'**un seul fichier `.html`** (toutes les langues comprises), sans dossier annexe requis pour fonctionner.
 
 Concrètement, cela signifie :
 
 - **Aucune installation.** On ouvre le fichier dans n'importe quel navigateur moderne, c'est tout.
 - **Déplaçable et renommable librement.** Le fichier ne dépend d'aucun chemin relatif vers d'autres fichiers.
-- **Fonctionne hors-ligne.** Toutes les données (couleurs, icônes, logique de tri, simulateur) sont embarquées directement dans le fichier — voir la section [Comment les icônes ont été extraites et intégrées](#comment-les-icônes-ont-été-extraites-et-intégrées) pour le détail technique de l'intégration des images.
+- **Fonctionne hors-ligne.** Toutes les données (couleurs, icônes, logique de tri, simulateur, textes de toutes les langues) sont embarquées directement dans le fichier — voir la section [Comment les icônes ont été extraites et intégrées](#comment-les-icônes-ont-été-extraites-et-intégrées) pour le détail technique de l'intégration des images.
 - **Une seule dépendance externe non critique** : les polices (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sans connexion internet, le rendu bascule simplement sur les polices système par défaut du navigateur ; aucune fonctionnalité n'est perdue.
 
-Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~312 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
+Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~345 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
+
+---
+
+## Le guide interactif est multilingue
+
+Le guide interactif existe en **plusieurs langues dans un seul et même fichier** : il n'y a pas un fichier par langue.
+
+- **Sélecteur de langue** : en haut à droite de l'écran, un menu affiche chaque langue sous son propre nom, précédé d'un drapeau (par exemple « Français », « English »). Le choix s'applique immédiatement à tout le guide : textes, tableaux, messages du simulateur.
+- **Langue choisie automatiquement** : à la première visite, le guide reprend la langue du navigateur si elle est disponible, sinon le français. Le choix de l'utilisateur est ensuite mémorisé dans son navigateur.
+- **Langues actuellement disponibles** : le **français** (langue source) et l'**anglais**.
+- **Texte manquant dans une langue** : c'est alors la version française qui s'affiche à sa place, jamais un message d'erreur.
+
+> **Distinction importante.** Seul le **guide interactif** est multilingue. Ce README, lui, est écrit dans une seule langue ; il existe une version par langue (`README_FR.md`, `README_EN.md`…), chacune traduite séparément.
+
+> **🔧 Détail technique :** chaque langue est un bloc de données JSON placé à la fin du fichier, et les textes du guide sont repérés par des clés. La mise en forme (gras, italique, code, liens…) est conservée, mais nettoyée par une liste blanche de balises : une traduction ne peut donc pas introduire de code actif. Un bloc de langue illisible est ignoré sans gêner les autres. Chaque langue ajoute environ 13 Ko au fichier.
 
 ---
 
@@ -85,12 +108,14 @@ Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'a
 | ❔ Balises au chemin de texture non confirmé | **12** |
 | 🖼️ Icônes intégrées en base64 dans le fichier | **145 / 145** |
 | 📝 Exemples concrets d'utilisation réelle | **10** |
+| 🌍 Langues du guide interactif | **2** |
+| 🔤 Textes à traduire (clés de traduction) | **116** |
 
 ---
 
 ## Structure de l'interface
 
-Le guide s'organise en **4 onglets**, pensés comme un parcours de lecture logique : on apprend la syntaxe avant de consulter les tables de référence.
+Le guide s'organise en **4 onglets**, pensés comme un parcours de lecture logique : on apprend la syntaxe avant de consulter les tables de référence. Un **sélecteur de langue**, en haut à droite, change la langue de l'ensemble du guide interactif.
 
 ### 📘 Onglet Infos
 
@@ -211,15 +236,35 @@ Les 145 icônes ne sont pas des symboles génériques : ce sont les **vraies ic�
 3. **Contrôle qualité manuel.** Plusieurs passes de vérification visuelle ont permis d'identifier et de corriger des icônes mal cadrées, décentrées, ou contaminées par un résidu de l'icône adjacente — jusqu'à obtenir un rendu propre sur l'ensemble des 145 icônes.
 4. **Encodage.** Chaque PNG (fond transparent) est encodé en **base64** et stocké dans un objet JavaScript (`ICON_DATA`) associant chaque nom de fichier à une chaîne `data:image/png;base64,...`, utilisée directement comme attribut `src` des balises `<img>` — exactement comme si l'image était hébergée en ligne, sauf qu'elle est physiquement présente dans le fichier.
 
-Cette approche explique à la fois le poids du fichier (~312 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
+Cette approche explique à la fois le poids du fichier (~345 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
 
-Ce bloc de données (`ICON_DATA`) est volontairement isolé en toute fin du fichier, séparé de toute la logique JavaScript qui le précède — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces quelques milliers de lignes de texte binaire, et pour faciliter l'ajout futur d'icônes par la communauté.
+Ce bloc de données (`ICON_DATA`) est volontairement isolé en fin de script, séparé de toute la logique JavaScript qui le précède (seuls les blocs de langue, de simples données JSON, viennent après) — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces quelques milliers de lignes de texte binaire, et pour faciliter l'ajout futur d'icônes par la communauté.
 
-> **🔧 Détail technique :** en JavaScript, une constante doit seulement être déclarée avant d'être utilisée à l'exécution — pas nécessairement avant les fonctions qui la référencent dans leur code. `ICON_DATA` peut donc être placé tout en bas du fichier sans rien casser, tant qu'il reste déclaré avant les tout derniers appels qui déclenchent l'affichage initial du guide.
+> **🔧 Détail technique :** en JavaScript, une constante doit seulement être déclarée avant d'être utilisée à l'exécution — pas nécessairement avant les fonctions qui la référencent dans leur code. `ICON_DATA` peut donc être placé tout en bas du script sans rien casser, tant qu'il reste déclaré avant l'initialisation de la page, qui s'exécute une fois le chargement terminé.
 
 Les 16 balises listées comme non fonctionnelles ne sont pas toutes de simples entrées vides : une partie d'entre elles (icônes génériques de boutons manette) ont malgré tout leur image déjà présente en base64 dans `ICON_DATA`, sans y être reliées dans le tableau des icônes.
 
 > **🔧 Détail technique :** ces images sont conservées en réserve plutôt que supprimées, au cas où Hello Games leur assignerait un jour une texture officielle en jeu — les relier deviendrait alors une simple correction d'une ligne, sans avoir à ré-extraire ou ré-encoder quoi que ce soit.
+
+---
+
+## Ajouter ou mettre à jour une langue du guide interactif
+
+Traduire le guide interactif ne demande **aucun nouveau fichier** : une langue, c'est un bloc de texte de plus dans `NMS_txt_code.html`.
+
+**Deux travaux distincts, à ne pas confondre :**
+
+| Quoi | Où | Comment |
+|---|---|---|
+| **Le bloc de langue du guide interactif** | à l'intérieur de `NMS_txt_code.html` | prompt `prompt_translation_HTML_GUIDE_LANG.md`, contrôlé par les scripts du dossier `docs/scripts/` |
+| **Ce README dans une autre langue** | un fichier séparé (`README_EN.md`…) | prompt `prompt_translation_README_LANG.md` |
+
+Le principe de travail :
+
+1. **Le français est la langue source.** Toute nouvelle fonctionnalité s'écrit d'abord en français, avec ses textes repérés par des clés.
+2. **On ne traduit que ce qui manque ou a changé.** Le script `trans_script_1_check_keys.py` liste les clés à traduire pour une langue donnée.
+3. **Chaque bloc de langue commence par un champ `_meta`** qui conserve le nom de la langue, son drapeau et les paramètres de traduction choisis (ton, variante, fidélité).
+4. **Des contrôles automatiques** vérifient les clés, les balises, les exemples de code, le comportement et la robustesse du guide dans chaque langue.
 
 ---
 
@@ -231,6 +276,8 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 - Les codes hexadécimaux des couleurs proviennent directement d'un tableau de valeurs RGBA/HEX exact — à une exception près (`TRANS_ANM`) dont la couleur exacte n'a pas pu être confirmée dans les sources les plus récentes.
 - Les balises marquées `non fonctionnel` ou `à vérifier` sont clairement identifiées comme telles plutôt que d'être présentées avec la même certitude que le reste.
 - La technique de teinte d'icône est présentée comme un comportement observé, pas une garantie universelle.
+- Les langues **écrites de droite à gauche** (arabe, hébreu…) ne sont pas encore prises en charge par le guide interactif : l'affichage serait incorrect.
+- Les **drapeaux** du sélecteur sont des émojis : certains systèmes peuvent afficher deux lettres à la place du drapeau.
 
 ---
 
@@ -238,8 +285,8 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 
 - **Responsive** : mise en page adaptée aux écrans étroits (colonnes secondaires masquées sur mobile dans le tableau des couleurs, défilement horizontal de sécurité sur les tableaux d'icônes).
 - **Navigateurs modernes** : Chrome, Firefox, Edge, Safari — s'appuie sur CSS Grid, `mask-image` et l'API Clipboard, disponibles dans toutes les versions récentes.
-- **Accessibilité de base** : les deux barres de recherche et le filtre de catégorie sont annoncés correctement aux lecteurs d'écran (`aria-label`), le champ du simulateur est associé à un vrai `<label>` plutôt qu'à un simple texte flottant, et le bouton de copie ainsi que la croix d'effacement du simulateur portent eux aussi un `aria-label`.
-- **Aucune donnée envoyée nulle part** : tout s'exécute localement dans le navigateur, aucune connexion réseau requise après le premier chargement des polices.
+- **Accessibilité de base** : les deux barres de recherche et le filtre de catégorie sont annoncés correctement aux lecteurs d'écran (`aria-label`), le champ du simulateur est associé à un vrai `<label>` plutôt qu'à un simple texte flottant, et le bouton de copie ainsi que la croix d'effacement du simulateur portent eux aussi un `aria-label`. Le **sélecteur de langue** est un menu natif étiqueté pour les lecteurs d'écran, et l'attribut `lang` de la page suit la langue choisie.
+- **Aucune donnée envoyée nulle part** : tout s'exécute localement dans le navigateur, aucune connexion réseau requise après le premier chargement des polices. Seul le **choix de langue** est mémorisé, localement, dans le navigateur ; il n'est jamais envoyé.
 
 ---
 
@@ -248,9 +295,10 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 - **HTML/CSS/JavaScript vanilla** — aucun framework, aucune dépendance de build, aucune étape de compilation.
 - **Polices** : Rajdhani (titres), IBM Plex Sans (texte courant), JetBrains Mono (code), via Google Fonts CDN.
 - **Aucune bibliothèque tierce** : le tri, la recherche, le filtrage, le simulateur et la coloration syntaxique sont tous du JavaScript natif écrit spécifiquement pour ce guide.
+- **Système de langues maison** : les traductions sont des dictionnaires JSON embarqués dans le fichier, lus par du JavaScript natif, sans bibliothèque d'internationalisation.
 - **Chargement des polices optimisé** : deux `<link rel="preconnect">` établissent la connexion vers les domaines Google Fonts avant même le chargement de la feuille de style, réduisant la latence perçue au premier affichage.
 - **Images non bloquantes** : les 145 icônes intégrées utilisent `decoding="async"`, pour que leur décodage ne retarde jamais le rendu du reste de la page.
-- **Code validé par des outils standards** : le HTML passe une validation HTML5 stricte sans erreur, et le CSS a été audité avec Stylelint sans anomalie de fond (seules des préférences de formatage, laissées telles quelles par choix de style cohérent).
+- **Code validé par des outils standards** : le HTML passe la validation `html-validate` (préréglage recommandé), à l'exception de deux règles qui signalent des titres et des boutons « vides » dans le fichier source, désactivées par choix puisque leur texte est inséré au chargement selon la langue, et le CSS a été audité avec Stylelint sans anomalie de fond (seules des préférences de formatage, laissées telles quelles par choix de style cohérent).
 
 ---
 

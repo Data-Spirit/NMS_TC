@@ -1,6 +1,6 @@
 <!-- File version 
-> Version: 1.1
-> Last modified: 2026-09-25
+> Version: 1.3
+> Last modified: 2026-10-18
 -->
 
 <h1 align="center">NMS // TEXT CODES — English Guide</h1>
@@ -24,7 +24,7 @@
 
 **An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file.
 
-`NMS_txt_code_EN.html` · ~312 KB · no critical external dependencies · works offline
+`NMS_txt_code_EN.html` · ~320 KB · no critical external dependencies · works offline
 
 ---
 
@@ -69,7 +69,7 @@ In practice, that means:
 - **Works offline.** All the data (colors, icons, sorting logic, simulator) is embedded directly in the file — see [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded) for the technical details of how the images are packed in.
 - **One non-critical external dependency**: fonts (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Without an internet connection, rendering simply falls back to the browser's default system fonts — no functionality is lost.
 
-This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~312 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
+This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~320 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
 
 ---
 
@@ -100,7 +100,7 @@ The guide's entry point. It brings together everything you need to know to use t
 - **Advanced technique: tinting an icon with a color tag** — explains how a color tag placed right before an `<IMG>` tag applies its color to the icon like a filter, with a dedicated **Important** callout covering the one real subtlety (where to place the closing tag to tint only the icon, or the icon *and* the text that follows it), plus a side-by-side visual comparison of both cases.
 - **Warning callout** honestly noting that this behavior is community-observed but not officially documented, along with a list of known limitations (already-colored icons that can resist the tint, behavior not 100% guaranteed).
 - **Tip callout** on the character limit of in-game text fields, recommending short tags where possible.
-- **"Real-world examples" section**: ten headings actually used to organize in-game storage containers, each shown with its live visual render *and* its raw, syntax-highlighted code — the best practical demonstration of everything above.
+- **"Real-world examples" section**: ten headings actually used to organize in-game storage containers, each shown with its live visual render *and* its raw, syntax-highlighted code, with a copy button to the right of each row — the best practical demonstration of everything above.
 
 ### 🎨 Colors Tab
 
@@ -149,12 +149,18 @@ The guide's context and methodological transparency:
 
 Located at the top of the page and visible from any tab, the simulator lets you **type a combination of tags and see the result instantly**, without having to go back into the game to check:
 
+- **A copy button** (⧉) to the right of the field copies the typed code in one click, ready to paste into the game (see [One-click copy](#one-click-copy)).
+- **A clear button** (×), placed inside the field, empties it and gives it back focus so you can start over. It disappears on its own when the field is empty.
+  - The preview frame just below keeps the same height whether it contains a preview or is empty: it stays black and doesn't shrink when you clear the field (its minimum height is equivalent to one line of content).
+- **A discreet placeholder text**, in italics, appears in the empty field to guide newcomers.
 - Correctly recognizes and renders color tags, icon tags, and combinations of the two (including the tinting technique, see below).
+- **Tag errors are flagged**: an unknown color or icon (for example `REDD` instead of `RED`) is underlined in red with a wavy line, directly in the preview. Below the preview, a small box per error says which one it is, with the faulty name in red and, when one exists, the correct name in green. This line only appears when there is an error: with no error, nothing is displayed and the preview's height doesn't change.
+- **Case is checked, just like in the game**: `red`, `fuel` or `<img>` in lowercase are flagged with the fix to apply (`RED`, `FUEL`, `IMG`), whereas they previously displayed with no warning at all, or as plain text.
 - The icons shown are the actual icons extracted from the game (not approximations).
 - Useful for composing a complex name (several tags combined) and checking the result before copying it into the game.
 - **Input text is always sanitized before display**: pasting any text into the field, even deliberately "broken" or copied from an untrusted source, can never interfere with the page itself.
 
-> **🔧 Technical detail:** the typed text is first fully escaped (HTML special characters are converted), and `<COLOR>` and `<IMG>...<>` tag recognition runs on that escaped version rather than on the raw text. Anything not recognized as a genuine NMS tag is therefore displayed as inert text, never interpreted as active HTML.
+> **🔧 Technical detail:** the typed text is first fully escaped (HTML special characters are converted), and `<COLOR>` and `<IMG>...<>` tag recognition runs on that escaped version rather than on the raw text. Anything not recognized as a genuine NMS tag is therefore displayed as inert text, never interpreted as active HTML. Tag lookup ignores case only so that capitalization mistakes can be spotted; validity itself stays strict (only uppercase names exist), and names are looked up in the color and icon tables without ever touching the internal properties of JavaScript objects.
 
 ---
 
@@ -169,10 +175,12 @@ The simulator reproduces the technique of placing a color tag right before an `<
 
 ## One-click copy
 
-Every row in the Colors and Icons tables has a small dedicated button (⧉ symbol), positioned on the left of the row:
+The same dedicated button (⧉ symbol) appears in four places in the guide:
 
-- **Colors**: copies a ready-to-use template, `<COLOR_NAME>Text</>`.
-- **Icons**: copies the full syntax directly, `<IMG>ICON_NAME<>`.
+- **Colors**: a button to the left of each table row copies a ready-to-use template, `<COLOR_NAME>Text</>`.
+- **Icons**: a button to the left of each table row copies the full syntax directly, `<IMG>ICON_NAME<>`.
+- **Real-world examples** (Info tab): a button to the right of each of the ten rows copies the example's raw code, which is always the same.
+- **Simulator**: a slightly larger button, to the right of the input field and the same height as it, copies the code exactly as currently typed (the raw text, not the preview). Its content is read at the moment of the click, so it always follows the changes made in the field, with nothing to synchronize. If the field is empty, the click does nothing, so the clipboard isn't overwritten with nothing.
 - **Immediate visual feedback**: the button briefly turns into a checkmark (✓) for about 1.4 seconds to confirm the copy.
 - Relies on the `navigator.clipboard` API, with an automatic fallback (`document.execCommand`) for older browsers that don't support it.
 
@@ -203,7 +211,7 @@ The 145 icons aren't generic placeholder symbols: they are the **actual icons fr
 3. **Manual quality control.** Several passes of visual inspection caught and fixed poorly cropped, off-center icons, or ones contaminated by residue from an adjacent icon — until all 145 icons rendered cleanly.
 4. **Encoding.** Each PNG (transparent background) is encoded in **base64** and stored in a JavaScript object (`ICON_DATA`) mapping each filename to a `data:image/png;base64,...` string, used directly as the `src` attribute of `<img>` tags — exactly as if the image were hosted online, except it's physically present inside the file.
 
-This approach accounts for both the file's size (~312 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
+This approach accounts for both the file's size (~320 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
 
 This data block (`ICON_DATA`) is deliberately isolated at the very end of the file, separate from all the JavaScript logic that precedes it — an organization designed so that reading the code is never drowned out by these few thousand lines of binary text, and to make it easier for the community to add icons in the future.
 
@@ -230,7 +238,7 @@ The guide aims to be upfront about what's confirmed and what isn't:
 
 - **Responsive**: layout adapted for narrow screens (secondary columns hidden on mobile in the color table, safety horizontal scroll on the icon tables).
 - **Modern browsers**: Chrome, Firefox, Edge, Safari — relies on CSS Grid, `mask-image`, and the Clipboard API, all available in every recent version.
-- **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), and the simulator field is tied to a real `<label>` rather than plain floating text.
+- **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), the simulator field is tied to a real `<label>` rather than plain floating text, and the simulator's copy button and clear button carry an `aria-label` too.
 - **No data sent anywhere**: everything runs locally in the browser; no network connection is required after the initial font load.
 
 ---
