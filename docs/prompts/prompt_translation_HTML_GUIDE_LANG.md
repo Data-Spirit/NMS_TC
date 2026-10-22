@@ -1,89 +1,183 @@
 <!-- Version du fichier 
-> Version : 3.3
-> Dernière modification : 2026-09-25
+> Version : 4.0
+> Dernière modification : 2026-10-20
 -->
 
-# Translation Prompt — NMS_TC HTML Guide
+# Translation Prompt — NMS_TC HTML Guide (guide multilingue en un seul fichier)
 
-> **Dernière mise à jour de ce prompt : 2026-09-09 (4)** — correction de références internes obsolètes (`translation_prompt_README_LANG.md` → `prompt_translation_README_LANG.md`), ajout de la politique de retraduction depuis la version à jour (jamais porter/compléter une ancienne traduction), et ajout d'un §0 explicite de correspondance des suffixes de langue, en miroir du prompt README. S'ajoute aux changements précédents du même jour (protocole de fraîcheur, rôle des trois fichiers, protection des modifications de ce prompt, feu vert de traduction, règle des pseudo-noms NAME_COLOR/NAME_ICON, vérifications techniques recommandées, traçabilité `companion_readme` dans l'historique). Cette ligne doit être mise à jour à chaque modification validée de ce prompt (voir section « PROTECTION DES MODIFICATIONS DE CE PROMPT ») — si elle semble absente ou visiblement ancienne par rapport au contenu, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Dernière mise à jour de ce prompt : 2026-10-20** — refonte complète pour le guide multilingue en un seul fichier `NMS_txt_code.html` : on ne traduit plus un fichier HTML par langue, mais **un bloc de langue** (dictionnaire de clés) à l'intérieur du fichier unique. Remplacés : le mode « mise à jour incrémentale » de fichiers séparés, les scripts `trans_script_1_substitutions_*`, `_2_update_translation`, `_4_verify_symmetry`, les règles de correspondance des suffixes de langue et des clés de catégorie (devenues des identifiants neutres). Ajoutés : lecture et écriture des paramètres de traduction dans `_meta.target`, liste de travail des clés à traduire (`--todo`, `--since`), nouveaux scripts `trans_script_1_check_keys` à `trans_script_4_test_render`, règles d'écriture d'un bloc JSON, traduction cohérente des pseudo-noms et du mot-témoin. Ajoutés aussi : emplacement et modèles d'un bloc, vérification préalable de la langue (écriture de droite à gauche, polices, pluriels), encodage, comparaison hors bloc, clés supprimées de la source, cas sans version précédente, prérequis des outils, contexte du projet et terminologie officielle du jeu, traduction toujours depuis le français. Conservés : protocole de modification de ce prompt, feu vert avant de traduire, règles de fraîcheur, de ton, de terminologie et de longueur, rapport de livraison standard et glossaire. Cette ligne doit être mise à jour à chaque modification validée de ce prompt (voir « PROTECTION DES MODIFICATIONS DE CE PROMPT ») — si elle semble absente ou visiblement ancienne par rapport au contenu, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
-Prompt réutilisable pour traduire le fichier `NMS_txt_code_<LANG>.html` (le guide interactif autonome) dans une nouvelle langue.
-Pour une nouvelle traduction : copier ce fichier, changer uniquement le bloc `TARGET`, et donner ce fichier + le `NMS_txt_code_FR.html` source à Claude.
+Prompt réutilisable pour **ajouter une langue** ou **mettre à jour une langue** dans `NMS_txt_code.html` (le guide interactif autonome et multilingue).
 
-Ce prompt est le pendant technique de `prompt_translation_README_LANG.md`. Les deux partagent la même exigence de qualité et la même terminologie (voir la section « PARAMÈTRES ÉDITORIAUX » plus bas, §3 Cohérence terminologique), mais celui-ci s'applique à un fichier **HTML/CSS/JS fonctionnel**, pas à un texte pur : une erreur ici peut casser une fonctionnalité, pas seulement une phrase.
-
-> **Note (depuis l'audit de code du fichier source FR)** : le fichier `NMS_txt_code_FR.html` a été réorganisé structurellement — notamment le bloc `ICON_DATA` (données base64 des icônes), déplacé du milieu du script vers la toute fin, juste avant les appels d'initialisation. Ceci ne change rien aux règles de traduction ci-dessous, mais si vous comparez avec d'anciennes versions traduites (EN/ES antérieures à cet audit), ne vous étonnez pas de retrouver certains blocs à un autre endroit du fichier : c'est un réagencement volontaire, pas une anomalie. **Toute retraduction doit repartir de cette version à jour du fichier `.html` source, jamais porter/compléter une ancienne traduction existante** — une traduction antérieure (EN/ES ou autre) ne sert jamais de base de travail, même partiellement ; elle peut tout au plus être consultée comme référence terminologique via `companion_readme` (voir plus bas), après vérification de sa fraîcheur.
+Ce prompt est le pendant technique de `prompt_translation_README_LANG.md`. Les deux partagent la même exigence de qualité et la même terminologie, mais celui-ci s'applique à un fichier **HTML/CSS/JS fonctionnel** : une erreur dans un bloc de langue peut dégrader l'affichage de cette langue, pas seulement une phrase.
 
 ---
 
-### 0. Règle de correspondance des suffixes de langue (IMPORTANT)
+## COMMENT EST FAIT LE GUIDE (à lire avant tout le reste)
 
-Ce guide HTML a un README compagnon (voir tableau ci-dessus), et **les deux fichiers doivent toujours partager le même suffixe de langue** :
+`NMS_txt_code.html` est un unique fichier autonome. Tout le texte visible vient de **blocs de langue** placés en fin de fichier :
 
-| Guide HTML | README documentant ce guide |
-|---|---|
-| `NMS_txt_code_FR.html` | `README_FR.md` |
-| `NMS_txt_code_EN.html` | `README_EN.md` |
-| `NMS_txt_code_ES.html` | `README_ES.md` |
-| `NMS_txt_code_<lang_code>.html` | `README_<lang_code>.md` |
+```html
+<!-- ===== LANGUE : FRANÇAIS (source / par défaut) ===== -->
+<script type="application/json" id="i18n-fr"> { "_meta": { … }, "clé": "texte", … } </script>
+<!-- ===== LANGUE : ENGLISH ===== -->
+<script type="application/json" id="i18n-en"> { "_meta": { … }, "clé": "texte", … } </script>
+```
 
-Le nom du fichier produit (`output_filename` dans `TARGET`) doit toujours suivre la convention `NMS_txt_code_<lang_code>.html`, où `<lang_code>` est exactement celui défini dans `TARGET`. Cette règle vaut uniquement pour le guide HTML (`prompt_translation_HTML_GUIDE_LANG.md`) ; le prompt `prompt_translation_README_LANG.md` gère la règle miroir pour le README — les deux prompts sont complémentaires mais indépendants.
+- Le HTML ne contient **plus de texte traduisible** : chaque élément porte une clé (`data-i18n="infos.li.03"`, ou `data-i18n-attr="placeholder:clé"` pour les attributs). Le code JavaScript lit les clés (`T('clé')`, `TA('clé')`).
+- **Le bloc français est la source** : toute nouvelle fonctionnalité s'écrit d'abord en français, puis se traduit dans les autres blocs. Ce prompt ne modifie **jamais** le bloc français ni le code : ce sont des tâches distinctes, avec leur propre validation.
+- Chaque bloc commence par un champ **`_meta`** : `native_name` (nom de la langue dans sa propre langue), `flag` (drapeau emoji), `lang_code`, `translation_version`, `updated`, et `target` (les paramètres de traduction ci-dessous). Le sélecteur de langue du guide se construit à partir de `_meta`.
+- Un texte peut contenir une **mise en forme limitée** : `strong`, `em`, `b`, `i`, `code`, `span class='…'`, `br`, `a`. Tout le reste est neutralisé à l'affichage.
+- Une valeur peut être une chaîne **ou une liste de morceaux** recollés bout à bout, pour garder un long paragraphe lisible sur plusieurs lignes.
+- **Repli** : une clé absente dans une langue s'affiche dans la langue source (jamais une erreur), mais le contrôle la signale.
 
----
+## CONTEXTE DU PROJET (pour le ton et le vocabulaire)
 
-## LES TROIS FICHIERS FOURNIS — RÔLE DE CHACUN (à lire avant tout le reste)
+Ce guide s'adresse aux joueurs de **No Man's Sky** qui renomment en jeu leurs bases, vaisseaux, coffres ou sauvegardes à l'aide de **balises de couleur et d'icône**. Ces balises sont des codes internes du jeu (`<PET1><IMG>TECH1<> Techs</>`) que le guide explique, illustre et permet d'essayer. Le lecteur est un joueur, pas un développeur : le texte doit être clair, précis et agréable, sans jargon inutile.
 
-Une session de traduction avec ce prompt fournit typiquement trois fichiers. Chacun a un rôle précis et **un seul des trois est le texte à traduire** :
+## FICHIERS FOURNIS — RÔLE DE CHACUN
 
-| Fichier | Rôle | Faut-il le traduire ? |
+| Fichier | Rôle | Faut-il le modifier ? |
 |---|---|---|
-| `NMS_txt_code_<LANG_SOURCE>.html` (ex. `NMS_txt_code_FR.html`) | **La source** : le guide HTML à traduire vers `target_language`. | **Oui — c'est l'unique cible de la traduction.** |
-| `prompt_translation_HTML_GUIDE_LANG.md` (ce fichier) | Le mode d'emploi : quoi traduire, quoi ne jamais toucher, comment vérifier. | Non — c'est la consigne, pas un contenu à traduire. |
-| `README_<LANG_SOURCE>.md` (ex. `README_FR.md`, fourni dans la même langue que le HTML source) | Un **document de contexte**, donné pour que la traduction du HTML soit fidèle à la conception réelle du projet (pourquoi telle section existe, comment telle fonctionnalité a été pensée, etc.). | **Non, jamais dans cette session.** Ce README n'est pas la cible — il n'est là que pour informer la traduction du HTML. Le traduire relèverait d'une tout autre session, avec `prompt_translation_README_LANG.md`. |
+| `NMS_txt_code.html` | Le guide, qui contient le bloc source et les blocs déjà traduits. | **Oui, uniquement le bloc de la langue cible** (le créer ou le mettre à jour). |
+| Version précédente de `NMS_txt_code.html` (facultative) | Sert à détecter les clés modifiées dans la source depuis la dernière traduction (`--since`). | Non. |
+| `prompt_translation_HTML_GUIDE_LANG.md` (ce fichier) | Le mode d'emploi. | Non. |
+| `README_<LANG>.md` fourni pour contexte | Document de contexte dans la langue source, pour que la traduction soit fidèle à la conception du projet. | **Non, jamais dans cette session** : le traduire relève de `prompt_translation_README_LANG.md`. |
+| `docs/scripts/trans_script_*` | Les scripts de contrôle (voir plus bas), à exécuter, pas à traduire. | Non. |
 
-**Repère utile (signal, pas règle absolue)** : si la personne fournit `prompt_translation_HTML_GUIDE_LANG.md`, l'intention est presque toujours de traduire le HTML, pas le README qui l'accompagne — et symétriquement, si elle fournit `prompt_translation_README_LANG.md`, l'intention est de traduire le README. Un README fourni à côté du prompt HTML (ou l'inverse) est là pour du **contexte**, pas comme cible implicite. En cas de doute réel sur l'intention, poser la question plutôt que présumer.
+**`companion_readme`** (un `README_<lang_code>.md` déjà traduit dans la langue cible, pour réutiliser le même vocabulaire) n'est en jeu que si la personne le fournit ou le désigne **explicitement** pour la session. Ne jamais aller le chercher de soi-même dans l'historique de la conversation. Sans lui, les choix de terminologie faits ici font référence pour la traduction ultérieure du README.
 
-**À ne pas confondre avec `companion_readme`** (voir bloc `TARGET` et §3 plus bas) : ce README de contexte est dans la **langue source** (celle du HTML à traduire, souvent le français) — il ne peut donc pas servir de référence terminologique pour la langue cible. `companion_readme` désigne un cas différent : un `README_<lang_code>.md` **déjà traduit dans la langue cible** (ex. `README_ES.md` pour une traduction vers l'espagnol), utilisé pour réutiliser le même vocabulaire d'une langue à l'autre. Les deux notions peuvent coexister dans une même session mais ne sont jamais le même fichier.
-
-**`companion_readme` n'est en jeu que si la personne le fournit ou le désigne explicitement pour la session en cours.** Ne jamais aller chercher de soi-même, dans l'historique de la conversation, un README déjà traduit dans la langue cible lors d'un tour antérieur pour le traiter comme `companion_readme` — même s'il existe, même s'il porte le nom attendu (`README_<lang_code>.md`). Tant que la personne n'a pas explicitement indiqué qu'un tel fichier doit servir de référence pour cette session, `companion_readme` est considéré comme **absent**, un point c'est tout : ne pas le mentionner, ne pas le proposer, ne pas y faire référence. Un cas fréquent (comme dans ce projet) : seuls le HTML source et son README de contexte en langue source sont fournis, avec l'intention explicite de traduire le README correspondant *plus tard*, dans un tour ultérieur séparé. Dans ce cas, cette traduction du HTML est **autosuffisante** et devient elle-même la référence terminologique pour la traduction future du README (voir §3) — sans qu'il soit utile ni pertinent de rouvrir la question d'un `companion_readme` existant ou non.
-
-**Note de portée** : ce prompt suppose implicitement que la langue source du HTML est le français (`NMS_txt_code_FR.html`, onglets `Infos/Couleurs/Icônes/À propos`), conformément au fait que le français est la langue de référence maîtresse du projet (voir `README_FR.md`). Si un jour la langue source d'une traduction demandée n'est pas le français (ex. traduire depuis un `NMS_txt_code_EN.html`), le rôle des fichiers reste le même mais les exemples de libellés ci-dessous doivent être adaptés en conséquence — signaler ce cas à la personne s'il se présente plutôt que de présumer silencieusement.
+**Note de portée** : ce prompt suppose que la langue source est le français. Si ce n'est plus le cas un jour, le signaler à la personne plutôt que de présumer.
 
 ---
 
 ## TARGET
 
 ```yaml
-target_language: English            # ex: English, Deutsch, Español, 日本語
-target_variant: neutral/standard    # ex: US, UK, neutral/standard, none
-lang_code: EN                       # code à 2 lettres majuscules — DOIT être identique à celui utilisé pour le README correspondant
-output_filename: NMS_txt_code_EN.html   # convention : NMS_txt_code_<lang_code>.html
-source_file: NMS_txt_code_FR.html
-html_lang_attribute: en             # code ISO 639-1 minuscule pour l'attribut <html lang="...">
-tone: passionate/stylized           # ex: passionate/stylized, neutral/technical, compromise — ton éditorial à conserver ou adapter
-fidelity_style: idiomatic           # ex: idiomatic (adaptation naturelle), literal (fidèle/littérale), case-by-case
-companion_readme: README_EN.md      # README déjà TRADUIT dans la langue cible — à renseigner UNIQUEMENT si la personne le fournit ou le désigne explicitement pour cette session. Ne jamais le déduire d'un fichier déjà vu dans la conversation. Laisser vide/absent si non fourni : cette traduction HTML devient alors elle-même la référence terminologique (voir §3).
+target_language: English            # ex : English, Deutsch, Español, 日本語
+lang_code: en                       # code de langue en minuscules (BCP-47) : en, es, de, pt-BR, zh-Hans… DOIT être identique à l'id du bloc (i18n-en) et à _meta.lang_code
+native_name: English                # nom de la langue dans sa propre langue (affiché dans le sélecteur)
+flag: "🇬🇧"                         # drapeau emoji le plus correspondant à la langue (un repli image reste possible si l'affichage pose problème)
+target_variant: neutral/standard (US)   # ex : US, UK, neutral/standard, none
+tone: passionate/stylized           # ex : passionate/stylized, neutral/technical, compromise (sober, key imagery kept)
+fidelity_style: idiomatic           # ex : idiomatic (adaptation naturelle), literal, case-by-case
+aria_label_style: B                 # A (miroir du placeholder) ou B (libellé autonome pensé pour l'oral) : voir « CE QUI SE TRADUIT »
+source_language: fr                 # langue source du bloc de référence
+companion_readme:                   # README déjà TRADUIT dans la langue cible : à renseigner UNIQUEMENT si la personne le fournit ou le désigne explicitement
 ```
+
+**Ces valeurs sont aussi écrites dans `_meta.target` du bloc de la langue** (variant, tone, fidelity_style, aria_label_style, et l'origine du texte) : c'est la mémoire des choix faits. Pour une langue existante, **lire `_meta.target` de son bloc** donne les valeurs de la traduction précédente.
 
 ---
 
 ## RÈGLE DE DÉMARRAGE OBLIGATOIRE — à exécuter avant toute traduction, même répétée
 
-**Ne jamais présumer que les valeurs de `TARGET` (notamment `tone` et `fidelity_style`) restent valables d'une session à l'autre, même si cette même personne a déjà utilisé ce prompt auparavant avec des valeurs identiques.** Une session de traduction précédente ne vaut pas confirmation pour la session en cours.
+**Ne jamais présumer que les valeurs de `TARGET` restent valables d'une session à l'autre.** Une session précédente ne vaut pas confirmation pour la session en cours.
 
-Avant de commencer toute traduction, reformuler explicitement à la personne les valeurs actuelles de **`target_language`, `target_variant`, `tone`, `fidelity_style`, et le style des 3 attributs `aria-label` (Option A miroir du placeholder / Option B libellé autonome, voir §A plus bas)** — cette dernière n'étant pas un simple choix de langue mais un choix d'accessibilité à part entière, elle doit être reconfirmée avec la même rigueur que les autres paramètres, pas laissée à la seule mention isolée du §A. Préciser, le cas échéant, le choix fait lors d'un usage précédent comme simple rappel, jamais comme valeur acquise, et demander confirmation ou modification. Ne démarrer la traduction qu'après cette confirmation explicite.
+Avant de commencer, poser à la personne les valeurs de **`target_language`, `target_variant`, `tone`, `fidelity_style` et du style des `aria-label`** **sous forme de questions à choix** (fenêtre cliquable quand l'interface le permet, sinon liste numérotée), en rappelant comme valeur précochée celle de **`_meta.target` du bloc existant** (ou, pour une nouvelle langue, celle d'une langue déjà traduite, signalée comme telle). Ce rappel n'est jamais une valeur acquise : la personne confirme ou modifie. Le choix du drapeau et du nom de la langue pour une nouvelle langue se propose et se valide de la même façon. Ne démarrer qu'après cette confirmation explicite.
 
 ## RÈGLE DE FRAÎCHEUR DES FICHIERS FOURNIS — à exécuter avant toute traduction
 
-**Un nom de fichier identique ne garantit jamais un contenu identique.** Que ce soit le fichier HTML source, ce prompt lui-même, ou un README de contexte/`companion_readme` : si l'un de ces fichiers est fourni à nouveau au cours d'une conversation (même sous le nom exact déjà vu précédemment), il faut le traiter comme potentiellement différent de la version déjà en mémoire — **jamais comme un doublon silencieux**. En pratique, si la personne redonne un fichier portant un nom déjà rencontré, c'est le plus souvent précisément *parce qu'il a été mis à jour, corrigé ou enrichi* depuis la dernière fois.
+**Un nom de fichier identique ne garantit jamais un contenu identique.** Tout fichier fourni à nouveau en cours de conversation est à traiter comme potentiellement différent de la version déjà vue, jamais comme un doublon silencieux.
 
-Avant de commencer, pour **chacun** des fichiers fournis dans le tour de conversation en cours :
+Avant de commencer, pour chacun des fichiers fournis :
 
-1. **Fichier source HTML** : confirmer explicitement à la personne son nom, son nombre de lignes (ou une autre métrique simple : taille en octets), et au moins un élément structurel distinctif permettant de vérifier qu'il s'agit bien de la dernière version en date (ex. présence de `FLAG_LABELS`, de `copyButtonHtml()`, position du bloc `ICON_DATA`). **Attention : le nombre de lignes seul est un indice, pas une preuve** — deux versions différentes peuvent coïncidentellement partager le même nombre de lignes. En cas de doute réel (versions proches, différences suspectées mais non confirmées), calculer et comparer un hash (`md5sum`) est une vérification plus robuste.
-2. **README de contexte fourni avec ce tour** (s'il y en a un) : ne pas se contenter de le lire — comparer sa structure de titres/sections avec toute version de ce même README déjà vue dans la conversation, pour confirmer qu'il s'agit bien de la version la plus à jour.
-3. **`companion_readme`** (uniquement s'il a été explicitement fourni ou désigné par la personne pour cette session — jamais rappelé de mémoire de sa propre initiative, voir règle ci-dessus) : **avant de l'utiliser comme référence terminologique**, comparer sa structure (titres, callouts, sections distinctives comme des blocs `🔧 Détail technique`) avec celle du README de contexte en langue source fourni dans le tour actuel. Si des éléments distinctifs présents côté source sont absents côté `companion_readme`, ce dernier est **obsolète** : ne pas l'utiliser tel quel comme référence terminologique sans le signaler explicitement à la personne, décrire précisément ce qui manque, et lui demander comment procéder (le retraduire d'abord, s'appuyer uniquement sur les termes de base déjà validés, ou traiter ce fichier HTML comme la nouvelle référence terminologique).
+1. **`NMS_txt_code.html`** : confirmer à la personne son nom, sa taille en octets, son md5 et le numéro de version de son en-tête, ainsi que la **liste des langues présentes** (blocs `i18n-*`) et leur `_meta.translation_version`. Le nombre de lignes seul n'est qu'un indice : en cas de doute, comparer le md5.
+2. **Version précédente** (si fournie pour `--since`) : vérifier qu'elle est bien antérieure et qu'elle contient les mêmes langues sources.
+3. **README de contexte** (si fourni) : comparer sa structure de titres avec toute version déjà vue dans la conversation.
+4. **`companion_readme`** (uniquement s'il a été explicitement désigné) : avant de l'utiliser comme référence terminologique, comparer sa structure avec celle du README de contexte ; s'il est obsolète, le signaler et demander comment procéder.
+5. **Scripts** : confirmer le nom, la version et le md5 de chacun avant de les exécuter, d'après le tableau ci-dessous.
 
-Ne jamais réutiliser silencieusement un fichier ou une traduction produite lors d'un tour précédent de la conversation sans revalider explicitement qu'il s'agit bien de la version la plus récente fournie.
+Ne jamais réutiliser silencieusement un fichier ou une traduction produite lors d'un tour précédent sans revalider qu'il s'agit bien de la version la plus récente fournie.
+
+---
+
+## VÉRIFICATION PRÉALABLE DE LA LANGUE CIBLE
+
+Avant de commencer, vérifier que le guide sait afficher la langue demandée. **S'arrêter et demander à la personne** si la langue :
+
+- **s'écrit de droite à gauche** (arabe, hébreu, persan…) : le moteur du guide ne règle pas le sens d'écriture (`dir`), l'affichage serait cassé ;
+- **utilise un alphabet que les polices du guide peuvent ne pas couvrir** (chinois, japonais, coréen, alphabets peu courants…) : le navigateur emploie alors une police de secours, à valider visuellement par la personne ;
+- **accorde les nombres au pluriel** (russe, polonais, arabe…) : `count.tags` ne gère pas l'accord ; le formuler de façon neutre (par exemple « {n} / {total} : balises ») et le signaler.
+
+Une langue de la même famille que celles déjà présentes (alphabet latin ou cyrillique courant, sens gauche-droite) ne demande pas de précaution particulière.
+
+---
+
+## MÉTHODE DE TRAVAIL
+
+1. **Vérifier la fraîcheur** des fichiers (règle ci-dessus).
+2. **Obtenir la liste de travail sans lire le fichier entier** :
+   - nouvelle langue : `python3 trans_script_1_check_keys.py NMS_txt_code.html --todo <lang_code>` ;
+   - mise à jour d'une langue existante : ajouter `--since NMS_txt_code_precedent.html` pour inclure les clés modifiées dans la source et non retouchées dans la langue.
+   **Sans version précédente du fichier**, les textes français modifiés ne sont pas détectables (le contrôle ne voit que les clés manquantes). Ne pas le taire : demander la version précédente ; à défaut, l'écrire dans le rapport (« modifications du texte source non détectables ») et comparer au moins `_meta.translation_version` du bloc à la version du guide.
+   La sortie donne chaque clé à traduire avec son texte source. **Ne traduire que ces clés.**
+3. **Poser les paramètres `TARGET`** (règle de démarrage) et lever toute ambiguïté.
+4. **Attendre le feu vert de traduction** (section suivante).
+5. **Écrire le bloc** de la langue cible directement **sur le disque**, avec un petit script, sans afficher le fichier entier ni le coller dans la conversation : créer le bloc (nouvelle langue) ou remplacer/compléter ses clés (mise à jour), dans l'ordre des clés de la source, avec un `_meta` à jour. Ne rien modifier d'autre dans le fichier (voir « RÈGLES TECHNIQUES » et la sous-section « Où placer le bloc » ci-dessous).
+6. **Contrôler** (section « VÉRIFICATIONS »).
+7. **Livrer** (section « LIVRABLE »).
+
+### Règles d'écriture d'un bloc de langue
+
+- Un bloc est un **JSON valide** : chaînes entre guillemets doubles, `"` et `\` échappés, aucune virgule finale, aucun retour à la ligne brut à l'intérieur d'une chaîne.
+- Les attributs HTML à l'intérieur d'un texte s'écrivent **entre apostrophes** (`<span class='syn-tag'>`), comme dans la source : cela évite d'avoir à échapper des guillemets.
+- Un long texte peut être une **liste de morceaux** (`["…", "…"]`) recollés sans espace ajouté : couper aux fins de phrase ou après un `<br>`, et conserver les espaces aux jonctions.
+- Mêmes **clés**, dans le **même ordre** que la source ; garder les lignes vides qui séparent les zones.
+- Ne jamais écrire `</script` ni `<!--` dans un bloc.
+- Les entités (`&lt;`, `&gt;`, `&amp;`) se conservent telles qu'elles sont dans la source.
+
+### Où placer le bloc, comment l'écrire, comment prouver qu'il est seul modifié
+
+**Emplacement.** Un nouveau bloc se place **après le dernier bloc de langue existant et avant `</body>`**, précédé d'un commentaire de séparation de la même forme que les autres, puis de sa balise `<script>` (l'`id` est `i18n-` suivi du `lang_code`) :
+
+```html
+<!-- ============================================================================
+     LANGUE : ESPAÑOL
+     ============================================================================ -->
+<script type="application/json" id="i18n-es">
+{ … }
+</script>
+```
+
+**Ordre.** L'ordre des blocs dans le fichier est l'ordre d'affichage du sélecteur de langue : le français (source) d'abord, puis les langues dans l'ordre d'ajout, sauf demande contraire de la personne.
+
+**Exemple de `_meta`** (tous les champs sont attendus ; les valeurs de `target` sont celles validées au démarrage) :
+
+```json
+"_meta": {
+  "native_name": "Español",
+  "flag": "🇪🇸",
+  "lang_code": "es",
+  "role": "traduction",
+  "translation_version": "2.0",
+  "updated": "2026-10-20",
+  "source_version": "fr 2.0",
+  "target": {
+    "variant": "neutral/standard",
+    "tone": "passionate/stylized",
+    "fidelity_style": "idiomatic",
+    "aria_label_style": "B (libellé autonome)",
+    "origin": "traduit depuis le français (bloc i18n-fr)"
+  }
+},
+```
+
+**Exemples de valeurs** : une chaîne simple, ou une liste de morceaux pour un long texte.
+
+```json
+"nav.tab.infos": "Información",
+"infos.p.01": [
+  "Première phrase du paragraphe. ",
+  "Deuxième phrase, avec un <code>exemple</code>."
+],
+```
+
+**Encodage.** Le fichier est en UTF-8 sans BOM. Les caractères non ASCII (accents, alphabets, émojis, guillemets typographiques « » “ ” ’) s'écrivent tels quels, sans séquence d'échappement `\uXXXX`. Relever les fins de ligne du fichier avant d'écrire et les conserver ; lire et écrire en UTF-8 de façon explicite.
+
+**Clés supprimées de la source.** Si la source a supprimé des clés (`--since` les indique ; sinon le contrôle signale des « clés en trop »), les **retirer** du bloc cible : c'est la seule suppression autorisée. Une clé renommée équivaut à une clé supprimée et une clé ajoutée : traduire la nouvelle à partir de son texte source.
+
+**Preuve que rien d'autre n'a bougé.** Garder une copie intacte du fichier avant d'écrire. Après écriture, tout ce qui se trouve **hors du bloc de la langue cible** doit être identique à la copie, octet pour octet (hors la date de l'en-tête et, pour une nouvelle langue, le bloc ajouté avec son séparateur). Au moindre écart : restaurer la copie et recommencer. Citer le résultat de cette comparaison dans le rapport.
 
 ---
 
@@ -106,103 +200,67 @@ qui déclenche une traduction :
    à chaque modification effectivement appliquée, avec la date et un résumé bref — c'est ce qui permet
    de détecter si ce prompt lui-même est obsolète lors d'une session future (voir règle de fraîcheur).
 
-Ce protocole est indépendant de celui qui encadre la traduction du HTML lui-même (section suivante) : traduire
-le HTML et modifier les instructions de traduction sont deux gestes distincts, chacun avec son propre feu vert,
+Ce protocole est indépendant de celui qui encadre la traduction elle-même (section suivante) : traduire
+et modifier les instructions de traduction sont deux gestes distincts, chacun avec son propre feu vert,
 jamais l'un ne couvrant l'autre.
 
 ---
 
 ## ATTENDRE LE FEU VERT AVANT DE TRADUIRE
 
-Toutes les étapes de validation ci-dessus (rôle des fichiers, fraîcheur, paramètres `TARGET` reformulés et
+Toutes les étapes de validation ci-dessus (rôle des fichiers, fraîcheur, liste de travail, paramètres `TARGET`
 confirmés) doivent être **terminées et explicitement validées par la personne** avant qu'une seule ligne du
-fichier `.html` cible ne soit écrite. Concrètement :
+fichier ne soit écrite. Concrètement :
 
-1. Vérifier la fraîcheur des fichiers fournis (voir règle ci-dessus).
-2. Reformuler et faire valider les paramètres `TARGET` (voir règle de démarrage ci-dessus), y compris le choix
-   `aria-label`.
+1. Vérifier la fraîcheur des fichiers fournis.
+2. Présenter la liste de travail (nombre de clés, nouvelles ou modifiées) et les paramètres `TARGET` à confirmer.
 3. Poser toute question nécessaire pour lever une ambiguïté restante.
 4. **Ne commencer la traduction qu'après une phrase de confirmation explicite et non ambiguë de la personne**
-   (ex. « c'est bon tu as le feu vert », « c'est bon tu peux utiliser le prompt pour traduire... », ou toute
-   formulation équivalente désignant sans ambiguïté le feu vert pour *traduire*, distincte du feu vert qui
-   couvrirait une modification de ce prompt — voir section précédente).
+   (ex. « tu as le feu vert », ou toute formulation équivalente désignant sans ambiguïté le feu vert pour
+   *traduire*, distincte du feu vert qui couvrirait une modification de ce prompt).
 
-Cette règle vaut même si la personne a déjà donné ce feu vert lors d'un usage antérieur de ce prompt dans la
-même conversation : chaque nouvelle traduction (nouvelle langue, nouvelle version du fichier source, etc.)
-redemande sa propre confirmation explicite.
+Cette règle vaut même si la personne a déjà donné ce feu vert lors d'un usage antérieur : chaque nouvelle
+traduction ou mise à jour (nouvelle langue, nouvelle version du guide) redemande sa propre confirmation.
 
 ---
 
 ## RÔLE
 
-Tu es à la fois **traducteur technique** et **développeur front-end rigoureux**. Tu traduis un fichier HTML autonome (HTML + CSS + JavaScript vanilla dans un seul fichier) sans jamais casser son fonctionnement. Chaque modification de texte doit être vérifiée pour ses répercussions techniques avant d'être appliquée : dans ce fichier, du texte "de contenu" (noms de catégories, libellés) fait aussi office de donnée logique (clé de regroupement, valeur de filtre, clé de correspondance). Une traduction fidèle mais qui casse une correspondance de clé est un échec, pas une réussite partielle.
+Tu es à la fois **traducteur technique** et **développeur front-end rigoureux**. Tu écris ou mets à jour des valeurs de dictionnaire qui s'affichent dans une interface fonctionnelle. Chaque chaîne doit être vérifiée pour ses répercussions techniques : une valeur peut contenir un `{paramètre}` que le code remplit, un extrait de syntaxe de jeu qui doit rester exécutable, ou une balise de mise en forme à respecter. Une traduction fidèle qui perd un `{paramètre}` ou altère un exemple de code est un échec, pas une réussite partielle.
 
 ---
 
-## PÉRIMÈTRE DE LA TRADUCTION — CE QUI SE TRADUIT
+## CE QUI SE TRADUIT
 
-### A. Texte HTML visible
-- Contenu du `<title>`.
-- Tout le texte des 4 onglets (Infos/Couleurs/Icônes/À propos) : titres `h1`/`h2`/`h3`, paragraphes, listes, encadrés (`.protip`, `.important-box`, `.warn-box`, `.info-box`), libellés de la barre de simulateur, texte du footer.
-- Libellés des boutons d'onglets (`Infos`, `Couleurs`, `Icônes`, `À propos`).
-- Placeholders des champs de recherche (`placeholder="..."`).
-- Attributs `aria-label` sur les champs de recherche (`#color-search`, `#icon-search`) et sur le filtre de catégorie (`#icon-cat-filter`) — destinés aux lecteurs d'écran.
+**Les valeurs des clés du bloc**, c'est-à-dire :
 
-  **Choix de style à valider avec la personne avant de traduire** (ce n'est pas qu'une question de langue, c'est un choix d'accessibilité) :
-  - **Option A — miroir du placeholder** : reprendre le texte du placeholder correspondant, sans la partie exemples (ex. `Search a color tag`). Cohérence visuelle/sonore maximale entre les deux.
-  - **Option B — libellé autonome pensé pour l'oral** : rédiger un texte indépendant, optimisé pour être compris hors contexte visuel par une voix de synthèse (ex. `Color tag search field`). Recommandé par les bonnes pratiques WCAG, car un lecteur d'écran n'a pas le contexte visuel du placeholder à côté.
+- **Textes des 4 onglets** (`infos.*`, `colors.*`, `icons.*`, `about.*`), du bandeau et du simulateur (`hero.*`), de la navigation (`nav.*`) et du pied de page (`footer.*`).
+- **`page.title`** (titre de la page) et **`lang.label`** (libellé du sélecteur de langue, lu par les lecteurs d'écran).
+- **Textes générés par le JavaScript** : `copy.*` (préfixe des info-bulles de copie `{text}` et mot-témoin du gabarit copié), `count.*` (compteurs, ex. `{n} / {total} …`), `colors.alpha_pill`, `icons.th.*` (en-têtes de tableau), `icons.none`, `icons.all_categories`, `icon.tinted_title`, `flag.*` (badges `doublon`, `non fonctionnel`, `à vérifier`), `path.*` (libellés « chemin non listé », « symbole de portail », « aucun chemin assigné »).
+- **Messages d'erreur du simulateur** (`sim.err.*`) : balise inconnue (couleur ou icône), erreur de casse (nom existant écrit en minuscules, avec la correction à utiliser) et mot-clé `IMG` écrit en minuscules. Les `{name}` et `{fix}` sont remplis par le code et **ne se traduisent jamais**. L'ordre des mots peut changer selon la langue (« Unknown color » contre « Couleur inconnue »). Pour une langue sans distinction majuscule/minuscule, adapter le message (les balises du jeu restent des lettres latines) et le signaler à la personne.
+- **Catégories** : `cat.<id>` (libellé de chaque catégorie) et `cat.<id>.desc` (description). Les catégories sont des identifiants neutres dans le code : le risque d'une clé de catégorie désynchronisée n'existe plus. En revanche, **un même libellé de catégorie doit s'écrire de la même façon** partout où il est repris dans les textes (onglet Icônes, À propos, etc.).
+- **Attributs** : `placeholder`, `aria-label` et `title` (clés en `.placeholder`, `.aria`, `.title`).
 
-  Ne pas choisir par défaut : demander la préférence à la personne avant de traduire ces 3 attributs, sauf si un choix a déjà été explicitement validé pour ce projet — auquel cas le rappeler comme au §RÈGLE DE DÉMARRAGE ci-dessus (rappel, pas présomption).
-- Attribut `lang` de la balise `<html>` → utiliser `html_lang_attribute` défini dans `TARGET`.
+  **Style des `aria-label`** (choix d'accessibilité à valider avant de traduire, pas une simple question de langue) :
+  - **Option A, miroir du placeholder** : reprendre le texte du placeholder correspondant, sans la partie exemples (ex. `Search a color tag`).
+  - **Option B, libellé autonome pensé pour l'oral** : un texte indépendant, compris hors contexte visuel par une voix de synthèse (ex. `Color tag search field`). Recommandé par les bonnes pratiques WCAG.
 
-### A bis. Pseudo-noms de balises génériques (placeholders pédagogiques)
-Le HTML statique utilise deux pseudo-noms de balises à visée purement pédagogique, `NAME_COLOR` et `NAME_ICON` — ils illustrent la forme générale de la syntaxe (dans le bandeau d'aide du simulateur en hero, et dans la section « Syntaxe » de l'onglet Infos) mais **ne sont pas de vraies balises du jeu** : ils n'apparaissent dans aucune ligne des tableaux `COLORS`/`ICONS`, contrairement aux vrais identifiants comme `VISOR` ou `PET1`.
+  Ne pas choisir par défaut : rappeler le choix de `_meta.target.aria_label_style`, comme au démarrage. Les deux boutons du simulateur (copie, effacement) n'ont aucun texte visible à refléter : seule l'option B (ex. `Copy simulator code`, `Clear simulator field`) a un sens pour eux.
+- **`_meta`** : `native_name`, `flag`, `lang_code`, `translation_version` (version du guide reflétée), `updated` (date), `source_version`, et `target` (paramètres validés, plus l'origine du texte).
 
-**Règle (validée) : les traduire**, contrairement aux vraies balises NMS qui elles restent toujours intactes. Conserver la structure `MOT_MOT` en MAJUSCULES_AVEC_UNDERSCORE, en traduisant les deux mots dans la langue cible. Exemple validé pour l'espagnol : `NAME_COLOR` → `NOMBRE_COLOR`, `NAME_ICON` → `NOMBRE_ICONO`. Appliquer ce même principe de traduction du couple de mots pour toute autre langue cible. Traduire **toutes** les occurrences de ces deux pseudo-noms, qu'elles soient dans le bandeau d'aide du simulateur ou dans l'onglet Infos — ne pas en oublier une par inadvertance en ne traitant qu'un seul des deux emplacements.
+**Pseudo-noms de balises génériques.** Le texte contient deux pseudo-noms pédagogiques, `NAME_COLOR` et `NAME_ICON`, qui illustrent la forme de la syntaxe mais **ne sont pas de vraies balises du jeu**. Règle validée : **les traduire**, en conservant la forme `MOT_MOT` en MAJUSCULES_AVEC_UNDERSCORE (ex. espagnol : `NOMBRE_COLOR`, `NOMBRE_ICONO`), sur **toutes** leurs occurrences. De même, le mot-témoin `Text` de l'aide de syntaxe (`<span class='syn-text'>`) est le **jumeau** du mot copié par les boutons (clé `copy.template_word`) : **ils doivent être le même mot traduit**. Ce sont les seuls éléments d'un extrait `<code>` qu'une traduction peut modifier.
 
+**Ce qui ne se traduit plus.** Les commentaires de code (HTML, CSS, JavaScript) appartiennent au fichier unique et restent dans la langue du mainteneur : ils ne sont **plus** traduits. Le `<title>` statique du HTML reste en français (valeur de secours sans JavaScript, vérifiée par le contrôle).
 
-### B. Texte généré dynamiquement en JavaScript (chaînes littérales dans le code)
-Ces chaînes n'apparaissent pas comme texte HTML statique mais sont injectées au rendu — elles doivent être traduites avec la même rigueur que le texte visible :
-- Libellés de badges de statut : `doublon`, `non fonctionnel`, `à vérifier`. *(Depuis l'audit de code : ces trois libellés sont désormais regroupés dans une seule constante `FLAG_LABELS` en début de section de rendu des icônes, au lieu d'un enchaînement de conditions dispersé dans le code — plus facile à repérer d'un coup d'œil.)*
-- En-têtes de tableau générés en JS : `Aperçu`, `Balise`, `Chemin texture`.
-- Option par défaut du filtre catégorie : `Toutes catégories`.
-- Message d'absence de résultat : `Aucun résultat.`
-- Compteurs dynamiques : le suffixe `' balises'` (dans `rows.length + ' / ' + COLORS.length + ' balises'` et son équivalent pour les icônes).
-- Pastille de transparence : `transparence ${...}%`.
-- Gabarit de texte copié pour les couleurs : `Texte` dans `` `<${tag}>Texte</>` `` (c'est un exemple de texte que l'utilisateur va coller puis remplacer en jeu — traduire ce mot-témoin, ex. `Text` en anglais). **Ce mot a un jumeau statique dans le HTML visible** : `<span class="syn-text">Text</span>`, affiché dans le bandeau d'aide du simulateur (hero) — les deux représentent exactement la même idée (le texte libre que l'utilisateur tapera) et **doivent impérativement utiliser le mot traduit identique**. Vérifier cette correspondance explicitement avant de livrer, comme pour les noms de catégories.
-- Préfixe des tooltips de copie : `Copier : ${...}` → traduire uniquement `Copier :`, jamais le contenu de `${...}` (qui est un fragment de code de balise). *(Depuis l'audit de code : ce préfixe est désormais centralisé dans une seule fonction `copyButtonHtml()` au lieu d'être dupliqué à deux endroits du fichier — une seule occurrence à vérifier, ce qui réduit le risque d'oubli.)*
-- Attribut `title` généré pour l'aperçu d'icône teintée : `title="${iconTag} teinté ${colorTag}"` → traduire uniquement le mot `teinté`.
+## CE QUI NE SE TRADUIT JAMAIS
 
-### C. Noms de catégories (le point le plus sensible du fichier)
-Les catégories suivantes apparaissent comme **4ᵉ champ dans le tableau `COLORS`** et **3ᵉ champ dans le tableau `ICONS`**. Elles servent à la fois de texte affiché ET de valeur de regroupement/filtrage :
-
-**Catégories de couleurs** : Joueurs, Génériques, Transmissions / Missions, Compagnons, Carte galactique, Ressources, États / valeurs, Marchandises / Tech, Titres, Missions.
-
-**Catégories d'icônes** : Ressources, Interface, Frégates, Symboles de portail, Inventaire, Voix / Réseau, Butin, Plateformes / Contrôles, Classe (C→S), Modes de jeu, Édition de base, Non fonctionnel.
-
-**Règle absolue** : construire d'abord un petit glossaire fixe *catégorie française → catégorie cible* (une seule fois), puis l'appliquer **à l'identique, caractère pour caractère, à chaque occurrence** de cette catégorie dans tout le fichier — y compris :
-1. Chaque ligne du tableau `COLORS` où elle apparaît comme 4ᵉ élément.
-2. Chaque ligne du tableau `ICONS` où elle apparaît comme 3ᵉ élément.
-3. Le commentaire de section juste au-dessus du bloc correspondant dans `ICONS` (ex. `// Ressources`, `// Frégates`).
-4. **La clé de l'objet `CATEGORY_DESCRIPTIONS`** — actuellement `"Classe (C→S)"`. Cette clé DOIT être remplacée par la traduction exacte utilisée pour cette catégorie dans le tableau `ICONS`, au caractère près (mêmes espaces, mêmes parenthèses, même flèche `→`). Si la clé ne correspond plus exactement à la valeur de catégorie utilisée dans les lignes `ICONS`, la description associée disparaît silencieusement du rendu — sans erreur, sans avertissement. **Vérifier ce point explicitement avant de livrer, avec une méthode programmatique plutôt qu'une simple relecture visuelle** : extraire par script (ex. regex Python) l'ensemble des valeurs de catégorie distinctes réellement utilisées dans `ICONS`, et confirmer que la clé de `CATEGORY_DESCRIPTIONS` y figure exactement. Une relecture à l'œil est insuffisante pour détecter un espace ou un caractère de flèche mal recopié.
-
-### D. Commentaires de code (HTML / JavaScript / CSS)
-Traduire l'intégralité des commentaires, sous toutes leurs formes, pour livrer un fichier source cohérent, entièrement en langue cible :
-- Commentaires JS/CSS (`//` et `/* */`) — y compris les commentaires de section (`/* ==== DATA ==== */` reste tel quel s'il est déjà en anglais générique, mais les commentaires en français comme `// Ordre de référence défini manuellement...` doivent être traduits).
-- **Commentaires HTML (`<!-- ... -->`)** — présents notamment comme marqueurs de section dans le `<body>` (ex. `<!-- ============ INFOS TAB ============ -->`). Ces marqueurs doivent rester cohérents avec le libellé d'onglet traduit correspondant : si l'onglet visible devient `Info` (singulier) en anglais, le commentaire doit devenir `<!-- ============ INFO TAB ============ -->` et non rester sur l'ancien libellé `INFOS TAB`. **Cette règle s'applique aux 4 marqueurs de section** (`INFOS TAB`, `COLORS TAB`, `ICONS TAB`, `NOTES/ABOUT TAB` ou équivalent selon la source) — vérifier les 4, pas seulement le premier rencontré.
-
----
-
-## PÉRIMÈTRE DE LA TRADUCTION — CE QUI NE SE TRADUIT JAMAIS
-
-- **Noms de balises NMS** : toute chaîne en MAJUSCULES_AVEC_UNDERSCORE dans les tableaux `COLORS` et `ICONS` (1ᵉʳ champ) — `VISOR`, `PET1`, `TECH1`, `PR_0`…`PR_15`, `BULLETPOINT_OFF`, etc. Ce sont des identifiants du jeu, jamais du texte.
-- **Codes hexadécimaux** (`#FF776F`…) et valeurs d'opacité numériques.
-- **Chemins de texture** internes au jeu (`TEXTURES/UI/FONTS/...DDS`), noms de fichiers PNG (`sclass.png`…). Seules les valeurs littérales `(chemin non listé)` et `— aucun chemin assigné` et `— symbole de portail` sont du texte à traduire (elles apparaissent comme 4ᵉ champ du tableau `ICONS`, à la place d'un vrai chemin) — attention à ne pas les confondre avec les vrais chemins `.DDS`.
-- **Toutes les données `ICON_DATA`** : chaînes base64 des images, à ne jamais toucher, modifier, reformater ou même relire en profondeur (juste ne pas y toucher).
-- **Noms de classes CSS, ID HTML, noms de variables et fonctions JavaScript** (`COLORS`, `ICONS`, `ICON_DATA`, `CATEGORY_DESCRIPTIONS`, `renderIcons`, `.copy-btn`, `#color-search`, etc.) — modifier un identifiant casse le fichier.
-- **Les 10 exemples concrets de `CONTAINER_EXAMPLES`** (`Techs`, `Metals 1`, `Elmt/Comp`, `DATAs`, `Upgrade 1`, `Upgrade 2`, `MISC`, `Plants`, `Metals 2`, `Alloys`) : ce sont des noms réellement utilisés en jeu par l'auteur, déjà à consonance anglaise/abrégée. Les conserver **strictement identiques**, quelle que soit la langue cible — ne jamais les traduire ni les adapter.
-- **Liens et attributions** : URL GitHub, nom "Spirit", noms de polices (Rajdhani, IBM Plex Sans, JetBrains Mono), "Hello Games", "No Man's Sky".
-- **La syntaxe des balises elle-même** dans les exemples de code affichés (`<PET1><IMG>TECH1<></>` etc.) — ne jamais modifier ces chaînes, elles doivent rester exécutables telles quelles en jeu.
+- **Les clés** elles-mêmes, et leur ordre.
+- **Les `{paramètres}`** (`{name}`, `{fix}`, `{text}`, `{n}`, `{total}`, `{pct}`, `{icon}`, `{color}`) : on les conserve tels quels, on peut seulement changer leur place dans la phrase.
+- **La structure de mise en forme** : balises, noms de classes (`class='syn-tag'`…), adresses de liens (`href`). Ne pas ajouter de balise hors liste (`a`, `b`, `br`, `code`, `em`, `i`, `span`, `strong`).
+- **Les extraits de syntaxe `<code>…</code>`** (ex. `<PET1><IMG>TECH1<></>`, `&lt;/&gt;`), hors pseudo-noms et mot-témoin : ils doivent rester exécutables tels quels en jeu.
+- **Noms de balises NMS** (`VISOR`, `PET1`, `TECH1`…), codes hexadécimaux, chemins de texture, noms de fichiers.
+- **Liens et attributions** : URL GitHub, nom « Spirit », noms de polices, « Hello Games », « No Man's Sky ».
+- **Tout ce qui est en dehors du bloc de la langue cible** : le code, le CSS, le HTML, `ICON_DATA`, les autres blocs, `CONTAINER_EXAMPLES` (noms réellement utilisés en jeu, conservés identiques dans toutes les langues).
 
 ---
 
@@ -211,75 +269,122 @@ Traduire l'intégralité des commentaires, sous toutes leurs formes, pour livrer
 ### 1. Fidélité vs fluidité
 Adaptation naturelle idiomatique, comme pour le README : reformuler pour un rendu naturel en langue cible, sans jamais perdre le sens technique exact. En cas de doute, privilégier la précision technique sur l'élégance stylistique — un README peut se permettre une image, une info-bulle d'interface ne peut pas se permettre une ambiguïté.
 
+**Priorité à la formulation naturelle.** Quand le mot à mot et la formulation la plus fluide et naturelle de la langue cible divergent, la seconde l'emporte (ex. EN : `use RED` plutôt que `write RED` pour « écrire RED »), sans jamais perdre le sens technique exact.
+
+**Langue de départ.** La langue de départ est toujours le **français**. Les autres blocs (par exemple l'anglais) ne servent que de repère terminologique, jamais de texte à traduire : pas de traduction « en relais », qui accumule les dérives. En cas de désaccord de sens entre le français et un autre bloc, suivre le français et le signaler.
+
 ### 2. Ton et registre
-Conserver le même ton que celui déjà établi pour le README de cette langue (passionné, direct, vulgarisé sans être familier). Les deux documents décrivent le même projet et doivent sonner comme écrits par la même personne.
+Conserver le ton défini dans `tone` (rappelé depuis `_meta.target` et confirmé au démarrage). Le guide et le README de la même langue décrivent le même projet et doivent sonner comme écrits par la même personne.
 
-### 3. Cohérence terminologique bidirectionnelle avec le README correspondant
-Le README et ce guide HTML décrivent le même produit et doivent employer un vocabulaire strictement identique. Cette règle est **bidirectionnelle et sans ordre imposé** : ni le HTML ni le README n'est par défaut « traduit en premier » — cela dépend simplement de ce que la personne demande dans chaque session (voir le tableau des rôles des trois fichiers en tête de ce prompt). Ce qui compte n'est pas l'ordre, mais que les deux documents, une fois tous deux traduits dans une langue donnée, utilisent exactement les mêmes choix pour les mêmes notions.
+### 3. Cohérence terminologique
+Le README et ce guide décrivent le même produit et doivent employer un vocabulaire strictement identique. Cette règle est **bidirectionnelle et sans ordre imposé**.
 
-- **Si `companion_readme` (défini dans `TARGET`) a été explicitement fourni ou désigné par la personne pour cette session** : appliquer d'abord la **règle de fraîcheur des fichiers fournis** (voir plus haut) — ne jamais l'utiliser comme référence sans avoir vérifié qu'il est à jour par rapport au README de contexte en langue source fourni dans ce tour. S'il est confirmé à jour, le relire et réutiliser exactement les mêmes choix de traduction pour les termes récurrents du projet (ex. si « balise » a été traduit par « tag » dans le README, utiliser « tag » partout ici aussi ; idem pour « teinte/teinter » → « tint/tinting », « doublon » → « duplicate », etc.). S'il est obsolète, suivre la procédure décrite dans la règle de fraîcheur (signaler, décrire l'écart, demander comment procéder) plutôt que de l'utiliser tel quel ou de l'ignorer silencieusement.
-- **Dans tout autre cas** (aucun `companion_readme` fourni pour cette session, y compris si un README dans la langue cible existe quelque part dans l'historique de la conversation sans avoir été désigné comme référence) : ne pas aller le chercher, ne pas le mentionner. Les choix de terminologie faits ici (noms de catégories, libellés de badges, termes récurrents) font alors référence pour la suite — le prompt `prompt_translation_README_LANG.md` s'appuiera dessus via son propre champ `companion_html_guide` lors d'une traduction ultérieure du README, dans une session séparée. Traduire avec la même rigueur terminologique que si le README à jour existait déjà, puisque ce fichier HTML deviendra lui-même la référence.
+- **Si `companion_readme` a été explicitement fourni ou désigné pour la session** : appliquer d'abord la règle de fraîcheur, puis réutiliser exactement les mêmes choix de traduction pour les termes récurrents (ex. « balise » → « tag », « teinte/teinter » → « tint/tinting », « doublon » → « duplicate »).
+- **Dans tout autre cas** : ne pas le chercher ni le mentionner. Les choix faits ici font alors référence pour la traduction ultérieure du README. **Les blocs déjà traduits du fichier** (ex. le bloc anglais) sont une référence terminologique utile pour une nouvelle langue : s'y reporter pour rester cohérent sur les notions déjà tranchées.
+
+**Termes déjà fixés.** Un terme déjà choisi à un endroit du bloc (ex. le badge `non fonctionnel`, ou le mot-témoin du gabarit) est réutilisé tel quel partout où la même notion apparaît, jamais reformulé.
+
+**Terminologie officielle du jeu.** Quand un concept du texte correspond à un terme officiel du jeu dans la langue cible (nom d'un objet, d'un menu, d'une catégorie comme les frégates ou les compagnons), employer ce terme officiel plutôt qu'une traduction libre. En cas de doute, ne pas inventer : choisir la formulation la plus probable et la **lister dans le rapport** pour que la personne la vérifie dans le jeu.
 
 ### 4. Longueur des chaînes d'interface
-Certaines chaînes traduites s'affichent dans des espaces contraints par du CSS (`.color-cat`, `.flag`, boutons, onglets). Privilégier, quand plusieurs formulations naturelles existent, celle qui reste raisonnablement courte et proche en longueur de l'original — sans sacrifier la clarté pour autant. Ne pas modifier le CSS pour compenser : signaler seulement si une chaîne semble poser un risque de débordement visuel.
+Certaines chaînes s'affichent dans des espaces contraints par du CSS (catégories, badges, boutons, onglets). Privilégier, quand plusieurs formulations naturelles existent, celle qui reste raisonnablement courte — sans sacrifier la clarté. Ne pas modifier le CSS pour compenser : signaler seulement si une chaîne semble poser un risque de débordement visuel.
+
+### 5. Ordre des mots et ponctuation
+À l'intérieur d'une chaîne, l'ordre des mots et la ponctuation suivent la langue cible (espace avant les deux-points en français, aucun en anglais, etc.).
 
 ---
 
-## RÈGLES TECHNIQUES DE SÉCURITÉ (spécifiques au HTML/JS)
+## RÈGLES TECHNIQUES DE SÉCURITÉ
 
-1. **Ne jamais modifier la structure du fichier** : mêmes balises HTML, même imbrication, mêmes attributs (hors valeurs de contenu et `lang`), même CSS, même logique JavaScript, mêmes noms de fonctions/variables/classes/ID.
-2. **Ne jamais reformater ou "nettoyer" le code** : conserver l'indentation, les sauts de ligne et le style de code d'origine à l'identique. Cette traduction est un remplacement de chaînes de caractères, pas une réécriture.
-3. **Respecter l'échappement existant** : toute chaîne traduite insérée dans un attribut HTML ou un template JavaScript doit respecter le même échappement de guillemets/apostrophes/accents que l'original (attention en particulier aux apostrophes françaises dans du code déjà entouré de guillemets simples en JS — vérifier qu'aucune apostrophe anglaise du type `don't` ne casse une chaîne délimitée par `'...'`).
-4. **Vérifier la correspondance exacte des clés d'objet après traduction** (voir §C règle absolue ci-dessus) — c'est le point de rupture silencieuse le plus probable de tout ce fichier.
-5. **Ne jamais toucher aux données `ICON_DATA`, aux valeurs hexadécimales, aux chemins `.DDS`, ni à la syntaxe des balises NMS dans les exemples de code.**
-6. **Le fichier doit rester un fichier `.html` unique et autonome** : ne pas extraire le CSS ou le JS dans des fichiers séparés, ne pas ajouter de dépendance externe.
+1. **Ne modifier que le bloc de la langue cible** (et l'en-tête de version quand la procédure le prévoit). Aucun changement dans le code, le CSS, le HTML, les autres blocs, `ICON_DATA`.
+2. **Ne jamais reformater** le reste du fichier : le remplacement d'un bloc ne touche pas aux octets voisins.
+3. **Le fichier reste un unique `.html` autonome** : aucune dépendance externe ajoutée, aucun fichier de traduction séparé.
+4. **Une traduction ne doit jamais contenir de code actif** : le guide neutralise les balises hors liste, les attributs dangereux et les liens `javascript:`, mais une traduction n'a de toute façon aucune raison d'en contenir.
+5. **Un bloc illisible est ignoré par le guide** sans gêner les autres langues, mais il ne doit jamais être livré tel quel : le contrôle de clés le détecte.
 
 ---
 
-## VÉRIFICATIONS TECHNIQUES RECOMMANDÉES (avant la relecture finale)
+## VÉRIFICATIONS (avant la relecture finale)
 
-Cohérent avec le principe déjà établi pour ce projet (outils nommés et vérifiables plutôt qu'inspection ad hoc — voir `prompt_fix_allcode.md` §L.45bis) : privilégier une vérification programmatique aux points de rupture silencieuse identifiés ci-dessus, plutôt qu'une simple relecture visuelle.
+Scripts du dépôt, dossier `docs/scripts/` (voir `trans_script_0_README.md`), à confirmer par md5 avant exécution :
 
-- **Validité syntaxique du JavaScript** : extraire le contenu de la balise `<script>` dans un fichier `.js` temporaire et le valider avec `node --check`. Une erreur de syntaxe introduite par une chaîne mal échappée (apostrophe, guillemet) sera détectée immédiatement, alors qu'elle peut passer inaperçue à la lecture.
-- **Comparaison champ par champ des tableaux `COLORS` et `ICONS`** : extraire par script (regex) chaque ligne des deux tableaux, source et traduction, et vérifier que tous les champs non-traduisibles (tag, hex, alpha pour `COLORS` ; tag, fichier, chemin, flag pour `ICONS`) restent strictement identiques d'une version à l'autre, et que seul le champ catégorie diffère. Une divergence sur un champ censé être intouchable est le signe d'une erreur de traduction, même isolée.
-- **Vérification de la clé `CATEGORY_DESCRIPTIONS`** : voir méthode décrite au §C point 4 ci-dessus.
-- **Comparaison structurelle globale** : comptage des balises HTML structurelles (`<section`, `<div`, `<table`, `<h1/h2/h3`, etc.) entre source et traduction — un écart signale une structure cassée ou une section ajoutée/supprimée par erreur.
-- **Vérification des ID référencés en JS** : confirmer que chaque `getElementById('...')` du script traduit correspond bien à un `id="..."` toujours présent dans le HTML traduit.
+| N° | Fichier | Version | md5 |
+|---|---|---|---|
+| 0 | `trans_script_0_README.md` | 1.0 | (non listé : il contient les md5 des autres) |
+| 1 | `trans_script_1_check_keys.py` | 1.0 | `e5641d0f0d2b94da540cb49a8c14c38f` |
+| 2 | `trans_script_2_test_behavior.js` | 1.0 | `65372c0f1f9218c2cb6f82e47566b370` |
+| 3 | `trans_script_3_test_robustness.js` | 1.0 | `67385a8b840f2bdb5a85194de803d9e9` |
+| 4 | `trans_script_4_test_render.js` | 1.0 | `ccde55fc62a27a856c918f4ab88f2b7c` |
 
-Ces vérifications ne remplacent pas la relecture humaine finale ci-dessous, elles la précèdent et la sécurisent.
+À exécuter, dans cet ordre, après avoir écrit le bloc :
+
+1. `python3 trans_script_1_check_keys.py NMS_txt_code.html --strict` : JSON valide, `_meta` complet, mêmes clés que la source, mêmes `{paramètres}`, mêmes extraits de code (pseudo-noms et mot-témoin traduits de façon cohérente et conformes à `copy.template_word`), balises autorisées seulement, `<title>` statique inchangé. Avec `--since`, vérifie aussi que les clés modifiées dans la source ont été retouchées.
+2. `node trans_script_2_test_behavior.js --file NMS_txt_code.html --lang <lang_code>` : copie, croix d'effacement, erreurs de balise, exemples, onglets, non-régression du rendu.
+3. `node trans_script_3_test_robustness.js NMS_txt_code.html` : sécurité, bloc illisible, langue partielle, détection de la langue, stockage bloqué.
+4. Si le code a été touché (hors de ce prompt) : `node trans_script_4_test_render.js precedent.html NMS_txt_code.html <lang_code>`.
+
+**Prérequis.** Le n° 1 ne demande que Python 3. Les n° 2 à 4 demandent Node.js et `npm i jsdom` dans un dossier temporaire, avec `NODE_PATH` pointant vers son `node_modules`. Si un outil est indisponible (pas de Node, pas de réseau), l'écrire dans le rapport, ne **jamais** déclarer « passé » un contrôle qui n'a pas été exécuté, et faire à la main les vérifications équivalentes quand c'est possible.
+
+Ces scripts sont facultatifs : la méthode manuelle reste valable, avec la même exigence. Ils garantissent la cohérence des clés et du comportement, **pas la qualité de la traduction ni le rendu visuel** : **toujours dire explicitement ce qui n'a pas pu être vérifié** (affichage, alignements, couleurs, longueurs de texte, drapeaux) et le laisser à la validation de la personne.
 
 ---
 
 ## VÉRIFICATION FINALE (auto-relecture obligatoire avant livraison)
 
-- [ ] `<html lang="...">` correspond bien à `html_lang_attribute` défini dans `TARGET`.
-- [ ] `<title>` traduit.
-- [ ] Les 4 onglets, tous les encadrés, le footer et le simulateur sont intégralement traduits — aucune phrase française oubliée.
-- [ ] Toutes les chaînes JS listées en §B (badges, en-têtes de tableau, compteurs, tooltips, placeholder de copie, "Toutes catégories", "Aucun résultat.") sont traduites.
-- [ ] Les 3 `aria-label` (recherche couleurs, recherche icônes, filtre catégorie) sont traduits et cohérents avec le placeholder correspondant sur le même champ.
-- [ ] `NAME_COLOR` et `NAME_ICON` (pseudo-noms pédagogiques, pas de vraies balises) sont traduits dans la langue cible, sur **toutes** leurs occurrences (bandeau d'aide du simulateur ET onglet Infos) — voir §A bis.
-- [ ] Le mot-témoin `Texte`/`Text` (gabarit de copie en JS) et son jumeau statique `<span class="syn-text">` dans le HTML utilisent **le même mot traduit**.
-- [ ] Chaque nom de catégorie a été traduit **à l'identique partout** où il apparaît (tableaux `COLORS`/`ICONS`, commentaires de section, et surtout la clé de `CATEGORY_DESCRIPTIONS`) — vérifier caractère par caractère, en particulier les espaces autour de `/` et la flèche `→`, avec une méthode programmatique (voir §C point 4 et section « VÉRIFICATIONS TECHNIQUES RECOMMANDÉES »).
-- [ ] Aucun nom de balise NMS, chemin `.DDS`, code hex, nom de fichier PNG, ID HTML, classe CSS, nom de variable/fonction JS n'a été traduit ou modifié.
-- [ ] Les 10 entrées de `CONTAINER_EXAMPLES` sont restées strictement identiques à la source.
-- [ ] Tous les commentaires de code sont traduits, HTML compris (§D) — vérifier en particulier que les 4 marqueurs `<!-- ... TAB ... -->` (Infos/Couleurs/Icônes/À propos) correspondent chacun au libellé d'onglet traduit.
-- [ ] Si `companion_readme` a été explicitement fourni/désigné pour cette session : la terminologie utilisée y correspond, **confirmé à jour** (fraîcheur vérifiée par comparaison avec le README de contexte en langue source). Sinon (cas le plus fréquent : aucun `companion_readme` fourni) : la terminologie choisie ici est cohérente en interne et prête à servir de référence pour une traduction ultérieure du README, sans qu'il y ait eu lieu de rechercher ou mentionner un README cible existant ailleurs dans la conversation.
-- [ ] Aucune balise HTML, accolade JS ou guillemet n'a été cassé par une chaîne traduite mal échappée — relire spécifiquement les lignes où une traduction contient une apostrophe.
-- [ ] Le fichier reste un unique `.html` autonome, structurellement identique à la source (aucune section ajoutée/supprimée/déplacée).
+- [ ] Seules les clés de la liste de travail ont été écrites ou modifiées ; l'ordre des clés est celui de la source.
+- [ ] `_meta` est complet : `native_name`, `flag`, `lang_code` identique à l'id du bloc, `translation_version`, `updated`, `target` (variant, tone, fidelity_style, aria_label_style).
+- [ ] `page.title` et `lang.label` sont traduits ; aucun texte français oublié dans le bloc.
+- [ ] Les 5 `aria-label` et les `title` des deux boutons du simulateur sont traduits, avec le style validé ; le placeholder du simulateur et les messages `sim.err.*` aussi, avec les mêmes termes que le reste du bloc.
+- [ ] Les `{paramètres}` sont tous présents dans chaque valeur qui les portait.
+- [ ] `NAME_COLOR` et `NAME_ICON` sont traduits de façon cohérente sur toutes leurs occurrences ; le mot-témoin de l'aide de syntaxe est identique à `copy.template_word`.
+- [ ] Chaque libellé de catégorie est écrit de la même façon partout où il est repris dans les textes.
+- [ ] Aucun nom de balise NMS, code hex, chemin, extrait de syntaxe, lien ou nom propre n'a été traduit ou modifié.
+- [ ] Les contrôles 1, 2 et 3 sont passés (ou chaque écart est expliqué) ; ce qui n'a pas pu être vérifié est listé.
+- [ ] Rien d'autre que le bloc cible (et la date de l'en-tête) n'a changé dans le fichier : comparaison octet pour octet hors bloc, résultat cité dans le rapport.
+- [ ] La langue a passé la vérification préalable (sens d'écriture, polices, pluriels), ou la personne a tranché.
+- [ ] Le fichier est en UTF-8 sans BOM, avec ses fins de ligne d'origine.
+- [ ] Les termes de jeu douteux sont listés dans le rapport.
 
 ---
 
 ## LIVRABLE ATTENDU
 
-Un unique fichier `.html` nommé selon `output_filename`, fonctionnellement identique au fichier source (même simulateur, mêmes tris, mêmes filtres, mêmes tableaux, mêmes 145 icônes intégrées), avec l'intégralité du texte visible et des chaînes de code traduites en langue cible, prêt à être ouvert directement dans un navigateur sans aucune retouche supplémentaire.
+Le fichier `NMS_txt_code.html` mis à jour, avec le bloc de la langue cible créé ou complété. Ouvrable directement dans un navigateur sans retouche. Le sélecteur propose automatiquement la nouvelle langue.
+
+**Numéro de version.** `_meta.translation_version` indique la version du guide que le bloc reflète ; `_meta.updated` la date de la mise à jour ; la ligne « Dernière modification » de l'en-tête reçoit la date du jour. Ne pas changer le numéro de version du guide lui-même sans accord de la personne.
+
+**Rapport de livraison standard** (même format à chaque fois) :
+1. Fichiers utilisés (nom, taille, md5, version) et scripts exécutés (version, md5).
+2. Clés écrites ou modifiées (nombre, liste courte).
+3. Écarts avec le plan validé, le cas échéant.
+4. Contrôles exécutés, avec leur résultat.
+5. **Ce qui n'a pas pu être vérifié** (rendu visuel, alignements, couleurs, longueurs, drapeaux), laissé à la validation de la personne.
+6. Termes du jeu douteux à vérifier en jeu, et points restant à décider.
+
+**Glossaire des termes ajoutés ou modifiés.** À chaque mise à jour, fournir la liste des nouveaux termes traduits (textes indicatifs, messages, libellés des boutons, expressions comme « uppercase required »). Ce glossaire sert de référence terminologique pour traduire le README correspondant avec les mêmes mots, sans relire tout le fichier.
 
 ---
 
 ## HISTORIQUE D'UTILISATION
 
-Table à compléter à chaque usage de ce prompt, pour tracer quelle version de quel fichier a été traduite, avec quels réglages — évite toute ambiguïté en cas de reprise de ce prompt dans une conversation ultérieure ou par une autre personne.
+Table à compléter à chaque usage de ce prompt, pour tracer quelle version de quel fichier a été traduite, avec quels réglages.
 
-| Date | Fichier source (nom + repère de version) | Fichier produit | `target_language` | `target_variant` | `tone` | `fidelity_style` | `companion_readme` utilisé ? |
-|---|---|---|---|---|---|---|---|
-| 2026-09-08 | `NMS_txt_code_FR.html` (1298 lignes indiquées à l'époque — **à vérifier** : la version fournie le 2026-09-09 fait 1297 lignes ; l'écart n'a pas été élucidé, possible imprécision de saisie lors de cette entrée) | `NMS_txt_code_EN.html` | English | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session |
-| 2026-09-09 | `NMS_txt_code_FR.html` (1297 lignes, hash `fb4b9e77452586130fcf7bc6fdf81e14`) | `NMS_txt_code_ES.html` | Español | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session |
+| Date | Source (nom + version) | Produit | `target_language` | `target_variant` | `tone` | `fidelity_style` | `companion_readme` utilisé ? | Mode | Style `aria-label` |
+|---|---|---|---|---|---|---|---|---|---|
+| 2026-09-08 | `NMS_txt_code_FR.html` (fichier séparé, version non renseignée) | `NMS_txt_code_EN.html` (fichier séparé) | English | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | complète | B (confirmé le 2026-10-17) |
+| 2026-10-17 | `NMS_txt_code_FR.html` v1.3, à partir de l'EN v1.1 | `NMS_txt_code_EN.html` v1.3 (fichier séparé) | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | incrémentale | B |
+| 2026-10-19 | `NMS_txt_code_FR.html` v1.3 et `NMS_txt_code_EN.html` v1.3 | bloc `i18n-en` de `NMS_txt_code.html` v2.0 | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | migration : textes extraits automatiquement de l'EN v1.3, non retraduits | B |
+
+L'ancien fichier `NMS_txt_code_ES.html` (traduit le 2026-09-09 depuis une FR de 1297 lignes) n'a jamais été migré : l'espagnol sera créé comme un **nouveau bloc**, traduit clé par clé.
+
+---
+
+## ÉTAT DES TRADUCTIONS
+
+Table à mettre à jour à chaque livraison, avec la liste des langues présentes dans le fichier (blocs `i18n-*`) et leur `_meta.translation_version`.
+
+| Langue | Bloc | Version reflétée | État |
+|---|---|---|---|
+| FR | `i18n-fr` | 2.0 | source de référence |
+| EN | `i18n-en` | 2.0 | à jour |
+| ES | aucun | sans objet | à créer (nouveau bloc, `--todo es` donne la liste complète des clés) |
