@@ -1,0 +1,177 @@
+{
+  "_lisez_moi": "Fichier de substitutions validé par la personne. Il est la SEULE source des textes ajoutés par trans_script_2_update_translation.py. Voir trans_script_0_README.md.",
+  "meta": {
+    "source_lang": "FR",
+    "target_lang": "EN",
+    "from_version": "1.1",
+    "to_version": "1.3",
+    "validated": "2026-10-17",
+    "target_params": {
+      "target_variant": "neutral/standard (US)",
+      "tone": "passionate/stylized",
+      "fidelity_style": "idiomatic",
+      "aria_label_style": "B (libellé autonome)"
+    }
+  },
+  "expected_old_lines": {
+    "> Version : 1.1": "> Version: 1.1",
+    "> Dernière modification : 2026-09-25": "> Last modified: 2026-09-25"
+  },
+  "replacements": [
+    {
+      "src": "> Version : 1.3",
+      "dst": "> Version: 1.3"
+    },
+    {
+      "src": "> Dernière modification : 2026-10-17",
+      "dst": "> Last modified: 2026-10-17"
+    },
+    {
+      "src": "/* opacity:1 : Firefox atténue sinon le texte indicatif par défaut */",
+      "dst": "/* opacity:1: otherwise Firefox dims the default placeholder text */"
+    },
+    {
+      "src": "/* Erreurs de balise : soulignement dans l'aperçu + une petite boîte par erreur sous l'aperçu */",
+      "dst": "/* Tag errors: underline in the preview + one small box per error below the preview */"
+    },
+    {
+      "src": "/* Variante du simulateur : bouton principal, étiré à la hauteur du champ de saisie */",
+      "dst": "/* Simulator variant: main button, stretched to the height of the input field */"
+    },
+    {
+      "src": "placeholder=\"Collez ou tapez votre code ici pour voir l'aperçu…\"",
+      "dst": "placeholder=\"Paste or type your code here to see the preview…\""
+    },
+    {
+      "src": "aria-label=\"Effacer le champ du simulateur\" title=\"Effacer\"",
+      "dst": "aria-label=\"Clear simulator field\" title=\"Clear\""
+    },
+    {
+      "src": "aria-label=\"Copier le code du simulateur\" title=\"Copier le code du simulateur\"",
+      "dst": "aria-label=\"Copy simulator code\" title=\"Copy simulator code\""
+    },
+    {
+      "src": "// data-copy-source : le texte est lu dans le champ au moment du clic, car il",
+      "dst": "// data-copy-source: the text is read from the field at click time, because it"
+    },
+    {
+      "src": "// change à chaque frappe (simulateur) ; data-copy reste fixe pour les lignes de tableau.",
+      "dst": "// changes on every keystroke (simulator); data-copy stays fixed for table rows."
+    },
+    {
+      "src": "// Recherche stricte d'une balise dans COLOR_MAP / ICON_MAP : le jeu est sensible à la casse,",
+      "dst": "// Strict lookup of a tag in COLOR_MAP / ICON_MAP: the game is case-sensitive,"
+    },
+    {
+      "src": "// donc \"red\" n'existe pas. Le test sur la casse évite aussi de tomber sur les propriétés",
+      "dst": "// so \"red\" does not exist. The case test also avoids hitting the properties"
+    },
+    {
+      "src": "// héritées des objets (ex: \"constructor\"), que les regex insensibles à la casse laisseraient passer.",
+      "dst": "// inherited from objects (e.g. \"constructor\"), which case-insensitive regexes would let through."
+    },
+    {
+      "src": "// Signale une balise fautive : mémorise l'erreur (sans doublon) dans la liste fournie",
+      "dst": "// Flags a faulty tag: stores the error (without duplicates) in the supplied list"
+    },
+    {
+      "src": "// et renvoie le HTML souligné. \"fix\" = nom correct si seule la casse est en cause.",
+      "dst": "// and returns the underlined HTML. \"fix\" = correct name if only the case is wrong."
+    },
+    {
+      "src": "// Icône listée dans le guide mais sans texture (« non fonctionnelle ») : le ? existant suffit, elle n'est pas « inconnue »",
+      "dst": "// Icon listed in the guide but without a texture (\"non-functional\"): the existing ? is enough, it is not \"unknown\""
+    },
+    {
+      "src": "// opts.errors (tableau optionnel) reçoit les balises fautives ; sans lui, rien d'autre ne change.",
+      "dst": "// opts.errors (optional array) receives the faulty tags; without it, nothing else changes."
+    },
+    {
+      "src": "// Les regex sont insensibles à la casse (flag i) pour pouvoir repérer \"red\" ou \"<img>\" ; la validité est vérifiée ensuite.",
+      "dst": "// The regexes are case-insensitive (i flag) so that \"red\" or \"<img>\" can be spotted; validity is checked afterwards."
+    },
+    {
+      "src": "// couleur inconnue : l'icône n'est pas teintée et le texte reste sans couleur, on le souligne",
+      "dst": "// unknown color: the icon is not tinted and the text stays uncolored, so we underline it"
+    },
+    {
+      "src": "// Construit la petite boîte d'une erreur. Les noms ne contiennent que [A-Za-z0-9_] (cf. regex du moteur).",
+      "dst": "// Builds the small box for one error. Names only contain [A-Za-z0-9_] (see the engine regexes)."
+    },
+    {
+      "src": "if(e.kind === 'keyword') msg = `${name} : écrire ${fix} en majuscules`;",
+      "dst": "if(e.kind === 'keyword') msg = `${name}: use ${fix} in uppercase`;"
+    },
+    {
+      "src": "else if(e.fix) msg = `${name} : écrire ${fix} (majuscules obligatoires)`;",
+      "dst": "else if(e.fix) msg = `${name}: use ${fix} (uppercase required)`;"
+    },
+    {
+      "src": "else msg = `${e.kind === 'color' ? 'Couleur' : 'Icône'} inconnue : ${name}`;",
+      "dst": "else msg = `${e.kind === 'color' ? 'Unknown color' : 'Unknown icon'}: ${name}`;"
+    },
+    {
+      "src": "// La ligne d'erreurs n'existe (hidden) que s'il y a au moins une erreur : aucune place réservée",
+      "dst": "// The error line only exists (hidden otherwise) when there is at least one error: no space reserved"
+    }
+  ],
+  "ui_strings": {
+    "_aide": "Chaînes d'interface attendues dans le résultat. Utilisées par trans_script_2_update_translation.py (présence), trans_script_4_verify_symmetry.py (contrôle des chaînes) et trans_script_3_test_behavior.js (comportement). {name} et {fix} sont remplacés par le test.",
+    "placeholder": "Paste or type your code here to see the preview…",
+    "copy_aria": "Copy simulator code",
+    "copy_title": "Copy simulator code",
+    "clear_aria": "Clear simulator field",
+    "clear_title": "Clear",
+    "copy_prefix": "Copy: ",
+    "template_word": "Text",
+    "msg_unknown_color": "Unknown color: {name}",
+    "msg_unknown_icon": "Unknown icon: {name}",
+    "msg_case_fix": "{name}: use {fix} (uppercase required)",
+    "msg_keyword": "{name}: use {fix} in uppercase"
+  },
+  "message_fragments": [
+    "Unknown color",
+    "Unknown icon",
+    "(uppercase required)",
+    "in uppercase"
+  ],
+  "glossary": [
+    {
+      "fr": "Collez ou tapez votre code ici pour voir l'aperçu…",
+      "en": "Paste or type your code here to see the preview…",
+      "note": "texte indicatif du champ du simulateur"
+    },
+    {
+      "fr": "Couleur inconnue / Icône inconnue",
+      "en": "Unknown color / Unknown icon",
+      "note": "l'adjectif passe devant le nom en anglais"
+    },
+    {
+      "fr": "écrire X (majuscules obligatoires)",
+      "en": "use X (uppercase required)",
+      "note": "« use » plutôt que « write » : formulation la plus naturelle"
+    },
+    {
+      "fr": "écrire IMG en majuscules",
+      "en": "use IMG in uppercase",
+      "note": "mot-clé IMG écrit en minuscules"
+    },
+    {
+      "fr": "Copier le code du simulateur",
+      "en": "Copy simulator code",
+      "note": "title et aria-label du bouton copier du simulateur"
+    },
+    {
+      "fr": "Effacer le champ du simulateur / Effacer",
+      "en": "Clear simulator field / Clear",
+      "note": "aria-label / title de la croix"
+    },
+    {
+      "fr": "non fonctionnelle",
+      "en": "non-functional",
+      "note": "terme déjà fixé dans FLAG_LABELS, à réutiliser tel quel"
+    }
+  ],
+  "residual_pattern": "[àâäçéèêëîïôöùûüœ«»]|\\b(le|la|les|une|des|est|pour|sans|que|qui|dans|sur|avec|du|aux|ou|et|par|écrire|inconnue|balise|champ|bouton|collez|tapez|votre|ici|voir|aperçu|texte|effacer|copier)\\b",
+  "keep_as_is": []
+}
