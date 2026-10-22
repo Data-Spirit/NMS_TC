@@ -67,8 +67,8 @@
 
 | | Language | 🛠️ Info | 📖 Guide | 💾 Download |
 |:---:|---|:---:|:---:|:---:|
-| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_en] | [![Download](./assets/download-loop.svg)][download_en] |
-| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_fr] | [![Download](./assets/download-loop.svg)][download_fr] |
+| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
+| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
 | 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_es] | [![Download](./assets/download-loop.svg)][download_es] |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
@@ -197,8 +197,7 @@ NMS_TC/
 [github_banner]: docs/img/NMS_TC_banner/NMS_TC_banner_01.webp
 
 <!-- Liens de téléchargement direct par langue (utilisés en référence dans le tableau) -->
-[download_en]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_EN.html
-[download_fr]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_FR.html
+[download_mltlg]: https://github.com/Data-Spirit/NMS_TC/releases/download/v2.0/NMS_txt_code.html
 [download_es]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_ES.html
 
 <!-- Language README files -->
@@ -207,8 +206,7 @@ NMS_TC/
 [readme_es]: ./LANG/ES/README_ES.md
 
 <!-- Language online guides (GitHub Pages) -->
-[guide_en]: https://data-spirit.github.io/NMS_TC/LANG/EN/NMS_txt_code_EN.html
-[guide_fr]: https://data-spirit.github.io/NMS_TC/LANG/FR/NMS_txt_code_FR.html
+[guide_mltlg]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html
 [guide_es]: https://data-spirit.github.io/NMS_TC/LANG/ES/NMS_txt_code_ES.html
 
 <!-- Mémo : icône SVG de téléchargement, non utilisée en référence dans le tableau -->
