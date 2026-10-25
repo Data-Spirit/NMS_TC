@@ -1,8 +1,12 @@
 # GitHub Linguist configuration for NMS // TEXT CODES
 
-# Markdown
-*.md linguist-detectable=true
-*.md linguist-documentation=false
+# Markdown — Exclure tous les fichiers par défaut
+*.md linguist-detectable=false
+*.md linguist-documentation=true
+
+# Markdown — Inclure uniquement les guides
+docs/guides/**/*.md linguist-detectable=true
+docs/guides/**/*.md linguist-documentation=false
 
 # JSON
 *.json linguist-detectable=true
