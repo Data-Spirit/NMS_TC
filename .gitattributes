@@ -9,3 +9,11 @@
 
 # SVG
 *.svg linguist-detectable=true
+
+# Python
+*.py linguist-detectable=true
+*.py linguist-documentation=false
+
+# JavaScript
+*.js linguist-detectable=true
+*.js linguist-documentation=false
