@@ -67,9 +67,9 @@
 
 | | Language | 🛠️ Info | 📖 Guide | 💾 Download |
 |:---:|---|:---:|:---:|:---:|
-| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
-| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
-| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
+| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_mltlg] | [![Download](./docs/assets/download-loop.svg)][download_mltlg] |
+| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_mltlg] | [![Download](./docs/assets/download-loop.svg)][download_mltlg] |
+| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_mltlg] | [![Download](./docs/assets/download-loop.svg)][download_mltlg] |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
