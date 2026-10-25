@@ -1,15 +1,27 @@
 <!-- Version du fichier 
-> Version : 4.0
-> Dernière modification : 2026-10-20
+> Version : 4.2
+> Dernière modification : 2026-10-24
 -->
 
 # Translation Prompt — NMS_TC HTML Guide (guide multilingue en un seul fichier)
 
-> **Dernière mise à jour de ce prompt : 2026-10-20** — refonte complète pour le guide multilingue en un seul fichier `NMS_txt_code.html` : on ne traduit plus un fichier HTML par langue, mais **un bloc de langue** (dictionnaire de clés) à l'intérieur du fichier unique. Remplacés : le mode « mise à jour incrémentale » de fichiers séparés, les scripts `trans_script_1_substitutions_*`, `_2_update_translation`, `_4_verify_symmetry`, les règles de correspondance des suffixes de langue et des clés de catégorie (devenues des identifiants neutres). Ajoutés : lecture et écriture des paramètres de traduction dans `_meta.target`, liste de travail des clés à traduire (`--todo`, `--since`), nouveaux scripts `trans_script_1_check_keys` à `trans_script_4_test_render`, règles d'écriture d'un bloc JSON, traduction cohérente des pseudo-noms et du mot-témoin. Ajoutés aussi : emplacement et modèles d'un bloc, vérification préalable de la langue (écriture de droite à gauche, polices, pluriels), encodage, comparaison hors bloc, clés supprimées de la source, cas sans version précédente, prérequis des outils, contexte du projet et terminologie officielle du jeu, traduction toujours depuis le français. Conservés : protocole de modification de ce prompt, feu vert avant de traduire, règles de fraîcheur, de ton, de terminologie et de longueur, rapport de livraison standard et glossaire. Cette ligne doit être mise à jour à chaque modification validée de ce prompt (voir « PROTECTION DES MODIFICATIONS DE CE PROMPT ») — si elle semble absente ou visiblement ancienne par rapport au contenu, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 4.2, 2026-10-24). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt réutilisable pour **ajouter une langue** ou **mettre à jour une langue** dans `NMS_txt_code.html` (le guide interactif autonome et multilingue).
 
 Ce prompt est le pendant technique de `prompt_translation_README_LANG.md`. Les deux partagent la même exigence de qualité et la même terminologie, mais celui-ci s'applique à un fichier **HTML/CSS/JS fonctionnel** : une erreur dans un bloc de langue peut dégrader l'affichage de cette langue, pas seulement une phrase.
+
+---
+
+## JOURNAL DES MODIFICATIONS DE CE PROMPT
+
+Une ligne par version, de la plus récente à la plus ancienne. À compléter à chaque modification validée (voir « PROTECTION DES MODIFICATIONS DE CE PROMPT »).
+
+| Version | Date | Résumé |
+|---|---|---|
+| 4.2 | 2026-10-24 | Nouvelle langue sans historique (indices relevés dans un ancien fichier, jamais inventés) ; règle de l'ancien fichier de référence (pas d'extraction automatique, termes améliorés listés dans le rapport) ; fenêtre de choix limitée à 3 questions ; tables « Historique » et « État » et journal mis à jour sur proposition, après un feu vert distinct ; colonne `md5 du livrable` ; règles de typographie de la langue cible ; contrôle des jonctions de listes, avec exemple ; précisions sur le script 2 (`--ref`, nouvelle langue, installation de `jsdom`) ; ce journal remplace la note de changelog unique. |
+| 4.1 | 2026-10-24 | Enregistrement de la traduction espagnole (bloc `i18n-es` livré le 2026-10-24) : historique, phrase sur l'ancien `NMS_txt_code_ES.html`, état des traductions. Aucune règle modifiée. |
+| 4.0 | 2026-10-20 | Refonte complète pour le guide multilingue en un seul fichier `NMS_txt_code.html` : on ne traduit plus un fichier HTML par langue, mais **un bloc de langue** (dictionnaire de clés) à l'intérieur du fichier unique. Remplacés : le mode « mise à jour incrémentale » de fichiers séparés, les scripts `trans_script_1_substitutions_*`, `_2_update_translation`, `_4_verify_symmetry`, les règles de correspondance des suffixes de langue et des clés de catégorie (devenues des identifiants neutres). Ajoutés : lecture et écriture des paramètres de traduction dans `_meta.target`, liste de travail des clés à traduire (`--todo`, `--since`), nouveaux scripts `trans_script_1_check_keys` à `trans_script_4_test_render`, règles d'écriture d'un bloc JSON, traduction cohérente des pseudo-noms et du mot-témoin, emplacement et modèles d'un bloc, vérification préalable de la langue, encodage, comparaison hors bloc, clés supprimées de la source, cas sans version précédente, prérequis des outils, contexte du projet et terminologie officielle du jeu, traduction toujours depuis le français. Conservés : protocole de modification de ce prompt, feu vert avant de traduire, règles de fraîcheur, de ton, de terminologie et de longueur, rapport de livraison standard et glossaire. |
 
 ---
 
@@ -40,12 +52,15 @@ Ce guide s'adresse aux joueurs de **No Man's Sky** qui renomment en jeu leurs ba
 | Fichier | Rôle | Faut-il le modifier ? |
 |---|---|---|
 | `NMS_txt_code.html` | Le guide, qui contient le bloc source et les blocs déjà traduits. | **Oui, uniquement le bloc de la langue cible** (le créer ou le mettre à jour). |
-| Version précédente de `NMS_txt_code.html` (facultative) | Sert à détecter les clés modifiées dans la source depuis la dernière traduction (`--since`). | Non. |
+| Version précédente de `NMS_txt_code.html` (facultative) | Sert à détecter les clés modifiées dans la source depuis la dernière traduction (`--since`) et au test de non-régression du rendu (`--ref`). | Non. |
+| Ancien fichier de la langue cible (facultatif) | Ancien fichier traduit dans cette langue, d'avant le guide multilingue. Référence de vocabulaire seulement. | Non. |
 | `prompt_translation_HTML_GUIDE_LANG.md` (ce fichier) | Le mode d'emploi. | Non. |
 | `README_<LANG>.md` fourni pour contexte | Document de contexte dans la langue source, pour que la traduction soit fidèle à la conception du projet. | **Non, jamais dans cette session** : le traduire relève de `prompt_translation_README_LANG.md`. |
 | `docs/scripts/trans_script_*` | Les scripts de contrôle (voir plus bas), à exécuter, pas à traduire. | Non. |
 
 **`companion_readme`** (un `README_<lang_code>.md` déjà traduit dans la langue cible, pour réutiliser le même vocabulaire) n'est en jeu que si la personne le fournit ou le désigne **explicitement** pour la session. Ne jamais aller le chercher de soi-même dans l'historique de la conversation. Sans lui, les choix de terminologie faits ici font référence pour la traduction ultérieure du README.
+
+**Ancien fichier de la langue cible.** Quand la langue a déjà existé sous forme de fichier séparé (ex. `NMS_txt_code_ES.html`), il sert de **référence de vocabulaire seulement**. Ne pas en extraire les textes automatiquement : ils n'ont pas de clés, ne couvrent pas les ajouts récents, et un alignement par position risquerait des erreurs silencieuses. Traduire clé par clé depuis le français ; reprendre le vocabulaire déjà validé quand le sens français n'a pas changé ; **lister dans le rapport chaque terme volontairement amélioré** (ancien terme → nouveau terme, raison) ; mentionner ce fichier dans `_meta.target.origin`.
 
 **Note de portée** : ce prompt suppose que la langue source est le français. Si ce n'est plus le cas un jour, le signaler à la personne plutôt que de présumer.
 
@@ -74,7 +89,7 @@ companion_readme:                   # README déjà TRADUIT dans la langue cible
 
 **Ne jamais présumer que les valeurs de `TARGET` restent valables d'une session à l'autre.** Une session précédente ne vaut pas confirmation pour la session en cours.
 
-Avant de commencer, poser à la personne les valeurs de **`target_language`, `target_variant`, `tone`, `fidelity_style` et du style des `aria-label`** **sous forme de questions à choix** (fenêtre cliquable quand l'interface le permet, sinon liste numérotée), en rappelant comme valeur précochée celle de **`_meta.target` du bloc existant** (ou, pour une nouvelle langue, celle d'une langue déjà traduite, signalée comme telle). Ce rappel n'est jamais une valeur acquise : la personne confirme ou modifie. Le choix du drapeau et du nom de la langue pour une nouvelle langue se propose et se valide de la même façon. Ne démarrer qu'après cette confirmation explicite.
+Avant de commencer, poser à la personne les valeurs de **`target_language`, `target_variant`, `tone`, `fidelity_style` et du style des `aria-label`** **sous forme de questions à choix** (fenêtre cliquable quand l'interface le permet, sinon liste numérotée), en rappelant comme valeur précochée celle de **`_meta.target` du bloc existant** (ou, pour une nouvelle langue, celle d'une langue déjà traduite, signalée comme telle ; ou, à défaut, des indices relevés dans un ancien fichier de la même langue — tutoiement, vocabulaire régional, style des `aria-label` — présentés comme des indices et non comme des valeurs acquises ; si aucune valeur n'est connue, le dire plutôt que d'en inventer). Ce rappel n'est jamais une valeur acquise : la personne confirme ou modifie. Le choix du drapeau et du nom de la langue pour une nouvelle langue se propose et se valide de la même façon. **La fenêtre de choix est limitée à 3 questions par appel** : poser la variante, le ton et le style des `aria-label` en choix cliquables ; confirmer `fidelity_style`, le drapeau et le nom natif par une phrase de texte (valeur proposée, la personne corrige si besoin). Ne démarrer qu'après cette confirmation explicite.
 
 ## RÈGLE DE FRAÎCHEUR DES FICHIERS FOURNIS — à exécuter avant toute traduction
 
@@ -123,6 +138,7 @@ Une langue de la même famille que celles déjà présentes (alphabet latin ou c
 - Un bloc est un **JSON valide** : chaînes entre guillemets doubles, `"` et `\` échappés, aucune virgule finale, aucun retour à la ligne brut à l'intérieur d'une chaîne.
 - Les attributs HTML à l'intérieur d'un texte s'écrivent **entre apostrophes** (`<span class='syn-tag'>`), comme dans la source : cela évite d'avoir à échapper des guillemets.
 - Un long texte peut être une **liste de morceaux** (`["…", "…"]`) recollés sans espace ajouté : couper aux fins de phrase ou après un `<br>`, et conserver les espaces aux jonctions.
+- **Jonctions de listes** : chaque morceau garde la **même terminaison que son équivalent dans la source** (`<br>`, `<br><br>`, espace final), et la liste le **même nombre de morceaux**. Exemple : source `["Phrase A.<br>", "Phrase B. "]` → cible `["Oración A.<br>", "Oración B. "]`. Erreur fréquente : perdre l'espace final de « B. », ce qui colle les mots à la jonction (`B.<code>`). À vérifier à la main tant qu'aucun contrôle automatique ne le fait.
 - Mêmes **clés**, dans le **même ordre** que la source ; garder les lignes vides qui séparent les zones.
 - Ne jamais écrire `</script` ni `<!--` dans un bloc.
 - Les entités (`&lt;`, `&gt;`, `&amp;`) se conservent telles qu'elles sont dans la source.
@@ -196,9 +212,10 @@ qui déclenche une traduction :
 3. **Ne jamais enchaîner un second lot de modifications sur la lancée d'un premier lot validé**, même
    dans le même tour de conversation. Chaque lot distinct de changements est proposé puis validé
    séparément — la validation d'un lot ne vaut pas blanc-seing pour le suivant.
-4. **Mettre à jour la ligne de changelog en tête de ce fichier** (« Dernière mise à jour de ce prompt »)
-   à chaque modification effectivement appliquée, avec la date et un résumé bref — c'est ce qui permet
-   de détecter si ce prompt lui-même est obsolète lors d'une session future (voir règle de fraîcheur).
+4. **Ajouter une ligne au journal des modifications** (section « JOURNAL DES MODIFICATIONS DE CE PROMPT »)
+   à chaque modification effectivement appliquée, avec le numéro de version, la date et un résumé bref,
+   et mettre à jour la version et la date de l'en-tête — c'est ce qui permet de détecter si ce prompt
+   lui-même est obsolète lors d'une session future (voir règle de fraîcheur).
 
 Ce protocole est indépendant de celui qui encadre la traduction elle-même (section suivante) : traduire
 et modifier les instructions de traduction sont deux gestes distincts, chacun avec son propre feu vert,
@@ -292,6 +309,14 @@ Certaines chaînes s'affichent dans des espaces contraints par du CSS (catégori
 ### 5. Ordre des mots et ponctuation
 À l'intérieur d'une chaîne, l'ordre des mots et la ponctuation suivent la langue cible (espace avant les deux-points en français, aucun en anglais, etc.).
 
+**Typographie à fixer pour la langue cible, puis à appliquer partout.** La décider une fois avant d'écrire, d'après les blocs existants et les usages de la langue, et noter dans le rapport les conventions retenues :
+- **Guillemets** : « » en français et en espagnol, “ ” en anglais ;
+- **Espaces avant la ponctuation** : en français, espace (insécable) avant `: ; ? !` et `%` ; en espagnol, aucune avant `:` mais une espace dans `100 %` ; en anglais, aucune ;
+- **Ponctuation d'ouverture** : `¿` et `¡` en espagnol ;
+- **Apostrophe** : droite ou typographique, comme dans la source ;
+- **Nombres et majuscules** : séparateurs de milliers et décimal, majuscules des titres et des noms de langues, selon la langue ;
+- **Tirets et caractères décoratifs** de la source (—, …) conservés quand la source les emploie.
+
 ---
 
 ## RÈGLES TECHNIQUES DE SÉCURITÉ
@@ -319,11 +344,11 @@ Scripts du dépôt, dossier `docs/scripts/` (voir `trans_script_0_README.md`), �
 À exécuter, dans cet ordre, après avoir écrit le bloc :
 
 1. `python3 trans_script_1_check_keys.py NMS_txt_code.html --strict` : JSON valide, `_meta` complet, mêmes clés que la source, mêmes `{paramètres}`, mêmes extraits de code (pseudo-noms et mot-témoin traduits de façon cohérente et conformes à `copy.template_word`), balises autorisées seulement, `<title>` statique inchangé. Avec `--since`, vérifie aussi que les clés modifiées dans la source ont été retouchées.
-2. `node trans_script_2_test_behavior.js --file NMS_txt_code.html --lang <lang_code>` : copie, croix d'effacement, erreurs de balise, exemples, onglets, non-régression du rendu.
+2. `node trans_script_2_test_behavior.js --file NMS_txt_code.html --lang <lang_code> [--ref NMS_txt_code_precedent.html]` : copie, croix d'effacement, erreurs de balise, exemples, onglets, non-régression du rendu. **Sans `--ref`, la non-régression est sautée (`SKIP`) : l'écrire dans le rapport.** Avec `--ref`, la lancer sur des langues déjà présentes dans la version précédente (ex. `--lang fr`, puis `--lang en`) : sur la **nouvelle** langue, elle échoue (écarts attendus), la référence n'ayant pas son bloc.
 3. `node trans_script_3_test_robustness.js NMS_txt_code.html` : sécurité, bloc illisible, langue partielle, détection de la langue, stockage bloqué.
 4. Si le code a été touché (hors de ce prompt) : `node trans_script_4_test_render.js precedent.html NMS_txt_code.html <lang_code>`.
 
-**Prérequis.** Le n° 1 ne demande que Python 3. Les n° 2 à 4 demandent Node.js et `npm i jsdom` dans un dossier temporaire, avec `NODE_PATH` pointant vers son `node_modules`. Si un outil est indisponible (pas de Node, pas de réseau), l'écrire dans le rapport, ne **jamais** déclarer « passé » un contrôle qui n'a pas été exécuté, et faire à la main les vérifications équivalentes quand c'est possible.
+**Prérequis.** Le n° 1 ne demande que Python 3. Les n° 2 à 4 demandent Node.js et `npm i jsdom` dans un dossier temporaire, avec `NODE_PATH` pointant vers son `node_modules`. Installation type : `mkdir /tmp/nm && cd /tmp/nm && npm init -y && npm i jsdom`, puis `export NODE_PATH=/tmp/nm/node_modules`. Si un outil est indisponible (pas de Node, pas de réseau), l'écrire dans le rapport, ne **jamais** déclarer « passé » un contrôle qui n'a pas été exécuté, et faire à la main les vérifications équivalentes quand c'est possible.
 
 Ces scripts sont facultatifs : la méthode manuelle reste valable, avec la même exigence. Ils garantissent la cohérence des clés et du comportement, **pas la qualité de la traduction ni le rendu visuel** : **toujours dire explicitement ce qui n'a pas pu être vérifié** (affichage, alignements, couleurs, longueurs de texte, drapeaux) et le laisser à la validation de la personne.
 
@@ -354,12 +379,13 @@ Le fichier `NMS_txt_code.html` mis à jour, avec le bloc de la langue cible cré
 **Numéro de version.** `_meta.translation_version` indique la version du guide que le bloc reflète ; `_meta.updated` la date de la mise à jour ; la ligne « Dernière modification » de l'en-tête reçoit la date du jour. Ne pas changer le numéro de version du guide lui-même sans accord de la personne.
 
 **Rapport de livraison standard** (même format à chaque fois) :
-1. Fichiers utilisés (nom, taille, md5, version) et scripts exécutés (version, md5).
+1. Fichiers utilisés (nom, taille, md5, version), scripts exécutés (version, md5), et md5 et taille du fichier livré.
 2. Clés écrites ou modifiées (nombre, liste courte).
 3. Écarts avec le plan validé, le cas échéant.
 4. Contrôles exécutés, avec leur résultat.
 5. **Ce qui n'a pas pu être vérifié** (rendu visuel, alignements, couleurs, longueurs, drapeaux), laissé à la validation de la personne.
 6. Termes du jeu douteux à vérifier en jeu, et points restant à décider.
+7. Lignes proposées pour les tables « Historique d'utilisation » et « État des traductions » et pour le journal des modifications de ce prompt, à n'appliquer qu'après un feu vert distinct.
 
 **Glossaire des termes ajoutés ou modifiés.** À chaque mise à jour, fournir la liste des nouveaux termes traduits (textes indicatifs, messages, libellés des boutons, expressions comme « uppercase required »). Ce glossaire sert de référence terminologique pour traduire le README correspondant avec les mêmes mots, sans relire tout le fichier.
 
@@ -367,24 +393,25 @@ Le fichier `NMS_txt_code.html` mis à jour, avec le bloc de la langue cible cré
 
 ## HISTORIQUE D'UTILISATION
 
-Table à compléter à chaque usage de ce prompt, pour tracer quelle version de quel fichier a été traduite, avec quels réglages.
+Table à compléter à chaque usage de ce prompt, pour tracer quelle version de quel fichier a été traduite, avec quels réglages. Cette table, celle de l'état des traductions et le journal des modifications se mettent à jour **sur proposition** : le rapport de livraison donne le texte exact des lignes à ajouter, et elles ne sont appliquées à ce prompt qu'après un feu vert distinct (voir « PROTECTION DES MODIFICATIONS DE CE PROMPT »).
 
-| Date | Source (nom + version) | Produit | `target_language` | `target_variant` | `tone` | `fidelity_style` | `companion_readme` utilisé ? | Mode | Style `aria-label` |
-|---|---|---|---|---|---|---|---|---|---|
-| 2026-09-08 | `NMS_txt_code_FR.html` (fichier séparé, version non renseignée) | `NMS_txt_code_EN.html` (fichier séparé) | English | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | complète | B (confirmé le 2026-10-17) |
-| 2026-10-17 | `NMS_txt_code_FR.html` v1.3, à partir de l'EN v1.1 | `NMS_txt_code_EN.html` v1.3 (fichier séparé) | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | incrémentale | B |
-| 2026-10-19 | `NMS_txt_code_FR.html` v1.3 et `NMS_txt_code_EN.html` v1.3 | bloc `i18n-en` de `NMS_txt_code.html` v2.0 | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | migration : textes extraits automatiquement de l'EN v1.3, non retraduits | B |
+| Date | Source (nom + version) | Produit | md5 du livrable | `target_language` | `target_variant` | `tone` | `fidelity_style` | `companion_readme` utilisé ? | Mode | Style `aria-label` |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-09-08 | `NMS_txt_code_FR.html` (fichier séparé, version non renseignée) | `NMS_txt_code_EN.html` (fichier séparé) | non relevé | English | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | complète | B (confirmé le 2026-10-17) |
+| 2026-10-17 | `NMS_txt_code_FR.html` v1.3, à partir de l'EN v1.1 | `NMS_txt_code_EN.html` v1.3 (fichier séparé) | non relevé | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | incrémentale | B |
+| 2026-10-19 | `NMS_txt_code_FR.html` v1.3 et `NMS_txt_code_EN.html` v1.3 | bloc `i18n-en` de `NMS_txt_code.html` v2.0 | non relevé | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | migration : textes extraits automatiquement de l'EN v1.3, non retraduits | B |
+| 2026-10-24 | `NMS_txt_code.html` v2.0 (bloc `i18n-fr` 2.0) | bloc `i18n-es` de `NMS_txt_code.html` v2.0 | `75a04cc4966d23e4b6ccf4eb63909f17` (366 674 octets) | Español | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | nouvelle langue : traduction clé par clé depuis le français (116 clés), ancien ES v1.1 utilisé comme référence de vocabulaire seulement | B |
 
-L'ancien fichier `NMS_txt_code_ES.html` (traduit le 2026-09-09 depuis une FR de 1297 lignes) n'a jamais été migré : l'espagnol sera créé comme un **nouveau bloc**, traduit clé par clé.
+L'ancien fichier `NMS_txt_code_ES.html` (traduit le 2026-09-09 depuis une FR de 1297 lignes, dernière version v1.1 du 2026-09-25) n'a pas été migré : l'espagnol a été créé le 2026-10-24 comme un **nouveau bloc**, traduit clé par clé depuis le français ; l'ancien fichier n'a servi que de référence de vocabulaire.
 
 ---
 
 ## ÉTAT DES TRADUCTIONS
 
-Table à mettre à jour à chaque livraison, avec la liste des langues présentes dans le fichier (blocs `i18n-*`) et leur `_meta.translation_version`.
+Table à mettre à jour à chaque livraison (sur proposition, voir ci-dessus), avec la liste des langues présentes dans le fichier (blocs `i18n-*`) et leur `_meta.translation_version`.
 
 | Langue | Bloc | Version reflétée | État |
 |---|---|---|---|
 | FR | `i18n-fr` | 2.0 | source de référence |
 | EN | `i18n-en` | 2.0 | à jour |
-| ES | aucun | sans objet | à créer (nouveau bloc, `--todo es` donne la liste complète des clés) |
+| ES | `i18n-es` | 2.0 | à jour (livré le 2026-10-24) |
