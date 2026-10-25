@@ -426,7 +426,7 @@ Le logo Nexus Mods n'existe pas dans simple-icons, on a donc recréé son SVG ve
 (plutôt que de réutiliser un PNG encodé en base64 trouvé ailleurs) et on l'a intégré en `logoSvg` :
 
 <details open>
-<summary><a href="https://github.com/Data-Spirit/NMS_TC/blob/main/docs/assets/nexusmods_logo.svg">Fichier :</a><code>nexusmods_badge.json</code> : ⤵️</summary>
+<summary><a href="https://github.com/Data-Spirit/NMS_TC/blob/main/docs/assets/nexusmods_logo.svg">Fichier :</a><code>nexusmods_logo.svg</code> : ⤵️</summary>
 
 ```svg
 <svg width="100%" height="100%" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg">
