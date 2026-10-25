@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 3.5
-> Dernière modification : 2026-09-25
+> Version : 3.7
+> Dernière modification : 2026-10-25
 -->
 
 <!-- BANNIERE CENTRE + TITRE CENTRE -->
@@ -69,7 +69,7 @@
 |:---:|---|:---:|:---:|:---:|
 | 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
 | 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
-| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_es] | [![Download](./assets/download-loop.svg)][download_es] |
+| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_mltlg] | [![Download](./assets/download-loop.svg)][download_mltlg] |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 | 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
 
@@ -148,17 +148,19 @@
 
 ```
 NMS_TC/
-├── assets/               → Graphic elements of NMS_TC
+│
 ├── BANK_ICONS/           → Standalone icon assets (transparent PNGs)
 ├── docs/                 → Additional documentation
+│   ├── _legacy/          → older versions (html's / readme's / prompts)
+│   ├── assets/           → Graphic elements of NMS_TC
 │   ├── img/              → All banner/InGame_screenshot/Guide_screenshot etc.
 │   └── prompts/          → All prompt for translation and code verification
-├── LANG/
-│   ├── FR/               → French guide (HTML + detailed README)
-│   ├── EN/               → English guide (HTML + detailed README)
-│   └── ES/               → Spanish guide (HTML + detailed README)
+├── LANG/                 → HTML (multilingual) Guide folder
+│   ├── FR/               → Detailed French README
+│   ├── EN/               → Detailed English README
+│   └── ES/               → Detailed Spanish README
 ├── index.html            → Index file for GitHub Pages.
-├── LICENSE.md
+├── LICENSE.md            → License file for this repo.
 └── README.md             → this file
 ```
 
@@ -198,7 +200,6 @@ NMS_TC/
 
 <!-- Liens de téléchargement direct par langue (utilisés en référence dans le tableau) -->
 [download_mltlg]: https://github.com/Data-Spirit/NMS_TC/releases/download/v2.0/NMS_txt_code.html
-[download_es]: https://github.com/Data-Spirit/NMS_TC/releases/download/v1.1/NMS_txt_code_ES.html
 
 <!-- Language README files -->
 [readme_en]: ./LANG/EN/README_EN.md
@@ -207,7 +208,6 @@ NMS_TC/
 
 <!-- Language online guides (GitHub Pages) -->
 [guide_mltlg]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html
-[guide_es]: https://data-spirit.github.io/NMS_TC/LANG/ES/NMS_txt_code_ES.html
 
 <!-- Mémo : icône SVG de téléchargement, non utilisée en référence dans le tableau -->
 <!-- (une image en référence casse dans une cellule de tableau GitHub) ; le tableau utilise -->
