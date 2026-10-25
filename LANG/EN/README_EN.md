@@ -1,9 +1,21 @@
 <!-- File version 
-> Version: 1.3
-> Last modified: 2026-10-18
+> Version: 2.1
+> Last modified: 2026-10-25
+-->
+<!-- Translation parameters
+> source_file: README_FR.md v2.1 (md5 e3ce5e7638a7b06f3ce3868f098ee6ac)
+> target_language: English
+> target_variant: neutral/standard
+> lang_code: EN
+> tone: compromise (sober, key imagery kept)
+> fidelity_style: idiomatic
+> companion_html_guide: NMS_txt_code.html v2.0, i18n-en block (md5 75a04cc4966d23e4b6ccf4eb63909f17)
+> translated_on: 2026-10-25
 -->
 
-<h1 align="center">NMS // TEXT CODES — English Guide</h1>
+<h1 align="center">NMS // TEXT CODES — Design Documentation</h1>
+
+<p align="center"><em>README in English: design documentation for the interactive guide</em></p>
 
 <!-- CENTERED BADGES -->
 <p align="center">
@@ -13,7 +25,7 @@
   </a>
   
   <a href="https://github.com/Data-Spirit">
-    <img src="https://img.shields.io/badge/Guide%20%3A-README_EN.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=Guide%20%3A&labelColor=black&color=darkcyan" alt="Guide : USER">
+    <img src="https://img.shields.io/badge/README%20%3A-README_EN.md-blue?style=flat&logo=mdbook&logoColor=white&logoSize=auto&label=README%20%3A&labelColor=black&color=darkcyan" alt="README : README_EN.md">
   </a>
   
   <a href="https://github.com/Data-Spirit/NMS_TC">
@@ -22,9 +34,13 @@
   
 </p>
 
-**An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file.
+**An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file. It is **available in several languages**, thanks to a language selector built into the file.
 
-`NMS_txt_code_EN.html` · ~320 KB · no critical external dependencies · works offline
+`NMS_txt_code.html` · ~358 KB · multilingual · no critical external dependencies · works offline
+
+> **Who's who?**
+> - **The interactive guide** (`NMS_txt_code.html`) is the product: a self-contained, **multilingual** HTML file with a built-in language selector.
+> - **This README** documents its design. It is written **in English**. There is one version per language (`README_EN.md`, etc.). **Only the interactive guide is multilingual, not the READMEs.**
 
 ---
 
@@ -32,6 +48,7 @@
 
 - [Why this project](#why-this-project)
 - [Key feature: a 100% self-contained file](#key-feature-a-100-self-contained-file)
+- [The interactive guide is multilingual](#the-interactive-guide-is-multilingual)
 - [Key numbers](#key-numbers)
 - [Interface structure](#interface-structure)
   - [Info Tab](#-info-tab)
@@ -43,6 +60,7 @@
 - [One-click copy](#one-click-copy)
 - [Visual identity: a "meta" design](#visual-identity-a-meta-design)
 - [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded)
+- [Adding or updating a language in the interactive guide](#adding-or-updating-a-language-in-the-interactive-guide)
 - [Information reliability and known limitations](#information-reliability-and-known-limitations)
 - [Compatibility and accessibility](#compatibility-and-accessibility)
 - [Tech stack](#tech-stack)
@@ -60,16 +78,31 @@ No Man's Sky lets players customize names (bases, ships, frigates, multi-tools, 
 
 ## Key feature: a 100% self-contained file
 
-The guide ships as **a single `.html` file**, with no companion folder required for it to work.
+The guide ships as **a single `.html` file** (all languages included), with no companion folder required for it to work.
 
 In practice, that means:
 
 - **No installation.** Just open the file in any modern browser — that's it.
 - **Freely movable and renamable.** The file has no relative-path dependency on any other file.
-- **Works offline.** All the data (colors, icons, sorting logic, simulator) is embedded directly in the file — see [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded) for the technical details of how the images are packed in.
+- **Works offline.** All the data (colors, icons, sorting logic, simulator, texts in every language) is embedded directly in the file — see [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded) for the technical details of how the images are packed in.
 - **One non-critical external dependency**: fonts (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Without an internet connection, rendering simply falls back to the browser's default system fonts — no functionality is lost.
 
-This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~320 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
+This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~358 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
+
+---
+
+## The interactive guide is multilingual
+
+The interactive guide exists in **several languages within a single file**: there is no separate file per language.
+
+- **Language selector**: at the top right of the screen, a menu lists each language under its own name, preceded by a flag (for example "Français", "English", "Español"). The choice applies immediately to the whole guide: texts, tables, simulator messages.
+- **Automatically chosen language**: on the first visit, the guide uses the browser's language if it is available, otherwise French. The user's choice is then remembered in their browser.
+- **Currently available languages**: **French** (the source language), **English**, and **Spanish**.
+- **Missing text in a language**: the French version is shown in its place, never an error message.
+
+> **Important distinction.** Only the **interactive guide** is multilingual. This README is written in a single language; there is one version per language (`README_FR.md`, `README_EN.md`…), each translated separately.
+
+> **🔧 Technical detail:** each language is a JSON data block placed at the end of the file, and the guide's texts are identified by keys. Formatting (bold, italics, code, links…) is preserved, but sanitized through a whitelist of tags: a translation therefore can't introduce active code. An unreadable language block is ignored without affecting the others. Each language adds about 13 KB to the file.
 
 ---
 
@@ -85,12 +118,14 @@ This design choice (embedding everything rather than relying on an external asse
 | ❔ Tags with unconfirmed texture path | **12** |
 | 🖼️ Icons embedded as base64 in the file | **145 / 145** |
 | 📝 Real-world usage examples | **10** |
+| 🌍 Languages in the interactive guide | **3** |
+| 🔤 Texts to translate (translation keys) | **116** |
 
 ---
 
 ## Interface structure
 
-The guide is organized into **4 tabs**, designed as a logical reading path: you learn the syntax before diving into the reference tables.
+The guide is organized into **4 tabs**, designed as a logical reading path: you learn the syntax before diving into the reference tables. A **language selector**, at the top right, changes the language of the entire interactive guide.
 
 ### 📘 Info Tab
 
@@ -108,7 +143,7 @@ A complete reference table of the 59 color tags, featuring:
 
 - **A full-width color swatch** per row (rather than a small square), with a checkerboard background to correctly visualize the transparency of colors that have one.
 - **Exact hex code** and **transparency percentage** (shown only when below 100%, to avoid cluttering the display unnecessarily).
-- **Category** for each tag (Transmissions/Missions, Resources, Players, Companions, Galactic Map, etc.), right-aligned at the end of each row.
+- **Category** for each tag (Transmissions / Missions, Resources, Players, Companions, Galactic Map, etc.), right-aligned at the end of each row.
 - **A dedicated header band**, visually distinct (its own background and border, vertical separators between columns) rather than plain floating text above the table.
 - **Four clickable sort modes**: by name (alphabetical), by color (see below), by hex code (alphabetical), and by brightness (darkest to lightest). Clicking the same criterion a second time reverses the order.
 - **A search bar** that instantly filters the list by tag name.
@@ -119,7 +154,7 @@ A complete reference table of the 59 color tags, featuring:
 
 ### 🖼️ Icons Tab
 
-A complete reference table of the 145 icon tags, grouped into **12 categories** (Resources, Interface, Frigates, Inventory, Voice/Network, Loot, Platforms/Controls, Portal Glyphs, Class (C→S), Game Modes, Base Building, Non-functional), with the following for each icon:
+A complete reference table of the 145 icon tags, grouped into **12 categories** (Resources, Interface, Frigates, Inventory, Voice / Network, Loot, Platforms / Controls, Portal Glyphs, Class (C→S), Game Modes, Base Building, Non-functional), with the following for each icon:
 
 - A **real thumbnail preview** of the icon (see the dedicated extraction section below — these aren't generic placeholder symbols, but the actual, cut-out game icons).
 - The **exact tag name**.
@@ -177,8 +212,8 @@ The simulator reproduces the technique of placing a color tag right before an `<
 
 The same dedicated button (⧉ symbol) appears in four places in the guide:
 
-- **Colors**: a button to the left of each table row copies a ready-to-use template, `<COLOR_NAME>Text</>`.
-- **Icons**: a button to the left of each table row copies the full syntax directly, `<IMG>ICON_NAME<>`.
+- **Colors**: a button to the left of each table row copies a ready-to-use template, `<NAME_COLOR>Text</>`.
+- **Icons**: a button to the left of each table row copies the full syntax directly, `<IMG>NAME_ICON<>`.
 - **Real-world examples** (Info tab): a button to the right of each of the ten rows copies the example's raw code, which is always the same.
 - **Simulator**: a slightly larger button, to the right of the input field and the same height as it, copies the code exactly as currently typed (the raw text, not the preview). Its content is read at the moment of the click, so it always follows the changes made in the field, with nothing to synchronize. If the field is empty, the click does nothing, so the clipboard isn't overwritten with nothing.
 - **Immediate visual feedback**: the button briefly turns into a checkmark (✓) for about 1.4 seconds to confirm the copy.
@@ -211,15 +246,35 @@ The 145 icons aren't generic placeholder symbols: they are the **actual icons fr
 3. **Manual quality control.** Several passes of visual inspection caught and fixed poorly cropped, off-center icons, or ones contaminated by residue from an adjacent icon — until all 145 icons rendered cleanly.
 4. **Encoding.** Each PNG (transparent background) is encoded in **base64** and stored in a JavaScript object (`ICON_DATA`) mapping each filename to a `data:image/png;base64,...` string, used directly as the `src` attribute of `<img>` tags — exactly as if the image were hosted online, except it's physically present inside the file.
 
-This approach accounts for both the file's size (~320 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
+This approach accounts for both the file's size (~358 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
 
-This data block (`ICON_DATA`) is deliberately isolated at the very end of the file, separate from all the JavaScript logic that precedes it — an organization designed so that reading the code is never drowned out by these few thousand lines of binary text, and to make it easier for the community to add icons in the future.
+This data block (`ICON_DATA`) is deliberately isolated at the very end of the script, separate from all the JavaScript logic that precedes it (only the language blocks, simple JSON data, come after) — an organization designed so that reading the code is never drowned out by these few thousand lines of binary text, and to make it easier for the community to add icons in the future.
 
-> **🔧 Technical detail:** in JavaScript, a constant only needs to be declared before it's used at runtime — not necessarily before the functions that reference it in their code. `ICON_DATA` can therefore be placed at the very bottom of the file without breaking anything, as long as it stays declared before the very last calls that trigger the guide's initial rendering.
+> **🔧 Technical detail:** in JavaScript, a constant only needs to be declared before it's used at runtime — not necessarily before the functions that reference it in their code. `ICON_DATA` can therefore be placed at the very bottom of the script without breaking anything, as long as it stays declared before the page initialization, which runs once loading is complete.
 
 The 16 tags listed as non-functional aren't all simply empty entries: some of them (generic gamepad-button icons) actually have their image already present as base64 in `ICON_DATA`, without being linked to it in the icon table.
 
 > **🔧 Technical detail:** these images are kept in reserve rather than deleted, in case Hello Games ever assigns them an official in-game texture — linking them would then become a simple one-line fix, without having to re-extract or re-encode anything.
+
+---
+
+## Adding or updating a language in the interactive guide
+
+Translating the interactive guide requires **no new file**: a language is simply one more block of text inside `NMS_txt_code.html`.
+
+**Two distinct jobs, not to be confused:**
+
+| What | Where | How |
+|---|---|---|
+| **The interactive guide's language block** | inside `NMS_txt_code.html` | prompt `prompt_translation_HTML_GUIDE_LANG.md`, checked by the scripts in the `docs/scripts/` folder |
+| **This README in another language** | a separate file (`README_EN.md`…) | prompt `prompt_translation_README_LANG.md` |
+
+The working principle:
+
+1. **French is the source language.** Every new feature is first written in French, with its texts identified by keys.
+2. **Only what's missing or changed gets translated.** The `trans_script_1_check_keys.py` script lists the keys to translate for a given language.
+3. **Each language block starts with a `_meta` field** that stores the language's name, its flag, and the translation parameters chosen (tone, variant, fidelity).
+4. **Automated checks** verify the keys, tags, code examples, behavior, and robustness of the guide in each language.
 
 ---
 
@@ -231,6 +286,8 @@ The guide aims to be upfront about what's confirmed and what isn't:
 - Color hex codes come directly from an exact table of RGBA/HEX values — with one exception (`TRANS_ANM`), whose exact color couldn't be confirmed in the most recent available sources.
 - Tags marked `non-functional` or `to verify` are clearly flagged as such rather than presented with the same certainty as the rest.
 - The icon tinting technique is presented as an observed behavior, not a universal guarantee.
+- **Right-to-left** languages (Arabic, Hebrew…) are not yet supported by the interactive guide: the display would be incorrect.
+- The selector's **flags** are emoji: some systems may display two letters instead of the flag.
 
 ---
 
@@ -238,8 +295,8 @@ The guide aims to be upfront about what's confirmed and what isn't:
 
 - **Responsive**: layout adapted for narrow screens (secondary columns hidden on mobile in the color table, safety horizontal scroll on the icon tables).
 - **Modern browsers**: Chrome, Firefox, Edge, Safari — relies on CSS Grid, `mask-image`, and the Clipboard API, all available in every recent version.
-- **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), the simulator field is tied to a real `<label>` rather than plain floating text, and the simulator's copy button and clear button carry an `aria-label` too.
-- **No data sent anywhere**: everything runs locally in the browser; no network connection is required after the initial font load.
+- **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), the simulator field is tied to a real `<label>` rather than plain floating text, and the simulator's copy button and clear button carry an `aria-label` too. The **language selector** is a native menu labeled for screen readers, and the page's `lang` attribute follows the chosen language.
+- **No data sent anywhere**: everything runs locally in the browser; no network connection is required after the initial font load. Only the **language choice** is remembered, locally, in the browser; it is never sent.
 
 ---
 
@@ -248,14 +305,15 @@ The guide aims to be upfront about what's confirmed and what isn't:
 - **Vanilla HTML/CSS/JavaScript** — no framework, no build dependency, no compilation step.
 - **Fonts**: Rajdhani (headings), IBM Plex Sans (body text), JetBrains Mono (code), via Google Fonts CDN.
 - **No third-party libraries**: sorting, search, filtering, the simulator, and syntax highlighting are all native JavaScript written specifically for this guide.
+- **In-house language system**: translations are JSON dictionaries embedded in the file, read by native JavaScript, with no internationalization library.
 - **Optimized font loading**: two `<link rel="preconnect">` tags open the connection to Google Fonts' domains before the stylesheet even loads, reducing perceived latency on first render.
 - **Non-blocking images**: the 145 embedded icons use `decoding="async"`, so their decoding never delays the rendering of the rest of the page.
-- **Code validated with standard tools**: the HTML passes strict HTML5 validation with zero errors, and the CSS has been audited with Stylelint with no substantive issues (only formatting preferences, deliberately left as-is for stylistic consistency).
+- **Code validated with standard tools**: the HTML passes `html-validate` (recommended preset), apart from two rules that flag "empty" headings and buttons in the source file, disabled by design since their text is inserted at load time depending on the language, and the CSS has been audited with Stylelint with no substantive issues (only formatting preferences, deliberately left as-is for stylistic consistency).
 
 ---
 
 ## License
 
-This guide is distributed under the **CC BY-NC-SA 4.0** license. See the [`LICENSE.md`](../../LICENSE.md) file at the root of the repository for the full terms.
+This guide is distributed under the [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. See the [`LICENSE.md`](../../LICENSE.md) file at the root of the repository for the full terms.
 
 No Man's Sky and all associated assets, trademarks, and intellectual property belong to Hello Games and/or their respective rights holders. This guide is an unofficial community resource, not affiliated with Hello Games.
