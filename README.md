@@ -166,21 +166,21 @@
 ```
 NMS_TC/
 │
-├── BANK_ICONS/           → Standalone icon assets (transparent PNGs)
-├── docs/                 → Additional documentation
-│   ├── _legacy/          → older versions (html's / readme's / prompts)
-│   ├── assets/           → Graphic elements of NMS_TC
-│   ├── img/              → All banner/InGame_screenshot/Guide_screenshot etc.
-│   ├── prompts/          → All prompt for translation and code verification
-│   └── scripts/          → Check scripts used to verify the translations
-├── LANG/                 → The multilingual guide + one README per language
-│   ├── NMS_txt_code.html → The guide (single standalone multilingual file)
-│   ├── FR/               → Detailed French README
-│   ├── EN/               → Detailed English README
-│   └── ES/               → Detailed Spanish README
-├── index.html            → Index file for GitHub Pages.
-├── LICENSE.md            → License file for this repo.
-└── README.md             → this file
+├── docs/                   → Additional documentation
+│   ├── _legacy/            → older versions (html's / readme's / prompts)
+│   ├── assets/             → Graphic elements of NMS_TC
+│   │   └── BANK_ICONS/     → Standalone icon assets (transparent PNGs)
+│   ├── img/                → All banner/InGame_screenshot/Guide_screenshot etc.
+│   ├── prompts/            → All prompt for translation and code verification
+│   └── scripts/            → Check scripts used to verify the translations
+├── LANG/                   → The multilingual guide + one README per language
+│   ├── EN/                 → Detailed English README
+│   ├── ES/                 → Detailed Spanish README
+│   ├── FR/                 → Detailed French README
+│   └── NMS_txt_code.html   → The guide (single standalone multilingual file)
+├── index.html              → Index file for GitHub Pages.
+├── LICENSE.md              → License file for this repo.
+└── README.md               → this file
 ```
 
 ---
