@@ -133,8 +133,8 @@ The guide is also self-hosted on **GitHub Pages**, so you can browse it online d
 
 ## 🔎 Highlights
 
-- 🌍 **One file, every language.** All the languages live in the same HTML file. Switch instantly from the selector; the guide detects your browser language on the first visit and remembers your choice afterwards.
-- 📉 **Three files become one, and the total weight drops by about 62%** (≈ 938 KB for the three v1.1 files → ≈ 358 KB). Adding a language now costs only **≈ 13–14 KB** instead of a whole new guide.
+- 🌍 **One file, every language.** All the languages live in the same HTML file. Switch instantly from the selector; the guide detects your browser language on the first visit and remembers your choice afterwards. The address follows your language (`?lang=xx`), so you can copy and share a direct link.
+- 📉 **Three files become one, and the total weight drops by about 62%** (≈ 938 KB for the three v1.1 files → ≈ 359 KB). Adding a language now costs only **≈ 13–14 KB** instead of a whole new guide.
 - ⚡ **A smarter simulator.** A one-click copy button, and real-time error detection for unknown, misspelled or wrongly cased tags, with the fix suggested.
 - ⧉ **Copy any real-world example** to your clipboard in one click.
 - 🔒 **Safe by design.** Every translated text goes through a strict tag whitelist before reaching the page.
@@ -152,8 +152,9 @@ The guide is also self-hosted on **GitHub Pages**, so you can browse it online d
 ### 🌍 Multilingual system *(new in 2.0)*
 - **Language selector** at the top right of the page. Each language is listed under its own name, preceded by its flag.
 - **Multilingual by design**: every language has the same **116 translatable texts**, with French as the **source language**. All the language editions that existed as separate files in v1.1 are now merged into the single file.
-- **Smart language choice on load:** the previously saved choice first; otherwise the browser's language (an exact match like `es`, or the base language of a regional one like `es-MX`); otherwise French.
+- **Smart language choice on load:** a language requested in the address (`?lang=xx`) first; otherwise the previously saved choice; otherwise the browser's language (an exact match like `es`, or the base language of a regional one like `es-MX`); otherwise French.
 - **Instant switching, no reload:** texts, tables, category filter, simulator messages and examples are all re-rendered, and the page title and `<html lang>` follow the language.
+- **Shareable links:** the address bar follows the language (`…/NMS_txt_code.html?lang=es`): copy it to share the guide in the displayed language. Unknown values are ignored. This applies to the hosted version; some browsers do not allow updating the address of a local file, in which case nothing changes and the guide works as usual.
 - **Graceful fallback:** a text missing in a language is shown in French rather than as a blank or an error. Missing keys are also tracked internally to make translation gaps easy to spot.
 - **One block per language.** Each language is an independent JSON block (`<script type="application/json" id="i18n-xx">`) placed at the end of the file, starting with a `_meta` header: native name, flag, language code, translation version, source version and the translation parameters used (tone, variant, fidelity). A block that fails to load is ignored without affecting the other languages.
 - **Adding a language means adding one block**, with no change to the code. Each block weighs about 13–14 KB.
@@ -189,6 +190,7 @@ The guide is also self-hosted on **GitHub Pages**, so you can browse it online d
 - **Translations are treated as untrusted input.** Every translated text is parsed in an inert `<template>` (nothing runs during parsing) and cleaned with a whitelist: only `A`, `B`, `BR`, `CODE`, `EM`, `I`, `SPAN` and `STRONG` are kept, and every other tag is turned into plain text.
 - **Attributes are whitelisted too.** `href` must start with `http(s)://` or `#`; `class` is limited to letters, digits, `-`, `_`; `target` can only be `_blank`; `rel` letters only. Event handlers (`onclick…`) and `javascript:` links can never reach the page — a community translation cannot inject code.
 - **Storage failures are tolerated.** Reading or writing the saved language is wrapped in `try/catch`, so the guide still works when the browser blocks `localStorage`.
+- **The address is never trusted.** The `?lang=` value is only compared with the languages present in the file; it is never inserted into the page, and unknown or hostile values are ignored.
 - **Unchanged from v1.1:** the simulator escapes the typed text before recognizing tags, so anything that is not a genuine NMS tag stays inert text.
 
 ## ♿ Accessibility
@@ -208,8 +210,9 @@ The guide is also self-hosted on **GitHub Pages**, so you can browse it online d
 The checks below were run on the final `NMS_txt_code.html`, in every language:
 
 - **Keys and safety** (`trans_script_1_check_keys.py`, strict mode): **29 checks passed, 0 failed**. Same keys in every language, matching `{params}` and code snippets, only whitelisted tags, no event handler or `javascript:` link.
-- **Behavior** (`trans_script_2_test_behavior.js`, jsdom): **34 checks passed for each language.** Copy and clear buttons, tag-error messages, examples, tabs and the rendering of valid inputs.
+- **Behavior** (`trans_script_2_test_behavior.js`, jsdom): **35 checks passed for each language** (including a render comparison with the previous build). Copy and clear buttons, tag-error messages, examples, tabs and the rendering of valid inputs.
 - **Robustness** (`trans_script_3_test_robustness.js`): all passed. A malicious translation (`<img onerror>`, `javascript:` link, `onclick`, `iframe`, `svg`) is neutralized; an unreadable language block is ignored; a partial language falls back to French and its missing keys are reported; the browser language is detected and the chosen language remembered; the page still works when `localStorage` is blocked.
+- **Language from the address** (targeted checks, jsdom): **17 checks passed.** `?lang=` takes priority over the saved choice and the browser language; case and regional codes (`ES`, `es-MX`) are accepted; unknown, empty or hostile values are ignored; the address follows the selector while keeping other parameters and the `#fragment`; no history entry is added; and the page still works when updating the address fails.
 - **Render equivalence** (`trans_script_4_test_render.js`): across a series of interactions (simulator, searches, sorts, filter, tabs, language switch and back), the languages already present render **identically** before and after a new language block is added. Adding a language did not alter the existing ones.
 - **HTML validation** (`html-validate`, `recommended` and `standard` presets): **0 errors**, with two rules deliberately disabled (`empty-heading` and `text-content`), since headings and buttons are filled with their translated text at load time.
 
@@ -225,6 +228,6 @@ The checks below were run on the final `NMS_txt_code.html`, in every language:
 
 | File | Size | SHA-256 |
 |---|---|---|
-| `NMS_txt_code.html` | 366,674 bytes (≈ 358 KB) | `da7e6386d26e2aaf08a3d1454611a70d1ed721f35542e06bd8ac5496bb896ed0` |
+| `NMS_txt_code.html` | 367,472 bytes (≈ 359 KB) | `3197f3abdb08650494c335ba79921709137f8c418d0740401209b078cadb46ed` |
 
 **Full Changelog**: https://github.com/Data-Spirit/NMS_TC/compare/v1.1...v2.0
