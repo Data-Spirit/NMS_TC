@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 3.7
-> Dernière modification : 2026-10-25
+> Version : 3.8
+> Dernière modification : 2026-10-27
 -->
 
 <!-- BANNIERE CENTRE + TITRE CENTRE -->
@@ -12,7 +12,7 @@
 
 <h1 align="center">NMS // TEXT CODES</h1>
 
-**A complete, community-driven reference for No Man's Sky's in-game text formatting codes** — every color tag and every icon tag, documented, extracted, and packaged into a single self-contained interactive HTML guide.
+**A complete, community-driven reference for No Man's Sky's in-game text formatting codes** — every color tag and every icon tag, documented, extracted, and packaged into a single self-contained, **multilingual** interactive HTML guide.
 
 <!-- BADGES CENTRES + LIENS HYPERTEXT INCLUS -->
 <div align="center">
@@ -38,6 +38,8 @@
 > _The information exists, but has historically been scattered across screenshots, player trial-and-error, forums, and community guides._
 > 
 > **NMS // TEXT CODES** brings this information together into a **single structured and interactive reference guide** — designed to work both as a reference and as a practical tool while you play.
+> 
+> The tags work on **every platform** where the game is available (PC, PlayStation, Xbox and Nintendo Switch), in any editable text field.
 
 ## 🛠️ How to Use
 
@@ -46,32 +48,45 @@
 > **No installation is required**, and the guide is designed to work **fully offline** once downloaded.
 
 > [!TIP]
-> _You can also browse the hosted version directly from your browser through **🌐Online Version**._
+> _You can also browse the guide online, directly from your browser, with nothing to download: **[🌐 Open the online guide ↗️][guide_mltlg]**._
 
 ---
 
+<!-- BLOC TELECHARGEMENT / LECTURE EN LIGNE -->
+## 🚀 Get the guide
+
+<!-- BLOC CENTRE -->
+<div align="center">
+
+| 🌐 Read online | 💾 Download |
+|:---:|:---:|
+| [**Open the online guide ↗️**][guide_mltlg] | [![Download](./docs/assets/download-loop.svg)][download_mltlg] |
+
+</div>
+
+> One file, every language: the guide uses your browser's language, remembers your choice, and lets you switch at any time.
+
 <!-- TABLEAU RECAPITULATIF -->
-## 📖 Guide by language
+## 📖 Available languages
 
 <details>
 <summary>📋 Table Legend : </summary>
 
 - 🛠️ **Info** — Detailed documentation and language-specific information about the guide.  
-- 📖 **Guide** — Open the complete guide online through GitHub Pages.  
-- 💾 **Download** — Download the standalone HTML guide for offline use.
+- 📖 **Guide** — Open the complete guide online, directly in that language, through GitHub Pages.  
 
 </details>
 
 <!-- TABLEAU CENTRE -->
 <div align="center">
 
-| | Language | 🛠️ Info | 📖 Guide | 💾 Download |
-|:---:|---|:---:|:---:|:---:|
-| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_mltlg] | [![Download](./docs/assets/download-loop.svg)][download_mltlg] |
-| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_mltlg] | [![Download](./docs/assets/download-loop.svg)][download_mltlg] |
-| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_mltlg] | [![Download](./docs/assets/download-loop.svg)][download_mltlg] |
-| 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
-| 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned | 🔜 Planned |
+| | Language | 🛠️ Info | 📖 Guide |
+|:---:|---|:---:|:---:|
+| 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_en] |
+| 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_fr] |
+| 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_es] |
+| 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned |
+| 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned |
 
 </div>
 
@@ -85,7 +100,7 @@
 </details>
 
 > [!NOTE]
-> More languages may be added over time. Each language folder has its own detailed README describing that guide's features in full.
+> More languages may be added over time. The guide is a single multilingual file: the links above open it directly in the chosen language, and you can switch at any time with the selector at the top right. Each language has its own detailed README describing the guide's features in full.
 
 > **Long-term goal** : _make NMS // TEXT CODES available in every language officially supported by Hello Games in No Man's Sky, so that players around the world can use the guide in their own language._
 
@@ -94,12 +109,14 @@
 <!-- LISTE d'AVANTAGES DU GUIDE -->
 ## ✨ Why this guide stands out
 
+* 🌍 **Multilingual, in a single file :** several languages built in, with a **language selector**. The guide picks your browser's language automatically, remembers your choice, and its address follows the displayed language, so you can **share a direct link** to any language.
 * 📦 **A single, fully self-contained HTML file :** no installation, no critical external dependencies. Open it in your browser, **offline, anywhere**.
 * 🎨 **59 color tags** documented with **exact HEX code, transparency and category**, plus **4 clickable sort modes** *(name, color, HEX, luminosity)* and instant search.
 * 🖼️ **145 real in-game icons**, individually extracted and cleaned by hand *(not generic placeholders)*, grouped into **12 categories**, with **duplicate / non-functional / unconfirmed status badges :**  all 145 icons are embedded directly in the file, with **no external images needed**.
 * ⚡ **A live simulator :** type your tags and see the result rendered instantly, before pasting it in-game — including the well-known **icon-tinting trick**.
+* 🚨 **Instant error detection :** a misspelled, unknown or wrongly cased tag is flagged right in the preview, with the fix suggested.
 * 📝 **Examples :** includes **10 real, in-game usage examples** to get you started.
-* ⧉ **One-click copy :** on every row of the color and icon tables.
+* ⧉ **One-click copy :** on every row of the color and icon tables, on every real-world example, and in the simulator.
 * 🎭 **A "meta" visual identity :** the interface's own accent colors are borrowed directly from the **real in-game tags** it documents.
 * 💾 **Built to last :** no ephemeral spreadsheet links, no forum posts scattered across years of replies: just **one file** you can download and consult offline, whenever you need it.
 * 🔍 **Full transparency** about what's confirmed, uncertain, or non-functional — nothing is presented with more certainty than it deserves.
@@ -154,8 +171,10 @@ NMS_TC/
 │   ├── _legacy/          → older versions (html's / readme's / prompts)
 │   ├── assets/           → Graphic elements of NMS_TC
 │   ├── img/              → All banner/InGame_screenshot/Guide_screenshot etc.
-│   └── prompts/          → All prompt for translation and code verification
-├── LANG/                 → HTML (multilingual) Guide folder
+│   ├── prompts/          → All prompt for translation and code verification
+│   └── scripts/          → Check scripts used to verify the translations
+├── LANG/                 → The multilingual guide + one README per language
+│   ├── NMS_txt_code.html → The guide (single standalone multilingual file)
 │   ├── FR/               → Detailed French README
 │   ├── EN/               → Detailed English README
 │   └── ES/               → Detailed Spanish README
@@ -198,7 +217,7 @@ NMS_TC/
 [github_user]: https://github.com/Data-Spirit
 [github_banner]: docs/img/NMS_TC_banner/NMS_TC_banner_01.webp
 
-<!-- Liens de téléchargement direct par langue (utilisés en référence dans le tableau) -->
+<!-- Lien de téléchargement direct (fichier unique multilingue) -->
 [download_mltlg]: https://github.com/Data-Spirit/NMS_TC/releases/download/v2.0/NMS_txt_code.html
 
 <!-- Language README files -->
@@ -206,8 +225,11 @@ NMS_TC/
 [readme_fr]: ./LANG/FR/README_FR.md
 [readme_es]: ./LANG/ES/README_ES.md
 
-<!-- Language online guides (GitHub Pages) -->
+<!-- Guide en ligne (GitHub Pages) : lien général + un lien direct par langue (?lang=xx) -->
 [guide_mltlg]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html
+[guide_en]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html?lang=en
+[guide_fr]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html?lang=fr
+[guide_es]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html?lang=es
 
 <!-- Mémo : icône SVG de téléchargement, non utilisée en référence dans le tableau -->
 <!-- (une image en référence casse dans une cellule de tableau GitHub) ; le tableau utilise -->
