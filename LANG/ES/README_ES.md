@@ -1,16 +1,16 @@
 <!-- Versión del archivo 
-> Versión : 2.1
-> Última modificación : 2026-10-25
+> Versión : 2.2
+> Última modificación : 2026-10-27
 -->
 <!-- Parámetros de traducción
-> source_file: README_FR.md v2.1 (md5 e3ce5e7638a7b06f3ce3868f098ee6ac)
+> source_file: README_FR.md v2.2 (md5 cd377f8f5d862542265d60d9aac220ac)
 > target_language: Español
 > target_variant: neutral/standard
 > lang_code: ES
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.0, bloque i18n-es (md5 75a04cc4966d23e4b6ccf4eb63909f17)
-> translated_on: 2026-10-25
+> companion_html_guide: NMS_txt_code.html v2.0, bloque i18n-es (md5 c26672e58a3d43832ea06d02149368e9)
+> translated_on: 2026-10-27
 -->
 
 <h1 align="center">NMS // TEXT CODES — Documentación de diseño</h1>
@@ -36,7 +36,7 @@
 
 **Una guía interactiva, autónoma y exhaustiva de los códigos de formato de texto de No Man's Sky** — colores e iconos, completamente documentados, probados y reunidos en un único archivo HTML. Está **disponible en varios idiomas**, gracias a un selector de idioma integrado en el archivo.
 
-`NMS_txt_code.html` · ~358 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
+`NMS_txt_code.html` · ~359 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
 
 > **¿Qué es qué?**
 > - **La guía interactiva** (`NMS_txt_code.html`) es el producto: un archivo HTML autónomo, **multilingüe**, con un selector de idioma integrado.
@@ -87,7 +87,7 @@ En concreto, esto significa:
 - **Funciona sin conexión.** Todos los datos (colores, iconos, lógica de ordenación, simulador, textos de todos los idiomas) están embebidos directamente en el archivo — consulta la sección [Cómo se extrajeron e integraron los iconos](#cómo-se-extrajeron-e-integraron-los-iconos) para el detalle técnico de la integración de las imágenes.
 - **Una única dependencia externa no crítica**: las fuentes tipográficas (Google Fonts, vía CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sin conexión a internet, el renderizado simplemente recurre a las fuentes del sistema por defecto del navegador; no se pierde ninguna funcionalidad.
 
-Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~358 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
+Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~359 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
 
 ---
 
@@ -96,13 +96,14 @@ Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta d
 La guía interactiva existe en **varios idiomas dentro de un mismo archivo**: no hay un archivo por idioma.
 
 - **Selector de idioma**: arriba a la derecha de la pantalla, un menú muestra cada idioma con su propio nombre, precedido de una bandera (por ejemplo «Français», «English», «Español»). La elección se aplica de inmediato a toda la guía: textos, tablas, mensajes del simulador.
-- **Idioma elegido automáticamente**: en la primera visita, la guía adopta el idioma del navegador si está disponible y, si no, el francés. La elección del usuario se guarda después en su navegador.
+- **Idioma elegido automáticamente**: un idioma indicado en la dirección (`?lang=es`) tiene prioridad; si no, la guía adopta la elección guardada y, después, el idioma del navegador si está disponible y, si no, el francés. El idioma mostrado se guarda después en el navegador.
+- **Enlace directo a un idioma**: cada vez que cambia el idioma, la dirección de la guía se actualiza (`…/NMS_txt_code.html?lang=es`); basta con copiarla para compartir la guía en el idioma mostrado. Un valor desconocido simplemente se ignora. Este enlace se aplica a la versión en línea.
 - **Idiomas disponibles actualmente**: el **francés** (idioma de origen), el **inglés** y el **español**.
 - **Texto que falta en un idioma**: se muestra entonces la versión francesa en su lugar, nunca un mensaje de error.
 
 > **Distinción importante.** Solo la **guía interactiva** es multilingüe. Este README, en cambio, está escrito en un único idioma; existe una versión por idioma (`README_FR.md`, `README_EN.md`…), cada una traducida por separado.
 
-> **🔧 Detalle técnico:** cada idioma es un bloque de datos JSON situado al final del archivo, y los textos de la guía se identifican mediante claves. El formato (negrita, cursiva, código, enlaces…) se conserva, pero se depura mediante una lista blanca de etiquetas: una traducción no puede, por tanto, introducir código activo. Un bloque de idioma ilegible se ignora sin afectar a los demás. Cada idioma añade unos 13 KB al archivo.
+> **🔧 Detalle técnico:** cada idioma es un bloque de datos JSON situado al final del archivo, y los textos de la guía se identifican mediante claves. El formato (negrita, cursiva, código, enlaces…) se conserva, pero se depura mediante una lista blanca de etiquetas: una traducción no puede, por tanto, introducir código activo. Un bloque de idioma ilegible se ignora sin afectar a los demás. Cada idioma añade unos 13 KB al archivo. El valor `?lang=` de la dirección solo se compara con los idiomas disponibles; nunca se inserta en la página.
 
 ---
 
@@ -246,7 +247,7 @@ Los 145 iconos no son símbolos genéricos: son los **iconos reales del juego**,
 3. **Control de calidad manual.** Varias pasadas de verificación visual permitieron identificar y corregir iconos mal encuadrados, descentrados o contaminados con un residuo del icono adyacente — hasta lograr un resultado limpio en los 145 iconos.
 4. **Codificación.** Cada PNG (fondo transparente) se codifica en **base64** y se almacena en un objeto JavaScript (`ICON_DATA`) que asocia cada nombre de archivo con una cadena `data:image/png;base64,...`, utilizada directamente como atributo `src` de las etiquetas `<img>` — exactamente como si la imagen estuviera alojada en línea, salvo que está físicamente presente en el archivo.
 
-Este enfoque explica tanto el peso del archivo (~358 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
+Este enfoque explica tanto el peso del archivo (~359 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
 
 Este bloque de datos (`ICON_DATA`) está deliberadamente aislado al final del script, separado de toda la lógica JavaScript que lo precede (solo los bloques de idioma, simples datos JSON, vienen después) — una organización pensada para que la lectura del código nunca quede saturada por esos varios miles de líneas de texto binario, y para facilitar que la comunidad añada iconos en el futuro.
 

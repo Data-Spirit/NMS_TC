@@ -1,6 +1,6 @@
 <!-- Version du fichier 
 > Version : 2.0
-> Dernière modification : 2026-10-24
+> Dernière modification : 2026-10-27
 -->
 
 <!DOCTYPE html>
@@ -1468,18 +1468,29 @@ const ICON_DATA = {
 };
 
 /* ================= LANGUAGE SELECTOR + INIT ================= */
-// Langue choisie auparavant (mémorisée), sinon langue du navigateur si elle existe, sinon DEFAULT_LANG.
+// Retrouve le code d'une langue disponible à partir d'une valeur brute (ex. "ES", "es-MX") ; null si elle n'existe pas dans le fichier.
+function matchLanguage(raw){
+  const low = String(raw || '').trim().toLowerCase();
+  if(!low) return null;
+  return I18N.order.find(c => c.toLowerCase() === low)
+      || I18N.order.find(c => c.toLowerCase() === low.split('-')[0])
+      || null;
+}
+
+// Ordre de choix : langue demandée dans l'adresse (?lang=es), puis choix mémorisé, puis langue du navigateur, sinon DEFAULT_LANG.
+// La valeur de l'adresse n'est jamais insérée dans la page : elle est seulement comparée aux langues disponibles.
 function detectLanguage(){
+  try{
+    const requested = matchLanguage(new URLSearchParams(location.search).get('lang'));
+    if(requested) return requested;
+  }catch(e){}
   let saved = null;
   try{ saved = localStorage.getItem('nmstc-lang'); }catch(e){}
   if(saved && I18N.dict[saved]) return saved;
   const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
   for(const l of prefs){
-    const low = String(l).toLowerCase();
-    const exact = I18N.order.find(c => c.toLowerCase() === low);
-    if(exact) return exact;
-    const base = I18N.order.find(c => c.toLowerCase() === low.split('-')[0]);
-    if(base) return base;
+    const match = matchLanguage(l);
+    if(match) return match;
   }
   return I18N.dict[DEFAULT_LANG] ? DEFAULT_LANG : I18N.order[0];
 }
@@ -1514,6 +1525,12 @@ function applyLanguage(code){
   renderExampleList();
   document.getElementById('lang-select').value = code;
   try{ localStorage.setItem('nmstc-lang', code); }catch(e){}
+  // Adresse synchronisée : ?lang=xx dans la barre d'adresse, pour pouvoir copier un lien dans la langue affichée (sans nouvelle entrée d'historique).
+  try{
+    const url = new URL(location.href);
+    url.searchParams.set('lang', code);
+    history.replaceState(null, '', url);
+  }catch(e){}
 }
 
 /* ================= INIT ================= */

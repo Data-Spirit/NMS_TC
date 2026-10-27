@@ -1,16 +1,16 @@
 <!-- File version 
-> Version: 2.1
-> Last modified: 2026-10-25
+> Version: 2.2
+> Last modified: 2026-10-27
 -->
 <!-- Translation parameters
-> source_file: README_FR.md v2.1 (md5 e3ce5e7638a7b06f3ce3868f098ee6ac)
+> source_file: README_FR.md v2.2 (md5 cd377f8f5d862542265d60d9aac220ac)
 > target_language: English
 > target_variant: neutral/standard
 > lang_code: EN
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.0, i18n-en block (md5 75a04cc4966d23e4b6ccf4eb63909f17)
-> translated_on: 2026-10-25
+> companion_html_guide: NMS_txt_code.html v2.0, i18n-en block (md5 c26672e58a3d43832ea06d02149368e9)
+> translated_on: 2026-10-27
 -->
 
 <h1 align="center">NMS // TEXT CODES — Design Documentation</h1>
@@ -36,7 +36,7 @@
 
 **An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file. It is **available in several languages**, thanks to a language selector built into the file.
 
-`NMS_txt_code.html` · ~358 KB · multilingual · no critical external dependencies · works offline
+`NMS_txt_code.html` · ~359 KB · multilingual · no critical external dependencies · works offline
 
 > **Who's who?**
 > - **The interactive guide** (`NMS_txt_code.html`) is the product: a self-contained, **multilingual** HTML file with a built-in language selector.
@@ -87,7 +87,7 @@ In practice, that means:
 - **Works offline.** All the data (colors, icons, sorting logic, simulator, texts in every language) is embedded directly in the file — see [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded) for the technical details of how the images are packed in.
 - **One non-critical external dependency**: fonts (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Without an internet connection, rendering simply falls back to the browser's default system fonts — no functionality is lost.
 
-This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~358 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
+This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~359 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
 
 ---
 
@@ -96,13 +96,14 @@ This design choice (embedding everything rather than relying on an external asse
 The interactive guide exists in **several languages within a single file**: there is no separate file per language.
 
 - **Language selector**: at the top right of the screen, a menu lists each language under its own name, preceded by a flag (for example "Français", "English", "Español"). The choice applies immediately to the whole guide: texts, tables, simulator messages.
-- **Automatically chosen language**: on the first visit, the guide uses the browser's language if it is available, otherwise French. The user's choice is then remembered in their browser.
+- **Automatically chosen language**: a language requested in the address (`?lang=es`) takes priority; otherwise the guide uses the saved choice, then the browser's language if it is available, otherwise French. The displayed language is then remembered in the browser.
+- **Direct link to a language**: each time the language changes, the guide's address is updated (`…/NMS_txt_code.html?lang=en`); just copy it to share the guide in the displayed language. An unknown value is simply ignored. This link applies to the online version.
 - **Currently available languages**: **French** (the source language), **English**, and **Spanish**.
 - **Missing text in a language**: the French version is shown in its place, never an error message.
 
 > **Important distinction.** Only the **interactive guide** is multilingual. This README is written in a single language; there is one version per language (`README_FR.md`, `README_EN.md`…), each translated separately.
 
-> **🔧 Technical detail:** each language is a JSON data block placed at the end of the file, and the guide's texts are identified by keys. Formatting (bold, italics, code, links…) is preserved, but sanitized through a whitelist of tags: a translation therefore can't introduce active code. An unreadable language block is ignored without affecting the others. Each language adds about 13 KB to the file.
+> **🔧 Technical detail:** each language is a JSON data block placed at the end of the file, and the guide's texts are identified by keys. Formatting (bold, italics, code, links…) is preserved, but sanitized through a whitelist of tags: a translation therefore can't introduce active code. An unreadable language block is ignored without affecting the others. Each language adds about 13 KB to the file. The `?lang=` value in the address is only compared with the available languages; it is never inserted into the page.
 
 ---
 
@@ -246,7 +247,7 @@ The 145 icons aren't generic placeholder symbols: they are the **actual icons fr
 3. **Manual quality control.** Several passes of visual inspection caught and fixed poorly cropped, off-center icons, or ones contaminated by residue from an adjacent icon — until all 145 icons rendered cleanly.
 4. **Encoding.** Each PNG (transparent background) is encoded in **base64** and stored in a JavaScript object (`ICON_DATA`) mapping each filename to a `data:image/png;base64,...` string, used directly as the `src` attribute of `<img>` tags — exactly as if the image were hosted online, except it's physically present inside the file.
 
-This approach accounts for both the file's size (~358 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
+This approach accounts for both the file's size (~359 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
 
 This data block (`ICON_DATA`) is deliberately isolated at the very end of the script, separate from all the JavaScript logic that precedes it (only the language blocks, simple JSON data, come after) — an organization designed so that reading the code is never drowned out by these few thousand lines of binary text, and to make it easier for the community to add icons in the future.
 

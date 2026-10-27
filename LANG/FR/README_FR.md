@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 2.1
-> Dernière modification : 2026-10-25
+> Version : 2.2
+> Dernière modification : 2026-10-27
 -->
 
 <h1 align="center">NMS // TEXT CODES — Documentation de conception</h1>
@@ -26,7 +26,7 @@
 
 **Un guide interactif, autonome et exhaustif des codes de formatage de texte de No Man's Sky** — couleurs et icônes, entièrement documentés, testés, et rassemblés dans un unique fichier HTML. Il est **disponible en plusieurs langues**, grâce à un sélecteur de langue intégré au fichier.
 
-`NMS_txt_code.html` · ~358 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
+`NMS_txt_code.html` · ~359 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
 
 > **Qui est quoi ?**
 > - **Le guide interactif** (`NMS_txt_code.html`) est le produit : un fichier HTML autonome, **multilingue**, avec un sélecteur de langue intégré.
@@ -77,7 +77,7 @@ Concrètement, cela signifie :
 - **Fonctionne hors-ligne.** Toutes les données (couleurs, icônes, logique de tri, simulateur, textes de toutes les langues) sont embarquées directement dans le fichier — voir la section [Comment les icônes ont été extraites et intégrées](#comment-les-icônes-ont-été-extraites-et-intégrées) pour le détail technique de l'intégration des images.
 - **Une seule dépendance externe non critique** : les polices (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sans connexion internet, le rendu bascule simplement sur les polices système par défaut du navigateur ; aucune fonctionnalité n'est perdue.
 
-Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~358 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
+Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~359 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
 
 ---
 
@@ -86,13 +86,14 @@ Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'a
 Le guide interactif existe en **plusieurs langues dans un seul et même fichier** : il n'y a pas un fichier par langue.
 
 - **Sélecteur de langue** : en haut à droite de l'écran, un menu affiche chaque langue sous son propre nom, précédé d'un drapeau (par exemple « Français », « English », « Español »). Le choix s'applique immédiatement à tout le guide : textes, tableaux, messages du simulateur.
-- **Langue choisie automatiquement** : à la première visite, le guide reprend la langue du navigateur si elle est disponible, sinon le français. Le choix de l'utilisateur est ensuite mémorisé dans son navigateur.
+- **Langue choisie automatiquement** : une langue demandée dans l'adresse (`?lang=es`) est prioritaire ; sinon le guide reprend le choix mémorisé, puis la langue du navigateur si elle est disponible, sinon le français. La langue affichée est ensuite mémorisée dans le navigateur.
+- **Lien direct vers une langue** : à chaque changement de langue, l'adresse du guide se met à jour (`…/NMS_txt_code.html?lang=fr`) ; il suffit de la copier pour partager le guide dans la langue affichée. Une valeur inconnue est simplement ignorée. Ce lien concerne la version en ligne.
 - **Langues actuellement disponibles** : le **français** (langue source), l'**anglais** et l'**espagnol**.
 - **Texte manquant dans une langue** : c'est alors la version française qui s'affiche à sa place, jamais un message d'erreur.
 
 > **Distinction importante.** Seul le **guide interactif** est multilingue. Ce README, lui, est écrit dans une seule langue ; il existe une version par langue (`README_FR.md`, `README_EN.md`…), chacune traduite séparément.
 
-> **🔧 Détail technique :** chaque langue est un bloc de données JSON placé à la fin du fichier, et les textes du guide sont repérés par des clés. La mise en forme (gras, italique, code, liens…) est conservée, mais nettoyée par une liste blanche de balises : une traduction ne peut donc pas introduire de code actif. Un bloc de langue illisible est ignoré sans gêner les autres. Chaque langue ajoute environ 13 Ko au fichier.
+> **🔧 Détail technique :** chaque langue est un bloc de données JSON placé à la fin du fichier, et les textes du guide sont repérés par des clés. La mise en forme (gras, italique, code, liens…) est conservée, mais nettoyée par une liste blanche de balises : une traduction ne peut donc pas introduire de code actif. Un bloc de langue illisible est ignoré sans gêner les autres. Chaque langue ajoute environ 13 Ko au fichier. La valeur `?lang=` de l'adresse est seulement comparée aux langues disponibles : elle n'est jamais insérée dans la page.
 
 ---
 
@@ -236,7 +237,7 @@ Les 145 icônes ne sont pas des symboles génériques : ce sont les **vraies ic�
 3. **Contrôle qualité manuel.** Plusieurs passes de vérification visuelle ont permis d'identifier et de corriger des icônes mal cadrées, décentrées, ou contaminées par un résidu de l'icône adjacente — jusqu'à obtenir un rendu propre sur l'ensemble des 145 icônes.
 4. **Encodage.** Chaque PNG (fond transparent) est encodé en **base64** et stocké dans un objet JavaScript (`ICON_DATA`) associant chaque nom de fichier à une chaîne `data:image/png;base64,...`, utilisée directement comme attribut `src` des balises `<img>` — exactement comme si l'image était hébergée en ligne, sauf qu'elle est physiquement présente dans le fichier.
 
-Cette approche explique à la fois le poids du fichier (~358 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
+Cette approche explique à la fois le poids du fichier (~359 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
 
 Ce bloc de données (`ICON_DATA`) est volontairement isolé en fin de script, séparé de toute la logique JavaScript qui le précède (seuls les blocs de langue, de simples données JSON, viennent après) — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces quelques milliers de lignes de texte binaire, et pour faciliter l'ajout futur d'icônes par la communauté.
 
