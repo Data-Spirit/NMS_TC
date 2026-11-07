@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.0
+> Version : 1.1
 > Dernière modification : 2026-11-07
 -->
 
 # Code Review Prompt — NMS_TC (guide HTML autonome et multilingue)
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.0, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au code du guide, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.1, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au code du guide, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt réutilisable pour **auditer, corriger et optimiser le code** de `LANG/NMS_txt_code.html`.
 
@@ -50,7 +50,7 @@ Confirmer ces valeurs avec la personne au démarrage. Une session précédente n
 
 1. **Fichier unique et autonome.** Tout tient dans `NMS_txt_code.html` : aucun fichier, script, feuille de style ou image externe. Seule dépendance tolérée : les polices Google Fonts, **non critiques** (sans réseau, repli sur les polices système, aucune fonctionnalité perdue).
 2. **Fonctionne hors ligne, en `file://` comme sur GitHub Pages.** Toute API ajoutée doit avoir un repli quand elle est indisponible (stockage bloqué, adresse non modifiable, presse-papiers refusé…).
-3. **Aucun texte visible en dur.** Tout texte de l'interface passe par une clé i18n (`data-i18n`, `data-i18n-attr`, `T()`, `TA()`). Le bloc `i18n-fr` est la source ; toute clé ajoutée ou modifiée déclenche le workflow de traduction (FR → EN/ES via `prompt_translation_HTML_GUIDE_LANG.md`). Exceptions documentées : le `<title>` statique (repli sans JS) et le message `<noscript>` (trilingue en dur, le JS ne pouvant pas le traduire).
+3. **Aucun texte visible en dur.** Tout texte de l'interface passe par une clé i18n (`data-i18n`, `data-i18n-attr`, `T()`, `TA()`). Le bloc `i18n-fr` est la source ; toute clé ajoutée ou modifiée déclenche le workflow de traduction (FR → toutes les autres langues via `prompt_translation_HTML_GUIDE_LANG.md`). Exceptions documentées : le `<title>` statique (repli sans JS) et le message `<noscript>` (une phrase par langue, en dur, le JS ne pouvant pas le traduire ; à compléter à chaque nouvelle langue, voir `prompt_add_language_NMS_TC.md`).
 4. **Blocs de langue et `ICON_DATA` intouchables** lors d'une revue de code : leur contenu reste identique **octet pour octet** (prouvé par script). Seul un script dédié régénère `ICON_DATA`, à partir de `docs/assets/BANK_ICONS/`.
 5. **Données métier intouchables** : `COLORS`, `ICONS`, `SPECTRUM_ORDER`, `CONTAINER_EXAMPLES`, `ICON_ALREADY_COLORED` (sauf bug avéré, documenté et validé).
 6. **Interfaces utilisées par les scripts de test** (`docs/scripts/`) : `applyLanguage`, `detectLanguage`, `matchLanguage`, `renderNMSMarkup`, `I18N`, `ICON_MAP`, `COLOR_MAP`, les identifiants HTML (`sim-input`, `sim-preview`, `sim-error-msg`, `sim-clear`, `color-search`, `icon-search`, `icon-cat-filter`, `lang-select`, `color-table-wrap`, `icon-table-wrap`, `example-list`) et les classes `.tab-btn`, `.copy-btn`, `.color-row-wrap`. Les renommer = `[CHOIX REQUIS]` + mise à jour des scripts 2 à 4 et de `trans_script_0_README.md`.
@@ -86,7 +86,7 @@ Confirmer ces valeurs avec la personne au démarrage. Une session précédente n
 - `<html lang>` suit la langue affichée ; focus visible (`:focus-visible`) sur les éléments interactifs.
 
 ### Mise en page et responsive
-- **Tester à 375 px (mobile), ~768 px (tablette) et ≥ 1280 px**, dans les 3 langues (les textes ES sont les plus longs) : aucune colonne à 0 px, aucun chevauchement (vérifier les rectangles du sélecteur de langue et du sur-titre), aucun débordement horizontal de la page, aucune rangée de grille vide.
+- **Tester à 375 px (mobile), ~768 px (tablette) et ≥ 1280 px**, dans toutes les langues (en particulier celle dont les textes sont les plus longs : l'espagnol aujourd'hui) : aucune colonne à 0 px, aucun chevauchement (vérifier les rectangles du sélecteur de langue et du sur-titre), aucun débordement horizontal de la page, aucune rangée de grille vide.
 - Dans une grille CSS, masquer **le conteneur** d'une cellule, pas seulement son contenu (sinon la cellule vide crée une rangée).
 - Tableaux à colonnes fixes : une **largeur plancher** et un conteneur à défilement horizontal, jamais une colonne écrasée.
 - Garder les préfixes `-webkit-mask-*` (Safari < 15.4, anciens Chromium).
@@ -121,9 +121,9 @@ Sur Windows, `python3` peut être un raccourci du Microsoft Store : utiliser `py
 | Contrôle | Commande | Résultat attendu |
 |---|---|---|
 | Clés et sécurité i18n | `py -3 docs/scripts/trans_script_1_check_keys.py LANG/NMS_txt_code.html --strict` | 0 FAIL |
-| Comportement (×3 langues) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_2_test_behavior.js --file LANG/NMS_txt_code.html --lang fr --ref <reference_file>` | TOUT OK |
+| Comportement (× chaque langue) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_2_test_behavior.js --file LANG/NMS_txt_code.html --lang fr --ref <reference_file>` | TOUT OK |
 | Robustesse | `node docs/scripts/trans_script_3_test_robustness.js LANG/NMS_txt_code.html` | TOUT OK |
-| Rendu (×3 langues) | `node docs/scripts/trans_script_4_test_render.js <reference_file> LANG/NMS_txt_code.html fr` | TOUT OK, ou seuls les écarts voulus (voir pièges) |
+| Rendu (× chaque langue) | `node docs/scripts/trans_script_4_test_render.js <reference_file> LANG/NMS_txt_code.html fr` | TOUT OK, ou seuls les écarts voulus (voir pièges) |
 | HTML | `html-validate --preset recommended LANG/NMS_txt_code.html` | seulement `empty-heading` et `text-content` (voir écarts acceptés) |
 | CSS | extraire le `<style>`, puis `stylelint --config stylelint-config-standard` | aucune anomalie hors écarts acceptés et formatage |
 | JS | extraire le `<script>` principal (remplacer les chaînes base64 par `"data:x"`), puis `eslint` avec la configuration ci-dessous | 0 erreur, 0 avertissement |
@@ -173,9 +173,9 @@ export default [js.configs.recommended, { languageOptions: { ecmaVersion: 2022, 
 ## VÉRIFICATION FINALE
 
 - [ ] Invariants 1 à 7 respectés (preuve octet pour octet pour `ICON_DATA` et les blocs de langue).
-- [ ] `check_keys --strict` 0 FAIL ; scripts 2 et 3 TOUT OK dans les 3 langues ; script 4 TOUT OK ou seuls les écarts voulus.
+- [ ] `check_keys --strict` 0 FAIL ; scripts 2 et 3 TOUT OK dans toutes les langues ; script 4 TOUT OK ou seuls les écarts voulus.
 - [ ] ESLint 0 remarque ; html-validate et Stylelint limités aux écarts acceptés.
-- [ ] Testé à 375 / 768 / 1280 px dans les 3 langues ; aucune erreur ni violation CSP dans la console.
+- [ ] Testé à 375 / 768 / 1280 px dans toutes les langues ; aucune erreur ni violation CSP dans la console.
 - [ ] Aucun texte visible ajouté sans clé i18n (sauf exceptions documentées).
 - [ ] Commentaires en français, expliquant le pourquoi ; aucun `catch` vide sans raison.
 - [ ] Poids du fichier relevé et justifié ; budgets de performance respectés.
@@ -189,6 +189,7 @@ Une ligne par version, de la plus récente à la plus ancienne. Toute modificati
 
 | Version | Date | Résumé |
 |---|---|---|
+| 1.1 | 2026-11-07 | Mentions du nombre de langues rendues génériques (« toutes les langues », « × chaque langue ») et renvoi vers `prompt_add_language_NMS_TC.md` pour le `<noscript>`, afin que l'ajout d'une langue n'impose plus de modifier ce prompt. Aucune règle modifiée. |
 | 1.0 | 2026-11-07 | Création, à l'issue de la revue de code de la v2.1 : invariants du projet, règles de sécurité, robustesse, performance (budgets mesurés), accessibilité, responsive et lisibilité, pièges rencontrés, outils et commandes, écarts acceptés, procédure, format du rapport et vérification finale. |
 
 ## HISTORIQUE D'UTILISATION
