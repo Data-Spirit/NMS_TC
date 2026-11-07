@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 2.1
+> Version : 2.2
 > Dernière modification : 2026-11-07
 -->
 
@@ -8,10 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; base-uri 'none'; form-action 'none'">
 <title>NMS // TEXT CODES — Guide des balises No Man's Sky</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0a0d10;
@@ -41,21 +42,21 @@
     line-height:1.5;
   }
   h1,h2,h3{ font-family:'Rajdhani', sans-serif; letter-spacing:0.03em; }
-  code, .mono, input, .tag-cell, .path-cell{ font-family:'JetBrains Mono', monospace; }
+  code, input, .tag-cell, .path-cell{ font-family:'JetBrains Mono', monospace; }
 
-  /* ---- HERO ---- */
+  /* ---- EN-TÊTE ---- */
   .hero{
     padding:56px 6vw 40px;
     border-bottom:1px solid var(--line);
     background:linear-gradient(180deg, rgba(70,255,255,0.04), transparent 70%);
     position:relative;
   }
-.lang-switch{ position:absolute; top:14px; right:5vw; z-index:2; }
-.lang-select{
-       background:var(--panel); border:1px solid var(--line); color:var(--text);
-       padding:7px 10px; border-radius:7px; font-size:13px; font-family:'IBM Plex Sans',sans-serif; cursor:pointer;
-     }
-.lang-select:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
+  .lang-switch{ position:absolute; top:14px; right:5vw; z-index:2; }
+  .lang-select{
+    background:var(--panel); border:1px solid var(--line); color:var(--text);
+    padding:7px 10px; border-radius:7px; font-size:13px; font-family:'IBM Plex Sans',sans-serif; cursor:pointer;
+  }
+  .lang-select:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.18em;
@@ -139,7 +140,7 @@
   .protip code{ background:var(--panel-2); padding:1px 6px; border-radius:4px; color:var(--grey); border:1px solid var(--line); font-size:12.5px; }
   .protip-icon{ font-size:18px; flex-shrink:0; line-height:1; margin-top:1px; }
 
-  /* ---- Advanced technique compare block ---- */
+  /* ---- Technique avancée : comparatif de teinte ---- */
   .tint-compare{
     display:grid; grid-template-columns:1fr 1fr; gap:14px;
     margin:14px 0 18px; max-width:820px;
@@ -186,7 +187,7 @@
   .info-box strong{ color:var(--cyan); }
   .info-box .protip-icon{ color:var(--cyan); }
 
-  /* ---- Concrete examples ---- */
+  /* ---- Exemples concrets ---- */
   .example-list{ display:flex; flex-direction:column; gap:6px; max-width:820px; }
   .example-row{
     display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:16px;
@@ -198,23 +199,24 @@
   .example-code{ font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--text-dim); word-break:break-all; }
   @media (max-width:640px){ .example-row{ grid-template-columns:1fr; } }
 
-  /* ---- TABS ---- */
+  /* ---- ONGLETS ---- */
   .tabs{
     position:sticky; top:0; z-index:20;
     display:flex; gap:8px; padding:16px 6vw;
     background:
       linear-gradient(180deg, rgba(70,255,255,0.05), transparent 100%),
       rgba(8,10,13,0.97);
-    backdrop-filter:blur(8px);
     border-bottom:1px solid rgba(70,255,255,0.18);
     box-shadow:0 4px 24px rgba(0,0,0,0.35);
   }
   .tab-btn{
     font-family:'Rajdhani', sans-serif; font-weight:600; font-size:15px; letter-spacing:0.04em;
     background:#1a2027; border:1px solid rgba(70,255,255,0.22); color:#aeb8c2;
-    padding:9px 18px; border-radius:7px; cursor:pointer; transition:all .15s ease;
+    padding:9px 18px; border-radius:7px; cursor:pointer;
+    transition:color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
   }
   .tab-btn:hover{ color:#fff; border-color:rgba(70,255,255,0.5); background:#212934; }
+  .tab-btn:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
   .tab-btn.active{ color:#000; background:var(--cyan); border-color:var(--cyan); box-shadow:0 0 16px rgba(70,255,255,0.35); }
 
   main{ padding:36px 6vw 90px; max-width:1400px; margin:0 auto; }
@@ -233,7 +235,7 @@
     padding:10px 12px; border-radius:7px; font-size:13px; font-family:'IBM Plex Sans',sans-serif;
   }
 
-  /* ---- COLOR SPECTRUM STRIP ---- */
+  /* ---- TABLEAU DES COULEURS ---- */
   .color-head-wrap{
     display:flex;
     align-items:stretch;
@@ -320,10 +322,11 @@
     display:inline-flex; align-items:center; justify-content:center;
     background:var(--panel-2); border:1px solid var(--line); border-radius:5px;
     color:var(--text-dim); cursor:pointer; font-size:13px; line-height:1; padding:0;
-    transition:all .15s ease;
+    transition:color .15s ease, background-color .15s ease, border-color .15s ease;
   }
   .copy-btn:hover{ color:var(--cyan); border-color:rgba(70,255,255,0.4); background:#1c232b; }
   .copy-btn.copied{ color:#031b12; background:var(--teal-green); border-color:var(--teal-green); }
+  .copy-btn.copy-failed{ color:#ff9080; border-color:rgba(255,72,37,0.5); }
 
   /* Variante du simulateur : bouton principal, étiré à la hauteur du champ de saisie */
   .sim-input-row .copy-btn{ width:44px; height:auto; font-size:16px; border-radius:6px; }
@@ -331,11 +334,11 @@
   @media (max-width:760px){
     .color-row{ grid-template-columns: 140px 1fr 70px; }
     .color-head{ grid-template-columns: 140px 1fr 70px; }
-    .color-alpha-pill, .color-cat{ display:none; }
+    .color-alpha, .color-cat{ display:none; }
     .color-head .col:nth-child(4), .color-head .col:nth-child(5){ display:none; }
   }
 
-  /* ---- ICONS ---- */
+  /* ---- TABLEAUX DES ICÔNES ---- */
   section.cat-block{ margin-bottom:34px; }
   section.cat-block h3{
     font-size:13px; text-transform:uppercase; letter-spacing:0.14em; color:var(--orange);
@@ -346,6 +349,9 @@
   }
   .table-scroll{ overflow-x:auto; }
   table{ width:100%; border-collapse:collapse; table-layout:fixed; }
+  /* Largeur plancher : sous ~560 px, les colonnes fixes (40+60+158+130 px) écraseraient la colonne
+     « texture » à 0 px ; le tableau déborde alors et .table-scroll fait défiler horizontalement. */
+  .table-scroll table{ min-width:560px; }
   .cat-block th:nth-child(1), .cat-block td:nth-child(1){ width:40px; padding-left:10px; padding-right:4px; }
   .cat-block th:nth-child(2), .cat-block td:nth-child(2){ width:60px; padding-left:4px; padding-right:8px; }
   .cat-block th:nth-child(3), .cat-block td:nth-child(3){ width:158px; padding-left:12px; }
@@ -394,14 +400,22 @@
   footer .footer-github:hover{ color:var(--teal-green); text-decoration:underline; }
   footer .footer-copyright{ display:block; margin-top:14px; }
 
+  .noscript{
+    margin:24px 6vw; padding:14px 18px; border-radius:10px;
+    background:rgba(255,72,37,0.06); border:1px solid rgba(255,72,37,0.25); color:var(--text);
+  }
+
   @media (max-width:640px){
-    .hero{ padding:40px 5vw 30px; }
+    /* 64 px en haut : laisse la place au sélecteur de langue (positionné en absolu, ~14–48 px) au-dessus du sur-titre */
+    .hero{ padding:64px 5vw 30px; }
     main{ padding:28px 5vw 70px; }
     .tabs{ padding:12px 5vw; overflow-x:auto; }
   }
 </style>
 </head>
 <body>
+
+<noscript><p class="noscript" lang="mul">Ce guide nécessite JavaScript pour s'afficher. · This guide needs JavaScript to display. · Esta guía necesita JavaScript para mostrarse.</p></noscript>
 
 <header class="hero">
   <div class="lang-switch"><select id="lang-select" class="lang-select" data-i18n-attr="aria-label:lang.label"></select></div>
@@ -413,7 +427,7 @@
     <label class="label" for="sim-input" data-i18n="hero.label"></label>
     <div class="sim-input-row">
       <div class="sim-field">
-        <input type="text" id="sim-input" value="<PET1><IMG>TECH1<> Techs</> <VISOR><IMG>DWAYPOINT<> Elmt/Comp</>" data-i18n-attr="placeholder:hero.sim_input.placeholder">
+        <input type="text" id="sim-input" spellcheck="false" autocomplete="off" value="<PET1><IMG>TECH1<> Techs</> <VISOR><IMG>DWAYPOINT<> Elmt/Comp</>" data-i18n-attr="placeholder:hero.sim_input.placeholder">
         <button type="button" class="sim-clear" id="sim-clear" data-i18n-attr="aria-label:hero.sim_clear.aria;title:hero.sim_clear.title">×</button>
       </div>
       <button type="button" class="copy-btn" data-copy-source="sim-input" data-i18n-attr="aria-label:hero.copy.aria;title:hero.copy.title">⧉</button>
@@ -427,17 +441,17 @@
   </div>
 </header>
 
-<nav class="tabs">
-  <button type="button" class="tab-btn active" data-tab="infos" data-i18n="nav.tab.infos"></button>
-  <button type="button" class="tab-btn" data-tab="colors" data-i18n="nav.tab.colors"></button>
-  <button type="button" class="tab-btn" data-tab="icons" data-i18n="nav.tab.icons"></button>
-  <button type="button" class="tab-btn" data-tab="notes" data-i18n="nav.tab.notes"></button>
+<nav class="tabs" role="tablist">
+  <button type="button" class="tab-btn active" role="tab" id="tabbtn-infos" aria-controls="tab-infos" aria-selected="true" data-tab="infos" data-i18n="nav.tab.infos"></button>
+  <button type="button" class="tab-btn" role="tab" id="tabbtn-colors" aria-controls="tab-colors" aria-selected="false" tabindex="-1" data-tab="colors" data-i18n="nav.tab.colors"></button>
+  <button type="button" class="tab-btn" role="tab" id="tabbtn-icons" aria-controls="tab-icons" aria-selected="false" tabindex="-1" data-tab="icons" data-i18n="nav.tab.icons"></button>
+  <button type="button" class="tab-btn" role="tab" id="tabbtn-notes" aria-controls="tab-notes" aria-selected="false" tabindex="-1" data-tab="notes" data-i18n="nav.tab.notes"></button>
 </nav>
 
 <main>
 
   <!-- ============ INFOS TAB ============ -->
-  <section id="tab-infos" class="tab-panel active">
+  <section id="tab-infos" class="tab-panel active" role="tabpanel" aria-labelledby="tabbtn-infos">
     <div class="notes">
       <h2 data-i18n="infos.h2"></h2>
 
@@ -509,13 +523,13 @@
   </section>
 
   <!-- ============ COLORS TAB ============ -->
-  <section id="tab-colors" class="tab-panel">
+  <section id="tab-colors" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-colors">
     <div class="info-box">
       <span class="protip-icon">ℹ</span>
       <div data-i18n="colors.info.div"></div>
     </div>
     <div class="toolbar">
-      <input type="text" class="search-box" id="color-search" data-i18n-attr="placeholder:colors.color_search.placeholder;aria-label:colors.color_search.aria">
+      <input type="text" class="search-box" id="color-search" spellcheck="false" autocomplete="off" data-i18n-attr="placeholder:colors.color_search.placeholder;aria-label:colors.color_search.aria">
       <span class="count-pill" id="color-count"></span>
     </div>
     <div class="color-head-wrap">
@@ -537,9 +551,9 @@
   </section>
 
   <!-- ============ ICONS TAB ============ -->
-  <section id="tab-icons" class="tab-panel">
+  <section id="tab-icons" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-icons">
     <div class="toolbar">
-      <input type="text" class="search-box" id="icon-search" data-i18n-attr="placeholder:icons.icon_search.placeholder;aria-label:icons.icon_search.aria">
+      <input type="text" class="search-box" id="icon-search" spellcheck="false" autocomplete="off" data-i18n-attr="placeholder:icons.icon_search.placeholder;aria-label:icons.icon_search.aria">
       <select class="cat-select" id="icon-cat-filter" data-i18n-attr="aria-label:icons.icon_cat_filter.aria"></select>
       <span class="count-pill" id="icon-count"></span>
     </div>
@@ -547,7 +561,7 @@
   </section>
 
   <!-- ============ NOTES TAB ============ -->
-  <section id="tab-notes" class="tab-panel">
+  <section id="tab-notes" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-notes">
     <div class="notes">
       <h2 data-i18n="about.h2"></h2>
       <p data-i18n="about.p.01"></p>
@@ -594,9 +608,10 @@
 <footer data-i18n="footer.footer"></footer>
 
 <script>
-/* ================= DATA ================= */
+/* ================= DONNÉES ================= */
 
-// ---- Colors: [tag, hex, alpha(0-1), category] — pre-sorted as a spectrum (hue, then greys last) ----
+// ---- Couleurs : [balise, hex, alpha (0-1), catégorie]. L'ordre ici n'a pas d'importance :
+//      l'affichage est toujours trié (par défaut selon SPECTRUM_ORDER, plus bas). ----
 const COLORS = [
   ["PLAYER_04","#CA5F5D",1,"players"],
   ["RED","#FF776F",1,"generic"],
@@ -659,7 +674,8 @@ const COLORS = [
   ["GAL_MODE_BLOCK","#FFFFFF",0.392,"galactic_map"],
 ];
 
-// ---- Icons: [tag, file, category, path, flag]  flag: "" | "dup" | "warn" | "unk" ----
+// ---- Icônes : [balise, fichier, catégorie, chemin de la texture de la balise, badge]
+//      badge : "" | "dup" | "warn" | "unk" ; chemin spécial : "@unlisted" | "@portal" | "@none" ----
 const ICONS = [
   // Ressources (id : resources)
   ["HARVESTPLANT","harvestplant.png","resources","TEXTURES/UI/FONTS/WHEAT.DDS",""],
@@ -858,7 +874,7 @@ const SPECTRUM_ORDER = [
   "GAL_MODE_BLOCK"
 ];
 
-// Libellés et descriptions de catégories : voir les blocs de langues en fin de fichier (clés cat.<id> et cat.<id>.desc).;
+// Libellés et descriptions de catégories : voir les blocs de langues en fin de fichier (clés cat.<id> et cat.<id>.desc).
 
 const CONTAINER_EXAMPLES = [
   "<PET1><IMG>TECH1<> Techs</>",
@@ -873,22 +889,25 @@ const CONTAINER_EXAMPLES = [
   "<PET0><IMG>DFLORA<> Plants</>",
 ];
 
-/* ================= UTILS ================= */
+/* ================= OUTILS ================= */
 function escapeHtml(str){
   return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function relLuminance(hex){
-  const h = hex.replace('#','');
-  const r = parseInt(h.substring(0,2),16), g = parseInt(h.substring(2,4),16), b = parseInt(h.substring(4,6),16);
+// "#RRGGBB" → [r, g, b]
+function hexToRgb(hex){
+  const n = parseInt(hex.slice(1), 16);
+  return [n >> 16, (n >> 8) & 255, n & 255];
+}
+
+// Luminance perceptuelle ITU-R BT.601 (luma), utilisée par le tri « Hex ☀ Lum ».
+function luma601(hex){
+  const [r, g, b] = hexToRgb(hex);
   return 0.299*r + 0.587*g + 0.114*b;
 }
 
 function hexToRgba(hex, alpha){
-  const h = hex.replace('#','');
-  const r = parseInt(h.substring(0,2),16);
-  const g = parseInt(h.substring(2,4),16);
-  const b = parseInt(h.substring(4,6),16);
+  const [r, g, b] = hexToRgb(hex);
   return `rgba(${r},${g},${b},${alpha})`;
 }
 
@@ -899,7 +918,8 @@ function hexToRgba(hex, alpha){
    - TA(clé, params) : texte brut (attributs, textContent) ; params = texte brut.
    Clé absente dans la langue active : repli sur DEFAULT_LANG ; I18N.missing liste les clés manquantes. */
 const DEFAULT_LANG = 'fr';
-const I18N = { dict: {}, meta: {}, order: [], current: null, missing: new Set(), html: new Map(), plain: new Map() };
+// dict / meta sans prototype : une langue mémorisée valant « constructor » ou « toString » ne peut pas y être trouvée.
+const I18N = { dict: Object.create(null), meta: Object.create(null), order: [], current: null, missing: new Set(), html: new Map(), plain: new Map() };
 // Balises et attributs autorisés dans un texte traduit (rien d'autre n'est conservé : pas de script, pas de onclick…)
 const I18N_ALLOWED = { A: ['href', 'target', 'rel', 'class'], B: ['class'], BR: [], CODE: ['class'], EM: ['class'], I: ['class'], SPAN: ['class'], STRONG: ['class'] };
 
@@ -908,7 +928,7 @@ function i18nLoad(){
     const code = node.id.slice(5);
     try{
       const raw = JSON.parse(node.textContent);
-      const d = {};
+      const d = Object.create(null);
       Object.keys(raw).forEach(k => { if(k !== '_meta') d[k] = Array.isArray(raw[k]) ? raw[k].join('') : raw[k]; });
       I18N.meta[code] = raw._meta || {};
       I18N.dict[code] = d;
@@ -975,23 +995,26 @@ function TA(key, params){
   return i18nFill(v, params);
 }
 
-/* ================= LOOKUPS (for simulator) ================= */
-const COLOR_MAP = {};
-COLORS.forEach(([tag,hex,alpha]) => COLOR_MAP[tag] = {hex, alpha});
-const ICON_MAP = {};
-ICONS.forEach(([tag,file]) => { if(!(tag in ICON_MAP)) ICON_MAP[tag] = file; });
+/* ================= TABLES DE CORRESPONDANCE (simulateur) ================= */
+// Sans prototype : « constructor », « toString »… ne sont jamais pris pour des balises existantes.
+const COLOR_MAP = Object.create(null);
+COLORS.forEach(([tag,hex,alpha]) => { COLOR_MAP[tag] = {hex, alpha}; });
+// Chaque balise d'icône, y compris les non fonctionnelles (valeur "" : pas de texture).
+const ICON_MAP = Object.create(null);
+ICONS.forEach(([tag,file]) => { ICON_MAP[tag] = file; });
 
-/* ================= RENDER: COLORS (spectrum strip) ================= */
-let colorSort = { key: 'spectrum', dir: 1 };
+/* ================= RENDU : TABLEAU DES COULEURS ================= */
+const colorSort = { key: 'spectrum', dir: 1 };
+// Rang de chaque balise dans l'ordre de référence, calculé une fois (le tri n'a plus à chercher dans la liste).
+const SPECTRUM_RANK = new Map(SPECTRUM_ORDER.map((tag, i) => [tag, i]));
 
 function sortColorRows(rows, key, dir){
   if(key === 'spectrum'){
     const arr = rows.slice();
     arr.sort((a,b) => {
-      let idxA = SPECTRUM_ORDER.indexOf(a[0]);
-      let idxB = SPECTRUM_ORDER.indexOf(b[0]);
-      if(idxA === -1) idxA = SPECTRUM_ORDER.length;
-      if(idxB === -1) idxB = SPECTRUM_ORDER.length;
+      // Balise absente de SPECTRUM_ORDER (ajout futur) : repoussée en fin de liste.
+      const idxA = SPECTRUM_RANK.get(a[0]) ?? SPECTRUM_ORDER.length;
+      const idxB = SPECTRUM_RANK.get(b[0]) ?? SPECTRUM_ORDER.length;
       return (idxA - idxB) * dir;
     });
     return arr;
@@ -1002,7 +1025,7 @@ function sortColorRows(rows, key, dir){
     let cmp = 0;
     if(key === 'name') cmp = tagA.localeCompare(tagB);
     else if(key === 'hex-alpha') cmp = hexA.localeCompare(hexB);
-    else if(key === 'hex-lum') cmp = relLuminance(hexA) - relLuminance(hexB);
+    else if(key === 'hex-lum') cmp = luma601(hexA) - luma601(hexB);
     return cmp * dir;
   });
   return arr;
@@ -1039,7 +1062,7 @@ function renderColors(filter=""){
         <div class="color-tagname">${tag}</div>
         <div class="color-bar"><div class="fill" style="background:${rgba}"></div></div>
         <div class="color-hex">${hex}</div>
-        <div>${alphaPill}</div>
+        <div class="color-alpha">${alphaPill}</div>
         <div class="color-cat">${T('cat.' + cat)}</div>
       </div>
     </div>`;
@@ -1048,32 +1071,46 @@ function renderColors(filter=""){
   updateColorSortHeader();
 }
 
-/* ================= COPY TO CLIPBOARD ================= */
+/* ================= COPIE DANS LE PRESSE-PAPIERS ================= */
+const COPY_FEEDBACK_MS = 1400;
+
 function copyButtonHtml(copyText){
-  const safe = escapeHtml(copyText);
-  return `<button type="button" class="copy-btn" data-copy="${safe}" title="${escapeHtml(TA('copy.title', {text: copyText}))}">⧉</button>`;
+  const label = escapeHtml(TA('copy.title', {text: copyText}));
+  return `<button type="button" class="copy-btn" data-copy="${escapeHtml(copyText)}" title="${label}" aria-label="${label}">⧉</button>`;
 }
 
+// Repli pour les navigateurs (ou contextes) sans API Clipboard ; renvoie true si la copie a réussi.
+function legacyCopy(text){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');   // évite l'ouverture du clavier virtuel sur mobile
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  let ok = false;
+  try{ ok = document.execCommand('copy'); }catch{ /* API retirée ou refusée : ok reste false */ }
+  ta.remove();
+  return ok;
+}
+
+// Retour visuel : ✓ si la copie a réussi, ✗ sinon (jamais de ✓ trompeur).
 async function copyToClipboard(text, btn){
+  let ok;
   try{
     await navigator.clipboard.writeText(text);
-  }catch(e){
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.left = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand('copy'); }catch(e2){}
-    document.body.removeChild(ta);
+    ok = true;
+  }catch{
+    ok = legacyCopy(text);   // API absente (contexte non sécurisé, ancien navigateur) ou permission refusée
   }
-  btn.textContent = '✓';
-  btn.classList.add('copied');
+  btn.textContent = ok ? '✓' : '✗';
+  btn.classList.toggle('copied', ok);
+  btn.classList.toggle('copy-failed', !ok);
   clearTimeout(btn._copyTimeout);
   btn._copyTimeout = setTimeout(() => {
     btn.textContent = '⧉';
-    btn.classList.remove('copied');
-  }, 1400);
+    btn.classList.remove('copied', 'copy-failed');
+  }, COPY_FEEDBACK_MS);
 }
 
 document.addEventListener('click', (e) => {
@@ -1086,7 +1123,7 @@ document.addEventListener('click', (e) => {
   copyToClipboard(text, btn);
 });
 
-/* ================= RENDER: ICONS TABLE (grouped) ================= */
+/* ================= RENDU : TABLEAUX DES ICÔNES (par catégorie) ================= */
 // Libellés des badges (doublon / non fonctionnel / à vérifier) : clés flag.dup, flag.warn, flag.unk dans les blocs de langues.
 
 function renderIcons(filter="", catFilter="ALL"){
@@ -1136,7 +1173,7 @@ function fillCatFilter(){
   sel.value = (keep === 'ALL' || cats.includes(keep)) ? keep : 'ALL';
 }
 
-/* ================= SHARED RENDER ENGINE ================= */
+/* ================= MOTEUR DE RENDU DES BALISES ================= */
 // Recherche stricte d'une balise dans COLOR_MAP / ICON_MAP : le jeu est sensible à la casse,
 // donc "red" n'existe pas. Le test sur la casse évite aussi de tomber sur les propriétés
 // héritées des objets (ex: "constructor"), que les regex insensibles à la casse laisseraient passer.
@@ -1148,16 +1185,17 @@ function lookupTag(map, name){
 // et renvoie le HTML souligné. "fix" = nom correct si seule la casse est en cause.
 function flagUnknown(errors, kind, name, html){
   // Icône listée dans le guide mais sans texture (« non fonctionnelle ») : le ? existant suffit, elle n'est pas « inconnue »
-  if(kind === 'icon' && ICONS.some(r => r[0] === name)) return html;
+  if(kind === 'icon' && name in ICON_MAP) return html;
   const upper = name.toUpperCase();
   const map = kind === 'color' ? COLOR_MAP : ICON_MAP;
-  const fix = kind === 'keyword' ? 'IMG' : (upper !== name && map[upper] ? upper : null);
+  // « in » et non la valeur : une icône non fonctionnelle (valeur "") écrite en minuscules reçoit aussi sa correction.
+  const fix = kind === 'keyword' ? 'IMG' : (upper !== name && upper in map ? upper : null);
   if(!errors.some(e => e.kind === kind && e.name === name)) errors.push({kind, name, fix});
   return `<span class="sim-error">${html}</span>`;
 }
 
-// Renders NMS tag markup to HTML. Handles: standalone <IMG>NAME<>,
-// color-wrapped icon tinting <TAG><IMG>NAME<>...</>, and plain color text <TAG>text</>.
+// Convertit le texte balisé NMS en HTML. Gère : l'icône seule <IMG>NOM<>,
+// la teinte d'icône <COULEUR><IMG>NOM<>…</> et le texte coloré <COULEUR>texte</>.
 // opts.errors (tableau optionnel) reçoit les balises fautives ; sans lui, rien d'autre ne change.
 function renderNMSMarkup(raw, opts){
   opts = opts || {};
@@ -1171,7 +1209,7 @@ function renderNMSMarkup(raw, opts){
   // s'exécuter comme du HTML/JS actif.
   let out = escapeHtml(raw);
 
-  // Step 1: color tag immediately wrapping an icon tag (tint), with optional trailing text
+  // Étape 1 : balise couleur collée juste avant une icône (teinte), avec texte facultatif à la suite
   // Les regex sont insensibles à la casse (flag i) pour pouvoir repérer "red" ou "<img>" ; la validité est vérifiée ensuite.
   out = out.replace(/&lt;([A-Z0-9_]+)&gt;&lt;(IMG)&gt;([A-Z0-9_]+)&lt;&gt;(.*?)&lt;\/&gt;/gi, (m, colorTag, imgWord, iconTag, trailing) => {
     if(imgWord !== 'IMG') return flagUnknown(errors, 'keyword', imgWord, m);
@@ -1179,10 +1217,10 @@ function renderNMSMarkup(raw, opts){
     const file = lookupTag(ICON_MAP, iconTag);
     let iconHtml;
     if(file && c && !ICON_ALREADY_COLORED.has(file)){
-      // monochrome icon → apply the color as a tint via CSS mask
+      // icône monochrome → la couleur est appliquée en teinte via un masque CSS
       iconHtml = `<span class="icon-inline${lg}" title="${escapeHtml(TA('icon.tinted_title', {icon: iconTag, color: colorTag}))}"><span class="icon-mask" style="background-color:${hexToRgba(c.hex,c.alpha)};-webkit-mask-image:url('${ICON_DATA[file]}');mask-image:url('${ICON_DATA[file]}')"></span></span>`;
     } else if(file){
-      // already-colored icon → keep its native colors, no tint
+      // icône déjà colorée → couleurs d'origine conservées, pas de teinte
       iconHtml = `<span class="icon-inline${lg}" title="${iconTag}"><img src="${ICON_DATA[file]}" alt="${iconTag}" decoding="async"></span>`;
     } else {
       iconHtml = flagUnknown(errors, 'icon', iconTag, `<span class="icon-inline${lg}" title="${iconTag}">?</span>`);
@@ -1196,7 +1234,7 @@ function renderNMSMarkup(raw, opts){
     return iconHtml + textHtml;
   });
 
-  // Step 2: any remaining standalone icons (not wrapped in a color tag)
+  // Étape 2 : icônes restantes, non précédées d'une balise couleur
   out = out.replace(/&lt;(IMG)&gt;([A-Z0-9_]+)&lt;&gt;/gi, (m, imgWord, tag) => {
     if(imgWord !== 'IMG') return flagUnknown(errors, 'keyword', imgWord, m);
     const file = lookupTag(ICON_MAP, tag);
@@ -1204,7 +1242,7 @@ function renderNMSMarkup(raw, opts){
     return flagUnknown(errors, 'icon', tag, `<span class="icon-inline${lg}" title="${tag}">?</span>`);
   });
 
-  // Step 3: any remaining plain color-text wraps
+  // Étape 3 : textes colorés restants
   out = out.replace(/&lt;([A-Z0-9_]+)&gt;(.*?)&lt;\/&gt;/gi, (m, tag, inner) => {
     const c = lookupTag(COLOR_MAP, tag);
     if(c) return `<span style="color:${hexToRgba(c.hex,c.alpha)}">${inner}</span>`;
@@ -1214,7 +1252,7 @@ function renderNMSMarkup(raw, opts){
   return out;
 }
 
-/* ================= SIMULATOR ================= */
+/* ================= SIMULATEUR ================= */
 // Construit la petite boîte d'une erreur. Les noms ne contiennent que [A-Za-z0-9_] (cf. regex du moteur).
 function simErrorHtml(e){
   const name = `<span class="sim-err-name">${escapeHtml(e.name)}</span>`;
@@ -1236,7 +1274,7 @@ function renderSimulator(){
   box.hidden = errors.length === 0;
 }
 
-/* ================= ADVANCED TECHNIQUE EXAMPLES ================= */
+/* ================= EXEMPLES DE LA TECHNIQUE DE TEINTE ================= */
 function renderTintExamples(){
   const el1 = document.getElementById('tint-example-1');
   const el2 = document.getElementById('tint-example-2');
@@ -1244,19 +1282,20 @@ function renderTintExamples(){
   if(el2) el2.innerHTML = renderNMSMarkup("<PET1><IMG>TECH1<> Techs</>");
 }
 
-/* ================= CONCRETE EXAMPLES LIST ================= */
+/* ================= EXEMPLES CONCRETS ================= */
 function highlightSyntax(raw){
   const tokens = raw.split(/(<IMG>[A-Z0-9_]+<>|<\/>|<[A-Z0-9_]+>)/g).filter(t => t.length > 0);
   return tokens.map(tok => {
-    let m;
-    if(m = tok.match(/^<IMG>([A-Z0-9_]+)<>$/)){
-      return `<span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">${m[1]}</span><span class="syn-bracket">&lt;&gt;</span>`;
+    const icon = tok.match(/^<IMG>([A-Z0-9_]+)<>$/);
+    if(icon){
+      return `<span class="syn-bracket">&lt;IMG&gt;</span><span class="syn-tag">${icon[1]}</span><span class="syn-bracket">&lt;&gt;</span>`;
     }
     if(tok === '</>'){
       return `<span class="syn-bracket">&lt;/&gt;</span>`;
     }
-    if(m = tok.match(/^<([A-Z0-9_]+)>$/)){
-      return `<span class="syn-bracket">&lt;</span><span class="syn-tag">${m[1]}</span><span class="syn-bracket">&gt;</span>`;
+    const color = tok.match(/^<([A-Z0-9_]+)>$/);
+    if(color){
+      return `<span class="syn-bracket">&lt;</span><span class="syn-tag">${color[1]}</span><span class="syn-bracket">&gt;</span>`;
     }
     if(tok.trim().length === 0) return tok;
     // Défensif : échappement du texte libre pour d'éventuels futurs exemples
@@ -1282,17 +1321,33 @@ function renderExampleList(){
   wrap.innerHTML = html;
 }
 
-/* ================= TABS ================= */
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+/* ================= ONGLETS ================= */
+// Motif ARIA « tabs » : un seul onglet atteignable par Tab (tabindex itinérant), flèches / Début / Fin pour changer d'onglet.
+const TAB_BTNS = [...document.querySelectorAll('.tab-btn')];
+
+function selectTab(btn, focus){
+  TAB_BTNS.forEach(b => {
+    const on = b === btn;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', on);
+    b.tabIndex = on ? 0 : -1;
+    document.getElementById(b.getAttribute('aria-controls')).classList.toggle('active', on);
+  });
+  if(focus) btn.focus();
+}
+
+TAB_BTNS.forEach((btn, i) => {
+  btn.addEventListener('click', () => selectTab(btn, false));
+  btn.addEventListener('keydown', e => {
+    const last = TAB_BTNS.length - 1;
+    const to = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }[e.key];
+    if(to === undefined) return;
+    e.preventDefault();
+    selectTab(TAB_BTNS[to], true);
   });
 });
 
-/* ================= EVENT LISTENERS (search / sort / filter / simulator) ================= */
+/* ================= ÉCOUTEURS (recherche / tri / filtre / simulateur) ================= */
 document.getElementById('color-search').addEventListener('input', e => renderColors(e.target.value));
 document.querySelectorAll('.color-head .sort-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1312,7 +1367,7 @@ document.getElementById('sim-clear').addEventListener('click', () => {
   input.focus();
 });
 
-/* ================= ICON DATA (base64) =================
+/* ================= DONNÉES DES ICÔNES (base64) =================
    Stockage volumineux (145 PNG détourés encodés en base64), volontairement
    isolé en toute fin de script pour ne pas noyer la logique ci-dessus.
    Voir README_FR.md § "Comment les icônes ont été extraites et intégrées".
@@ -1466,7 +1521,7 @@ const ICON_DATA = {
 "vertical.png":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC2UlEQVR4nO2bvU4UURiGv2NvAgmJNlZoYr9gZaU2FhaEwngBKncAjTWGG8BLUPEGBGJiZUTjT6yMREoTErHxL8zyPhbMhmFYmdnZs/MNOk8y2Uyyu+d9352z++053wRzBgjZ8xACdY5/qs7BmohrAMCimV3x1OCCpDFgBUDSLjALhPx0+CfoGesdSZKMAc84ysL/EMA48KGP+R73vfVGJ2P+AvDpGPOkU+KRt+aopOangW9F5tMAupKeShrz1h6FJEmuA7/KmM/xIkmSs976h0LSXaBbwXyPj5LOe/uohKR5SRrCfI+vkjrefgZC0rJSIgSwl4Zw1dtXX8j9zgMPI5jux26SJLfy43n7zwYwDqyPyHyWuSYGMA68qsE86cxabFIApQqcyAFI0opLAByeg9PAl7rM92GV/auvvimRGewaJau7EbNBJoRB/VRdD5g1szUza0K52jGzl2Y2WeXFVQKYN7OVKoONkEnbD2HggmmgSwbomNmdoqeljx0zmxpUUB/emNlG5vy4D+2nmd0LIXyPMG41OPiOWIg0x5dGqbddFPUW4E30AEIIhBCAaMv7e7HeqB/tFeAtwJs2AG8B3rQBeAvwpg3AW4A3bQDeArxpA/AW4E0bgLcAb9oAvAV40wbgLcCbKsviq3Z4Q6RJIa6b2cxIl8WpeTO0BHvp8ZiatsY2zeySmb2u8NpRsWRmN2sZifobIoqYx2l3eNQtMUU0p2UmclPUsaTD7DSuaSpiW1xRADuSYmy6xidCY2QRnxvfOAncoFprbBHvgDPe/koBXAa2I5pfO3HN05IuAlsRzDetG6U83W53Ang7hPllbw9DI2kCeD6oc0kL3tqjwEGR8qSk8d+SbnvrjgaHK7UHBf5/SJrx1hwVjpbOi38xvw00s8AZhnwAZmaS5nLmtyRVanQ8cWTCmE1vmnwv6Zy3rtrIXRFTkk576qn97yP43i2ep0nreS78AUEp9Lmlr/+VAAAAAElFTkSuQmCC",
 };
 
-/* ================= LANGUAGE SELECTOR + INIT ================= */
+/* ================= SÉLECTEUR DE LANGUE ================= */
 // Retrouve le code d'une langue disponible à partir d'une valeur brute (ex. "ES", "es-MX") ; null si elle n'existe pas dans le fichier.
 function matchLanguage(raw){
   const low = String(raw || '').trim().toLowerCase();
@@ -1482,10 +1537,12 @@ function detectLanguage(){
   try{
     const requested = matchLanguage(new URLSearchParams(location.search).get('lang'));
     if(requested) return requested;
-  }catch(e){}
+  }catch{ /* adresse illisible : on passe au critère suivant */ }
   let saved = null;
-  try{ saved = localStorage.getItem('nmstc-lang'); }catch(e){}
-  if(saved && I18N.dict[saved]) return saved;
+  try{ saved = localStorage.getItem('nmstc-lang'); }catch{ /* stockage bloqué par le navigateur */ }
+  // Même validation que pour l'adresse : la valeur mémorisée est comparée aux langues présentes, jamais prise telle quelle.
+  const remembered = matchLanguage(saved);
+  if(remembered) return remembered;
   const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
   for(const l of prefs){
     const match = matchLanguage(l);
@@ -1505,7 +1562,7 @@ function buildLangSelector(){
 
 // Applique une langue : textes statiques (data-i18n), attributs (data-i18n-attr), puis parties générées par le JS.
 function applyLanguage(code){
-  if(!I18N.dict[code]) code = I18N.dict[DEFAULT_LANG] ? DEFAULT_LANG : I18N.order[0];
+  if(!I18N.order.includes(code)) code = I18N.dict[DEFAULT_LANG] ? DEFAULT_LANG : I18N.order[0];
   I18N.current = code;
   document.documentElement.lang = code;
   document.title = TA('page.title');
@@ -1523,16 +1580,16 @@ function applyLanguage(code){
   renderTintExamples();
   renderExampleList();
   document.getElementById('lang-select').value = code;
-  try{ localStorage.setItem('nmstc-lang', code); }catch(e){}
+  try{ localStorage.setItem('nmstc-lang', code); }catch{ /* stockage bloqué : le choix ne sera simplement pas mémorisé */ }
   // Adresse synchronisée : ?lang=xx dans la barre d'adresse, pour pouvoir copier un lien dans la langue affichée (sans nouvelle entrée d'historique).
   try{
     const url = new URL(location.href);
     url.searchParams.set('lang', code);
     history.replaceState(null, '', url);
-  }catch(e){}
+  }catch{ /* certains navigateurs refusent de modifier l'adresse d'un fichier local */ }
 }
 
-/* ================= INIT ================= */
+/* ================= INITIALISATION ================= */
 function initPage(){
   i18nLoad();
   buildLangSelector();

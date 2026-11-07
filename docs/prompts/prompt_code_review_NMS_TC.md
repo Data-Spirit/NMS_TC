@@ -195,4 +195,4 @@ Une ligne par version, de la plus récente à la plus ancienne. Toute modificati
 
 | Date | Fichier audité (version, md5) | Livré (md5, taille) | Lots appliqués | Résumé |
 |---|---|---|---|---|
-| 2026-11-07 | `NMS_txt_code.html` v2.1 (`ab8a214b…`, 457 704 octets) | `5bd73783…` (462 234 octets) | revue complète | 12 bugs ou défauts corrigés (dont 3 d'affichage mobile, 1 de robustesse de la langue mémorisée, 1 de polices), CSP, `<noscript>`, motif ARIA des onglets, nettoyage et commentaires harmonisés en français. |
+| 2026-11-07 | `NMS_txt_code.html` v2.1 (`ab8a214b…`, 457 704 octets) | v2.2, `18555c10…` (462 234 octets) | revue complète | 12 bugs ou défauts corrigés (dont 3 d'affichage mobile, 1 de robustesse de la langue mémorisée, 1 de polices), CSP, `<noscript>`, motif ARIA des onglets, nettoyage et commentaires harmonisés en français. |
