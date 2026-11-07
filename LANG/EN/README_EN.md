@@ -1,16 +1,16 @@
 <!-- File version 
-> Version: 2.2
-> Last modified: 2026-10-27
+> Version: 2.3
+> Last modified: 2026-11-07
 -->
 <!-- Translation parameters
-> source_file: README_FR.md v2.2 (md5 cd377f8f5d862542265d60d9aac220ac)
+> source_file: README_FR.md v2.3 (md5 1c53d801b81b2f0e53f4212f78c79c93)
 > target_language: English
 > target_variant: neutral/standard
 > lang_code: EN
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.0, i18n-en block (md5 c26672e58a3d43832ea06d02149368e9)
-> translated_on: 2026-10-27
+> companion_html_guide: NMS_txt_code.html v2.1, i18n-en block (md5 ab8a214b3390424ab7ef6a58eac9ab48)
+> translated_on: 2026-11-07
 -->
 
 <h1 align="center">NMS // TEXT CODES — Design Documentation</h1>
@@ -36,7 +36,7 @@
 
 **An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file. It is **available in several languages**, thanks to a language selector built into the file.
 
-`NMS_txt_code.html` · ~359 KB · multilingual · no critical external dependencies · works offline
+`NMS_txt_code.html` · ~447 KB · multilingual · no critical external dependencies · works offline
 
 > **Who's who?**
 > - **The interactive guide** (`NMS_txt_code.html`) is the product: a self-contained, **multilingual** HTML file with a built-in language selector.
@@ -87,7 +87,7 @@ In practice, that means:
 - **Works offline.** All the data (colors, icons, sorting logic, simulator, texts in every language) is embedded directly in the file — see [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded) for the technical details of how the images are packed in.
 - **One non-critical external dependency**: fonts (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Without an internet connection, rendering simply falls back to the browser's default system fonts — no functionality is lost.
 
-This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~359 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
+This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~447 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
 
 ---
 
@@ -118,6 +118,7 @@ The interactive guide exists in **several languages within a single file**: ther
 | ⛔ Tags listed but non-functional | **16** |
 | ❔ Tags with unconfirmed texture path | **12** |
 | 🖼️ Icons embedded as base64 in the file | **145 / 145** |
+| 🎯 Icons pixel-identical to the game textures | **97 / 129** |
 | 📝 Real-world usage examples | **10** |
 | 🌍 Languages in the interactive guide | **3** |
 | 🔤 Texts to translate (translation keys) | **116** |
@@ -157,10 +158,10 @@ A complete reference table of the 59 color tags, featuring:
 
 A complete reference table of the 145 icon tags, grouped into **12 categories** (Resources, Interface, Frigates, Inventory, Voice / Network, Loot, Platforms / Controls, Portal Glyphs, Class (C→S), Game Modes, Base Building, Non-functional), with the following for each icon:
 
-- A **real thumbnail preview** of the icon (see the dedicated extraction section below — these aren't generic placeholder symbols, but the actual, cut-out game icons).
+- A **real thumbnail preview** of the icon (see the dedicated extraction section below — these aren't generic placeholder symbols, but the original textures, extracted from the game files).
 - The **exact tag name**.
-- The original **texture file path** (an internal in-game `.DDS` reference), when it could be identified.
-- A **status badge** where applicable: `duplicate` (the tag points to the exact same texture as another one, under a different name), `non-functional` (tag present in the data but with no assigned texture — likely a placeholder reserved on the developers' side), or `to verify` (texture path not confirmed in the available sources).
+- The **tag texture**: the `.DDS` file the tag points to, when it could be identified (not to be confused with the image source, see `SOURCES.csv`).
+- A **status badge** where applicable: `duplicate` (the tag points to the exact same texture as another one, under a different name), `non-functional` (tag present in the data but with no assigned texture — likely a placeholder reserved on the developers' side), or `to verify` (texture path not confirmed in the available sources; 4 of them show a probable path, found during extraction, pending in-game confirmation).
 
 The **"Class (C→S)"** category illustrates a deliberate naming correction: originally called "Ship Classes," it was renamed with a subtext description clarifying that it's actually the game's generic quality rating notation (ships, multi-tools, frigates, weapons, technology) rather than a system specific to ships.
 
@@ -173,7 +174,7 @@ As with the Colors tab, a **search bar** and a **category filter** let you navig
 The guide's context and methodological transparency:
 
 - A reminder that the tagging system isn't officially documented.
-- Technical detail on the icon bank (how the 145 icons are embedded, and where to find the individual PNG files if needed elsewhere).
+- Technical detail on the icon bank (where the icons come from and how they are embedded, and where to find the individual PNG files if needed elsewhere).
 - An explicit list of the duplicate textures identified, with examples.
 - A note on portal glyphs (`PR_0` through `PR_15`) — confirmed functional in-game by the community (used to rename star systems with the glyph of their portal address).
 - A list of non-functional tags listed in the data but with no assigned texture.
@@ -240,20 +241,24 @@ This choice creates a direct thematic through-line between the documented conten
 
 ## How the icons were extracted and embedded
 
-The 145 icons aren't generic placeholder symbols: they are the **actual icons from the game**, individually extracted from several screenshots (internal configuration tables and in-game interface captures), then cleaned up and embedded:
+Since version 2.1, the icons are no longer cut out of screenshots: they are the **game's original textures**, extracted directly from its files, then converted and embedded in the guide:
 
-1. **Coordinate mapping.** Each icon was precisely located (pixel coordinates) within its source image, with manual recalibration where the source grids weren't perfectly regular.
-2. **Background removal.** The background was stripped using color-distance thresholding (converted into an alpha channel), with connected-component isolation to eliminate fragments of neighboring icons bleeding in from screenshots where icons were tightly packed together.
-3. **Manual quality control.** Several passes of visual inspection caught and fixed poorly cropped, off-center icons, or ones contaminated by residue from an adjacent icon — until all 145 icons rendered cleanly.
-4. **Encoding.** Each PNG (transparent background) is encoded in **base64** and stored in a JavaScript object (`ICON_DATA`) mapping each filename to a `data:image/png;base64,...` string, used directly as the `src` attribute of `<img>` tags — exactly as if the image were hosted online, except it's physically present inside the file.
+1. **Extraction.** No Man's Sky's `.pak` archives were extracted with **NMSModTool v1.1.0.0** to access the interface textures in `.DDS` format.
+2. **Choosing the best source.** The same icon often exists in several copies across the game files, at different resolutions. For each tag, the visually identical version with the **highest resolution** was kept: 54 icons at 256 × 256, 26 at 128 × 128, 17 at 64 × 64 and 32 at 32 × 32 (including 3 wide keys at 64 × 32). The latter don't exist in any larger version in the game files.
+3. **Conversion and optimization.** Each texture was converted to a transparent-background PNG, then slimmed down with no loss of quality: ICC profiles and metadata were stripped.
+4. **Checks and retouching.** Each image was compared with its source texture: **97 of the 129 icons are pixel-identical** to their original `.DDS`. The other 32 were retouched, upscaled or recomposed when the game only offered a version that was too small or unsuitable — for example the class badges, recreated from the matte base of the expedition badges, or `ARROWLEFT`, obtained by mirroring `ARROWRIGHT`.
+5. **Scaling.** All icons were then batch-resized into two sets, 32 × 32 and 64 × 64 pixels. The guide embeds the **64 × 64** version, which stays sharp even on high-density screens.
+6. **Encoding.** Each PNG (transparent background) is encoded in **base64** and stored in a JavaScript object (`ICON_DATA`) mapping each filename to a `data:image/png;base64,...` string, used directly as the `src` attribute of `<img>` tags — exactly as if the image were hosted online, except it's physically present inside the file.
 
-This approach accounts for both the file's size (~359 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
+> **🔧 Technical detail:** the guide's "Tag texture" column shows the `.DDS` file the tag points to in the game's configuration tables. It isn't always the file the bank image comes from, which may be a larger version of the same artwork, stored elsewhere. For each icon, the `SOURCES.csv` file in the `BANK_ICONS/` folder gives the full mapping: tag texture, image source, original resolution and match level.
+
+This approach accounts for both the file's size (~447 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
 
 This data block (`ICON_DATA`) is deliberately isolated at the very end of the script, separate from all the JavaScript logic that precedes it (only the language blocks, simple JSON data, come after) — an organization designed so that reading the code is never drowned out by these few thousand lines of binary text, and to make it easier for the community to add icons in the future.
 
 > **🔧 Technical detail:** in JavaScript, a constant only needs to be declared before it's used at runtime — not necessarily before the functions that reference it in their code. `ICON_DATA` can therefore be placed at the very bottom of the script without breaking anything, as long as it stays declared before the page initialization, which runs once loading is complete.
 
-The 16 tags listed as non-functional aren't all simply empty entries: some of them (generic gamepad-button icons) actually have their image already present as base64 in `ICON_DATA`, without being linked to it in the icon table.
+The 16 tags listed as non-functional aren't all simply empty entries: some of them (generic gamepad-button icons) actually have their image already present as base64 in `ICON_DATA`, without being linked to it in the icon table. They are the only images still taken from the old bank, cut out of screenshots.
 
 > **🔧 Technical detail:** these images are kept in reserve rather than deleted, in case Hello Games ever assigns them an official in-game texture — linking them would then become a simple one-line fix, without having to re-extract or re-encode anything.
 

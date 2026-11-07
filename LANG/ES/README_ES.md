@@ -1,16 +1,16 @@
 <!-- Versión del archivo 
-> Versión : 2.2
-> Última modificación : 2026-10-27
+> Versión : 2.3
+> Última modificación : 2026-11-07
 -->
 <!-- Parámetros de traducción
-> source_file: README_FR.md v2.2 (md5 cd377f8f5d862542265d60d9aac220ac)
+> source_file: README_FR.md v2.3 (md5 1c53d801b81b2f0e53f4212f78c79c93)
 > target_language: Español
 > target_variant: neutral/standard
 > lang_code: ES
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.0, bloque i18n-es (md5 c26672e58a3d43832ea06d02149368e9)
-> translated_on: 2026-10-27
+> companion_html_guide: NMS_txt_code.html v2.1, bloque i18n-es (md5 ab8a214b3390424ab7ef6a58eac9ab48)
+> translated_on: 2026-11-07
 -->
 
 <h1 align="center">NMS // TEXT CODES — Documentación de diseño</h1>
@@ -36,7 +36,7 @@
 
 **Una guía interactiva, autónoma y exhaustiva de los códigos de formato de texto de No Man's Sky** — colores e iconos, completamente documentados, probados y reunidos en un único archivo HTML. Está **disponible en varios idiomas**, gracias a un selector de idioma integrado en el archivo.
 
-`NMS_txt_code.html` · ~359 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
+`NMS_txt_code.html` · ~447 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
 
 > **¿Qué es qué?**
 > - **La guía interactiva** (`NMS_txt_code.html`) es el producto: un archivo HTML autónomo, **multilingüe**, con un selector de idioma integrado.
@@ -87,7 +87,7 @@ En concreto, esto significa:
 - **Funciona sin conexión.** Todos los datos (colores, iconos, lógica de ordenación, simulador, textos de todos los idiomas) están embebidos directamente en el archivo — consulta la sección [Cómo se extrajeron e integraron los iconos](#cómo-se-extrajeron-e-integraron-los-iconos) para el detalle técnico de la integración de las imágenes.
 - **Una única dependencia externa no crítica**: las fuentes tipográficas (Google Fonts, vía CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sin conexión a internet, el renderizado simplemente recurre a las fuentes del sistema por defecto del navegador; no se pierde ninguna funcionalidad.
 
-Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~359 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
+Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~447 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
 
 ---
 
@@ -118,6 +118,7 @@ La guía interactiva existe en **varios idiomas dentro de un mismo archivo**: no
 | ⛔ Etiquetas listadas pero no funcionales | **16** |
 | ❔ Etiquetas con ruta de textura no confirmada | **12** |
 | 🖼️ Iconos integrados en base64 en el archivo | **145 / 145** |
+| 🎯 Iconos idénticos píxel a píxel a las texturas del juego | **97 / 129** |
 | 📝 Ejemplos concretos de uso real | **10** |
 | 🌍 Idiomas de la guía interactiva | **3** |
 | 🔤 Textos por traducir (claves de traducción) | **116** |
@@ -157,10 +158,10 @@ Una tabla de referencia completa de las 59 etiquetas de color, con:
 
 Una tabla de referencia completa de las 145 etiquetas de iconos, agrupadas en **12 categorías** (Recursos, Interfaz, Fragatas, Inventario, Voz / Red, Botín, Plataformas / Controles, Símbolos de portal, Clase (C→S), Modos de juego, Edición de base, No funcional), con para cada icono:
 
-- Una **miniatura de vista previa real** del icono (ver la sección dedicada a la extracción más abajo — no son símbolos genéricos, sino los iconos reales del juego, recortados).
+- Una **miniatura de vista previa real** del icono (ver la sección dedicada a la extracción más abajo — no son símbolos genéricos, sino las texturas originales, extraídas de los archivos del juego).
 - El **nombre exacto de la etiqueta**.
-- La **ruta del archivo de textura** original (referencia `.DDS` interna del juego), cuando se ha podido identificar.
-- Una **insignia de estado** en su caso: `duplicado` (la etiqueta apunta exactamente a la misma textura que otra, bajo un nombre distinto), `no funcional` (etiqueta presente en los datos pero sin textura asignada — probablemente un marcador de posición reservado por los desarrolladores) o `por verificar` (ruta de textura no confirmada en las fuentes disponibles).
+- La **textura de la etiqueta**: el archivo `.DDS` al que apunta la etiqueta, cuando se ha podido identificar (no confundir con la fuente de la imagen, ver `SOURCES.csv`).
+- Una **insignia de estado** en su caso: `duplicado` (la etiqueta apunta exactamente a la misma textura que otra, bajo un nombre distinto), `no funcional` (etiqueta presente en los datos pero sin textura asignada — probablemente un marcador de posición reservado por los desarrolladores) o `por verificar` (ruta de textura no confirmada en las fuentes disponibles; 4 de ellas muestran una ruta probable, encontrada durante la extracción, a la espera de confirmación en el juego).
 
 La categoría **"Clase (C→S)"** ilustra una corrección de nomenclatura deliberada: originalmente llamada "Clases de naves", fue renombrada con una descripción en subtexto que aclara que en realidad se trata de una notación de calidad genérica del juego (naves, multiherramientas, fragatas, armas, tecnologías) y no de un sistema propio de las naves.
 
@@ -173,7 +174,7 @@ Igual que en la pestaña Colores, una **barra de búsqueda** y un **filtro por c
 El contexto y la transparencia metodológica de la guía:
 
 - Recordatorio de que el sistema de etiquetado no está documentado oficialmente.
-- Detalle técnico del banco de iconos (cómo se integran los 145 iconos, y dónde encontrar los archivos PNG individuales si se necesitan en otro lugar).
+- Detalle técnico del banco de iconos (de dónde vienen los iconos y cómo se integran, y dónde encontrar los archivos PNG individuales si se necesitan en otro lugar).
 - Lista explícita de los duplicados de textura detectados, con ejemplos.
 - Precisión sobre los símbolos de portal (`PR_0` a `PR_15`) — confirmados como funcionales en el juego por la comunidad (usados para renombrar sistemas estelares con el símbolo de su dirección de portal).
 - Lista de las etiquetas no funcionales presentes en los datos pero sin textura asignada.
@@ -240,20 +241,24 @@ Esta elección crea una coherencia temática directa entre el contenido document
 
 ## Cómo se extrajeron e integraron los iconos
 
-Los 145 iconos no son símbolos genéricos: son los **iconos reales del juego**, extraídos individualmente de varias capturas de pantalla (tablas de configuración internas y capturas de la interfaz en el juego), y luego limpiados e integrados:
+Desde la versión 2.1, los iconos ya no se recortan de capturas de pantalla: son las **texturas originales del juego**, extraídas directamente de sus archivos, y luego convertidas e integradas en la guía:
 
-1. **Localización de las coordenadas.** Cada icono se localizó con precisión (coordenadas en píxeles) en su imagen de origen, con recalibrado manual en los casos en que las cuadrículas de origen no eran perfectamente regulares.
-2. **Recorte.** El fondo se eliminó mediante umbralización por distancia de color (transformación a canal alfa), con aislamiento por componente conexa para eliminar los fragmentos de iconos vecinos que se colaban en las capturas donde los iconos estaban muy juntos.
-3. **Control de calidad manual.** Varias pasadas de verificación visual permitieron identificar y corregir iconos mal encuadrados, descentrados o contaminados con un residuo del icono adyacente — hasta lograr un resultado limpio en los 145 iconos.
-4. **Codificación.** Cada PNG (fondo transparente) se codifica en **base64** y se almacena en un objeto JavaScript (`ICON_DATA`) que asocia cada nombre de archivo con una cadena `data:image/png;base64,...`, utilizada directamente como atributo `src` de las etiquetas `<img>` — exactamente como si la imagen estuviera alojada en línea, salvo que está físicamente presente en el archivo.
+1. **Extracción.** Los paquetes `.pak` de No Man's Sky se extrajeron con **NMSModTool v1.1.0.0** para acceder a las texturas de la interfaz en formato `.DDS`.
+2. **Elección de la mejor fuente.** Un mismo icono suele existir en varios ejemplares dentro de los archivos del juego, con resoluciones distintas. Para cada etiqueta se conservó la versión visualmente idéntica de **mayor resolución**: 54 iconos en 256 × 256, 26 en 128 × 128, 17 en 64 × 64 y 32 en 32 × 32 (de ellos, 3 teclas anchas en 64 × 32). Estos últimos no existen en ninguna versión más grande en los archivos del juego.
+3. **Conversión y optimización.** Cada textura se convirtió en PNG con fondo transparente y luego se aligeró sin pérdida de calidad: se eliminaron los perfiles ICC y los metadatos.
+4. **Control y retoques.** Cada imagen se comparó con su textura de origen: **97 de los 129 iconos son idénticos píxel a píxel** a su `.DDS` original. Los otros 32 se retocaron, ampliaron o recompusieron cuando el juego solo ofrecía una versión demasiado pequeña o inadecuada — por ejemplo, las insignias de clase, recreadas a partir de la base mate de las insignias de expedición, o `ARROWLEFT`, obtenida por simetría de `ARROWRIGHT`.
+5. **Escalado.** Después, todos los iconos se redimensionaron por lotes en dos juegos, de 32 × 32 y 64 × 64 píxeles. La guía integra la versión de **64 × 64**, nítida incluso en pantallas de alta densidad.
+6. **Codificación.** Cada PNG (fondo transparente) se codifica en **base64** y se almacena en un objeto JavaScript (`ICON_DATA`) que asocia cada nombre de archivo con una cadena `data:image/png;base64,...`, utilizada directamente como atributo `src` de las etiquetas `<img>` — exactamente como si la imagen estuviera alojada en línea, salvo que está físicamente presente en el archivo.
 
-Este enfoque explica tanto el peso del archivo (~359 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
+> **🔧 Detalle técnico:** la columna «Textura de la etiqueta» de la guía indica el archivo `.DDS` al que apunta la etiqueta en las tablas de configuración del juego. No siempre es el archivo del que procede la imagen del banco, que puede ser una versión más grande del mismo dibujo, guardada en otro lugar. Para cada icono, el archivo `SOURCES.csv` de la carpeta `BANK_ICONS/` da la correspondencia completa: textura de la etiqueta, fuente de la imagen, resolución original y nivel de correspondencia.
+
+Este enfoque explica tanto el peso del archivo (~447 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
 
 Este bloque de datos (`ICON_DATA`) está deliberadamente aislado al final del script, separado de toda la lógica JavaScript que lo precede (solo los bloques de idioma, simples datos JSON, vienen después) — una organización pensada para que la lectura del código nunca quede saturada por esos varios miles de líneas de texto binario, y para facilitar que la comunidad añada iconos en el futuro.
 
 > **🔧 Detalle técnico:** en JavaScript, una constante solo necesita estar declarada antes de usarse en tiempo de ejecución — no necesariamente antes de las funciones que la referencian en su código. Por eso `ICON_DATA` puede colocarse al final del script sin romper nada, siempre que permanezca declarado antes de la inicialización de la página, que se ejecuta una vez terminada la carga.
 
-Las 16 etiquetas listadas como no funcionales no son todas simples entradas vacías: una parte de ellas (iconos genéricos de botones de mando) tienen, pese a todo, su imagen ya presente en base64 dentro de `ICON_DATA`, sin estar vinculadas a ella en la tabla de iconos.
+Las 16 etiquetas listadas como no funcionales no son todas simples entradas vacías: una parte de ellas (iconos genéricos de botones de mando) tienen, pese a todo, su imagen ya presente en base64 dentro de `ICON_DATA`, sin estar vinculadas a ella en la tabla de iconos. Son las únicas imágenes que aún proceden del antiguo banco, recortado de capturas de pantalla.
 
 > **🔧 Detalle técnico:** estas imágenes se conservan en reserva en lugar de eliminarse, por si Hello Games les asignara algún día una textura oficial en el juego — vincularlas se convertiría entonces en una simple corrección de una línea, sin tener que volver a extraer ni recodificar nada.
 
