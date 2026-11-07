@@ -1756,15 +1756,15 @@ else initPage();
     "flag": "🇬🇧",
     "lang_code": "en",
     "role": "traduction",
-    "translation_version": "2.0",
-    "updated": "2026-10-19",
-    "source_version": "fr 2.0",
+    "translation_version": "2.1",
+    "updated": "2026-11-07",
+    "source_version": "fr 2.1",
     "target": {
       "variant": "neutral/standard (US)",
       "tone": "passionate/stylized",
       "fidelity_style": "idiomatic",
       "aria_label_style": "B (libellé autonome)",
-      "origin": "textes repris de NMS_txt_code_EN.html v1.3 (2026-10-17), non retraduits"
+      "origin": "textes repris de NMS_txt_code_EN.html v1.3 (2026-10-17), non retraduits; v2.1 (2026-11-07) : clés about.li.01, about.li.03, about.info.div.02, about.sources.li.03 traduites depuis le français"
     }
   },
 
@@ -1847,13 +1847,16 @@ else initPage();
     "<strong class='highlight'>They work on every platform the game is available on (PC, PlayStation, Xbox, and Nintendo Switch), in any editable text field.</strong>"
   ],
   "about.h3.01": "Icon bank",
-  "about.li.01": "The 145 icons used in the \"Icons\" tab were cut out (transparent background) directly from several screenshots.",
+  "about.li.01": [
+    "The 129 icons shown in the \"Icons\" tab come straight from the game files: No Man's Sky's <code>.pak</code> archives were extracted with <strong>NMSModTool v1.1.0.0</strong>, then each original <code>.DDS</code> texture was converted to a transparent-background PNG, always keeping the highest-resolution version available. ",
+    "97 of them are pixel-for-pixel identical to their original texture; the rest were retouched, upscaled or recomposed when the game only offered a version that was too small or unsuitable."
+  ],
   "about.li.02": "The icons are embedded directly in this HTML file (the HTML file is self-contained; no external folder required). So you're free to move or rename this file.",
-  "about.li.03": "The 145 icons are base64-encoded and embedded directly in the HTML file's JavaScript code, as an <code>ICON_DATA</code> object mapping each filename to a <code>data:image/png;base64,...</code> string.",
+  "about.li.03": "The icons are embedded at 64 × 64 pixels, so they stay sharp even on high-density screens. They are base64-encoded directly in the HTML file's JavaScript code, as an <code>ICON_DATA</code> object mapping each filename to a <code>data:image/png;base64,...</code> string.",
   "about.info.div.01": "In practice, each PNG (already cut out, transparent background) is converted into a long base64-encoded text string, and that string is used directly as the <code>src</code> attribute of <code>&lt;img&gt;</code> tags — exactly as if the image were hosted online, except it's \"hard-coded\" straight into the file itself.",
   "about.info.div.02": [
-    "The icons are also provided as individual PNGs (one per tag), named in lowercase (e.g. ",
-    "<code>sclass.png</code>) in a separate archive (to use as a reusable icon bank in other projects)."
+    "The icons are also available separately as individual PNGs (one per tag, named in lowercase, e.g. <code>sclass.png</code>) in the <code>BANK_ICONS/</code> folder of the GitHub repository, along with an archive that bundles several resolutions and the originals. ",
+    "The <code>SOURCES.csv</code> file lists the original <code>.DDS</code> texture of each one: a reusable icon bank for other projects."
   ],
   "about.h3.02": "Duplicates found",
   "about.p.02": [
@@ -1875,7 +1878,7 @@ else initPage();
   "about.p.06": "This guide is based on compiling and cross-referencing several sources of information and tests carried out by myself and by the community. The different sources are:",
   "about.sources.li.01": "The very useful community guide \"Azure's Text Styles Formatting Guide\" (a widely cited reference, including on Nexus Mods).",
   "about.sources.li.02": "Community discussions (Steam, Reddit...) confirming the current behavior of the code tags as well as their in-game uses.",
-  "about.sources.li.03": "Multiple game screenshots and various tables found around the web.",
+  "about.sources.li.03": "The game files themselves (textures extracted from the <code>.pak</code> archives with NMSModTool v1.1.0.0), plus multiple game screenshots and various tables found around the web.",
 
   "footer.footer": [
     "Unofficial guide created by <span class='footer-name'>Spirit</span><br>",
@@ -1945,15 +1948,15 @@ else initPage();
     "flag": "🇪🇸",
     "lang_code": "es",
     "role": "traduction",
-    "translation_version": "2.0",
-    "updated": "2026-10-24",
-    "source_version": "fr 2.0",
+    "translation_version": "2.1",
+    "updated": "2026-11-07",
+    "source_version": "fr 2.1",
     "target": {
       "variant": "neutral/standard",
       "tone": "passionate/stylized",
       "fidelity_style": "idiomatic",
       "aria_label_style": "B (libellé autonome)",
-      "origin": "traduit depuis le français (bloc i18n-fr) ; vocabulaire de référence : ancien NMS_txt_code_ES.html v1.1 (2026-09-25)"
+      "origin": "traduit depuis le français (bloc i18n-fr) ; vocabulaire de référence : ancien NMS_txt_code_ES.html v1.1 (2026-09-25); v2.1 (2026-11-07) : clés about.li.01, about.li.03, about.info.div.02, about.sources.li.03 traduites depuis le français"
     }
   },
 
@@ -2040,16 +2043,19 @@ else initPage();
     "<strong class='highlight'>Funcionan en todas las plataformas donde el juego está disponible (PC, PlayStation, Xbox y Nintendo Switch), en cualquier campo de texto editable.</strong>"
   ],
   "about.h3.01": "Banco de iconos",
-  "about.li.01": "Los 145 iconos usados en la pestaña «Iconos» se recortaron (fondo transparente) directamente a partir de varias capturas de pantalla.",
+  "about.li.01": [
+    "Los 129 iconos que se muestran en la pestaña «Iconos» proceden directamente de los archivos del juego: los paquetes <code>.pak</code> de No Man's Sky se extrajeron con <strong>NMSModTool v1.1.0.0</strong> y luego cada textura <code>.DDS</code> original se convirtió en PNG con fondo transparente, conservando siempre la versión de mayor resolución disponible. ",
+    "97 de ellos son idénticos píxel a píxel a su textura original; los demás se retocaron, ampliaron o recompusieron cuando el juego solo ofrecía una versión demasiado pequeña o inadecuada."
+  ],
   "about.li.02": [
     "Los iconos están integrados directamente en este archivo HTML (el archivo HTML es autosuficiente; no requiere ninguna carpeta externa). ",
     "Por lo tanto, puedes mover o renombrar libremente este archivo."
   ],
-  "about.li.03": "Los 145 iconos están codificados en base64 e integrados directamente en el código JavaScript del archivo HTML, en forma de un objeto <code>ICON_DATA</code> que asocia cada nombre de archivo con una cadena <code>data:image/png;base64,...</code>.",
+  "about.li.03": "Los iconos están integrados en 64 × 64 píxeles, nítidos incluso en pantallas de alta densidad. Están codificados en base64 directamente en el código JavaScript del archivo HTML, en forma de un objeto <code>ICON_DATA</code> que asocia cada nombre de archivo con una cadena <code>data:image/png;base64,...</code>.",
   "about.info.div.01": "En concreto, cada PNG (ya recortado, fondo transparente) se convierte en una larga cadena de texto codificada en base64, y esa cadena se usa directamente como atributo <code>src</code> de las etiquetas <code>&lt;img&gt;</code> — exactamente como si la imagen estuviera alojada en línea, salvo que está «grabada a fuego» dentro del propio archivo.",
   "about.info.div.02": [
-    "Los iconos se proporcionan en paralelo como PNG individuales (uno por etiqueta), nombrados en minúsculas (ej. ",
-    "<code>sclass.png</code>) en un archivo comprimido separado (para usar como banco de iconos reutilizable en otros proyectos)."
+    "Los iconos también están disponibles por separado como PNG individuales (uno por etiqueta, nombrados en minúsculas, ej. <code>sclass.png</code>) en la carpeta <code>BANK_ICONS/</code> del repositorio de GitHub, junto con un archivo comprimido que reúne varias resoluciones y los originales. ",
+    "El archivo <code>SOURCES.csv</code> indica la textura <code>.DDS</code> original de cada uno: un banco de iconos reutilizable en otros proyectos."
   ],
   "about.h3.02": "Duplicados detectados",
   "about.p.02": [
@@ -2075,7 +2081,7 @@ else initPage();
   ],
   "about.sources.li.01": "La muy útil guía comunitaria «Azure's Text Styles Formatting Guide» (referencia ampliamente retomada, incluso en Nexus Mods).",
   "about.sources.li.02": "Discusiones comunitarias (Steam, Reddit...) que confirman el funcionamiento actual de las etiquetas de código y sus usos en el juego.",
-  "about.sources.li.03": "Múltiples capturas del juego y de diversas tablas encontradas en la web.",
+  "about.sources.li.03": "Los propios archivos del juego (texturas extraídas de los paquetes <code>.pak</code> con NMSModTool v1.1.0.0), así como múltiples capturas del juego y diversas tablas encontradas en la web.",
 
   "footer.footer": [
     "Guía no oficial creada por <span class='footer-name'>Spirit</span><br>",
