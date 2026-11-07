@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 2.5
+> Version : 2.6
 > Dernière modification : 2026-11-07
 -->
 
@@ -309,7 +309,7 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 - **Système de langues maison** : les traductions sont des dictionnaires JSON embarqués dans le fichier, lus par du JavaScript natif, sans bibliothèque d'internationalisation.
 - **Chargement des polices optimisé** : deux `<link rel="preconnect">` établissent la connexion vers les domaines Google Fonts avant même le chargement de la feuille de style, réduisant la latence perçue au premier affichage.
 - **Images non bloquantes** : les 145 icônes intégrées utilisent `decoding="async"`, pour que leur décodage ne retarde jamais le rendu du reste de la page.
-- **Code validé par des outils standards** : le HTML passe la validation `html-validate` (préréglage recommandé), à l'exception de deux règles qui signalent des titres et des boutons « vides » dans le fichier source, désactivées par choix puisque leur texte est inséré au chargement selon la langue, et le CSS a été audité avec Stylelint sans anomalie de fond (seules des préférences de formatage, laissées telles quelles par choix de style cohérent), et le JavaScript a été vérifié avec ESLint (règles recommandées), sans aucune remarque. La procédure de revue de code propre au projet est décrite dans `docs/prompts/prompt_code_review_NMS_TC.md`.
+- **Code validé par des outils standards** : le HTML passe la validation `html-validate` (préréglage recommandé), à l'exception de deux règles qui signalent des titres et des boutons « vides » dans le fichier source, désactivées par choix puisque leur texte est inséré au chargement selon la langue, et le CSS a été audité avec Stylelint sans anomalie de fond (seules des préférences de formatage, laissées telles quelles par choix de style cohérent), et le JavaScript a été vérifié avec ESLint (règles recommandées), sans aucune remarque. La procédure de révision propre au projet (outils, code et documentation) est décrite dans `docs/revision.md`, avec son prompt `docs/prompts/prompt_revision_NMS_TC.md`.
 
 ---
 

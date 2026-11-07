@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 5.4
+> Version : 5.5
 > Dernière modification : 2026-11-07
 -->
 
 # Translation Prompt — NMS_TC README
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 5.4, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 5.5, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt réutilisable pour traduire le README du projet NMS_TC dans une nouvelle langue.
 Pour une nouvelle traduction : copier ce fichier, changer uniquement le bloc `TARGET`, et donner ce fichier + le `README_FR.md` source à Claude.
@@ -22,6 +22,7 @@ Une ligne par version, de la plus récente à la plus ancienne. À compléter à
 
 | Version | Date | Résumé |
 |---|---|---|
+| 5.5 | 2026-11-07 | Le renvoi vers `prompt_fix_allcode.md` §L.45bis (fichier d'un autre dépôt) est remplacé par « Questionner les outils » de `docs/revision.md`. Entrées d'historique EN et ES v2.6. Aucune règle modifiée. |
 | 5.4 | 2026-11-07 | Ancres statiques : les 4 titres d'onglets des README portent une ancre fixe (`tab-infos`, `tab-colors`, `tab-icons`, `tab-about`), identique dans toutes les langues (§4, §5) ; correction de la règle des ancres générées (§5) : GitHub **conserve** le sélecteur de variation invisible `U+FE0F` de certains emojis (🖼️, ℹ️…) et le symbole ℹ, ce qui cassait 2 liens du sommaire dans chaque README. Entrées d'historique EN et ES v2.5. |
 | 5.3 | 2026-11-07 | Entrées d'historique EN et ES du 2026-11-07 (mise à jour ciblée v2.3 → v2.4 : guide v2.2, accessibilité, CSP, noscript). Aucune règle modifiée. |
 | 5.2 | 2026-11-07 | Entrées d'historique EN et ES du 2026-11-07 (mise à jour ciblée v2.2 → v2.3 : banque d'icônes extraite du jeu, guide v2.1). Aucune règle modifiée. |
@@ -273,7 +274,7 @@ Le README et le guide HTML décrivent le même produit et doivent employer un vo
 
 ## VÉRIFICATIONS TECHNIQUES RECOMMANDÉES (avant la relecture finale)
 
-Cohérent avec le principe déjà établi pour ce projet (outils nommés et vérifiables plutôt qu'inspection ad hoc — voir `prompt_fix_allcode.md` §L.45bis) : privilégier une vérification programmatique aux points de rupture silencieuse identifiés ci-dessus, plutôt qu'une simple relecture visuelle.
+Cohérent avec le principe déjà établi pour ce projet (outils nommés et vérifiables plutôt qu'inspection ad hoc — voir « Questionner les outils » dans `docs/revision.md`) : privilégier une vérification programmatique aux points de rupture silencieuse identifiés ci-dessus, plutôt qu'une simple relecture visuelle.
 
 - **Structure ligne à ligne** : après avoir retiré le commentaire « Translation parameters », comparer le type de chaque ligne de la traduction à celui de la ligne source (vide, titre par niveau, ligne de tableau par nombre de colonnes, puce par indentation, citation, séparateur, balise HTML) : tout écart est à corriger.
 - **Comptes par ligne** : nombre de passages en gras, en italique et en code identique ligne par ligne ; mêmes nombres (hors séparateur décimal en prose, voir §4), mêmes URLs et liens externes (hors badge du README), mêmes emojis.
@@ -320,3 +321,5 @@ Table à compléter à chaque usage de ce prompt, pour tracer quelle version de 
 | 2026-11-07 | `README_FR.md` v2.4 (316 lignes, md5 `fe6cb44cc5ed3efeb744e868556a2a1e`) | `README_ES.md` v2.4 — **mise à jour ciblée** depuis v2.3 (mêmes passages) | `0b2364d38795b4506af19f3c8abc7a1c` | Español | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-es` du même fichier HTML, fraîcheur confirmée |
 | 2026-11-07 | `README_FR.md` v2.5 (320 lignes, md5 `5d29a14cb52b13c4223209b93b22163d`) — v2.4 → v2.5 : ancres statiques des 4 titres d'onglets | `README_EN.md` v2.5 — **mise à jour ciblée** depuis v2.4 (4 ancres ajoutées, 4 liens du sommaire, en-têtes) | `a8fc4b5786f9d5f82a921dd7835cca0a` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | non utilisé (aucun texte traduit) |
 | 2026-11-07 | `README_FR.md` v2.5 (320 lignes, md5 `5d29a14cb52b13c4223209b93b22163d`) | `README_ES.md` v2.5 — **mise à jour ciblée** depuis v2.4 (mêmes modifications) | `659e6f1f409155d0dbacf982b219903e` | Español | neutral/standard | compromise (sober, key imagery kept) | idiomatic | non utilisé (aucun texte traduit) |
+| 2026-11-07 | `README_FR.md` v2.6 (320 lignes, md5 `9142bd2834dfd80b34a887c00278f6ba`) — v2.5 → v2.6 : renvoi vers le nouveau système de révision | `README_EN.md` v2.6 — **mise à jour ciblée** depuis v2.5 (1 phrase, en-têtes) | `1a2d0be843ac254fb89b5aeea172fdb8` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | non utilisé |
+| 2026-11-07 | `README_FR.md` v2.6 (320 lignes, md5 `9142bd2834dfd80b34a887c00278f6ba`) | `README_ES.md` v2.6 — **mise à jour ciblée** depuis v2.5 (même phrase) | `842ebdc4c540038eb11e09f27ae11db4` | Español | neutral/standard | compromise (sober, key imagery kept) | idiomatic | non utilisé |

@@ -1,9 +1,9 @@
 <!-- Versión del archivo 
-> Versión : 2.5
+> Versión : 2.6
 > Última modificación : 2026-11-07
 -->
 <!-- Parámetros de traducción
-> source_file: README_FR.md v2.5 (md5 5d29a14cb52b13c4223209b93b22163d)
+> source_file: README_FR.md v2.6 (md5 9142bd2834dfd80b34a887c00278f6ba)
 > target_language: Español
 > target_variant: neutral/standard
 > lang_code: ES
@@ -319,7 +319,7 @@ La guía se esfuerza por ser honesta sobre lo que está confirmado y lo que no:
 - **Sistema de idiomas propio**: las traducciones son diccionarios JSON embebidos en el archivo, leídos mediante JavaScript nativo, sin biblioteca de internacionalización.
 - **Carga de fuentes optimizada**: dos `<link rel="preconnect">` establecen la conexión con los dominios de Google Fonts incluso antes de cargar la hoja de estilos, reduciendo la latencia percibida en la primera visualización.
 - **Imágenes no bloqueantes**: los 145 iconos integrados usan `decoding="async"`, para que su decodificación nunca retrase el renderizado del resto de la página.
-- **Código validado con herramientas estándar**: el HTML pasa la validación `html-validate` (preajuste recomendado), salvo dos reglas que señalan títulos y botones «vacíos» en el archivo fuente, desactivadas por decisión propia puesto que su texto se inserta al cargar según el idioma, y el CSS ha sido auditado con Stylelint sin anomalías de fondo (solo preferencias de formato, dejadas tal cual por coherencia de estilo), y el JavaScript se ha verificado con ESLint (reglas recomendadas), sin ninguna observación. El procedimiento de revisión de código propio del proyecto se describe en `docs/prompts/prompt_code_review_NMS_TC.md`.
+- **Código validado con herramientas estándar**: el HTML pasa la validación `html-validate` (preajuste recomendado), salvo dos reglas que señalan títulos y botones «vacíos» en el archivo fuente, desactivadas por decisión propia puesto que su texto se inserta al cargar según el idioma, y el CSS ha sido auditado con Stylelint sin anomalías de fondo (solo preferencias de formato, dejadas tal cual por coherencia de estilo), y el JavaScript se ha verificado con ESLint (reglas recomendadas), sin ninguna observación. El procedimiento de revisión propio del proyecto (herramientas, código y documentación) se describe en `docs/revision.md`, con su prompt `docs/prompts/prompt_revision_NMS_TC.md`.
 
 ---
 

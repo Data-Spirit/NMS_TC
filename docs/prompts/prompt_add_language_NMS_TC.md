@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.0
+> Version : 1.1
 > Dernière modification : 2026-11-07
 -->
 
 # Add a Language Prompt — NMS_TC (ajout d'une nouvelle langue, de bout en bout)
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.0, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport aux autres prompts du projet, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.1, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport aux autres prompts du projet, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt **chef d'orchestre** pour ajouter une langue à NMS_TC : le bloc de langue du guide, son README, et tout ce qui doit suivre dans le dépôt pour que la nouvelle langue soit complète, cohérente et sans oubli.
 
@@ -28,7 +28,7 @@ Tu es le chef de projet de l'ajout d'une langue. Tu connais le fonctionnement du
 | `docs/prompts/prompt_add_language_NMS_TC.md` (ce fichier) | Ordre des étapes, points de contrôle, checklist des oublis. | En entier, au démarrage. |
 | `docs/prompts/prompt_translation_HTML_GUIDE_LANG.md` | **Étape A** : créer le bloc `i18n-<code>` du guide. Contient la vérification préalable de la langue (sens d'écriture, alphabet, pluriels), les paramètres `TARGET`, l'emplacement du bloc, le `_meta`, les vérifications et le livrable. | En entier, avant l'étape A. |
 | `docs/prompts/prompt_translation_README_LANG.md` | **Étape C** : traduire `README_FR.md` en `README_<CODE>.md`. Contient la règle §0 (nom du fichier compagnon), les éléments intouchables, les encadrés 🔧, la cohérence terminologique §7. | En entier, avant l'étape C. |
-| `docs/prompts/prompt_code_review_NMS_TC.md` | **Étape B** : invariants du code et outils de contrôle, pour la seule modification de code qu'impose une nouvelle langue (`<noscript>`). | Sections invariants, pièges connus et outils. |
+| `docs/prompts/prompt_revision_NMS_TC.md`, `docs/revision.md` et `docs/pitfalls.md` | **Étape B** : invariants du code, outils de contrôle et pièges connus, pour la seule modification de code qu'impose une nouvelle langue (`<noscript>`). | Invariants du prompt maître, tableau des outils de la procédure, pièges du guide. |
 | `docs/scripts/trans_script_0_README.md` | Mode d'emploi des scripts de contrôle 1 à 4. | Avant la première exécution. |
 | `LANG/FR/README_FR.md` | Source du README ; décrit la conception du guide (multilingue, i18n, sécurité). | Pour contexte, puis comme source à l'étape C. |
 | `README.md` (racine) | Page d'accueil du dépôt en anglais : tableau des langues et liens de référence. | Étape D. |
@@ -98,7 +98,7 @@ C'est une **modification du code**, distincte de la traduction : elle se propose
 
 - **`<noscript>`** : ajouter la phrase de la nouvelle langue à la ligne existante, dans le même ordre que les blocs, avec le même séparateur ` · `. Garder une phrase courte et la tester (JavaScript désactivé) à 375 px : la ligne ne doit pas devenir un pavé. Si elle devient trop longue, le signaler et proposer une mise en forme plutôt que de l'imposer.
 - **En-tête du fichier** : version et date selon le plan validé à l'étape 0.
-- **Ne rien toucher d'autre** : ni le `<title>` statique (repli français volontaire), ni la CSP, ni les polices. Une police supplémentaire pour un alphabet non couvert est un chantier de code à part, à proposer séparément avec `prompt_code_review_NMS_TC.md`.
+- **Ne rien toucher d'autre** : ni le `<title>` statique (repli français volontaire), ni la CSP, ni les polices. Une police supplémentaire pour un alphabet non couvert est un chantier de code à part, à proposer séparément, par une révision en mode Code (`prompt_revision_NMS_TC.md`).
 - **Preuve** : `trans_script_4_test_render.js` entre la version d'avant l'étape B et la nouvelle, dans chaque langue existante ; seuls les écarts voulus sont admis et cités.
 
 ## ÉTAPE C — README DE LA LANGUE
@@ -125,7 +125,7 @@ grep -n -E "readme_|guide_" README.md
 | `README.md` (racine, anglais) | Ligne du tableau des langues (drapeau, nom natif, lien README, lien guide) et deux liens de référence `[readme_<code>]` et `[guide_<code>]` (`…/NMS_txt_code.html?lang=<code>`) ; arborescence si elle liste les langues. | Ordre du tableau : celui déjà en place (vérifier la règle suivie). |
 | `LANG/FR/README_FR.md` | Poids du fichier (~… Ko), nombre de langues, exemples de langues si une liste est fermée. | **Modifier la source FR impose ensuite la mise à jour ciblée des README EN, ES… existants** (section « MISE À JOUR INCRÉMENTALE » du prompt README). |
 | `README_EN.md`, `README_ES.md`… | Mêmes mentions, par mise à jour ciblée. | Seulement si `README_FR.md` a changé. |
-| `docs/prompts/prompt_code_review_NMS_TC.md` | Ligne d'historique si le code a changé à l'étape B. | Rédigé sans nombre de langues depuis sa v1.1 : vérifier seulement qu'aucune mention chiffrée n'y est revenue. |
+| `docs/prompts/prompt_revision_NMS_TC.md` et `docs/revision.md` | Ligne dans l'historique des révisions de `revision.md` si le code a changé à l'étape B. | Rédigés sans nombre de langues : vérifier seulement qu'aucune mention chiffrée n'y est apparue. |
 | `prompt_translation_HTML_GUIDE_LANG.md` | Tableau « ÉTAT DES TRADUCTIONS » et ligne d'historique. | Déjà proposés à l'étape A. |
 | `prompt_translation_README_LANG.md` | Ligne d'historique (et, si utile, ligne du tableau de la règle §0). | Proposée à l'étape C. |
 | `CHANGELOG.md`, notes de version | Entrée « Added : <langue> » dans la version prévue. | S'ils existent ; sinon le signaler. |
@@ -163,7 +163,7 @@ grep -n -E "readme_|guide_" README.md
 - [ ] Dossier `LANG/<CODE>/` et `README_<CODE>.md` créés ; README cite `NMS_txt_code.html` sans suffixe.
 - [ ] README racine : ligne du tableau + `[readme_<code>]` + `[guide_<code>]`.
 - [ ] Poids du fichier et nombre de langues à jour dans les README (et mise à jour ciblée des autres README si la source FR a changé).
-- [ ] `prompt_code_review_NMS_TC.md` : toujours sans nombre de langues ; ligne d'historique proposée si l'étape B a eu lieu.
+- [ ] `prompt_revision_NMS_TC.md` et `revision.md` : toujours sans nombre de langues ; ligne d'historique des révisions proposée si l'étape B a eu lieu.
 - [ ] Tableau d'état et historiques des prompts : proposés.
 - [ ] CHANGELOG / notes de version : proposés (s'ils existent).
 - [ ] Contrôles 1, 2 (toutes les langues), 3, et vérification navigateur.
@@ -176,7 +176,8 @@ grep -n -E "readme_|guide_" README.md
 ```
 Je te joins prompt_add_language_NMS_TC.md : je veux ajouter le/l' [LANGUE] au guide NMS_TC.
 Lis aussi prompt_translation_HTML_GUIDE_LANG.md, prompt_translation_README_LANG.md,
-prompt_code_review_NMS_TC.md et docs/scripts/trans_script_0_README.md.
+prompt_revision_NMS_TC.md, docs/revision.md, docs/pitfalls.md
+et docs/scripts/trans_script_0_README.md.
 
 Commence par l'étape 0 : état du dépôt, éligibilité de la langue, codes proposés,
 plan de version, questions TARGET, puis le plan des étapes A à F.
@@ -192,6 +193,7 @@ Si l'ajout se fait en plusieurs conversations, reprendre avec le même message e
 
 | Version | Date | Modification |
 |---|---|---|
+| 1.1 | 2026-11-07 | Renvois vers le nouveau système de révision (`prompt_revision_NMS_TC.md`, `revision.md`, `pitfalls.md`), qui remplace `prompt_code_review_NMS_TC.md` (archivé). Aucune règle modifiée. |
 | 1.0 | 2026-11-07 | Création. Remplace `prompt_translation_transfert.md` (messages de lancement écrits pour un guide en un fichier par langue, obsolètes depuis le guide multilingue v2.0). |
 
 ## HISTORIQUE D'UTILISATION

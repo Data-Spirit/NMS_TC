@@ -12,10 +12,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 ### Added
 - `docs/prompts/prompt_add_language_NMS_TC.md`: an end-to-end prompt to add a new language (guide block, `<noscript>`, README, rest of the repository, checks, report).
 - `CHANGELOG.md` and `ROADMAP.md`.
+- Review system: `docs/revision.md` (procedure: when to review, which mode, what each tool detects and misses), `docs/prompts/prompt_revision_NMS_TC.md` (master prompt: three review types, tools, code and docs, and four modes, including a full review in that order) and `docs/pitfalls.md` (known pitfalls and their solutions).
 - `_config.yml`: no GitHub Pages home page generated from the README (the site root returns a 404 on purpose; the guide stays online).
 
 ### Changed
-- Code review prompt v1.1: no longer tied to a fixed number of languages.
+- Add language prompt v1.1, READMEs v2.6 and README translation prompt v5.5: point to the new review system (the README prompt no longer cites `prompt_fix_allcode.md`, a file from another repository).
 - README translation prompt v5.4: static anchors rule, corrected rule for GitHub heading anchors.
 
 ### Fixed
@@ -24,6 +25,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 ### Removed
 - `prompt_translation_transfert.md`, written for the old one-file-per-language guide (archived in `docs/_legacy/`).
 - `index.html`, an empty placeholder page at the repository root.
+- `prompt_code_review_NMS_TC.md`, replaced by the review system (archived in `docs/_legacy/`).
 
 ---
 

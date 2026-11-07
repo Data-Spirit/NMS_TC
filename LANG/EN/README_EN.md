@@ -1,9 +1,9 @@
 <!-- File version 
-> Version: 2.5
+> Version: 2.6
 > Last modified: 2026-11-07
 -->
 <!-- Translation parameters
-> source_file: README_FR.md v2.5 (md5 5d29a14cb52b13c4223209b93b22163d)
+> source_file: README_FR.md v2.6 (md5 9142bd2834dfd80b34a887c00278f6ba)
 > target_language: English
 > target_variant: neutral/standard
 > lang_code: EN
@@ -319,7 +319,7 @@ The guide aims to be upfront about what's confirmed and what isn't:
 - **In-house language system**: translations are JSON dictionaries embedded in the file, read by native JavaScript, with no internationalization library.
 - **Optimized font loading**: two `<link rel="preconnect">` tags open the connection to Google Fonts' domains before the stylesheet even loads, reducing perceived latency on first render.
 - **Non-blocking images**: the 145 embedded icons use `decoding="async"`, so their decoding never delays the rendering of the rest of the page.
-- **Code validated with standard tools**: the HTML passes `html-validate` (recommended preset), apart from two rules that flag "empty" headings and buttons in the source file, disabled by design since their text is inserted at load time depending on the language, and the CSS has been audited with Stylelint with no substantive issues (only formatting preferences, deliberately left as-is for stylistic consistency), and the JavaScript has been checked with ESLint (recommended rules), with no issues at all. The project's own code review procedure is described in `docs/prompts/prompt_code_review_NMS_TC.md`.
+- **Code validated with standard tools**: the HTML passes `html-validate` (recommended preset), apart from two rules that flag "empty" headings and buttons in the source file, disabled by design since their text is inserted at load time depending on the language, and the CSS has been audited with Stylelint with no substantive issues (only formatting preferences, deliberately left as-is for stylistic consistency), and the JavaScript has been checked with ESLint (recommended rules), with no issues at all. The project's own review procedure (tools, code and documentation) is described in `docs/revision.md`, with its prompt `docs/prompts/prompt_revision_NMS_TC.md`.
 
 ---
 
