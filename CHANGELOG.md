@@ -9,7 +9,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 
 ## [Unreleased]
 
+Nothing yet.
+
+---
+
+## [2.3] — 2026-11-07 · *Reviewed from top to bottom*
+
+First full review of the project (tools, code and docs) with the new review procedure. Same content, data and translations as 2.2. ≈ 451 KB.
+[Release notes](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/RELEASE_NOTES_v2.3.md)
+
 ### Added
+- `docs/scripts/trans_script_5_test_mutations.py`: checks the check scripts themselves, by injecting 13 known faults into copies of the guide.
 - `docs/prompts/prompt_add_language_NMS_TC.md`: an end-to-end prompt to add a new language (guide block, `<noscript>`, README, rest of the repository, checks, report).
 - `CHANGELOG.md` and `ROADMAP.md`.
 - Review system: `docs/revision.md` (procedure: when to review, which mode, what each tool detects and misses), `docs/prompts/prompt_revision_NMS_TC.md` (master prompt: three review types, tools, code and docs, and four modes, including a full review in that order) and `docs/pitfalls.md` (known pitfalls and their solutions).
@@ -20,7 +30,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 - README translation prompt v5.4: static anchors rule, corrected rule for GitHub heading anchors.
 - Check scripts v1.1, after the first full review: script 1 now detects a duplicated or malformed language block (both were silently ignored), script 2 tests the tabs (mouse and keyboard) and a refused copy, script 3 tests `?lang=` and hostile values from the address and the storage, script 4 refuses a language missing from the file (it silently compared the default language); a missing file gives a clear message everywhere.
 - Guide v2.3 (accessibility): decorative icons are hidden from screen readers, and the tab panels can be reached with the keyboard.
-- Docs: repository tree in the README (v3.11), review procedure v1.1, pitfalls v1.1, size of a language block (~14 KB) in the READMEs v2.7.
+- Docs: repository tree in the README (v3.12), review procedure v1.2 and master review prompt v1.1 (fault-injection script), pitfalls v1.1, size of a language block (~14 KB) in the READMEs v2.7, scripts table of the HTML translation prompt (v4.4).
 
 ### Fixed
 - READMEs (FR, EN, ES v2.5): the "Icons" and "About" links of the table of contents led nowhere (the emojis of those headings put an invisible character in GitHub's anchors); the four tab headings now have static anchors (`#tab-infos`, `#tab-colors`, `#tab-icons`, `#tab-about`).
@@ -35,7 +45,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 ## [2.2] — 2026-11-07 · *Polished under the hood*
 
 Full code review. Same content, data and translations as 2.1. ≈ 447 KB → ≈ 451 KB.
-[Release notes](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/RELEASE_NOTES_v2.2.md)
+[Release notes](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/_legacy/RELEASE_NOTES_v2.2.md)
 
 ### Fixed
 - Phones: the "Tag texture" column of the icon tables was squeezed to zero width (the table now scrolls sideways).
@@ -122,7 +132,8 @@ Separate file per language: French guide 1.1 on 2026-09-07, English 1.1 on 2026-
 
 ---
 
-[Unreleased]: https://github.com/Data-Spirit/NMS_TC/compare/v2.2...HEAD
+[Unreleased]: https://github.com/Data-Spirit/NMS_TC/compare/v2.3...HEAD
+[2.3]: https://github.com/Data-Spirit/NMS_TC/compare/v2.2...v2.3
 [2.2]: https://github.com/Data-Spirit/NMS_TC/compare/v2.1...v2.2
 [2.1]: https://github.com/Data-Spirit/NMS_TC/compare/v2.0...v2.1
 [2.0]: https://github.com/Data-Spirit/NMS_TC/compare/v1.1...v2.0
