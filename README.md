@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 3.8
-> Dernière modification : 2026-10-27
+> Version : 3.9
+> Dernière modification : 2026-11-07
 -->
 
 <!-- BANNIERE CENTRE + TITRE CENTRE -->
@@ -112,7 +112,7 @@
 * 🌍 **Multilingual, in a single file :** several languages built in, with a **language selector**. The guide picks your browser's language automatically, remembers your choice, and its address follows the displayed language, so you can **share a direct link** to any language.
 * 📦 **A single, fully self-contained HTML file :** no installation, no critical external dependencies. Open it in your browser, **offline, anywhere**.
 * 🎨 **59 color tags** documented with **exact HEX code, transparency and category**, plus **4 clickable sort modes** *(name, color, HEX, luminosity)* and instant search.
-* 🖼️ **145 real in-game icons**, individually extracted and cleaned by hand *(not generic placeholders)*, grouped into **12 categories**, with **duplicate / non-functional / unconfirmed status badges :**  all 145 icons are embedded directly in the file, with **no external images needed**.
+* 🖼️ **145 icon tags**, illustrated with **129 original icons extracted straight from the game files** *(sharp 64 × 64 versions, not generic placeholders)*, grouped into **12 categories**, with **duplicate / non-functional / unconfirmed status badges :** all icons are embedded directly in the file, with **no external images needed**.
 * ⚡ **A live simulator :** type your tags and see the result rendered instantly, before pasting it in-game — including the well-known **icon-tinting trick**.
 * 🚨 **Instant error detection :** a misspelled, unknown or wrongly cased tag is flagged right in the preview, with the fix suggested.
 * 📝 **Examples :** includes **10 real, in-game usage examples** to get you started.
@@ -169,7 +169,7 @@ NMS_TC/
 ├── docs/                   → Additional documentation
 │   ├── _legacy/            → older versions (html's / readme's / prompts)
 │   ├── assets/             → Graphic elements of NMS_TC
-│   │   └── BANK_ICONS/     → Standalone icon assets (transparent PNGs)
+│   │   └── BANK_ICONS/     → Standalone icon assets (64×64 PNGs + archive) and SOURCES.csv
 │   ├── img/                → All banner/InGame_screenshot/Guide_screenshot etc.
 │   ├── prompts/            → All prompt for translation and code verification
 │   └── scripts/            → Check scripts used to verify the translations
@@ -218,7 +218,7 @@ NMS_TC/
 [github_banner]: docs/img/NMS_TC_banner/NMS_TC_banner_01.webp
 
 <!-- Lien de téléchargement direct (fichier unique multilingue) -->
-[download_mltlg]: https://github.com/Data-Spirit/NMS_TC/releases/download/v2.0/NMS_txt_code.html
+[download_mltlg]: https://github.com/Data-Spirit/NMS_TC/releases/latest/download/NMS_txt_code.html
 
 <!-- Language README files -->
 [readme_en]: ./LANG/EN/README_EN.md
