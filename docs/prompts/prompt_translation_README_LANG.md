@@ -1,18 +1,18 @@
 <!-- Version du fichier 
-> Version : 5.0
-> Dernière modification : 2026-10-25
+> Version : 5.2
+> Dernière modification : 2026-11-07
 -->
 
 # Translation Prompt — NMS_TC README
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 5.0, 2026-10-25). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 5.2, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt réutilisable pour traduire le README du projet NMS_TC dans une nouvelle langue.
 Pour une nouvelle traduction : copier ce fichier, changer uniquement le bloc `TARGET`, et donner ce fichier + le `README_FR.md` source à Claude.
 
 Ce prompt est le pendant documentaire de `prompt_translation_HTML_GUIDE_LANG.md`. Les deux partagent la même exigence de qualité et la même terminologie (voir §7 Cohérence terminologique), mais celui-ci s'applique à un texte pur (Markdown), pas à un fichier fonctionnel : une erreur ici casse la lisibilité ou la cohérence documentaire, pas une fonctionnalité.
 
-> **Note (README source à jour)** : `README_FR.md` évolue avec le guide interactif. La version 2.x décrit notamment le guide multilingue en un seul fichier `NMS_txt_code.html`, la formule de luminance `ITU-R BT.601`, des encadrés `> **🔧 Détail technique :** ...` et la décision de conserver 16 icônes de boutons manette en réserve. Si vous comparez avec d'anciennes traductions (antérieures à cette mise à jour), ne soyez pas surpris d'y trouver du contenu absent des versions précédentes : ce n'est pas une divergence à corriger dans la source, c'est le README qui s'est enrichi. Toute retraduction doit repartir de la version à jour de `README_FR.md`, jamais porter/compléter une ancienne traduction existante.
+> **Note (README source à jour)** : `README_FR.md` évolue avec le guide interactif. La version 2.x décrit notamment le guide multilingue en un seul fichier `NMS_txt_code.html`, la formule de luminance `ITU-R BT.601`, des encadrés `> **🔧 Détail technique :** ...` et la décision de conserver 16 icônes de boutons manette en réserve. Si vous comparez avec d'anciennes traductions (antérieures à cette mise à jour), ne soyez pas surpris d'y trouver du contenu absent des versions précédentes : ce n'est pas une divergence à corriger dans la source, c'est le README qui s'est enrichi. Toute retraduction doit repartir de la version à jour de `README_FR.md`, jamais porter/compléter une ancienne traduction existante (seule exception : la mise à jour incrémentale strictement encadrée, voir la section « MISE À JOUR INCRÉMENTALE D'UNE TRADUCTION EXISTANTE »).
 
 ---
 
@@ -22,6 +22,8 @@ Une ligne par version, de la plus récente à la plus ancienne. À compléter à
 
 | Version | Date | Résumé |
 |---|---|---|
+| 5.2 | 2026-11-07 | Entrées d'historique EN et ES du 2026-11-07 (mise à jour ciblée v2.2 → v2.3 : banque d'icônes extraite du jeu, guide v2.1). Aucune règle modifiée. |
+| 5.1 | 2026-10-28 | Ajout de la section « MISE À JOUR INCRÉMENTALE D'UNE TRADUCTION EXISTANTE » (exception encadrée à la règle « jamais compléter une ancienne traduction », avec conditions, procédure et vérifications) ; entrées d'historique ES et EN du 2026-10-27 (mise à jour ciblée pour la fonctionnalité `?lang=`). |
 | 5.0 | 2026-10-25 | Adaptation au guide multilingue en un seul fichier `NMS_txt_code.html` (v2.0) : règle §0 réécrite (plus de suffixe de langue sur le fichier HTML), `companion_html_guide` = bloc `i18n-<lang_code>` du guide (fraîcheur vérifiée par `trans_script_1_check_keys.py --todo`), placeholders pédagogiques repris du bloc de la langue, ancres GitHub corrigées (accents conservés, emojis supprimés, double tiret), repères de fraîcheur du README source mis à jour, ton par défaut du README = `compromise` (valeurs de `tone` définies), vérification que le README source reflète les langues du guide. Ajouts : commentaires d'en-tête (version traduite + « Translation parameters »), règle de l'ancien README de la langue cible (référence de vocabulaire seulement), rapport de livraison standard, vérifications techniques formalisées (structure ligne à ligne, nombres, URLs, emojis, ancres), règle de démarrage alignée sur le prompt HTML v4.2 (langue sans historique, fenêtre de 3 questions), tables et journal mis à jour sur proposition, colonne `md5 du livrable`, entrées d'historique ES et EN du 2026-10-25. Ce journal remplace la ligne de changelog unique. |
 | 4.3 | 2026-09-25 | Dernière version avant la 5.0 (en-tête daté du 2026-09-25 ; le détail de cette révision n'avait pas été journalisé). |
 | ≤ 4.2 | 2026-09-09 | Ajout de l'entrée d'historique de la traduction ES du 2026-09-09 (`README_FR.md` → `README_ES.md`, hash `e36972f2f6f0f926335caa49aba5396f`, `companion_html_guide` `NMS_txt_code_ES.html` utilisé après confirmation de fraîcheur). Même jour : auto-versionnage, section « LES FICHIERS FOURNIS », règle de fraîcheur étendue, restriction de `companion_html_guide` à la fourniture explicite, protection des modifications de ce prompt, feu vert de traduction, vérifications techniques recommandées, colonne de traçabilité, correction des noms de fichiers obsolètes, réorganisation des sections. |
@@ -85,6 +87,26 @@ Avant de commencer, pour **chacun** des fichiers fournis dans le tour de convers
 3. **`companion_html_guide`** (uniquement s'il a été explicitement fourni ou désigné par la personne pour cette session — jamais rappelé de mémoire de sa propre initiative, voir règle ci-dessus) : **avant de l'utiliser comme référence terminologique**, vérifier que le bloc `i18n-<lang_code>` est à jour par rapport au bloc source : lancer `trans_script_1_check_keys.py NMS_txt_code.html --todo <lang_code>` (résultat attendu : aucune clé à traduire), comparer `_meta.source_version` du bloc à la version du bloc source (`i18n-fr`), et noter le md5 du fichier. Si des clés manquent ou si la version du bloc est en retard, le bloc est **obsolète** : ne pas l'utiliser tel quel comme référence terminologique sans le signaler explicitement à la personne, décrire précisément ce qui manque, et lui demander comment procéder (le retraduire d'abord, s'appuyer uniquement sur les termes de base déjà validés, ou traiter ce README comme la nouvelle référence terminologique).
 
 Ne jamais réutiliser silencieusement un fichier ou une traduction produite lors d'un tour précédent de la conversation sans revalider explicitement qu'il s'agit bien de la version la plus récente fournie.
+
+---
+
+## MISE À JOUR INCRÉMENTALE D'UNE TRADUCTION EXISTANTE — cas exceptionnel
+
+La règle générale reste : une traduction du README repart de la version à jour de la source (voir la note en tête de ce prompt). La **mise à jour incrémentale** — ne traduire que les passages qui ont changé dans la source et les insérer dans une traduction existante — est une **exception**, autorisée uniquement si **toutes** les conditions suivantes sont réunies :
+
+1. **Différence précisément connue.** L'ancienne et la nouvelle version du README source sont toutes deux disponibles (ou la personne liste précisément les changements). Calculer la différence ligne à ligne et la montrer.
+2. **Traduction existante alignée sur l'ancienne source.** Son commentaire « Translation parameters » donne le md5 de l'ancienne source (`source_file`), et ce md5 correspond à l'ancienne source disponible. Si le commentaire est absent, si le md5 diffère ou si la traduction est antérieure à ce mécanisme : retraduire entièrement.
+3. **Différence limitée.** Quelques passages (ordre de grandeur : moins d'environ 10 % des lignes), **sans titre ajouté, supprimé ou renommé** (les ancres du sommaire ne bougent pas), sans changement de structure d'un tableau et sans changement des paramètres `TARGET` (variante, ton, fidélité).
+4. **Référence terminologique inchangée.** Le bloc `i18n-<lang_code>` utilisé comme `companion_html_guide` est le même ou a été confirmé à jour par la règle de fraîcheur.
+
+**Procédure :**
+- Le README source (français) se met à jour **en premier**, sur feu vert ; sa nouvelle version et son nouveau md5 alimentent ensuite les autres langues.
+- Pour chaque langue, **proposer la liste exacte des lignes à modifier** (avant / après, en langue cible) et attendre un feu vert explicite, comme pour une traduction.
+- Traduire **depuis la nouvelle source** uniquement les lignes ajoutées ou modifiées ; ne pas retoucher le reste, même si une tournure semble améliorable (ce serait une retraduction déguisée).
+- Mettre à jour les valeurs qui dérivent de la source ou du guide : version et date du commentaire de version (version de la source, date du jour), `source_file` (version et md5 de la nouvelle source), `companion_html_guide` (md5 du fichier HTML actuel), `translated_on`, et toute valeur chiffrée issue du guide (ex. la taille du fichier).
+- Exécuter **toutes** les vérifications techniques sur le fichier **entier**, pas seulement sur la différence.
+- Dans le rapport et dans la ligne d'historique, indiquer « mise à jour ciblée » et lister les lignes modifiées.
+- En cas de doute sur l'une des conditions : retraduire entièrement.
 
 ---
 
@@ -286,3 +308,7 @@ Table à compléter à chaque usage de ce prompt, pour tracer quelle version de 
 | 2026-09-09 | `README_FR.md` (248 lignes, hash `e36972f2f6f0f926335caa49aba5396f`) | `README_ES.md` | non relevé | Español | neutral/standard | passionate/stylized | idiomatic | `NMS_txt_code_ES.html` fourni explicitement, fraîcheur confirmée (identique à la traduction HTML produite le même jour) |
 | 2026-10-25 | `README_FR.md` v2.1 (309 lignes, md5 `e3ce5e7638a7b06f3ce3868f098ee6ac`, corrigé le jour même : 3 langues, ~358 Ko) | `README_ES.md` v2.1 (retraduit depuis la source à jour ; ancien README_ES v1.1 consulté comme référence de vocabulaire seulement) | `5ce4cda27c85973d0a28ea0305ece105` | Español | neutral/standard | compromise (sober, key imagery kept) — livré d'abord en passionate/stylized (md5 `97d36d26…`), corrigé le jour même | idiomatic | bloc `i18n-es` de `NMS_txt_code.html` v2.0 (md5 `75a04cc4966d23e4b6ccf4eb63909f17`), désigné par la personne, fraîcheur confirmée |
 | 2026-10-25 | `README_FR.md` v2.1 (309 lignes, md5 `e3ce5e7638a7b06f3ce3868f098ee6ac`) | `README_EN.md` v2.1 (ancien README_EN v1.3 consulté comme référence de vocabulaire seulement) | `10899991518412e1b06216470f34f8c8` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-en` de `NMS_txt_code.html` v2.0 (md5 `75a04cc4966d23e4b6ccf4eb63909f17`), désigné par la personne, fraîcheur confirmée |
+| 2026-10-27 | `README_FR.md` v2.2 (310 lignes, md5 `cd377f8f5d862542265d60d9aac220ac`) — v2.1 → v2.2 : fonctionnalité `?lang=` du guide | `README_ES.md` v2.2 — **mise à jour ciblée** depuis v2.1 (2 puces, 1 phrase, taille ~359 Ko) | `7e060e2db9af8a9ff38b9bcd07bde17f` | Español | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-es` de `NMS_txt_code.html` (md5 `c26672e58a3d43832ea06d02149368e9`), fraîcheur confirmée |
+| 2026-10-27 | `README_FR.md` v2.2 (310 lignes, md5 `cd377f8f5d862542265d60d9aac220ac`) | `README_EN.md` v2.2 — **mise à jour ciblée** depuis v2.1 (2 puces, 1 phrase, taille ~359 KB) | `489199202b20044096f9149df2e9602c` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-en` du même fichier HTML, fraîcheur confirmée |
+| 2026-11-07 | `README_FR.md` v2.3 (315 lignes, md5 `1c53d801b81b2f0e53f4212f78c79c93`) — v2.2 → v2.3 : banque d'icônes extraite du jeu (guide v2.1) | `README_EN.md` v2.3 — **mise à jour ciblée** depuis v2.2 (section d'extraction réécrite, 1 encadré 🔧 ajouté, 1 ligne de tableau, 6 retouches, ~447 KB) | `ef0ddbf05aafee86e60ecdb7fedba03e` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-en` de `NMS_txt_code.html` v2.1 (md5 `ab8a214b3390424ab7ef6a58eac9ab48`), fraîcheur confirmée |
+| 2026-11-07 | `README_FR.md` v2.3 (315 lignes, md5 `1c53d801b81b2f0e53f4212f78c79c93`) | `README_ES.md` v2.3 — **mise à jour ciblée** depuis v2.2 (mêmes passages, ~447 KB) | `c90e8a7a9841e71ddf8cc81aca9a339f` | Español | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-es` du même fichier HTML, fraîcheur confirmée |
