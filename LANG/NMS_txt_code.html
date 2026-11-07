@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 2.2
+> Version : 2.3
 > Dernière modification : 2026-11-07
 -->
 
@@ -451,7 +451,7 @@
 <main>
 
   <!-- ============ INFOS TAB ============ -->
-  <section id="tab-infos" class="tab-panel active" role="tabpanel" aria-labelledby="tabbtn-infos">
+  <section id="tab-infos" class="tab-panel active" role="tabpanel" tabindex="0" aria-labelledby="tabbtn-infos">
     <div class="notes">
       <h2 data-i18n="infos.h2"></h2>
 
@@ -465,7 +465,7 @@
       </ul>
 
       <div class="protip">
-        <span class="protip-icon">💡</span>
+        <span class="protip-icon" aria-hidden="true">💡</span>
         <div>
           <strong data-i18n="infos.protip.strong"></strong>
           <ul>
@@ -489,7 +489,7 @@
       </ul>
 
       <div class="important-box">
-        <span class="protip-icon">★</span>
+        <span class="protip-icon" aria-hidden="true">★</span>
         <div>
           <span data-i18n="infos.important.div"></span><ul>
             <li data-i18n="infos.important.li.01"></li>
@@ -512,7 +512,7 @@
       </div>
 
       <div class="warn-box">
-        <span class="protip-icon">⚠</span>
+        <span class="protip-icon" aria-hidden="true">⚠</span>
         <div data-i18n="infos.warning.div"></div>
       </div>
 
@@ -523,9 +523,9 @@
   </section>
 
   <!-- ============ COLORS TAB ============ -->
-  <section id="tab-colors" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-colors">
+  <section id="tab-colors" class="tab-panel" role="tabpanel" tabindex="0" aria-labelledby="tabbtn-colors">
     <div class="info-box">
-      <span class="protip-icon">ℹ</span>
+      <span class="protip-icon" aria-hidden="true">ℹ</span>
       <div data-i18n="colors.info.div"></div>
     </div>
     <div class="toolbar">
@@ -551,7 +551,7 @@
   </section>
 
   <!-- ============ ICONS TAB ============ -->
-  <section id="tab-icons" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-icons">
+  <section id="tab-icons" class="tab-panel" role="tabpanel" tabindex="0" aria-labelledby="tabbtn-icons">
     <div class="toolbar">
       <input type="text" class="search-box" id="icon-search" spellcheck="false" autocomplete="off" data-i18n-attr="placeholder:icons.icon_search.placeholder;aria-label:icons.icon_search.aria">
       <select class="cat-select" id="icon-cat-filter" data-i18n-attr="aria-label:icons.icon_cat_filter.aria"></select>
@@ -561,7 +561,7 @@
   </section>
 
   <!-- ============ NOTES TAB ============ -->
-  <section id="tab-notes" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-notes">
+  <section id="tab-notes" class="tab-panel" role="tabpanel" tabindex="0" aria-labelledby="tabbtn-notes">
     <div class="notes">
       <h2 data-i18n="about.h2"></h2>
       <p data-i18n="about.p.01"></p>
@@ -574,12 +574,12 @@
       </ul>
 
       <div class="info-box">
-        <span class="protip-icon">ℹ</span>
+        <span class="protip-icon" aria-hidden="true">ℹ</span>
         <div data-i18n="about.info.div.01"></div>
       </div>
 
       <div class="info-box">
-        <span class="protip-icon">ℹ</span>
+        <span class="protip-icon" aria-hidden="true">ℹ</span>
         <div data-i18n="about.info.div.02"></div>
       </div>
 
