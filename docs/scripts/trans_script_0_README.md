@@ -18,9 +18,9 @@ fidélité, style des `aria-label`) à réutiliser à chaque mise à jour.
 |---|---|---|
 | 0 | `trans_script_0_README.md` | Ce document : à lire en premier. |
 | 1 | `trans_script_1_check_keys.py` | **Contrôle les blocs de langue** et **liste les clés à traduire** (nouvelles, modifiées, manquantes). |
-| 2 | `trans_script_2_test_behavior.js` | **Teste le comportement** du guide dans une langue : copie, croix d'effacement, erreurs de balise, exemples, onglets. |
-| 3 | `trans_script_3_test_robustness.js` | **Teste la robustesse** : traduction malveillante, bloc illisible, langue partielle, détection du navigateur, stockage bloqué. |
-| 4 | `trans_script_4_test_render.js` | **Compare le rendu** de deux versions du guide (utile après une modification du code). |
+| 2 | `trans_script_2_test_behavior.js` | **Teste le comportement** du guide dans une langue : copie (y compris refusée), croix d'effacement, erreurs de balise, exemples, onglets à la souris et au clavier. |
+| 3 | `trans_script_3_test_robustness.js` | **Teste la robustesse** : traduction malveillante, bloc illisible, langue partielle, détection du navigateur, langue demandée dans l'adresse (`?lang=`), valeurs hostiles (adresse et stockage), stockage bloqué. |
+| 4 | `trans_script_4_test_render.js` | **Compare le rendu** de deux versions du guide (utile après une modification du code) ; refuse une langue absente du fichier. |
 
 ## Ce que les scripts ne font jamais
 
@@ -63,6 +63,8 @@ Tous les scripts sortent avec le code 0 si tout passe, 1 sinon (2 pour une erreu
 
 ## Ce que le contrôle des clés (n° 1) vérifie
 
+- chaque bloc commence en début de ligne, n'existe qu'une fois (un doublon remplacerait l'autre en silence), et aucun
+  bloc mal formé n'est ignoré sans le dire ;
 - chaque bloc est un JSON valide, avec un `_meta` complet ; une langue de traduction renseigne ses paramètres de traduction ;
 - les clés utilisées par le HTML et le JavaScript existent dans la langue source ; chaque langue a exactement les clés de la
   source (manquantes : avertissement, ou échec avec `--strict` ; en trop : échec) ;
@@ -105,11 +107,16 @@ Tous les scripts sortent avec le code 0 si tout passe, 1 sinon (2 pour une erreu
 
 | Fichier | Version | md5 |
 |---|---|---|
-| `trans_script_1_check_keys.py` | 1.0 | `e5641d0f0d2b94da540cb49a8c14c38f` |
-| `trans_script_2_test_behavior.js` | 1.0 | `65372c0f1f9218c2cb6f82e47566b370` |
-| `trans_script_3_test_robustness.js` | 1.0 | `67385a8b840f2bdb5a85194de803d9e9` |
-| `trans_script_4_test_render.js` | 1.0 | `ccde55fc62a27a856c918f4ab88f2b7c` |
+| `trans_script_1_check_keys.py` | 1.1 | `4c485dd73953f7a5cb3cda388beb34e0` |
+| `trans_script_2_test_behavior.js` | 1.1 | `97751b9815f727523a898e57eb686407` |
+| `trans_script_3_test_robustness.js` | 1.1 | `bc356f6ffb00850e076f6d03ab7c5679` |
+| `trans_script_4_test_render.js` | 1.1 | `5805be72bbfae86bf127bc35bd3426de` |
 
-Historique : 1.0 (2026-10-19) première version de cette série, qui remplace celle des fichiers de langue séparés
+Historique : 1.1 (2026-11-07) révision complète des outils : le n° 1 détecte un bloc de langue en double ou mal formé
+(auparavant ignorés en silence) ; le n° 2 teste les onglets (souris et clavier) et la copie refusée ; le n° 3 teste
+`?lang=` et les valeurs hostiles de l'adresse et du stockage, et ne plante plus quand un élément attendu manque ; le n° 4
+refuse une langue absente du fichier (il comparait auparavant la langue par défaut sans le dire) ; fichier introuvable :
+message clair et code 2 partout. Chaque défaut a été prouvé puis vérifié par l'injection d'un défaut connu dans une copie
+du guide. 1.0 (2026-10-19) première version de cette série, qui remplace celle des fichiers de langue séparés
 (`trans_script_1_substitutions_*.json`, `trans_script_2_update_translation.py`, `trans_script_3_test_behavior.js`,
 `trans_script_4_verify_symmetry.py`), devenue sans objet depuis le guide multilingue en un seul fichier.

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * Version du script : 1.0 (2026-10-19)
+ * Version du script : 1.1 (2026-11-07)
  * trans_script_2_test_behavior.js : test de comportement de NMS_txt_code.html dans une langue donnée.
  *
  * Aucun texte ni nombre n'est écrit en dur : les textes attendus (placeholder, aria-label, messages d'erreur de
@@ -25,6 +25,7 @@ const args = process.argv.slice(2);
 const opt = n => { const i = args.indexOf('--' + n); return i >= 0 ? args[i + 1] : null; };
 const file = opt('file'), lang = opt('lang'), refFile = opt('ref');
 if (!file || !lang) { console.error('usage: --file NMS_txt_code.html --lang xx [--ref precedent.html]'); process.exit(2); }
+for (const f of [file, refFile].filter(Boolean)) if (!fs.existsSync(f)) { console.error('fichier introuvable : ' + f); process.exit(2); }
 let UI = {};   // rempli après le chargement de la page : textes lus dans la langue testée
 const fmt = (t, v) => t.replace('{name}', v.name || '').replace('{fix}', v.fix || '');
 
@@ -74,6 +75,31 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); c ? passes++ : 
   clip = 'SENTINELLE'; type(''); click(copy); await tick();
   ok(clip === 'SENTINELLE', 'champ vide : presse-papiers intact');
 
+  // --- Copie refusée par le navigateur : ✗, jamais un ✓ trompeur ---
+  Object.defineProperty(w.navigator, 'clipboard', { value: { writeText: async () => { throw new Error('refus'); } }, configurable: true });
+  const execCopy = d.execCommand;
+  d.execCommand = () => false;   // le repli échoue aussi
+  type(`<${colors[0]}>x</>`); click(copy); await tick();
+  ok(copy.textContent === '✗' && copy.classList.contains('copy-failed') && !copy.classList.contains('copied'), 'copie refusée : ✗ affiché, jamais ✓');
+  d.execCommand = execCopy;
+  Object.defineProperty(w.navigator, 'clipboard', { value: { writeText: async t => { clip = t; } }, configurable: true });
+
+  // --- Onglets : souris et clavier (motif ARIA « tabs ») ---
+  const tabs = [...d.querySelectorAll('.tab-btn')], lastTab = tabs.length - 1;
+  const tabState = () => tabs.map(t => t.getAttribute('aria-selected') + ':' + t.tabIndex + ':' + d.getElementById(t.getAttribute('aria-controls')).classList.contains('active')).join(' ');
+  const tabOn = i => tabs.map((t, j) => (j === i) + ':' + (j === i ? 0 : -1) + ':' + (j === i)).join(' ');
+  const press = (el, key) => el.dispatchEvent(new w.KeyboardEvent('keydown', { key, bubbles: true }));
+  click(tabs[1]);
+  ok(tabs.length > 1 && tabState() === tabOn(1), 'onglet choisi à la souris : annoncé (aria-selected), seul atteignable (tabindex), panneau affiché');
+  const steps = [];
+  press(tabs[1], 'ArrowRight'); steps.push(tabState() === tabOn(2 > lastTab ? 0 : 2) && d.activeElement === tabs[2 > lastTab ? 0 : 2]);
+  click(tabs[lastTab]); press(tabs[lastTab], 'ArrowRight'); steps.push(tabState() === tabOn(0));
+  press(tabs[0], 'ArrowLeft'); steps.push(tabState() === tabOn(lastTab));
+  press(tabs[lastTab], 'Home'); steps.push(tabState() === tabOn(0) && d.activeElement === tabs[0]);
+  press(tabs[0], 'End'); steps.push(tabState() === tabOn(lastTab));
+  ok(steps.every(Boolean), 'onglets au clavier : flèches (avec bouclage), Début, Fin, focus suivi : ' + steps.join(','));
+  click(tabs[0]);
+
   // --- Exemples concrets ---
   const rows = d.querySelectorAll('.example-row-wrap');
   ok(rows.length === examples.length && rows.length > 0, `${examples.length} lignes d'exemples, chacune avec son bouton`);
@@ -93,7 +119,7 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); c ? passes++ : 
   ok(ib.length === icons.length, `${icons.length} boutons dans l'onglet Icônes`);
   // Les tableaux sont triés : on contrôle le format du gabarit et l'appartenance du tag aux données
   click(cb[0]); await tick();
-  const mc = clip.match(new RegExp('^<([A-Z0-9_]+)>' + UI.template_word + '</>$'));
+  const mc = clip.match(new RegExp('^<([A-Z0-9_]+)>' + UI.template_word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '</>$'));
   ok(mc && colors.includes(mc[1]), 'onglet Couleurs : gabarit ' + clip);
   click(ib[0]); await tick();
   const mi = clip.match(/^<IMG>([A-Z0-9_]+)<>$/);

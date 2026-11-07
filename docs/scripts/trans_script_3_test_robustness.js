@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /*
- * Version du script : 1.0 (2026-10-19)
+ * Version du script : 1.1 (2026-11-07)
  * trans_script_3_test_robustness.js : robustesse de NMS_txt_code.html à l'exécution (jsdom).
  *
  * Contrôle, sur des copies modifiées du fichier (le fichier lui-même n'est jamais touché) :
  *   A. sécurité : une traduction malveillante (img onerror, javascript:, onclick, iframe, svg) est neutralisée ;
  *   B. un bloc de langue illisible est ignoré sans gêner les autres langues ;
  *   C. une langue partielle se replie sur la langue source, et les clés manquantes sont signalées ;
- *   D. la langue du navigateur est détectée, la langue choisie est mémorisée ;
+ *   D. la langue du navigateur est détectée, la langue choisie est mémorisée ; la langue demandée dans l'adresse (?lang=)
+ *      est prioritaire ; une valeur inconnue ou hostile (adresse ou stockage : « constructor »…) est ignorée ;
  *   E. la page fonctionne même si le navigateur bloque localStorage.
  *
  * Aucune valeur n'est écrite en dur : langues, clés et quantités sont lues dans le fichier testé.
@@ -22,6 +23,7 @@ const args = process.argv.slice(2);
 const opt = n => { const i = args.indexOf('--' + n); return i >= 0 ? args[i + 1] : null; };
 const FILE = args.find(a => !a.startsWith('--') && a !== opt('source') && a !== opt('lang'));
 if (!FILE) { console.error('usage: node trans_script_3_test_robustness.js NMS_txt_code.html [--source fr] [--lang en]'); process.exit(2); }
+if (!fs.existsSync(FILE)) { console.error('fichier introuvable : ' + FILE); process.exit(2); }
 const SRC = fs.readFileSync(FILE, 'utf8');
 const SOURCE = opt('source') || 'fr';
 const ids = [...SRC.matchAll(/<script type="application\/json" id="i18n-([\w-]+)">\s*\{/g)].map(m => m[1]);
@@ -31,11 +33,12 @@ if (!LANG) { console.error('aucune langue de traduction dans le fichier'); proce
 let fails = 0;
 const ok = (c, m, d = '') => { console.log((c ? 'PASS ' : 'FAIL ') + m + (c || !d ? '' : ' : ' + d)); if (!c) fails++; };
 const tick = (ms = 40) => new Promise(r => setTimeout(r, ms));
-async function open(html, { languages, storage } = {}) {
+async function open(html, { languages, storage, query = '', saved } = {}) {
   const errors = [], vc = new VirtualConsole(); vc.on('jsdomError', e => errors.push(String(e.message).slice(0, 80))); vc.on('error', (...a) => errors.push(a.join(' ').slice(0, 100)));
-  const dom = new JSDOM(html, { runScripts: 'dangerously', pretendToBeVisual: true, url: 'http://localhost/', virtualConsole: vc,
+  const dom = new JSDOM(html, { runScripts: 'dangerously', pretendToBeVisual: true, url: 'http://localhost/' + query, virtualConsole: vc,
     beforeParse(w) {
       if (languages) Object.defineProperty(w.navigator, 'languages', { value: languages, configurable: true });
+      if (saved !== undefined) w.localStorage.setItem('nmstc-lang', saved);
       if (storage === 'blocked') Object.defineProperty(w, 'localStorage', { get() { throw new Error('SecurityError'); }, configurable: true });
     } });
   await new Promise(r => { if (dom.window.document.readyState === 'complete') r(); else dom.window.addEventListener('load', r); }); await tick();
@@ -60,15 +63,18 @@ const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   console.log('(langue source : ' + SOURCE + ' ; langue de test : ' + LANG + ' ; langues du fichier : ' + ORDER.join(', ') + ')\n');
 
   console.log('--- A. sécurité : une traduction malveillante est neutralisée');
-  const orig = blockText.match(new RegExp('"' + reEsc(K1) + '": "([^"]*)"'))[1];
+  const origMatch = blockText.match(new RegExp('"' + reEsc(K1) + '": "([^"]*)"'));
+  if (!origMatch) { console.error('clé de test « ' + K1 + ' » introuvable dans le bloc ' + LANG); process.exit(2); }
+  const orig = origMatch[1];
   const payload = orig + '<img src=x onerror=\\"window.__pwn=1\\"><a href=\\"javascript:alert(1)\\" onclick=\\"window.__pwn2=1\\" class=\\"ok\\">x</a><iframe src=\\"//evil\\"></iframe><svg onload=\\"window.__pwn3=1\\"></svg><b onmouseover=\\"window.__pwn4=1\\">b</b>';
   const evil = inBlock(SRC, LANG, b => b.replace('"' + K1 + '": "' + orig + '"', '"' + K1 + '": "' + payload + '"'));
   let w = await open(evil, { languages: [LANG] });
   const el = w.document.querySelector('[data-i18n="' + K1 + '"]');
   ok(el.querySelector('img,iframe,svg,script') === null, 'aucune balise dangereuse (img, iframe, svg, script)', el.innerHTML);
-  ok(el.querySelector('a') && !el.querySelector('a').hasAttribute('href') && !el.querySelector('a').hasAttribute('onclick'), 'lien : href javascript: et onclick supprimés', el.innerHTML);
-  ok(el.querySelector('a').className === 'ok', 'attribut class autorisé conservé');
-  ok(!el.querySelector('b').hasAttribute('onmouseover'), 'gestionnaire onmouseover supprimé');
+  const link = el.querySelector('a'), bold = el.querySelector('b');   // absents si la traduction piégée n'a pas été appliquée
+  ok(link && !link.hasAttribute('href') && !link.hasAttribute('onclick'), 'lien : href javascript: et onclick supprimés', el.innerHTML);
+  ok(!!link && link.className === 'ok', 'attribut class autorisé conservé', el.innerHTML);
+  ok(!!bold && !bold.hasAttribute('onmouseover'), 'gestionnaire onmouseover supprimé', el.innerHTML);
   ok(!w.__pwn && !w.__pwn2 && !w.__pwn3 && !w.__pwn4, 'aucun code de la traduction ne s\'est exécuté');
   ok(el.textContent.startsWith(orig), 'le texte légitime est conservé');
 
@@ -102,6 +108,23 @@ const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   w = await open(SRC, { languages: [LANG] });
   w.document.getElementById('lang-select').value = SOURCE; w.document.getElementById('lang-select').dispatchEvent(new w.Event('change')); await tick();
   ok(w.document.documentElement.lang === SOURCE && w.localStorage.getItem('nmstc-lang') === SOURCE, 'le changement via le sélecteur est appliqué et mémorisé');
+  ok(new w.URL(w.location.href).searchParams.get('lang') === SOURCE, 'l\'adresse suit la langue affichée (?lang=' + SOURCE + ')', w.location.href);
+
+  // Langue demandée dans l'adresse, et valeurs inconnues ou hostiles (adresse comme stockage) : jamais acceptées telles quelles
+  const qcases = [
+    [{ query: '?lang=' + LANG, languages: [SOURCE] }, LANG, '?lang=' + LANG + ' prioritaire sur la langue du navigateur'],
+    [{ query: '?lang=' + LANG, languages: [SOURCE], saved: SOURCE }, LANG, '?lang=' + LANG + ' prioritaire sur le choix mémorisé'],
+    [{ query: '?lang=' + LANG.toUpperCase() + '-XX', languages: [SOURCE] }, LANG, '?lang=' + LANG.toUpperCase() + '-XX (casse, variante régionale) → ' + LANG],
+    [{ query: '?lang=zz', languages: [LANG] }, LANG, '?lang=zz inconnue : ignorée, langue du navigateur'],
+    [{ query: '?lang=constructor', languages: [SOURCE] }, SOURCE, '?lang=constructor : ignorée'],
+    [{ query: '?lang=__proto__', languages: [SOURCE] }, SOURCE, '?lang=__proto__ : ignorée'],
+    [{ saved: 'constructor', languages: [LANG] }, LANG, 'langue mémorisée « constructor » : ignorée'],
+    [{ saved: 'toString', languages: [LANG] }, LANG, 'langue mémorisée « toString » : ignorée'],
+  ];
+  for (const [o, expect, label] of qcases) {
+    w = await open(SRC, o);
+    ok(w.document.documentElement.lang === expect && w.document.getElementById('lang-select').value === expect && w.__errors.length === 0, label, w.document.documentElement.lang + ' ' + w.__errors.join(' | '));
+  }
 
   console.log('\n--- E. stockage bloqué par le navigateur');
   w = await open(SRC, { languages: [LANG], storage: 'blocked' });

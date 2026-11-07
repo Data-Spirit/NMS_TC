@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Version du script : 1.0 (2026-10-19)
+Version du script : 1.1 (2026-11-07)
 trans_script_1_check_keys.py : contrôle des blocs de langue de NMS_txt_code.html et liste des clés à traduire.
 
 Lecture seule : ce script ne modifie aucun fichier. Aucune valeur n'est écrite en dur : tout est calculé à partir
 du fichier fourni.
 
 CONTRÔLES (par défaut)
+  - chaque bloc de langue commence en début de ligne, n'apparaît qu'une fois, et ne peut pas être ignoré en silence ;
   - chaque bloc <script type="application/json" id="i18n-XX"> est un JSON valide, avec un "_meta" complet
     (native_name, flag, lang_code) ; une langue de traduction renseigne aussi ses paramètres de traduction
     (_meta.target : variant, tone, fidelity_style, aria_label_style) ;
@@ -28,7 +29,7 @@ USAGE
   python3 trans_script_1_check_keys.py NMS_txt_code.html --since NMS_txt_code_precedent.html
   python3 trans_script_1_check_keys.py NMS_txt_code.html --todo es [--since NMS_txt_code_precedent.html]
 
-Code de sortie : 0 si aucun FAIL, 1 sinon.
+Code de sortie : 0 si aucun FAIL, 1 sinon, 2 pour une erreur d'utilisation (fichier introuvable ou illisible).
 """
 import argparse, html as htmllib, io, json, re, signal, sys
 from collections import Counter
@@ -47,15 +48,21 @@ PSEUDO_NAMES = {'NAME_COLOR', 'NAME_ICON'}
 FREE_CLASSES = {'syn-text'}
 TEMPLATE_WORD_KEY = 'copy.template_word'
 SPAN_RE = re.compile(r"<span class='([\w-]+)'>(.*?)</span>", re.S)
-# Un bloc de langue commence toujours par « { » : cela écarte les simples mentions dans des commentaires de code.
-BLOCK_RE = re.compile(r'<script type="application/json" id="i18n-([\w-]+)">(\s*\{.*?)</script>', re.S)
+# Un bloc de langue commence en début de ligne : cela écarte la mention de cette balise dans un commentaire du script
+# principal. Son contenu est lu tel quel, pour qu'un bloc mal formé soit signalé au lieu d'être ignoré.
+BLOCK_TAG = '<script type="application/json"'
+BLOCK_RE = re.compile(r'^<script type="application/json" id="i18n-([\w-]+)">(.*?)</script>', re.S | re.M)
 META_REQUIRED = ('native_name', 'flag', 'lang_code')
 TARGET_REQUIRED = ('variant', 'tone', 'fidelity_style', 'aria_label_style')
 
 
 def read(p):
-    with io.open(p, encoding='utf-8', newline='') as f:
-        return f.read()
+    try:
+        with io.open(p, encoding='utf-8', newline='') as f:
+            return f.read()
+    except (OSError, UnicodeDecodeError) as e:
+        print('fichier introuvable ou illisible : %s (%s)' % (p, e), file=sys.stderr)
+        sys.exit(2)
 
 
 def val(v):
@@ -100,12 +107,20 @@ def free_words(src, tr):
 
 
 def load_blocks(html, report=None):
-    langs = {}
+    langs, seen = {}, []
     for lid, txt in BLOCK_RE.findall(html):
+        seen.append(lid)
         try:
             langs[lid] = json.loads(txt)
         except ValueError as e:
             if report: report('FAIL', '%s : JSON invalide' % lid, str(e)[:120])
+    if report:
+        dup = sorted({l for l in seen if seen.count(l) > 1})
+        report('PASS' if not dup else 'FAIL', 'aucun bloc de langue en double', ('en double : %s (le dernier remplace le premier dans le guide)' % ', '.join(dup)) if dup else '')
+        script = max(re.findall(r'<script>(.*?)</script>', html, re.S), key=len, default='')
+        tags = html.count(BLOCK_TAG) - script.count(BLOCK_TAG)   # balises réelles, hors mentions dans le script principal
+        report('PASS' if tags == len(seen) else 'FAIL', 'chaque balise de bloc de langue est lue (%d sur %d)' % (len(seen), tags),
+               '' if tags == len(seen) else 'balise qui ne commence pas en début de ligne, ou bloc non fermé')
     return langs
 
 
@@ -164,7 +179,7 @@ def main():
     if a.todo:
         return todo(a, langs, src, prev_langs, ch_added, ch_changed)
 
-    R('PASS' if len(ids) == len(set(ids)) and ids else 'FAIL', 'blocs de langue : %s' % (', '.join(ids) or 'aucun'))
+    R('PASS' if ids else 'FAIL', 'blocs de langue lisibles : %s' % (', '.join(ids) or 'aucun'))
     for lid, d in langs.items():
         meta = d.get('_meta', {})
         miss = [f for f in META_REQUIRED if f not in meta]

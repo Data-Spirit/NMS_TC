@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * Version du script : 1.0 (2026-10-19)
+ * Version du script : 1.1 (2026-11-07)
  * trans_script_4_test_render.js : équivalence de rendu entre deux versions de NMS_txt_code.html (jsdom).
  *
  * Compare, dans une langue donnée, le rendu d'une version de RÉFÉRENCE (ex. la version publiée) à celui d'une version
@@ -10,12 +10,15 @@
  *
  * Usage (jsdom doit être installé ; NODE_PATH vers son node_modules) :
  *   NODE_PATH=/chemin/node_modules node trans_script_4_test_render.js reference.html candidat.html fr
- * Code de sortie : 0 si les rendus sont identiques, 1 sinon.
+ * Code de sortie : 0 si les rendus sont identiques, 1 sinon, 2 pour une erreur d'utilisation (fichier introuvable,
+ * langue absente du fichier candidat : sans ce contrôle, la comparaison se ferait en silence dans la langue par défaut).
  * Limite : jsdom valide la structure produite, PAS l'aspect visuel (couleurs, alignements, hauteurs).
  */
 const fs = require('fs');
 const { JSDOM } = require('jsdom');
 const [,, origFile, newFile, lang] = process.argv;
+if(!origFile || !newFile || !lang){ console.error('usage: node trans_script_4_test_render.js reference.html candidat.html langue'); process.exit(2); }
+for(const f of [origFile, newFile]) if(!fs.existsSync(f)){ console.error('fichier introuvable : ' + f); process.exit(2); }
 const load = f => new JSDOM(fs.readFileSync(f, 'utf8'), { runScripts: 'dangerously', pretendToBeVisual: true, url: 'http://localhost/' }).window;
 const tick = () => new Promise(r => setTimeout(r, 30));
 const INLINE = new Set(['STRONG','EM','B','I','CODE','A','SPAN','BR']);
@@ -58,10 +61,10 @@ let fails = 0;
 const report = (name, d) => { console.log((d ? 'FAIL ' : 'PASS ') + name + (d ? '\n     ' + d : '')); if(d) fails++; };
 
 (async () => {
-  if(!origFile || !newFile || !lang){ console.error('usage: node trans_script_4_test_render.js reference.html candidat.html langue'); process.exit(2); }
   const A = load(origFile), B = load(newFile);
   const ready = w => new Promise(r => { if(w.document.readyState === 'complete') r(); else w.addEventListener('load', r); });
   await ready(A); await ready(B); await tick();
+  if(!B.eval('I18N.order').includes(lang)){ console.error('langue « ' + lang + ' » absente du fichier candidat (langues : ' + B.eval('I18N.order.join(", ")') + ')'); process.exit(2); }
   // les deux versions sont multilingues : on choisit la même langue dans chacune (une référence monolingue est acceptée)
   if(typeof A.applyLanguage === 'function') A.eval(`applyLanguage('${lang}')`);
   B.eval(`applyLanguage('${lang}')`);
