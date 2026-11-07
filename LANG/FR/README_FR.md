@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 2.3
+> Version : 2.4
 > Dernière modification : 2026-11-07
 -->
 
@@ -26,7 +26,7 @@
 
 **Un guide interactif, autonome et exhaustif des codes de formatage de texte de No Man's Sky** — couleurs et icônes, entièrement documentés, testés, et rassemblés dans un unique fichier HTML. Il est **disponible en plusieurs langues**, grâce à un sélecteur de langue intégré au fichier.
 
-`NMS_txt_code.html` · ~447 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
+`NMS_txt_code.html` · ~451 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
 
 > **Qui est quoi ?**
 > - **Le guide interactif** (`NMS_txt_code.html`) est le produit : un fichier HTML autonome, **multilingue**, avec un sélecteur de langue intégré.
@@ -77,7 +77,7 @@ Concrètement, cela signifie :
 - **Fonctionne hors-ligne.** Toutes les données (couleurs, icônes, logique de tri, simulateur, textes de toutes les langues) sont embarquées directement dans le fichier — voir la section [Comment les icônes ont été extraites et intégrées](#comment-les-icônes-ont-été-extraites-et-intégrées) pour le détail technique de l'intégration des images.
 - **Une seule dépendance externe non critique** : les polices (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sans connexion internet, le rendu bascule simplement sur les polices système par défaut du navigateur ; aucune fonctionnalité n'est perdue.
 
-Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~447 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
+Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~451 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
 
 ---
 
@@ -208,7 +208,7 @@ Un même bouton dédié (symbole ⧉) est présent à quatre endroits du guide :
 - **Icônes** : un bouton à gauche de chaque ligne du tableau copie directement la syntaxe complète, `<IMG>NOM_ICONE<>`.
 - **Exemples concrets** (onglet Infos) : un bouton à droite de chacune des dix lignes copie le code brut de l'exemple, toujours identique.
 - **Simulateur** : un bouton un peu plus grand, à droite du champ de saisie et à sa hauteur, copie le code tel qu'il est tapé à cet instant (le texte brut, pas l'aperçu). Son contenu est lu au moment du clic : il suit donc toujours les modifications faites dans le champ, sans rien à synchroniser. Si le champ est vide, le clic ne fait rien, pour ne pas écraser le presse-papiers par du vide.
-- **Retour visuel immédiat** : le bouton se transforme brièvement en coche (✓) pendant environ 1,4 seconde pour confirmer la copie.
+- **Retour visuel immédiat** : le bouton se transforme brièvement en coche (✓) pendant environ 1,4 seconde pour confirmer la copie ; si le navigateur refuse la copie, une croix rouge (✗) s'affiche à la place, pour ne jamais confirmer à tort.
 - Repose sur l'API `navigator.clipboard`, avec un repli automatique (`document.execCommand`) pour les navigateurs plus anciens qui ne la supporteraient pas.
 
 ---
@@ -242,9 +242,9 @@ Depuis la version 2.1, les icônes ne sont plus découpées dans des captures d'
 
 > **🔧 Détail technique :** la colonne « Texture de la balise » du guide indique le fichier `.DDS` vers lequel pointe la balise dans les tableaux de configuration du jeu. Ce n'est pas toujours le fichier d'où provient l'image de la banque, qui peut être une version plus grande du même dessin, rangée ailleurs. Pour chaque icône, le fichier `SOURCES.csv` du dossier `BANK_ICONS/` donne la correspondance complète : texture de la balise, source de l'image, résolution d'origine et niveau de correspondance.
 
-Cette approche explique à la fois le poids du fichier (~447 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
+Cette approche explique à la fois le poids du fichier (~451 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
 
-Ce bloc de données (`ICON_DATA`) est volontairement isolé en fin de script, séparé de toute la logique JavaScript qui le précède (seuls les blocs de langue, de simples données JSON, viennent après) — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces quelques milliers de lignes de texte binaire, et pour faciliter l'ajout futur d'icônes par la communauté.
+Ce bloc de données (`ICON_DATA`) est volontairement isolé en fin de script, séparé de toute la logique JavaScript qui le précède (seuls les blocs de langue, de simples données JSON, viennent après) — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces 145 très longues lignes de texte encodé, et pour faciliter l'ajout futur d'icônes par la communauté.
 
 > **🔧 Détail technique :** en JavaScript, une constante doit seulement être déclarée avant d'être utilisée à l'exécution — pas nécessairement avant les fonctions qui la référencent dans leur code. `ICON_DATA` peut donc être placé tout en bas du script sans rien casser, tant qu'il reste déclaré avant l'initialisation de la page, qui s'exécute une fois le chargement terminé.
 
@@ -289,10 +289,11 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 
 ## Compatibilité et accessibilité
 
-- **Responsive** : mise en page adaptée aux écrans étroits (colonnes secondaires masquées sur mobile dans le tableau des couleurs, défilement horizontal de sécurité sur les tableaux d'icônes).
+- **Responsive** : mise en page adaptée aux écrans étroits (colonnes secondaires masquées sur mobile dans le tableau des couleurs, défilement horizontal sur les tableaux d'icônes, qui gardent une largeur minimale pour qu'aucune colonne ne soit écrasée).
 - **Navigateurs modernes** : Chrome, Firefox, Edge, Safari — s'appuie sur CSS Grid, `mask-image` et l'API Clipboard, disponibles dans toutes les versions récentes.
-- **Accessibilité de base** : les deux barres de recherche et le filtre de catégorie sont annoncés correctement aux lecteurs d'écran (`aria-label`), le champ du simulateur est associé à un vrai `<label>` plutôt qu'à un simple texte flottant, et le bouton de copie ainsi que la croix d'effacement du simulateur portent eux aussi un `aria-label`. Le **sélecteur de langue** est un menu natif étiqueté pour les lecteurs d'écran, et l'attribut `lang` de la page suit la langue choisie.
-- **Aucune donnée envoyée nulle part** : tout s'exécute localement dans le navigateur, aucune connexion réseau requise après le premier chargement des polices. Seul le **choix de langue** est mémorisé, localement, dans le navigateur ; il n'est jamais envoyé.
+- **Accessibilité de base** : les deux barres de recherche et le filtre de catégorie sont annoncés correctement aux lecteurs d'écran (`aria-label`), le champ du simulateur est associé à un vrai `<label>` plutôt qu'à un simple texte flottant, et le bouton de copie ainsi que la croix d'effacement du simulateur portent eux aussi un `aria-label`. Le **sélecteur de langue** est un menu natif étiqueté pour les lecteurs d'écran, et l'attribut `lang` de la page suit la langue choisie. Les **onglets** suivent le modèle d'accessibilité standard (ARIA *tabs*) : l'onglet actif est annoncé, et l'on passe de l'un à l'autre au clavier avec les flèches, Début et Fin. Chaque bouton de copie des tableaux porte aussi un `aria-label`, et les champs où l'on tape des balises désactivent la correction orthographique.
+- **Aucune donnée envoyée nulle part** : tout s'exécute localement dans le navigateur, aucune connexion réseau requise après le premier chargement des polices. Seul le **choix de langue** est mémorisé, localement, dans le navigateur ; il n'est jamais envoyé. Une **politique de sécurité du contenu** (CSP), intégrée au fichier, l'impose au navigateur : la page ne peut charger que les polices et ne peut contacter aucun autre serveur.
+- **Sans JavaScript** : un court message, en français, anglais et espagnol, indique que le guide en a besoin, plutôt qu'une page vide.
 
 ---
 
@@ -304,7 +305,7 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 - **Système de langues maison** : les traductions sont des dictionnaires JSON embarqués dans le fichier, lus par du JavaScript natif, sans bibliothèque d'internationalisation.
 - **Chargement des polices optimisé** : deux `<link rel="preconnect">` établissent la connexion vers les domaines Google Fonts avant même le chargement de la feuille de style, réduisant la latence perçue au premier affichage.
 - **Images non bloquantes** : les 145 icônes intégrées utilisent `decoding="async"`, pour que leur décodage ne retarde jamais le rendu du reste de la page.
-- **Code validé par des outils standards** : le HTML passe la validation `html-validate` (préréglage recommandé), à l'exception de deux règles qui signalent des titres et des boutons « vides » dans le fichier source, désactivées par choix puisque leur texte est inséré au chargement selon la langue, et le CSS a été audité avec Stylelint sans anomalie de fond (seules des préférences de formatage, laissées telles quelles par choix de style cohérent).
+- **Code validé par des outils standards** : le HTML passe la validation `html-validate` (préréglage recommandé), à l'exception de deux règles qui signalent des titres et des boutons « vides » dans le fichier source, désactivées par choix puisque leur texte est inséré au chargement selon la langue, et le CSS a été audité avec Stylelint sans anomalie de fond (seules des préférences de formatage, laissées telles quelles par choix de style cohérent), et le JavaScript a été vérifié avec ESLint (règles recommandées), sans aucune remarque. La procédure de revue de code propre au projet est décrite dans `docs/prompts/prompt_code_review_NMS_TC.md`.
 
 ---
 

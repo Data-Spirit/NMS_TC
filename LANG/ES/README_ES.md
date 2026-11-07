@@ -1,15 +1,15 @@
 <!-- Versión del archivo 
-> Versión : 2.3
+> Versión : 2.4
 > Última modificación : 2026-11-07
 -->
 <!-- Parámetros de traducción
-> source_file: README_FR.md v2.3 (md5 1c53d801b81b2f0e53f4212f78c79c93)
+> source_file: README_FR.md v2.4 (md5 fe6cb44cc5ed3efeb744e868556a2a1e)
 > target_language: Español
 > target_variant: neutral/standard
 > lang_code: ES
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.1, bloque i18n-es (md5 ab8a214b3390424ab7ef6a58eac9ab48)
+> companion_html_guide: NMS_txt_code.html v2.2, bloque i18n-es (md5 18555c101a4a8ea672926d4d0c1b38bb)
 > translated_on: 2026-11-07
 -->
 
@@ -36,7 +36,7 @@
 
 **Una guía interactiva, autónoma y exhaustiva de los códigos de formato de texto de No Man's Sky** — colores e iconos, completamente documentados, probados y reunidos en un único archivo HTML. Está **disponible en varios idiomas**, gracias a un selector de idioma integrado en el archivo.
 
-`NMS_txt_code.html` · ~447 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
+`NMS_txt_code.html` · ~451 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
 
 > **¿Qué es qué?**
 > - **La guía interactiva** (`NMS_txt_code.html`) es el producto: un archivo HTML autónomo, **multilingüe**, con un selector de idioma integrado.
@@ -87,7 +87,7 @@ En concreto, esto significa:
 - **Funciona sin conexión.** Todos los datos (colores, iconos, lógica de ordenación, simulador, textos de todos los idiomas) están embebidos directamente en el archivo — consulta la sección [Cómo se extrajeron e integraron los iconos](#cómo-se-extrajeron-e-integraron-los-iconos) para el detalle técnico de la integración de las imágenes.
 - **Una única dependencia externa no crítica**: las fuentes tipográficas (Google Fonts, vía CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sin conexión a internet, el renderizado simplemente recurre a las fuentes del sistema por defecto del navegador; no se pierde ninguna funcionalidad.
 
-Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~447 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
+Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~451 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
 
 ---
 
@@ -218,7 +218,7 @@ Un mismo botón dedicado (símbolo ⧉) está presente en cuatro lugares de la g
 - **Iconos**: un botón a la izquierda de cada fila de la tabla copia directamente la sintaxis completa, `<IMG>NOMBRE_ICONO<>`.
 - **Ejemplos concretos** (pestaña Info): un botón a la derecha de cada una de las diez filas copia el código en bruto del ejemplo, siempre idéntico.
 - **Simulador**: un botón algo más grande, a la derecha del campo de entrada y a su altura, copia el código tal como está escrito en ese instante (el texto en bruto, no la vista previa). Su contenido se lee en el momento del clic: por tanto, sigue siempre las modificaciones hechas en el campo, sin nada que sincronizar. Si el campo está vacío, el clic no hace nada, para no sobrescribir el portapapeles con un contenido vacío.
-- **Retroalimentación visual inmediata**: el botón se transforma brevemente en una marca de verificación (✓) durante aproximadamente 1,4 segundos para confirmar la copia.
+- **Retroalimentación visual inmediata**: el botón se transforma brevemente en una marca de verificación (✓) durante aproximadamente 1,4 segundos para confirmar la copia; si el navegador rechaza la copia, aparece en su lugar una cruz roja (✗), para no confirmar nunca por error.
 - Se apoya en la API `navigator.clipboard`, con un respaldo automático (`document.execCommand`) para navegadores más antiguos que no la soporten.
 
 ---
@@ -252,9 +252,9 @@ Desde la versión 2.1, los iconos ya no se recortan de capturas de pantalla: son
 
 > **🔧 Detalle técnico:** la columna «Textura de la etiqueta» de la guía indica el archivo `.DDS` al que apunta la etiqueta en las tablas de configuración del juego. No siempre es el archivo del que procede la imagen del banco, que puede ser una versión más grande del mismo dibujo, guardada en otro lugar. Para cada icono, el archivo `SOURCES.csv` de la carpeta `BANK_ICONS/` da la correspondencia completa: textura de la etiqueta, fuente de la imagen, resolución original y nivel de correspondencia.
 
-Este enfoque explica tanto el peso del archivo (~447 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
+Este enfoque explica tanto el peso del archivo (~451 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
 
-Este bloque de datos (`ICON_DATA`) está deliberadamente aislado al final del script, separado de toda la lógica JavaScript que lo precede (solo los bloques de idioma, simples datos JSON, vienen después) — una organización pensada para que la lectura del código nunca quede saturada por esos varios miles de líneas de texto binario, y para facilitar que la comunidad añada iconos en el futuro.
+Este bloque de datos (`ICON_DATA`) está deliberadamente aislado al final del script, separado de toda la lógica JavaScript que lo precede (solo los bloques de idioma, simples datos JSON, vienen después) — una organización pensada para que la lectura del código nunca quede saturada por esas 145 larguísimas líneas de texto codificado, y para facilitar que la comunidad añada iconos en el futuro.
 
 > **🔧 Detalle técnico:** en JavaScript, una constante solo necesita estar declarada antes de usarse en tiempo de ejecución — no necesariamente antes de las funciones que la referencian en su código. Por eso `ICON_DATA` puede colocarse al final del script sin romper nada, siempre que permanezca declarado antes de la inicialización de la página, que se ejecuta una vez terminada la carga.
 
@@ -299,10 +299,11 @@ La guía se esfuerza por ser honesta sobre lo que está confirmado y lo que no:
 
 ## Compatibilidad y accesibilidad
 
-- **Responsive**: diseño adaptado a pantallas estrechas (columnas secundarias ocultas en móvil en la tabla de colores, desplazamiento horizontal de seguridad en las tablas de iconos).
+- **Responsive**: diseño adaptado a pantallas estrechas (columnas secundarias ocultas en móvil en la tabla de colores, desplazamiento horizontal en las tablas de iconos, que mantienen un ancho mínimo para que ninguna columna quede aplastada).
 - **Navegadores modernos**: Chrome, Firefox, Edge, Safari — se apoya en CSS Grid, `mask-image` y la API Clipboard, disponibles en todas las versiones recientes.
-- **Accesibilidad básica**: las dos barras de búsqueda y el filtro de categoría se anuncian correctamente a los lectores de pantalla (`aria-label`), el campo del simulador está asociado a un verdadero `<label>` en lugar de a un simple texto flotante, y el botón de copia y la cruz de borrado del simulador llevan también un `aria-label`. El **selector de idioma** es un menú nativo etiquetado para los lectores de pantalla, y el atributo `lang` de la página sigue el idioma elegido.
-- **No se envía ningún dato a ningún sitio**: todo se ejecuta localmente en el navegador, sin necesidad de conexión de red tras la primera carga de las fuentes tipográficas. Solo la **elección de idioma** se guarda, localmente, en el navegador; nunca se envía.
+- **Accesibilidad básica**: las dos barras de búsqueda y el filtro de categoría se anuncian correctamente a los lectores de pantalla (`aria-label`), el campo del simulador está asociado a un verdadero `<label>` en lugar de a un simple texto flotante, y el botón de copia y la cruz de borrado del simulador llevan también un `aria-label`. El **selector de idioma** es un menú nativo etiquetado para los lectores de pantalla, y el atributo `lang` de la página sigue el idioma elegido. Las **pestañas** siguen el modelo de accesibilidad estándar (ARIA *tabs*): se anuncia la pestaña activa y se pasa de una a otra con el teclado mediante las flechas, Inicio y Fin. Cada botón de copia de las tablas lleva también un `aria-label`, y los campos donde se escriben etiquetas desactivan la corrección ortográfica.
+- **No se envía ningún dato a ningún sitio**: todo se ejecuta localmente en el navegador, sin necesidad de conexión de red tras la primera carga de las fuentes tipográficas. Solo la **elección de idioma** se guarda, localmente, en el navegador; nunca se envía. Una **política de seguridad de contenido** (CSP) integrada en el archivo lo impone al navegador: la página solo puede cargar las fuentes tipográficas y no puede contactar con ningún otro servidor.
+- **Sin JavaScript**: un breve mensaje, en francés, inglés y español, indica que la guía lo necesita, en lugar de mostrar una página vacía.
 
 ---
 
@@ -314,7 +315,7 @@ La guía se esfuerza por ser honesta sobre lo que está confirmado y lo que no:
 - **Sistema de idiomas propio**: las traducciones son diccionarios JSON embebidos en el archivo, leídos mediante JavaScript nativo, sin biblioteca de internacionalización.
 - **Carga de fuentes optimizada**: dos `<link rel="preconnect">` establecen la conexión con los dominios de Google Fonts incluso antes de cargar la hoja de estilos, reduciendo la latencia percibida en la primera visualización.
 - **Imágenes no bloqueantes**: los 145 iconos integrados usan `decoding="async"`, para que su decodificación nunca retrase el renderizado del resto de la página.
-- **Código validado con herramientas estándar**: el HTML pasa la validación `html-validate` (preajuste recomendado), salvo dos reglas que señalan títulos y botones «vacíos» en el archivo fuente, desactivadas por decisión propia puesto que su texto se inserta al cargar según el idioma, y el CSS ha sido auditado con Stylelint sin anomalías de fondo (solo preferencias de formato, dejadas tal cual por coherencia de estilo).
+- **Código validado con herramientas estándar**: el HTML pasa la validación `html-validate` (preajuste recomendado), salvo dos reglas que señalan títulos y botones «vacíos» en el archivo fuente, desactivadas por decisión propia puesto que su texto se inserta al cargar según el idioma, y el CSS ha sido auditado con Stylelint sin anomalías de fondo (solo preferencias de formato, dejadas tal cual por coherencia de estilo), y el JavaScript se ha verificado con ESLint (reglas recomendadas), sin ninguna observación. El procedimiento de revisión de código propio del proyecto se describe en `docs/prompts/prompt_code_review_NMS_TC.md`.
 
 ---
 

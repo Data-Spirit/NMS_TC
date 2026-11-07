@@ -1,15 +1,15 @@
 <!-- File version 
-> Version: 2.3
+> Version: 2.4
 > Last modified: 2026-11-07
 -->
 <!-- Translation parameters
-> source_file: README_FR.md v2.3 (md5 1c53d801b81b2f0e53f4212f78c79c93)
+> source_file: README_FR.md v2.4 (md5 fe6cb44cc5ed3efeb744e868556a2a1e)
 > target_language: English
 > target_variant: neutral/standard
 > lang_code: EN
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.1, i18n-en block (md5 ab8a214b3390424ab7ef6a58eac9ab48)
+> companion_html_guide: NMS_txt_code.html v2.2, i18n-en block (md5 18555c101a4a8ea672926d4d0c1b38bb)
 > translated_on: 2026-11-07
 -->
 
@@ -36,7 +36,7 @@
 
 **An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file. It is **available in several languages**, thanks to a language selector built into the file.
 
-`NMS_txt_code.html` · ~447 KB · multilingual · no critical external dependencies · works offline
+`NMS_txt_code.html` · ~451 KB · multilingual · no critical external dependencies · works offline
 
 > **Who's who?**
 > - **The interactive guide** (`NMS_txt_code.html`) is the product: a self-contained, **multilingual** HTML file with a built-in language selector.
@@ -87,7 +87,7 @@ In practice, that means:
 - **Works offline.** All the data (colors, icons, sorting logic, simulator, texts in every language) is embedded directly in the file — see [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded) for the technical details of how the images are packed in.
 - **One non-critical external dependency**: fonts (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Without an internet connection, rendering simply falls back to the browser's default system fonts — no functionality is lost.
 
-This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~447 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
+This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~451 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
 
 ---
 
@@ -218,7 +218,7 @@ The same dedicated button (⧉ symbol) appears in four places in the guide:
 - **Icons**: a button to the left of each table row copies the full syntax directly, `<IMG>NAME_ICON<>`.
 - **Real-world examples** (Info tab): a button to the right of each of the ten rows copies the example's raw code, which is always the same.
 - **Simulator**: a slightly larger button, to the right of the input field and the same height as it, copies the code exactly as currently typed (the raw text, not the preview). Its content is read at the moment of the click, so it always follows the changes made in the field, with nothing to synchronize. If the field is empty, the click does nothing, so the clipboard isn't overwritten with nothing.
-- **Immediate visual feedback**: the button briefly turns into a checkmark (✓) for about 1.4 seconds to confirm the copy.
+- **Immediate visual feedback**: the button briefly turns into a checkmark (✓) for about 1.4 seconds to confirm the copy; if the browser refuses the copy, a red cross (✗) appears instead, so it never confirms by mistake.
 - Relies on the `navigator.clipboard` API, with an automatic fallback (`document.execCommand`) for older browsers that don't support it.
 
 ---
@@ -252,9 +252,9 @@ Since version 2.1, the icons are no longer cut out of screenshots: they are the 
 
 > **🔧 Technical detail:** the guide's "Tag texture" column shows the `.DDS` file the tag points to in the game's configuration tables. It isn't always the file the bank image comes from, which may be a larger version of the same artwork, stored elsewhere. For each icon, the `SOURCES.csv` file in the `BANK_ICONS/` folder gives the full mapping: tag texture, image source, original resolution and match level.
 
-This approach accounts for both the file's size (~447 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
+This approach accounts for both the file's size (~451 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
 
-This data block (`ICON_DATA`) is deliberately isolated at the very end of the script, separate from all the JavaScript logic that precedes it (only the language blocks, simple JSON data, come after) — an organization designed so that reading the code is never drowned out by these few thousand lines of binary text, and to make it easier for the community to add icons in the future.
+This data block (`ICON_DATA`) is deliberately isolated at the very end of the script, separate from all the JavaScript logic that precedes it (only the language blocks, simple JSON data, come after) — an organization designed so that reading the code is never drowned out by these 145 very long lines of encoded text, and to make it easier for the community to add icons in the future.
 
 > **🔧 Technical detail:** in JavaScript, a constant only needs to be declared before it's used at runtime — not necessarily before the functions that reference it in their code. `ICON_DATA` can therefore be placed at the very bottom of the script without breaking anything, as long as it stays declared before the page initialization, which runs once loading is complete.
 
@@ -299,10 +299,11 @@ The guide aims to be upfront about what's confirmed and what isn't:
 
 ## Compatibility and accessibility
 
-- **Responsive**: layout adapted for narrow screens (secondary columns hidden on mobile in the color table, safety horizontal scroll on the icon tables).
+- **Responsive**: layout adapted for narrow screens (secondary columns hidden on mobile in the color table, horizontal scroll on the icon tables, which keep a minimum width so that no column gets squeezed).
 - **Modern browsers**: Chrome, Firefox, Edge, Safari — relies on CSS Grid, `mask-image`, and the Clipboard API, all available in every recent version.
-- **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), the simulator field is tied to a real `<label>` rather than plain floating text, and the simulator's copy button and clear button carry an `aria-label` too. The **language selector** is a native menu labeled for screen readers, and the page's `lang` attribute follows the chosen language.
-- **No data sent anywhere**: everything runs locally in the browser; no network connection is required after the initial font load. Only the **language choice** is remembered, locally, in the browser; it is never sent.
+- **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), the simulator field is tied to a real `<label>` rather than plain floating text, and the simulator's copy button and clear button carry an `aria-label` too. The **language selector** is a native menu labeled for screen readers, and the page's `lang` attribute follows the chosen language. The **tabs** follow the standard accessibility pattern (ARIA *tabs*): the active tab is announced, and you can move from one to the next with the arrow keys, Home and End. Every copy button in the tables also carries an `aria-label`, and the fields where you type tags turn off spell-checking.
+- **No data sent anywhere**: everything runs locally in the browser; no network connection is required after the initial font load. Only the **language choice** is remembered, locally, in the browser; it is never sent. A **Content Security Policy** (CSP) built into the file enforces this in the browser: the page can only load the fonts and cannot contact any other server.
+- **Without JavaScript**: a short message, in French, English and Spanish, explains that the guide needs it, rather than showing a blank page.
 
 ---
 
@@ -314,7 +315,7 @@ The guide aims to be upfront about what's confirmed and what isn't:
 - **In-house language system**: translations are JSON dictionaries embedded in the file, read by native JavaScript, with no internationalization library.
 - **Optimized font loading**: two `<link rel="preconnect">` tags open the connection to Google Fonts' domains before the stylesheet even loads, reducing perceived latency on first render.
 - **Non-blocking images**: the 145 embedded icons use `decoding="async"`, so their decoding never delays the rendering of the rest of the page.
-- **Code validated with standard tools**: the HTML passes `html-validate` (recommended preset), apart from two rules that flag "empty" headings and buttons in the source file, disabled by design since their text is inserted at load time depending on the language, and the CSS has been audited with Stylelint with no substantive issues (only formatting preferences, deliberately left as-is for stylistic consistency).
+- **Code validated with standard tools**: the HTML passes `html-validate` (recommended preset), apart from two rules that flag "empty" headings and buttons in the source file, disabled by design since their text is inserted at load time depending on the language, and the CSS has been audited with Stylelint with no substantive issues (only formatting preferences, deliberately left as-is for stylistic consistency), and the JavaScript has been checked with ESLint (recommended rules), with no issues at all. The project's own code review procedure is described in `docs/prompts/prompt_code_review_NMS_TC.md`.
 
 ---
 
