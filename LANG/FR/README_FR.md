@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 2.2
-> Dernière modification : 2026-10-27
+> Version : 2.3
+> Dernière modification : 2026-11-07
 -->
 
 <h1 align="center">NMS // TEXT CODES — Documentation de conception</h1>
@@ -26,7 +26,7 @@
 
 **Un guide interactif, autonome et exhaustif des codes de formatage de texte de No Man's Sky** — couleurs et icônes, entièrement documentés, testés, et rassemblés dans un unique fichier HTML. Il est **disponible en plusieurs langues**, grâce à un sélecteur de langue intégré au fichier.
 
-`NMS_txt_code.html` · ~359 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
+`NMS_txt_code.html` · ~447 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
 
 > **Qui est quoi ?**
 > - **Le guide interactif** (`NMS_txt_code.html`) est le produit : un fichier HTML autonome, **multilingue**, avec un sélecteur de langue intégré.
@@ -77,7 +77,7 @@ Concrètement, cela signifie :
 - **Fonctionne hors-ligne.** Toutes les données (couleurs, icônes, logique de tri, simulateur, textes de toutes les langues) sont embarquées directement dans le fichier — voir la section [Comment les icônes ont été extraites et intégrées](#comment-les-icônes-ont-été-extraites-et-intégrées) pour le détail technique de l'intégration des images.
 - **Une seule dépendance externe non critique** : les polices (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sans connexion internet, le rendu bascule simplement sur les polices système par défaut du navigateur ; aucune fonctionnalité n'est perdue.
 
-Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~359 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
+Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~447 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
 
 ---
 
@@ -108,6 +108,7 @@ Le guide interactif existe en **plusieurs langues dans un seul et même fichier*
 | ⛔ Balises listées mais non fonctionnelles | **16** |
 | ❔ Balises au chemin de texture non confirmé | **12** |
 | 🖼️ Icônes intégrées en base64 dans le fichier | **145 / 145** |
+| 🎯 Icônes identiques au pixel près aux textures du jeu | **97 / 129** |
 | 📝 Exemples concrets d'utilisation réelle | **10** |
 | 🌍 Langues du guide interactif | **3** |
 | 🔤 Textes à traduire (clés de traduction) | **116** |
@@ -147,10 +148,10 @@ Une table de référence complète des 59 balises de couleur, avec :
 
 Une table de référence complète des 145 balises d'icônes, groupées en **12 catégories** (Ressources, Interface, Frégates, Inventaire, Voix/Réseau, Butin, Plateformes/Contrôles, Symboles de portail, Classe (C→S), Modes de jeu, Édition de base, Non fonctionnel), avec pour chaque icône :
 
-- Un **aperçu miniature réel** de l'icône (voir la section dédiée à l'extraction plus bas — ce ne sont pas des symboles génériques, mais les vraies icônes du jeu, détourées).
+- Un **aperçu miniature réel** de l'icône (voir la section dédiée à l'extraction plus bas — ce ne sont pas des symboles génériques, mais les textures d'origine, extraites des fichiers du jeu).
 - Le **nom exact de la balise**.
-- Le **chemin du fichier texture** d'origine (référence `.DDS` interne au jeu), quand il a pu être identifié.
-- Un **badge d'état** le cas échéant : `doublon` (la balise pointe vers exactement la même texture qu'une autre, sous un nom différent), `non fonctionnel` (balise présente dans les données mais sans texture assignée — probablement un emplacement réservé côté développeurs) ou `à vérifier` (chemin de texture non confirmé dans les sources disponibles).
+- La **texture de la balise** : le fichier `.DDS` vers lequel pointe la balise, quand il a pu être identifié (à ne pas confondre avec la source de l'image, voir `SOURCES.csv`).
+- Un **badge d'état** le cas échéant : `doublon` (la balise pointe vers exactement la même texture qu'une autre, sous un nom différent), `non fonctionnel` (balise présente dans les données mais sans texture assignée — probablement un emplacement réservé côté développeurs) ou `à vérifier` (chemin de texture non confirmé dans les sources disponibles ; 4 d'entre elles affichent un chemin probable, trouvé lors de l'extraction, en attendant une confirmation en jeu).
 
 La catégorie **"Classe (C→S)"** illustre une correction de nommage volontaire : à l'origine appelée "Classes de vaisseaux", elle a été renommée avec une description en sous-texte précisant qu'il s'agit en réalité d'une notation de qualité générique du jeu (vaisseaux, multi-outils, frégates, armes, technologies) et non d'un système propre aux vaisseaux.
 
@@ -163,7 +164,7 @@ Comme pour l'onglet Couleurs, une **barre de recherche** et un **filtre par cat�
 Le contexte et la transparence méthodologique du guide :
 
 - Rappel que le système de balisage n'est pas documenté officiellement.
-- Détail technique de la banque d'icônes (comment les 145 icônes sont intégrées, et où trouver les fichiers PNG individuels si besoin ailleurs).
+- Détail technique de la banque d'icônes (d'où viennent les icônes et comment elles sont intégrées, et où trouver les fichiers PNG individuels si besoin ailleurs).
 - Liste explicite des doublons de texture repérés, avec exemples.
 - Précision sur les symboles de portail (`PR_0` à `PR_15`) — confirmés fonctionnels en jeu par la communauté (utilisés pour renommer des systèmes stellaires avec le symbole de leur adresse de portail).
 - Liste des balises non fonctionnelles listées dans les données mais sans texture assignée.
@@ -230,20 +231,24 @@ Ce choix crée une cohérence thématique directe entre le contenu documenté et
 
 ## Comment les icônes ont été extraites et intégrées
 
-Les 145 icônes ne sont pas des symboles génériques : ce sont les **vraies icônes du jeu**, extraites individuellement de plusieurs captures d'écran (tableaux de configuration internes et captures d'interface en jeu), puis nettoyées et intégrées :
+Depuis la version 2.1, les icônes ne sont plus découpées dans des captures d'écran : ce sont les **textures d'origine du jeu**, extraites directement de ses fichiers, puis converties et intégrées au guide :
 
-1. **Repérage des coordonnées.** Chaque icône a été localisée précisément (coordonnées en pixels) dans son image source, avec recalibrage manuel dans les cas où les grilles sources n'étaient pas parfaitement régulières.
-2. **Détourage.** Le fond a été retiré par seuillage de distance de couleur (transformation en canal alpha), avec une isolation par composante connexe pour éliminer les fragments d'icônes voisines qui débordaient dans les captures où les icônes étaient très resserrées.
-3. **Contrôle qualité manuel.** Plusieurs passes de vérification visuelle ont permis d'identifier et de corriger des icônes mal cadrées, décentrées, ou contaminées par un résidu de l'icône adjacente — jusqu'à obtenir un rendu propre sur l'ensemble des 145 icônes.
-4. **Encodage.** Chaque PNG (fond transparent) est encodé en **base64** et stocké dans un objet JavaScript (`ICON_DATA`) associant chaque nom de fichier à une chaîne `data:image/png;base64,...`, utilisée directement comme attribut `src` des balises `<img>` — exactement comme si l'image était hébergée en ligne, sauf qu'elle est physiquement présente dans le fichier.
+1. **Extraction.** Les archives `.pak` de No Man's Sky ont été extraites avec **NMSModTool v1.1.0.0**, pour accéder aux textures d'interface au format `.DDS`.
+2. **Choix de la meilleure source.** Une même icône existe souvent en plusieurs exemplaires dans les fichiers du jeu, à des résolutions différentes. Pour chaque balise, la version visuellement identique de **plus haute résolution** a été retenue : 54 icônes en 256 × 256, 26 en 128 × 128, 17 en 64 × 64 et 32 en 32 × 32 (dont 3 touches larges en 64 × 32). Ces dernières n'existent en aucune version plus grande dans les fichiers du jeu.
+3. **Conversion et optimisation.** Chaque texture a été convertie en PNG à fond transparent, puis allégée sans perte de qualité : suppression des profils ICC et des métadonnées.
+4. **Contrôle et retouches.** Chaque image a été comparée à sa texture source : **97 icônes sur 129 sont identiques au pixel près** à leur `.DDS` d'origine. Les 32 autres ont été retouchées, agrandies ou recomposées quand le jeu n'en offrait qu'une version trop petite ou inadaptée — par exemple les badges de classe, recréés à partir de la base mate des badges d'expédition, ou `ARROWLEFT`, obtenue par symétrie de `ARROWRIGHT`.
+5. **Mise à l'échelle.** Toutes les icônes ont ensuite été redimensionnées par lot en deux jeux, 32 × 32 et 64 × 64 pixels. Le guide intègre la version **64 × 64**, nette même sur les écrans haute densité.
+6. **Encodage.** Chaque PNG (fond transparent) est encodé en **base64** et stocké dans un objet JavaScript (`ICON_DATA`) associant chaque nom de fichier à une chaîne `data:image/png;base64,...`, utilisée directement comme attribut `src` des balises `<img>` — exactement comme si l'image était hébergée en ligne, sauf qu'elle est physiquement présente dans le fichier.
 
-Cette approche explique à la fois le poids du fichier (~359 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
+> **🔧 Détail technique :** la colonne « Texture de la balise » du guide indique le fichier `.DDS` vers lequel pointe la balise dans les tableaux de configuration du jeu. Ce n'est pas toujours le fichier d'où provient l'image de la banque, qui peut être une version plus grande du même dessin, rangée ailleurs. Pour chaque icône, le fichier `SOURCES.csv` du dossier `BANK_ICONS/` donne la correspondance complète : texture de la balise, source de l'image, résolution d'origine et niveau de correspondance.
+
+Cette approche explique à la fois le poids du fichier (~447 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
 
 Ce bloc de données (`ICON_DATA`) est volontairement isolé en fin de script, séparé de toute la logique JavaScript qui le précède (seuls les blocs de langue, de simples données JSON, viennent après) — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces quelques milliers de lignes de texte binaire, et pour faciliter l'ajout futur d'icônes par la communauté.
 
 > **🔧 Détail technique :** en JavaScript, une constante doit seulement être déclarée avant d'être utilisée à l'exécution — pas nécessairement avant les fonctions qui la référencent dans leur code. `ICON_DATA` peut donc être placé tout en bas du script sans rien casser, tant qu'il reste déclaré avant l'initialisation de la page, qui s'exécute une fois le chargement terminé.
 
-Les 16 balises listées comme non fonctionnelles ne sont pas toutes de simples entrées vides : une partie d'entre elles (icônes génériques de boutons manette) ont malgré tout leur image déjà présente en base64 dans `ICON_DATA`, sans y être reliées dans le tableau des icônes.
+Les 16 balises listées comme non fonctionnelles ne sont pas toutes de simples entrées vides : une partie d'entre elles (icônes génériques de boutons manette) ont malgré tout leur image déjà présente en base64 dans `ICON_DATA`, sans y être reliées dans le tableau des icônes. Ce sont les seules images encore issues de l'ancienne banque, découpée dans des captures d'écran.
 
 > **🔧 Détail technique :** ces images sont conservées en réserve plutôt que supprimées, au cas où Hello Games leur assignerait un jour une texture officielle en jeu — les relier deviendrait alors une simple correction d'une ligne, sans avoir à ré-extraire ou ré-encoder quoi que ce soit.
 
