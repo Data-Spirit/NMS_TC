@@ -1,7 +1,8 @@
 # Scripts de traduction (docs/scripts)
 
-Ces fichiers, tous préfixés `trans_script_`, forment **un seul outil** dont l'unique fonction est la traduction de
-`NMS_txt_code.html`, le guide **multilingue en un seul fichier**. Le numéro dans le nom donne l'ordre d'utilisation.
+Ces fichiers, tous préfixés `trans_script_`, forment **un seul outil** dont la fonction est le contrôle de
+`NMS_txt_code.html`, le guide **multilingue en un seul fichier**, et de ses traductions ; le n° 5 contrôle les scripts
+eux-mêmes. Le numéro dans le nom donne l'ordre d'utilisation.
 
 Ils ne sont pas nécessaires pour lire ou utiliser le guide, et ils ne remplacent jamais une relecture humaine.
 
@@ -21,11 +22,13 @@ fidélité, style des `aria-label`) à réutiliser à chaque mise à jour.
 | 2 | `trans_script_2_test_behavior.js` | **Teste le comportement** du guide dans une langue : copie (y compris refusée), croix d'effacement, erreurs de balise, exemples, onglets à la souris et au clavier. |
 | 3 | `trans_script_3_test_robustness.js` | **Teste la robustesse** : traduction malveillante, bloc illisible, langue partielle, détection du navigateur, langue demandée dans l'adresse (`?lang=`), valeurs hostiles (adresse et stockage), stockage bloqué. |
 | 4 | `trans_script_4_test_render.js` | **Compare le rendu** de deux versions du guide (utile après une modification du code) ; refuse une langue absente du fichier. |
+| 5 | `trans_script_5_test_mutations.py` | **Contrôle les scripts 1 à 4** : injecte des défauts connus dans des copies du guide et vérifie que chacun est détecté par le bon script. |
 
 ## Ce que les scripts ne font jamais
 
 - **Ils ne traduisent rien.** La traduction est faite avec le prompt `prompt_translation_HTML_GUIDE_LANG.md`, puis validée.
-- **Ils ne modifient aucun fichier** : tous sont en lecture seule (les tests travaillent sur des copies en mémoire).
+- **Ils ne modifient aucun fichier** : tous sont en lecture seule (les tests travaillent sur des copies en mémoire ; le
+  n° 5 écrit ses copies modifiées dans un dossier temporaire du système, supprimé à la fin).
 - **Ils ne remplacent pas la validation humaine** : qualité de la traduction, rendu visuel, alignements et couleurs
   restent à vérifier dans un vrai navigateur.
 
@@ -58,6 +61,11 @@ NODE_PATH=/chemin/node_modules node trans_script_3_test_robustness.js NMS_txt_co
 
 **Après une modification du code** (pas d'une traduction) :
 `node trans_script_4_test_render.js reference.html candidat.html fr` doit répondre « TOUT OK » dans chaque langue.
+
+**Après une modification d'un script de contrôle, ou lors d'une révision des outils** :
+`NODE_PATH=/chemin/node_modules python3 trans_script_5_test_mutations.py NMS_txt_code.html` doit répondre « TOUT OK » :
+le guide sain passe tous les contrôles, et chaque défaut connu (13 aujourd'hui) est détecté par le script attendu. Un
+« motif introuvable » signifie que le guide a changé : mettre à jour l'extrait correspondant dans le n° 5.
 
 Tous les scripts sortent avec le code 0 si tout passe, 1 sinon (2 pour une erreur d'utilisation).
 
@@ -111,8 +119,10 @@ Tous les scripts sortent avec le code 0 si tout passe, 1 sinon (2 pour une erreu
 | `trans_script_2_test_behavior.js` | 1.1 | `97751b9815f727523a898e57eb686407` |
 | `trans_script_3_test_robustness.js` | 1.1 | `bc356f6ffb00850e076f6d03ab7c5679` |
 | `trans_script_4_test_render.js` | 1.1 | `5805be72bbfae86bf127bc35bd3426de` |
+| `trans_script_5_test_mutations.py` | 1.0 | `67a3048fd1fa4bb73c3061fe842ffd89` |
 
-Historique : 1.1 (2026-11-07) révision complète des outils : le n° 1 détecte un bloc de langue en double ou mal formé
+Historique : n° 5 1.0 (2026-11-07) banc de défauts connus, issu de la première révision complète, qui contrôle les n° 1
+à 4. 1.1 (2026-11-07) révision complète des outils : le n° 1 détecte un bloc de langue en double ou mal formé
 (auparavant ignorés en silence) ; le n° 2 teste les onglets (souris et clavier) et la copie refusée ; le n° 3 teste
 `?lang=` et les valeurs hostiles de l'adresse et du stockage, et ne plante plus quand un élément attendu manque ; le n° 4
 refuse une langue absente du fichier (il comparait auparavant la langue par défaut sans le dire) ; fichier introuvable :

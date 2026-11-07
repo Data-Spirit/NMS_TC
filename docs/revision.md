@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.1
+> Version : 1.2
 > Dernière modification : 2026-11-07
 -->
 
 # Révision — NMS_TC
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS » en fin de fichier (dernière entrée : version 1.1, 2026-11-07).
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS » en fin de fichier (dernière entrée : version 1.2, 2026-11-07).
 
 Comment réviser ce projet : les **outils** (`docs/scripts/`), le **code** (le guide `LANG/NMS_txt_code.html`), la **documentation** (README, prompts, guides, journaux, structure du dépôt), ou **les trois** à la suite. Cette page est la **procédure** ; le texte à donner à un agent est le [prompt maître](prompts/prompt_revision_NMS_TC.md). Les erreurs déjà rencontrées sont dans [pitfalls.md](pitfalls.md).
 
@@ -45,6 +45,7 @@ Ce tableau est la **description de référence** de chaque contrôle : ce qu'il 
 | Comportement (n° 2) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_2_test_behavior.js --file LANG/NMS_txt_code.html --lang <code> [--ref ANCIEN.html]` | copie (y compris refusée : ✗), croix d'effacement, messages d'erreur de balise, exemples, onglets à la souris et au clavier (motif ARIA), rendu des entrées valides ; avec `--ref` : non-régression du rendu dans cette langue | jsdom : ni mise en page, ni polices, ni presse-papiers réel ; ne connaît que les fonctions qu'il teste (une fonction nouvelle n'est pas couverte tant qu'on ne l'y ajoute pas) |
 | Robustesse (n° 3) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_3_test_robustness.js LANG/NMS_txt_code.html` | traduction malveillante neutralisée, bloc illisible ignoré, langue partielle repliée sur la source, langue du navigateur, mémorisation, `?lang=` prioritaire, valeurs inconnues ou hostiles (adresse et stockage) ignorées, adresse synchronisée, stockage bloqué | jsdom |
 | Rendu (n° 4) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_4_test_render.js REFERENCE.html CANDIDAT.html <code>` | toute différence de rendu entre deux versions, sur une série d'interactions ; refuse une langue absente du fichier candidat (code 2) | **s'arrête au premier écart** ([pitfalls.md](pitfalls.md#outils-et-vérifications)) ; jsdom ; ignore les attributs `data-i18n` et le sélecteur de langue |
+| Défauts connus (n° 5) | `NODE_PATH=nm/node_modules py -3 -X utf8 docs/scripts/trans_script_5_test_mutations.py LANG/NMS_txt_code.html` | un script de contrôle qui ne voit plus un défaut qu'il doit voir (13 défauts connus, injectés dans des copies du guide) ; vérifie d'abord que le guide sain passe tout | ne vérifie que les défauts de sa liste ; un extrait du guide modifié donne « motif introuvable » : mettre le banc à jour |
 | HTML | `html-validate --preset recommended LANG/NMS_txt_code.html` | structure HTML, attributs, accessibilité de base | écarts acceptés : `empty-heading`, `text-content` (titres et boutons remplis au chargement) |
 | CSS | extraire le `<style>`, puis `stylelint --config stylelint-config-standard` | propriétés invalides, doublons, spécificité | écarts acceptés : `property-no-vendor-prefix` sur `-webkit-mask-*`, `no-descending-specificity` (faux positifs), règles de notation (`color-function-notation`, `color-function-alias-notation`, `alpha-value-notation`, `media-feature-range-notation` : la notation actuelle est plus compatible) et de pur formatage |
 | JS | extraire le `<script>` principal (chaînes base64 remplacées par `"data:x"`), puis `eslint` avec la configuration ci-dessous | variables inutilisées, affectations dans les conditions, `const` possibles, ombrage, égalités lâches | ne voit ni le HTML ni les appels par chaîne ; rien sur la logique métier |
@@ -72,7 +73,7 @@ export default [js.configs.recommended, { languageOptions: { ecmaVersion: 2022, 
 
 Un contrôle vert avec un outil aveugle ne prouve rien. À chaque révision, pour chaque outil utilisé :
 1. **À jour ?** Couvre-t-il les fonctions, clés, langues et fichiers ajoutés depuis la dernière fois ? (Comparer l'inventaire des fonctions du guide à ce que les scripts testent.)
-2. **Juste ?** Faux positifs (alertes à tort) et faux négatifs (défaut non vu) : le tester sur un **défaut connu**, par exemple retirer une clé d'un bloc, ajouter une clé en trop, injecter `<img onerror>` dans une traduction, casser le JSON d'un bloc, modifier un caractère du rendu ; vérifier qu'il réagit, et qu'il se tait sur le fichier sain.
+2. **Juste ?** Faux positifs (alertes à tort) et faux négatifs (défaut non vu) : le tester sur un **défaut connu**, par exemple retirer une clé d'un bloc, ajouter une clé en trop, injecter `<img onerror>` dans une traduction, casser le JSON d'un bloc, modifier un caractère du rendu ; vérifier qu'il réagit, et qu'il se tait sur le fichier sain. Le n° 5 rejoue automatiquement tous les défauts déjà connus ; un défaut nouveau, trouvé à la main, s'y ajoute.
 3. **Sans bug lui-même ?** Le relire comme du code (Python et JavaScript) ; vérifier ses codes de sortie (0, 1, 2) et ses hypothèses figées (nombre de langues, chemins, encodage, système d'exploitation).
 4. **Le meilleur pour la tâche ?** Un besoin qui revient sans outil, ou qui prend trop de temps à la main, est un outil à créer : dans `docs/scripts/`, en Python standard ou en Node simple, en lecture seule, documenté dans [trans_script_0_README.md](scripts/trans_script_0_README.md) et dans ce tableau (création sur proposition, comme toute modification du dépôt).
 
@@ -81,7 +82,7 @@ Un contrôle vert avec un outil aveugle ne prouve rien. À chaque révision, pou
 - **Liens et ancres de la documentation** : aucun script dans le dépôt ; vérification par un script temporaire et sur GitHub.
 - **Code mort** : aucun outil ; recherche à la main (ESLint ne voit que les variables locales inutilisées).
 - **`ICON_DATA` ↔ `docs/assets/BANK_ICONS/`** : comparaison faite au cas par cas, sans script dédié.
-- **Les scripts de contrôle n'ont pas de tests** : leur justesse se vérifie par les défauts connus de « Questionner les outils » (banc de 12 défauts injectés lors de la révision du 2026-11-07, resté hors du dépôt).
+- **Les scripts de contrôle n'ont pas de tests unitaires** : leur justesse se vérifie par le n° 5 (13 défauts connus), qui ne voit que les défauts de sa liste.
 
 ---
 
@@ -93,7 +94,7 @@ Un contrôle vert avec un outil aveugle ne prouve rien. À chaque révision, pou
 4. **Couverture** : l'inventaire des fonctions du guide face à ce que les scripts testent ; les lacunes vont dans la liste ci-dessus.
 5. **Robustesse** : Windows (`py -3`, encodage, fins de ligne), chemins avec espaces, fichier absent ou illisible, codes de sortie.
 6. **Documentation des scripts** : README des scripts, tableau de cette page, versions et md5.
-7. **Vérification** : chaque script relancé sur le guide sain (tout passe) et sur les défauts connus (tout échoue), compte rendu.
+7. **Vérification** : n° 5 (le guide sain passe tout, chaque défaut connu est détecté), défauts nouveaux ajoutés au n° 5, compte rendu.
 
 ## Mode « Code »
 
@@ -150,6 +151,7 @@ Une ligne par version, de la plus récente à la plus ancienne. Toute modificati
 
 | Version | Date | Résumé |
 |---|---|---|
+| 1.2 | 2026-11-07 | Script n° 5 (banc de défauts connus) ajouté au tableau des outils, à « Questionner les outils », aux lacunes et au mode Outils. |
 | 1.1 | 2026-11-07 | Après la première révision complète : tableau des outils mis à jour (scripts 1.1), règles Stylelint de notation ajoutées aux écarts acceptés, budgets mesurés dans le navigateur, lacune `?lang=` comblée. |
 | 1.0 | 2026-11-07 | Création, sur le modèle de la procédure de révision du projet Tizen_free, adaptée à NMS_TC : trois types de révision (outils, code, doc) et quatre modes, dont la révision complète dans l'ordre outils, code, doc ; reprend les outils, la configuration ESLint, les écarts acceptés et les budgets de `prompt_code_review_NMS_TC.md` (archivé). |
 

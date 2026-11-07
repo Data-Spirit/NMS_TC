@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 4.3
+> Version : 4.4
 > Dernière modification : 2026-11-07
 -->
 
 # Translation Prompt — NMS_TC HTML Guide (guide multilingue en un seul fichier)
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 4.3, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 4.4, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt réutilisable pour **ajouter une langue** ou **mettre à jour une langue** dans `NMS_txt_code.html` (le guide interactif autonome et multilingue).
 
@@ -19,6 +19,7 @@ Une ligne par version, de la plus récente à la plus ancienne. À compléter à
 
 | Version | Date | Résumé |
 |---|---|---|
+| 4.4 | 2026-11-07 | Tableau des scripts de contrôle mis à jour (versions 1.1 et md5, issus de la première révision complète). Aucune règle modifiée. |
 | 4.3 | 2026-11-07 | Enregistrement de la mise à jour v2.1 des blocs `i18n-en` et `i18n-es` (4 clés `about.*` sur la nouvelle banque d'icônes extraite du jeu, plus `icons.th.path`) : historique et état des traductions. Aucune règle modifiée. |
 | 4.2 | 2026-10-24 | Nouvelle langue sans historique (indices relevés dans un ancien fichier, jamais inventés) ; règle de l'ancien fichier de référence (pas d'extraction automatique, termes améliorés listés dans le rapport) ; fenêtre de choix limitée à 3 questions ; tables « Historique » et « État » et journal mis à jour sur proposition, après un feu vert distinct ; colonne `md5 du livrable` ; règles de typographie de la langue cible ; contrôle des jonctions de listes, avec exemple ; précisions sur le script 2 (`--ref`, nouvelle langue, installation de `jsdom`) ; ce journal remplace la note de changelog unique. |
 | 4.1 | 2026-10-24 | Enregistrement de la traduction espagnole (bloc `i18n-es` livré le 2026-10-24) : historique, phrase sur l'ancien `NMS_txt_code_ES.html`, état des traductions. Aucune règle modifiée. |
@@ -337,10 +338,10 @@ Scripts du dépôt, dossier `docs/scripts/` (voir `trans_script_0_README.md`), �
 | N° | Fichier | Version | md5 |
 |---|---|---|---|
 | 0 | `trans_script_0_README.md` | 1.0 | (non listé : il contient les md5 des autres) |
-| 1 | `trans_script_1_check_keys.py` | 1.0 | `e5641d0f0d2b94da540cb49a8c14c38f` |
-| 2 | `trans_script_2_test_behavior.js` | 1.0 | `65372c0f1f9218c2cb6f82e47566b370` |
-| 3 | `trans_script_3_test_robustness.js` | 1.0 | `67385a8b840f2bdb5a85194de803d9e9` |
-| 4 | `trans_script_4_test_render.js` | 1.0 | `ccde55fc62a27a856c918f4ab88f2b7c` |
+| 1 | `trans_script_1_check_keys.py` | 1.1 | `4c485dd73953f7a5cb3cda388beb34e0` |
+| 2 | `trans_script_2_test_behavior.js` | 1.1 | `97751b9815f727523a898e57eb686407` |
+| 3 | `trans_script_3_test_robustness.js` | 1.1 | `bc356f6ffb00850e076f6d03ab7c5679` |
+| 4 | `trans_script_4_test_render.js` | 1.1 | `5805be72bbfae86bf127bc35bd3426de` |
 
 À exécuter, dans cet ordre, après avoir écrit le bloc :
 

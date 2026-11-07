@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 3.11
+> Version : 3.12
 > Dernière modification : 2026-11-07
 -->
 
@@ -173,7 +173,7 @@ NMS_TC/
 │   ├── guides/             → Standalone guides (GitHub Pages, Nexus Mods badge)
 │   ├── img/                → All banner/InGame_screenshot/Guide_screenshot etc.
 │   ├── prompts/            → Prompts: translation, new language, review
-│   ├── scripts/            → Check scripts (translations, behavior, robustness, render)
+│   ├── scripts/            → Check scripts (keys, behavior, robustness, render, fault injection)
 │   ├── pitfalls.md         → Known pitfalls and their solutions
 │   ├── revision.md         → Review procedure (tools, code, docs)
 │   └── RELEASE_NOTES_*.md  → Release notes of the latest version

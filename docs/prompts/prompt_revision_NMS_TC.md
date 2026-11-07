@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.0
+> Version : 1.1
 > Dernière modification : 2026-11-07
 -->
 
 # Prompt maître de révision — NMS_TC
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.0, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au guide ou aux scripts, traiter ce prompt comme potentiellement obsolète et le signaler au mainteneur avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.1, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au guide ou aux scripts, traiter ce prompt comme potentiellement obsolète et le signaler au mainteneur avant de l'utiliser.
 
 Le texte à donner à un agent pour réviser les **outils**, le **code**, la **documentation**, ou **les trois**. La procédure (quel mode choisir, quels outils, leurs limites, quel compte rendu) est dans [revision.md](../revision.md) : **la lire d'abord**. Les erreurs déjà rencontrées sont dans [pitfalls.md](../pitfalls.md).
 
@@ -95,7 +95,7 @@ Passes à faire selon le mode ([revision.md](../revision.md#choisir-le-mode)) : 
 
 **Passe 1 — Outils.** **Auditer les outils avant de leur faire confiance** ([revision.md](../revision.md#questionner-les-outils)) :
 - *À jour* : chaque fonction de l'inventaire du guide est-elle couverte par un script ? les clés, langues et fichiers récents aussi ?
-- *Justes* : tests de mutation sur une copie du guide (clé retirée, clé en trop, `{paramètre}` changé, balise hostile, JSON cassé, rendu modifié d'un caractère) : chaque défaut doit faire échouer le bon script, et le fichier sain doit passer.
+- *Justes* : tests de mutation sur une copie du guide (clé retirée, clé en trop, `{paramètre}` changé, balise hostile, JSON cassé, rendu modifié d'un caractère) : chaque défaut doit faire échouer le bon script, et le fichier sain doit passer. Le n° 5 (`trans_script_5_test_mutations.py`) rejoue tous les défauts déjà connus ; un défaut nouveau, trouvé à la main, s'y ajoute.
 - *Sans bug* : lecture intégrale du code Python et JavaScript ; codes de sortie ; hypothèses figées (nombre de langues, chemins, encodage, Windows) ; messages compréhensibles.
 - *Documentés* : [trans_script_0_README.md](../scripts/trans_script_0_README.md) et le tableau de [revision.md](../revision.md#les-outils) disent ce que chaque outil détecte et ne voit pas ; versions et md5 exacts.
 - *Le meilleur pour la tâche* : un besoin qui revient sans outil (liens et ancres, code mort, `ICON_DATA` face à `BANK_ICONS`) est un outil à proposer.
@@ -158,6 +158,7 @@ Une ligne par version, de la plus récente à la plus ancienne. Toute modificati
 
 | Version | Date | Résumé |
 |---|---|---|
+| 1.1 | 2026-11-07 | Passe 1 : renvoi vers le script n° 5 (banc de défauts connus), issu de la première révision complète. |
 | 1.0 | 2026-11-07 | Création, sur le modèle du prompt maître de révision du projet Tizen_free (paragraphe sur les nuances repris tel quel, exemple de compatibilité adapté aux navigateurs, quatre nuances propres à NMS_TC ajoutées). Trois types de révision (outils, code, doc), quatre modes, passes 0 à 9. Remplace `prompt_code_review_NMS_TC.md` (archivé dans `docs/_legacy/`), dont les invariants et les règles de code sont repris ici, les outils et budgets dans [revision.md](../revision.md), les pièges dans [pitfalls.md](../pitfalls.md). Règle d'autonomie de NMS_TC conservée : rapport d'abord, rien n'est écrit dans le dépôt sans feu vert. |
 
 ---
