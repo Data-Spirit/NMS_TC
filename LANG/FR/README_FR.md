@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 2.6
+> Version : 2.7
 > Dernière modification : 2026-11-07
 -->
 
@@ -93,7 +93,7 @@ Le guide interactif existe en **plusieurs langues dans un seul et même fichier*
 
 > **Distinction importante.** Seul le **guide interactif** est multilingue. Ce README, lui, est écrit dans une seule langue ; il existe une version par langue (`README_FR.md`, `README_EN.md`…), chacune traduite séparément.
 
-> **🔧 Détail technique :** chaque langue est un bloc de données JSON placé à la fin du fichier, et les textes du guide sont repérés par des clés. La mise en forme (gras, italique, code, liens…) est conservée, mais nettoyée par une liste blanche de balises : une traduction ne peut donc pas introduire de code actif. Un bloc de langue illisible est ignoré sans gêner les autres. Chaque langue ajoute environ 13 Ko au fichier. La valeur `?lang=` de l'adresse est seulement comparée aux langues disponibles : elle n'est jamais insérée dans la page.
+> **🔧 Détail technique :** chaque langue est un bloc de données JSON placé à la fin du fichier, et les textes du guide sont repérés par des clés. La mise en forme (gras, italique, code, liens…) est conservée, mais nettoyée par une liste blanche de balises : une traduction ne peut donc pas introduire de code actif. Un bloc de langue illisible est ignoré sans gêner les autres. Chaque langue ajoute environ 14 Ko au fichier. La valeur `?lang=` de l'adresse est seulement comparée aux langues disponibles : elle n'est jamais insérée dans la page.
 
 ---
 

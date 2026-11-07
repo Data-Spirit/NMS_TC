@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 1.0
+> Version : 1.1
 > Dernière modification : 2026-11-07
 -->
 
@@ -48,12 +48,14 @@ Chaque piège suit la même forme : **le symptôme**, **la cause**, **la solutio
 - **Aperçu du navigateur intégré à l'application.** La page y est servie en `data:` : `localStorage` bloqué, `location.search` vide. Tester ces cas en appelant les fonctions directement (`matchLanguage`, `applyLanguage`) ou dans un vrai navigateur. Volet masqué : le défilement vers une ancre ne se produit pas, ce qui ne prouve pas que le lien est cassé.
 - **ESLint ne trouve pas sa configuration.** `@eslint/js` doit être résolu depuis le dossier où il est installé : copier la configuration et le fichier à analyser dans le dossier temporaire `nm/` et lancer ESLint depuis lui.
 - **Analyser le script principal.** Remplacer les chaînes base64 de `ICON_DATA` par un court texte avant ESLint : sinon le fichier est énorme et les messages illisibles.
+- **Mesurer les performances dans jsdom.** jsdom est plusieurs fois plus lent qu'un navigateur (16,8 ms contre 2,2 ms pour le tableau complet des icônes) : un budget se vérifie dans un vrai navigateur.
 - **Un contrôle vert avec un outil aveugle ne prouve rien.** Tester un outil sur un défaut connu (clé retirée, balise hostile, bloc cassé) avant de croire son « TOUT OK ».
 
 ## Environnement (Windows, shell, git)
 
 - **`python` et `python3` ouvrent le Microsoft Store.** Utiliser `py -3` ; ajouter `-X utf8` pour l'affichage console (`PYTHONIOENCODING` est ignoré avec `-I`).
-- **Les barres obliques inverses se perdent** dans un texte passé par heredoc ou en ligne de commande (`python -c`, `node -e`) : une chaîne Python devient invalide, une heredoc n'est plus fermée, une regex devient un commentaire. Écrire le script dans un fichier, éviter ce caractère quand c'est possible (par exemple `posixpath` pour les chemins), relire et tester après tout patch scripté.
+- **Les barres obliques inverses se perdent** dans un texte passé par heredoc ou en ligne de commande (`python -c`, `node -e`) : une chaîne Python devient invalide, une heredoc n'est plus fermée, une regex devient un commentaire. Écrire le script dans un fichier avec l'outil d'écriture de l'agent (une heredoc passée à son outil shell échoue aussi sur certaines apostrophes), éviter ce caractère quand c'est possible (par exemple `posixpath` pour les chemins), relire et tester après tout patch scripté.
+- **`$?` après un tube.** Dans `script | tail`, `$?` est le code de sortie de `tail`, pas celui du script : rediriger la sortie vers un fichier, relever `$?`, puis lire le fichier.
 - **Fins de ligne.** Les fichiers du dépôt sont en LF ; git avertit qu'il les convertira en CRLF à la prochaine opération : avertissement sans conséquence. Un script d'écriture relève les fins de ligne avant d'écrire et les conserve.
 - **Ne pas toucher à l'index du mainteneur.** `git add`, y compris `git add -N` (« intention d'ajout ») pour un contrôle, modifie ce qu'il commitera : lister les fichiers non suivis avec `git ls-files --others --exclude-standard` à la place.
 

@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 3.10
+> Version : 3.11
 > Dernière modification : 2026-11-07
 -->
 
@@ -170,9 +170,13 @@ NMS_TC/
 │   ├── _legacy/            → older versions (html's / readme's / prompts)
 │   ├── assets/             → Graphic elements of NMS_TC
 │   │   └── BANK_ICONS/     → Standalone icon assets (64×64 PNGs + archive) and SOURCES.csv
+│   ├── guides/             → Standalone guides (GitHub Pages, Nexus Mods badge)
 │   ├── img/                → All banner/InGame_screenshot/Guide_screenshot etc.
-│   ├── prompts/            → All prompt for translation and code verification
-│   └── scripts/            → Check scripts used to verify the translations
+│   ├── prompts/            → Prompts: translation, new language, review
+│   ├── scripts/            → Check scripts (translations, behavior, robustness, render)
+│   ├── pitfalls.md         → Known pitfalls and their solutions
+│   ├── revision.md         → Review procedure (tools, code, docs)
+│   └── RELEASE_NOTES_*.md  → Release notes of the latest version
 ├── LANG/                   → The multilingual guide + one README per language
 │   ├── EN/                 → Detailed English README
 │   ├── ES/                 → Detailed Spanish README

@@ -1,9 +1,9 @@
 <!-- File version 
-> Version: 2.6
+> Version: 2.7
 > Last modified: 2026-11-07
 -->
 <!-- Translation parameters
-> source_file: README_FR.md v2.6 (md5 9142bd2834dfd80b34a887c00278f6ba)
+> source_file: README_FR.md v2.7 (md5 314db18c564b7ca1d21d22f61fef7756)
 > target_language: English
 > target_variant: neutral/standard
 > lang_code: EN
@@ -103,7 +103,7 @@ The interactive guide exists in **several languages within a single file**: ther
 
 > **Important distinction.** Only the **interactive guide** is multilingual. This README is written in a single language; there is one version per language (`README_FR.md`, `README_EN.md`…), each translated separately.
 
-> **🔧 Technical detail:** each language is a JSON data block placed at the end of the file, and the guide's texts are identified by keys. Formatting (bold, italics, code, links…) is preserved, but sanitized through a whitelist of tags: a translation therefore can't introduce active code. An unreadable language block is ignored without affecting the others. Each language adds about 13 KB to the file. The `?lang=` value in the address is only compared with the available languages; it is never inserted into the page.
+> **🔧 Technical detail:** each language is a JSON data block placed at the end of the file, and the guide's texts are identified by keys. Formatting (bold, italics, code, links…) is preserved, but sanitized through a whitelist of tags: a translation therefore can't introduce active code. An unreadable language block is ignored without affecting the others. Each language adds about 14 KB to the file. The `?lang=` value in the address is only compared with the available languages; it is never inserted into the page.
 
 ---
 

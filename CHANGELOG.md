@@ -18,6 +18,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 ### Changed
 - Add language prompt v1.1, READMEs v2.6 and README translation prompt v5.5: point to the new review system (the README prompt no longer cites `prompt_fix_allcode.md`, a file from another repository).
 - README translation prompt v5.4: static anchors rule, corrected rule for GitHub heading anchors.
+- Check scripts v1.1, after the first full review: script 1 now detects a duplicated or malformed language block (both were silently ignored), script 2 tests the tabs (mouse and keyboard) and a refused copy, script 3 tests `?lang=` and hostile values from the address and the storage, script 4 refuses a language missing from the file (it silently compared the default language); a missing file gives a clear message everywhere.
+- Guide v2.3 (accessibility): decorative icons are hidden from screen readers, and the tab panels can be reached with the keyboard.
+- Docs: repository tree in the README (v3.11), review procedure v1.1, pitfalls v1.1, size of a language block (~14 KB) in the READMEs v2.7.
 
 ### Fixed
 - READMEs (FR, EN, ES v2.5): the "Icons" and "About" links of the table of contents led nowhere (the emojis of those headings put an invisible character in GitHub's anchors); the four tab headings now have static anchors (`#tab-infos`, `#tab-colors`, `#tab-icons`, `#tab-about`).

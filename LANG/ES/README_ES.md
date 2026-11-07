@@ -1,9 +1,9 @@
 <!-- Versión del archivo 
-> Versión : 2.6
+> Versión : 2.7
 > Última modificación : 2026-11-07
 -->
 <!-- Parámetros de traducción
-> source_file: README_FR.md v2.6 (md5 9142bd2834dfd80b34a887c00278f6ba)
+> source_file: README_FR.md v2.7 (md5 314db18c564b7ca1d21d22f61fef7756)
 > target_language: Español
 > target_variant: neutral/standard
 > lang_code: ES
@@ -103,7 +103,7 @@ La guía interactiva existe en **varios idiomas dentro de un mismo archivo**: no
 
 > **Distinción importante.** Solo la **guía interactiva** es multilingüe. Este README, en cambio, está escrito en un único idioma; existe una versión por idioma (`README_FR.md`, `README_EN.md`…), cada una traducida por separado.
 
-> **🔧 Detalle técnico:** cada idioma es un bloque de datos JSON situado al final del archivo, y los textos de la guía se identifican mediante claves. El formato (negrita, cursiva, código, enlaces…) se conserva, pero se depura mediante una lista blanca de etiquetas: una traducción no puede, por tanto, introducir código activo. Un bloque de idioma ilegible se ignora sin afectar a los demás. Cada idioma añade unos 13 KB al archivo. El valor `?lang=` de la dirección solo se compara con los idiomas disponibles; nunca se inserta en la página.
+> **🔧 Detalle técnico:** cada idioma es un bloque de datos JSON situado al final del archivo, y los textos de la guía se identifican mediante claves. El formato (negrita, cursiva, código, enlaces…) se conserva, pero se depura mediante una lista blanca de etiquetas: una traducción no puede, por tanto, introducir código activo. Un bloque de idioma ilegible se ignora sin afectar a los demás. Cada idioma añade unos 14 KB al archivo. El valor `?lang=` de la dirección solo se compara con los idiomas disponibles; nunca se inserta en la página.
 
 ---
 

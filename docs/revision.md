@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.0
+> Version : 1.1
 > Dernière modification : 2026-11-07
 -->
 
 # Révision — NMS_TC
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS » en fin de fichier (dernière entrée : version 1.0, 2026-11-07).
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS » en fin de fichier (dernière entrée : version 1.1, 2026-11-07).
 
 Comment réviser ce projet : les **outils** (`docs/scripts/`), le **code** (le guide `LANG/NMS_txt_code.html`), la **documentation** (README, prompts, guides, journaux, structure du dépôt), ou **les trois** à la suite. Cette page est la **procédure** ; le texte à donner à un agent est le [prompt maître](prompts/prompt_revision_NMS_TC.md). Les erreurs déjà rencontrées sont dans [pitfalls.md](pitfalls.md).
 
@@ -41,12 +41,12 @@ Ce tableau est la **description de référence** de chaque contrôle : ce qu'il 
 
 | Outil | Commande | Détecte | Limites connues |
 |---|---|---|---|
-| Clés et sécurité i18n (n° 1) | `py -3 docs/scripts/trans_script_1_check_keys.py LANG/NMS_txt_code.html --strict` (options `--since ANCIEN.html`, `--todo <code>`) | JSON des blocs, `_meta`, clés utilisées absentes de la source, clés manquantes ou en trop par langue, `{paramètres}`, balises et extraits `<code>` identiques à la source, balises et attributs hors liste blanche, `<title>` statique ; avec `--since` : clés ajoutées, modifiées, supprimées, traductions non retouchées | ne juge pas la **qualité** d'une traduction ; sans `--since`, un texte source modifié est invisible ; faux avertissement possible quand un mot est identique dans la langue cible (nom propre) |
-| Comportement (n° 2) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_2_test_behavior.js --file LANG/NMS_txt_code.html --lang <code> [--ref ANCIEN.html]` | copie, croix d'effacement, messages d'erreur de balise, exemples, onglets, rendu des entrées valides ; avec `--ref` : non-régression du rendu dans cette langue | jsdom : ni mise en page, ni polices, ni presse-papiers réel ; ne connaît que les fonctions qu'il teste (une fonction nouvelle n'est pas couverte tant qu'on ne l'y ajoute pas) |
-| Robustesse (n° 3) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_3_test_robustness.js LANG/NMS_txt_code.html` | traduction malveillante neutralisée, bloc illisible ignoré, langue partielle repliée sur la source, langue du navigateur, mémorisation, stockage bloqué | jsdom ; ne teste ni `?lang=` ni les valeurs hostiles du stockage (couvertes à la main lors de la revue v2.2) |
-| Rendu (n° 4) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_4_test_render.js REFERENCE.html CANDIDAT.html <code>` | toute différence de rendu entre deux versions, sur une série d'interactions | **s'arrête au premier écart** ([pitfalls.md](pitfalls.md#outils-et-vérifications)) ; jsdom ; ignore les attributs `data-i18n` et le sélecteur de langue |
+| Clés et sécurité i18n (n° 1) | `py -3 docs/scripts/trans_script_1_check_keys.py LANG/NMS_txt_code.html --strict` (options `--since ANCIEN.html`, `--todo <code>`) | bloc de langue en double ou mal formé (jamais ignoré en silence), JSON des blocs, `_meta`, clés utilisées absentes de la source, clés manquantes ou en trop par langue, `{paramètres}`, balises et extraits `<code>` identiques à la source, balises et attributs hors liste blanche, `<title>` statique ; avec `--since` : clés ajoutées, modifiées, supprimées, traductions non retouchées | ne juge pas la **qualité** d'une traduction ; sans `--since`, un texte source modifié est invisible ; faux avertissement possible quand un mot est identique dans la langue cible (nom propre) |
+| Comportement (n° 2) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_2_test_behavior.js --file LANG/NMS_txt_code.html --lang <code> [--ref ANCIEN.html]` | copie (y compris refusée : ✗), croix d'effacement, messages d'erreur de balise, exemples, onglets à la souris et au clavier (motif ARIA), rendu des entrées valides ; avec `--ref` : non-régression du rendu dans cette langue | jsdom : ni mise en page, ni polices, ni presse-papiers réel ; ne connaît que les fonctions qu'il teste (une fonction nouvelle n'est pas couverte tant qu'on ne l'y ajoute pas) |
+| Robustesse (n° 3) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_3_test_robustness.js LANG/NMS_txt_code.html` | traduction malveillante neutralisée, bloc illisible ignoré, langue partielle repliée sur la source, langue du navigateur, mémorisation, `?lang=` prioritaire, valeurs inconnues ou hostiles (adresse et stockage) ignorées, adresse synchronisée, stockage bloqué | jsdom |
+| Rendu (n° 4) | `NODE_PATH=nm/node_modules node docs/scripts/trans_script_4_test_render.js REFERENCE.html CANDIDAT.html <code>` | toute différence de rendu entre deux versions, sur une série d'interactions ; refuse une langue absente du fichier candidat (code 2) | **s'arrête au premier écart** ([pitfalls.md](pitfalls.md#outils-et-vérifications)) ; jsdom ; ignore les attributs `data-i18n` et le sélecteur de langue |
 | HTML | `html-validate --preset recommended LANG/NMS_txt_code.html` | structure HTML, attributs, accessibilité de base | écarts acceptés : `empty-heading`, `text-content` (titres et boutons remplis au chargement) |
-| CSS | extraire le `<style>`, puis `stylelint --config stylelint-config-standard` | propriétés invalides, doublons, spécificité | écarts acceptés : `property-no-vendor-prefix` sur `-webkit-mask-*`, `no-descending-specificity` (faux positifs), règles de pur formatage |
+| CSS | extraire le `<style>`, puis `stylelint --config stylelint-config-standard` | propriétés invalides, doublons, spécificité | écarts acceptés : `property-no-vendor-prefix` sur `-webkit-mask-*`, `no-descending-specificity` (faux positifs), règles de notation (`color-function-notation`, `color-function-alias-notation`, `alpha-value-notation`, `media-feature-range-notation` : la notation actuelle est plus compatible) et de pur formatage |
 | JS | extraire le `<script>` principal (chaînes base64 remplacées par `"data:x"`), puis `eslint` avec la configuration ci-dessous | variables inutilisées, affectations dans les conditions, `const` possibles, ombrage, égalités lâches | ne voit ni le HTML ni les appels par chaîne ; rien sur la logique métier |
 | Navigateur réel | ouvrir le guide : onglets, simulateur, copie, recherches, tris, filtre, langues, `?lang=` ; à 375, ~768 et ≥ 1280 px ; console ouverte | tout ce que jsdom ne voit pas : mise en page, polices, CSP, presse-papiers, émojis | manuel ; le navigateur intégré à l'application a ses propres limites ([pitfalls.md](pitfalls.md#outils-et-vérifications)) |
 | GitHub et Pages | ouvrir les fichiers modifiés sur GitHub et le guide sur Pages après publication | ancres réelles, rendu Markdown, publication | seulement après le push du mainteneur |
@@ -66,7 +66,7 @@ export default [js.configs.recommended, { languageOptions: { ecmaVersion: 2022, 
   rules: { "no-unused-vars": "warn", "eqeqeq": "warn", "no-shadow": "warn", "prefer-const": "warn", "no-var": "warn", "no-cond-assign": ["error", "except-parens"] } }];
 ```
 
-**Budgets de performance** (mesurés le 2026-11-07, guide v2.1) : rendu complet du tableau des icônes (`renderIcons('')`) ≤ 5 ms ; rendu filtré ≤ 1 ms ; changement de langue complet ≤ 15 ms ; simulateur ≤ 1 ms par frappe. Un dépassement **mesuré** justifie une optimisation ; en deçà, ne pas réécrire.
+**Budgets de performance** (mesurés le 2026-11-07, guide v2.1) : rendu complet du tableau des icônes (`renderIcons('')`) ≤ 5 ms ; rendu filtré ≤ 1 ms ; changement de langue complet ≤ 15 ms ; simulateur ≤ 1 ms par frappe. Un dépassement **mesuré** justifie une optimisation ; en deçà, ne pas réécrire. **Mesurer dans un vrai navigateur** : le 2026-11-07 (guide v2.2, Chromium), 2,2 ms, 0,04 ms, 3,4 ms et moins de 0,01 ms ; jsdom est plusieurs fois plus lent (16,8 ms et 29 ms pour les deux mêmes rendus complets) et ne sert pas à vérifier un budget.
 
 ### Questionner les outils
 
@@ -81,8 +81,7 @@ Un contrôle vert avec un outil aveugle ne prouve rien. À chaque révision, pou
 - **Liens et ancres de la documentation** : aucun script dans le dépôt ; vérification par un script temporaire et sur GitHub.
 - **Code mort** : aucun outil ; recherche à la main (ESLint ne voit que les variables locales inutilisées).
 - **`ICON_DATA` ↔ `docs/assets/BANK_ICONS/`** : comparaison faite au cas par cas, sans script dédié.
-- **Les scripts de contrôle n'ont pas de tests** : leur justesse se vérifie par les défauts connus de « Questionner les outils ».
-- **`?lang=` et valeurs hostiles du stockage** : hors des scripts 2 et 3 ; contrôles ciblés à refaire à la main.
+- **Les scripts de contrôle n'ont pas de tests** : leur justesse se vérifie par les défauts connus de « Questionner les outils » (banc de 12 défauts injectés lors de la révision du 2026-11-07, resté hors du dépôt).
 
 ---
 
@@ -151,6 +150,7 @@ Une ligne par version, de la plus récente à la plus ancienne. Toute modificati
 
 | Version | Date | Résumé |
 |---|---|---|
+| 1.1 | 2026-11-07 | Après la première révision complète : tableau des outils mis à jour (scripts 1.1), règles Stylelint de notation ajoutées aux écarts acceptés, budgets mesurés dans le navigateur, lacune `?lang=` comblée. |
 | 1.0 | 2026-11-07 | Création, sur le modèle de la procédure de révision du projet Tizen_free, adaptée à NMS_TC : trois types de révision (outils, code, doc) et quatre modes, dont la révision complète dans l'ordre outils, code, doc ; reprend les outils, la configuration ESLint, les écarts acceptés et les budgets de `prompt_code_review_NMS_TC.md` (archivé). |
 
 ## HISTORIQUE DES RÉVISIONS
@@ -159,6 +159,7 @@ Une ligne par révision effectuée, proposée dans le compte rendu et ajoutée a
 
 | Date | Mode | Fichiers révisés (version, md5) | Livré (version, md5) | Résumé |
 |---|---|---|---|---|
+| 2026-11-07 | Complète (première avec ce prompt) | scripts 1.0 ; `NMS_txt_code.html` v2.2 (`18555c10…`, 462 234 octets) ; documentation | scripts 1.1 ; v2.3, `b38724a633078bbd6ffe4188ea32131f` (462 400 octets) ; docs mises à jour | Outils : 4 défauts majeurs prouvés par injection de défauts (bloc en double et bloc mal formé ignorés par le n° 1, langue inexistante acceptée par le n° 4, `?lang=` jamais testé) et 4 mineurs, tous corrigés et revérifiés. Code : aucun bug ; accessibilité (icônes décoratives masquées, panneaux d'onglets atteignables au clavier) ; performances dans les budgets. Doc : arborescence du README, tableau des outils, pièges, poids d'une langue. |
 | 2026-11-07 | Code (avec l'ancien prompt) | `NMS_txt_code.html` v2.1 (`ab8a214b…`, 457 704 octets) | v2.2, `18555c10…` (462 234 octets) | 12 bugs ou défauts corrigés (dont 3 d'affichage mobile, 1 de robustesse de la langue mémorisée, 1 de polices), CSP, `<noscript>`, motif ARIA des onglets, nettoyage et commentaires harmonisés en français. |
 
 ---
