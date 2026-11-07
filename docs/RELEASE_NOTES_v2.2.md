@@ -161,7 +161,7 @@ The guide is also self-hosted on **GitHub Pages**, so you can browse it online d
 - **Spell-check and autocomplete disabled** in the simulator and the search fields, where you type tags, not words.
 - **Content Security Policy** in the file itself.
 - **A short message when JavaScript is disabled** (in French, English and Spanish) instead of a blank page.
-- **A code review guide for the project**, [`docs/prompts/prompt_code_review_NMS_TC.md`](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/prompts/prompt_code_review_NMS_TC.md): project invariants, security, performance, accessibility and responsive rules, tools and checks.
+- **A code review guide for the project**, [`docs/_legacy/prompt_code_review_NMS_TC.md`](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/_legacy/prompt_code_review_NMS_TC.md): project invariants, security, performance, accessibility and responsive rules, tools and checks.
 
 ## 🔄 Changed
 
