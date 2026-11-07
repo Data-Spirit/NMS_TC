@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 4.2
-> Dernière modification : 2026-10-24
+> Version : 4.3
+> Dernière modification : 2026-11-07
 -->
 
 # Translation Prompt — NMS_TC HTML Guide (guide multilingue en un seul fichier)
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 4.2, 2026-10-24). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 4.3, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt réutilisable pour **ajouter une langue** ou **mettre à jour une langue** dans `NMS_txt_code.html` (le guide interactif autonome et multilingue).
 
@@ -19,6 +19,7 @@ Une ligne par version, de la plus récente à la plus ancienne. À compléter à
 
 | Version | Date | Résumé |
 |---|---|---|
+| 4.3 | 2026-11-07 | Enregistrement de la mise à jour v2.1 des blocs `i18n-en` et `i18n-es` (4 clés `about.*` sur la nouvelle banque d'icônes extraite du jeu, plus `icons.th.path`) : historique et état des traductions. Aucune règle modifiée. |
 | 4.2 | 2026-10-24 | Nouvelle langue sans historique (indices relevés dans un ancien fichier, jamais inventés) ; règle de l'ancien fichier de référence (pas d'extraction automatique, termes améliorés listés dans le rapport) ; fenêtre de choix limitée à 3 questions ; tables « Historique » et « État » et journal mis à jour sur proposition, après un feu vert distinct ; colonne `md5 du livrable` ; règles de typographie de la langue cible ; contrôle des jonctions de listes, avec exemple ; précisions sur le script 2 (`--ref`, nouvelle langue, installation de `jsdom`) ; ce journal remplace la note de changelog unique. |
 | 4.1 | 2026-10-24 | Enregistrement de la traduction espagnole (bloc `i18n-es` livré le 2026-10-24) : historique, phrase sur l'ancien `NMS_txt_code_ES.html`, état des traductions. Aucune règle modifiée. |
 | 4.0 | 2026-10-20 | Refonte complète pour le guide multilingue en un seul fichier `NMS_txt_code.html` : on ne traduit plus un fichier HTML par langue, mais **un bloc de langue** (dictionnaire de clés) à l'intérieur du fichier unique. Remplacés : le mode « mise à jour incrémentale » de fichiers séparés, les scripts `trans_script_1_substitutions_*`, `_2_update_translation`, `_4_verify_symmetry`, les règles de correspondance des suffixes de langue et des clés de catégorie (devenues des identifiants neutres). Ajoutés : lecture et écriture des paramètres de traduction dans `_meta.target`, liste de travail des clés à traduire (`--todo`, `--since`), nouveaux scripts `trans_script_1_check_keys` à `trans_script_4_test_render`, règles d'écriture d'un bloc JSON, traduction cohérente des pseudo-noms et du mot-témoin, emplacement et modèles d'un bloc, vérification préalable de la langue, encodage, comparaison hors bloc, clés supprimées de la source, cas sans version précédente, prérequis des outils, contexte du projet et terminologie officielle du jeu, traduction toujours depuis le français. Conservés : protocole de modification de ce prompt, feu vert avant de traduire, règles de fraîcheur, de ton, de terminologie et de longueur, rapport de livraison standard et glossaire. |
@@ -401,6 +402,7 @@ Table à compléter à chaque usage de ce prompt, pour tracer quelle version de 
 | 2026-10-17 | `NMS_txt_code_FR.html` v1.3, à partir de l'EN v1.1 | `NMS_txt_code_EN.html` v1.3 (fichier séparé) | non relevé | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | incrémentale | B |
 | 2026-10-19 | `NMS_txt_code_FR.html` v1.3 et `NMS_txt_code_EN.html` v1.3 | bloc `i18n-en` de `NMS_txt_code.html` v2.0 | non relevé | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | migration : textes extraits automatiquement de l'EN v1.3, non retraduits | B |
 | 2026-10-24 | `NMS_txt_code.html` v2.0 (bloc `i18n-fr` 2.0) | bloc `i18n-es` de `NMS_txt_code.html` v2.0 | `75a04cc4966d23e4b6ccf4eb63909f17` (366 674 octets) | Español | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | nouvelle langue : traduction clé par clé depuis le français (116 clés), ancien ES v1.1 utilisé comme référence de vocabulaire seulement | B |
+| 2026-11-07 | `NMS_txt_code.html` v2.1 (bloc `i18n-fr` 2.1) | blocs `i18n-en` et `i18n-es` v2.1 | `ab8a214b3390424ab7ef6a58eac9ab48` (457 704 octets) | English / Español | neutral/standard (US) / neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | mise à jour : 4 clés `about.*` (banque d'icônes extraite du jeu), liste de travail via `--since` sur la v2.0 ; `icons.th.path` renommée le même jour dans les 3 langues | B |
 
 L'ancien fichier `NMS_txt_code_ES.html` (traduit le 2026-09-09 depuis une FR de 1297 lignes, dernière version v1.1 du 2026-09-25) n'a pas été migré : l'espagnol a été créé le 2026-10-24 comme un **nouveau bloc**, traduit clé par clé depuis le français ; l'ancien fichier n'a servi que de référence de vocabulaire.
 
@@ -412,6 +414,6 @@ Table à mettre à jour à chaque livraison (sur proposition, voir ci-dessus), a
 
 | Langue | Bloc | Version reflétée | État |
 |---|---|---|---|
-| FR | `i18n-fr` | 2.0 | source de référence |
-| EN | `i18n-en` | 2.0 | à jour |
-| ES | `i18n-es` | 2.0 | à jour (livré le 2026-10-24) |
+| FR | `i18n-fr` | 2.1 | source de référence |
+| EN | `i18n-en` | 2.1 | à jour (2026-11-07) |
+| ES | `i18n-es` | 2.1 | à jour (2026-11-07) |
