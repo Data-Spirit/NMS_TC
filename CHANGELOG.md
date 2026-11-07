@@ -12,12 +12,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 ### Added
 - `docs/prompts/prompt_add_language_NMS_TC.md`: an end-to-end prompt to add a new language (guide block, `<noscript>`, README, rest of the repository, checks, report).
 - `CHANGELOG.md` and `ROADMAP.md`.
+- `_config.yml`: no GitHub Pages home page generated from the README (the site root returns a 404 on purpose; the guide stays online).
 
 ### Changed
 - Code review prompt v1.1: no longer tied to a fixed number of languages.
+- README translation prompt v5.4: static anchors rule, corrected rule for GitHub heading anchors.
+
+### Fixed
+- READMEs (FR, EN, ES v2.5): the "Icons" and "About" links of the table of contents led nowhere (the emojis of those headings put an invisible character in GitHub's anchors); the four tab headings now have static anchors (`#tab-infos`, `#tab-colors`, `#tab-icons`, `#tab-about`).
 
 ### Removed
 - `prompt_translation_transfert.md`, written for the old one-file-per-language guide (archived in `docs/_legacy/`).
+- `index.html`, an empty placeholder page at the repository root.
 
 ---
 

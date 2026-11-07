@@ -1,0 +1,8 @@
+# GitHub Pages (Jekyll) configuration for NMS // TEXT CODES
+#
+# No home page: without an index.html, GitHub Pages would turn README.md into the
+# site's home page. This disables it, so the site root returns a 404 on purpose.
+# The guide stays online at /LANG/NMS_txt_code.html. Folders starting with "_"
+# (such as docs/_legacy/) are still excluded from the site by Jekyll.
+readme_index:
+  enabled: false

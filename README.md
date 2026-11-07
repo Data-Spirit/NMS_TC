@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 3.9
+> Version : 3.10
 > Dernière modification : 2026-11-07
 -->
 
@@ -178,7 +178,7 @@ NMS_TC/
 │   ├── ES/                 → Detailed Spanish README
 │   ├── FR/                 → Detailed French README
 │   └── NMS_txt_code.html   → The guide (single standalone multilingual file)
-├── index.html              → Index file for GitHub Pages.
+├── _config.yml             → GitHub Pages settings (no home page; the guide stays online).
 ├── LICENSE.md              → License file for this repo.
 └── README.md               → this file
 ```
