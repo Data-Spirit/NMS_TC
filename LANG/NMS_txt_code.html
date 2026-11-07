@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 2.0
-> Dernière modification : 2026-10-27
+> Version : 2.1
+> Dernière modification : 2026-11-07
 -->
 
 <!DOCTYPE html>
@@ -1559,8 +1559,8 @@ else initPage();
     "flag": "🇫🇷",
     "lang_code": "fr",
     "role": "langue source et langue par défaut",
-    "translation_version": "2.0",
-    "updated": "2026-10-19",
+    "translation_version": "2.1",
+    "updated": "2026-11-07",
     "target": {
       "note": "Langue source : les nouvelles fonctionnalités s'écrivent d'abord ici, puis se traduisent dans les autres blocs."
     }
@@ -1648,16 +1648,19 @@ else initPage();
     "<strong class='highlight'>Elles fonctionnent sur toutes les plateformes où le jeu est disponible (PC, PlayStation, Xbox et Nintendo Switch), dans tout champ de texte éditable.</strong>"
   ],
   "about.h3.01": "Banque d'icônes",
-  "about.li.01": "Les 145 icônes utilisées dans l'onglet « Icônes » ont été détourées (fond transparent) directement à partir de plusieurs captures d'écran.",
+  "about.li.01": [
+    "Les 129 icônes affichées dans l'onglet « Icônes » proviennent directement des fichiers du jeu : les archives <code>.pak</code> de No Man's Sky ont été extraites avec <strong>NMSModTool v1.1.0.0</strong>, puis chaque texture <code>.DDS</code> d'origine a été convertie en PNG à fond transparent, en retenant toujours la version de plus haute résolution disponible. ",
+    "97 d'entre elles sont identiques au pixel près à leur texture d'origine ; les autres ont été retouchées, agrandies ou recomposées quand le jeu n'en fournissait qu'une version trop petite ou inadaptée."
+  ],
   "about.li.02": [
     "Les icônes sont directement intégrées dans ce fichier HTML (le fichier HTML est autosuffisant ; aucun dossier externe requis). ",
     "Vous pouvez donc déplacer ou renommer librement ce fichier."
   ],
-  "about.li.03": "Les 145 icônes sont encodées en base64 et intégrées directement dans le code JavaScript du fichier HTML, sous forme d'un objet <code>ICON_DATA</code> qui associe chaque nom de fichier à une chaîne <code>data:image/png;base64,...</code>.",
+  "about.li.03": "Les icônes sont intégrées en 64 × 64 pixels, nettes même sur les écrans haute densité. Elles sont encodées en base64 directement dans le code JavaScript du fichier HTML, sous forme d'un objet <code>ICON_DATA</code> qui associe chaque nom de fichier à une chaîne <code>data:image/png;base64,...</code>.",
   "about.info.div.01": "Concrètement, chaque PNG (déjà détouré, fond transparent) est converti en une longue chaîne de texte encodée en base64, et cette chaîne est utilisée directement comme attribut <code>src</code> des balises <code>&lt;img&gt;</code> — exactement comme si l'image était hébergée en ligne, sauf qu'elle est « écrite en dur » dans le fichier lui-même.",
   "about.info.div.02": [
-    "Les icônes sont fournies en parallèle sous forme de PNG individuels (un par balise), nommés en minuscules (ex. ",
-    "<code>sclass.png</code>) dans une archive séparée (à utiliser comme banque d'icônes réutilisable dans d'autres projets)."
+    "Les icônes sont aussi disponibles séparément, sous forme de PNG individuels (un par balise, nommés en minuscules, ex. <code>sclass.png</code>), dans le dossier <code>BANK_ICONS/</code> du dépôt GitHub, avec une archive qui regroupe plusieurs résolutions et les originaux. ",
+    "Le fichier <code>SOURCES.csv</code> indique pour chacune sa texture <code>.DDS</code> d'origine : une banque d'icônes réutilisable dans d'autres projets."
   ],
   "about.h3.02": "Doublons repérés",
   "about.p.02": [
@@ -1683,7 +1686,7 @@ else initPage();
   ],
   "about.sources.li.01": "Le très utile guide communautaire « Azure's Text Styles Formatting Guide » (référence largement reprise, y compris sur Nexus Mods).",
   "about.sources.li.02": "Discussions communautaires (Steam, Reddit ...) confirmant le fonctionnement actuel des balises de code ainsi que leurs utilisations en jeu.",
-  "about.sources.li.03": "Multiples captures du jeu et de tableaux divers trouvés sur le web.",
+  "about.sources.li.03": "Les fichiers du jeu eux-mêmes (textures extraites des archives <code>.pak</code> avec NMSModTool v1.1.0.0), ainsi que de multiples captures du jeu et tableaux trouvés sur le web.",
 
   "footer.footer": [
     "Guide non officiel créé par <span class='footer-name'>Spirit</span><br>",
