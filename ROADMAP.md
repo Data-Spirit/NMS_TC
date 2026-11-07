@@ -2,8 +2,6 @@
 
 Where **NMS // TEXT CODES** is heading. This is a living list, not a promise: priorities can change, and anything done moves to the [changelog](CHANGELOG.md).
 
-Ideas and suggestions are welcome in the [issues](https://github.com/Data-Spirit/NMS_TC/issues).
-
 ---
 
 ## 🔧 In progress
