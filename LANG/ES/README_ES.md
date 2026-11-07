@@ -1,9 +1,9 @@
 <!-- Versión del archivo 
-> Versión : 2.4
+> Versión : 2.5
 > Última modificación : 2026-11-07
 -->
 <!-- Parámetros de traducción
-> source_file: README_FR.md v2.4 (md5 fe6cb44cc5ed3efeb744e868556a2a1e)
+> source_file: README_FR.md v2.5 (md5 5d29a14cb52b13c4223209b93b22163d)
 > target_language: Español
 > target_variant: neutral/standard
 > lang_code: ES
@@ -51,10 +51,10 @@
 - [La guía interactiva es multilingüe](#la-guía-interactiva-es-multilingüe)
 - [Cifras clave](#cifras-clave)
 - [Estructura de la interfaz](#estructura-de-la-interfaz)
-  - [Pestaña Info](#-pestaña-info)
-  - [Pestaña Colores](#-pestaña-colores)
-  - [Pestaña Iconos](#-pestaña-iconos)
-  - [Pestaña Acerca de](#-pestaña-acerca-de)
+  - [Pestaña Info](#tab-infos)
+  - [Pestaña Colores](#tab-colors)
+  - [Pestaña Iconos](#tab-icons)
+  - [Pestaña Acerca de](#tab-about)
 - [El simulador en directo](#el-simulador-en-directo)
 - [La técnica de teñido de icono](#la-técnica-de-teñido-de-icono)
 - [Copiar y pegar con un clic](#copiar-y-pegar-con-un-clic)
@@ -129,6 +129,7 @@ La guía interactiva existe en **varios idiomas dentro de un mismo archivo**: no
 
 La guía se organiza en **4 pestañas**, pensadas como un recorrido de lectura lógico: primero se aprende la sintaxis y luego se consultan las tablas de referencia. Un **selector de idioma**, arriba a la derecha, cambia el idioma de toda la guía interactiva.
 
+<a id="tab-infos"></a>
 ### 📘 Pestaña Info
 
 El punto de entrada de la guía. Reúne todo lo necesario para usar las etiquetas, sin tener que buscar por otros lados:
@@ -139,6 +140,7 @@ El punto de entrada de la guía. Reúne todo lo necesario para usar las etiqueta
 - **Recuadro de Consejo** sobre el límite de caracteres de los campos de texto en el juego, con la recomendación de priorizar etiquetas cortas.
 - **Sección "Ejemplos concretos"**: diez títulos realmente usados para organizar contenedores de almacenamiento en el juego, cada uno mostrado con su renderizado visual en directo *y* su código en bruto coloreado, con un botón de copia a la derecha de cada línea — la mejor demostración práctica de todo lo anterior.
 
+<a id="tab-colors"></a>
 ### 🎨 Pestaña Colores
 
 Una tabla de referencia completa de las 59 etiquetas de color, con:
@@ -154,6 +156,7 @@ Una tabla de referencia completa de las 59 etiquetas de color, con:
 
 > **🔧 Detalle técnico:** a diferencia de la ordenación "Color", la ordenación por **luminosidad** sí se basa en un cálculo automático — la fórmula de luminancia perceptual estándar ITU-R BT.601 (`0.299×R + 0.587×G + 0.114×B`), que pondera el verde más fuertemente que el rojo y el azul, conforme a la sensibilidad del ojo humano a cada componente de color.
 
+<a id="tab-icons"></a>
 ### 🖼️ Pestaña Iconos
 
 Una tabla de referencia completa de las 145 etiquetas de iconos, agrupadas en **12 categorías** (Recursos, Interfaz, Fragatas, Inventario, Voz / Red, Botín, Plataformas / Controles, Símbolos de portal, Clase (C→S), Modos de juego, Edición de base, No funcional), con para cada icono:
@@ -169,6 +172,7 @@ Igual que en la pestaña Colores, una **barra de búsqueda** y un **filtro por c
 
 **Alineación de columnas**: cada tabla de categoría utiliza anchos de columna fijos e idénticos (`table-layout: fixed`), y la columna "Etiqueta" está dimensionada según el nombre de etiqueta más largo de toda la guía (`BULLETPOINT_OFF`, 15 caracteres) — lo que garantiza que ningún nombre se trunque nunca y que la alineación se mantenga rigurosamente idéntica de una categoría a otra, independientemente de la longitud del título de la categoría o del contenido de sus filas.
 
+<a id="tab-about"></a>
 ### ℹ️ Pestaña Acerca de
 
 El contexto y la transparencia metodológica de la guía:

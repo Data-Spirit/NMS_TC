@@ -1,9 +1,9 @@
 <!-- File version 
-> Version: 2.4
+> Version: 2.5
 > Last modified: 2026-11-07
 -->
 <!-- Translation parameters
-> source_file: README_FR.md v2.4 (md5 fe6cb44cc5ed3efeb744e868556a2a1e)
+> source_file: README_FR.md v2.5 (md5 5d29a14cb52b13c4223209b93b22163d)
 > target_language: English
 > target_variant: neutral/standard
 > lang_code: EN
@@ -51,10 +51,10 @@
 - [The interactive guide is multilingual](#the-interactive-guide-is-multilingual)
 - [Key numbers](#key-numbers)
 - [Interface structure](#interface-structure)
-  - [Info Tab](#-info-tab)
-  - [Colors Tab](#-colors-tab)
-  - [Icons Tab](#-icons-tab)
-  - [About Tab](#-about-tab)
+  - [Info Tab](#tab-infos)
+  - [Colors Tab](#tab-colors)
+  - [Icons Tab](#tab-icons)
+  - [About Tab](#tab-about)
 - [The live simulator](#the-live-simulator)
 - [The icon tinting technique](#the-icon-tinting-technique)
 - [One-click copy](#one-click-copy)
@@ -129,6 +129,7 @@ The interactive guide exists in **several languages within a single file**: ther
 
 The guide is organized into **4 tabs**, designed as a logical reading path: you learn the syntax before diving into the reference tables. A **language selector**, at the top right, changes the language of the entire interactive guide.
 
+<a id="tab-infos"></a>
 ### 📘 Info Tab
 
 The guide's entry point. It brings together everything you need to know to use the tags, without having to dig around:
@@ -139,6 +140,7 @@ The guide's entry point. It brings together everything you need to know to use t
 - **Tip callout** on the character limit of in-game text fields, recommending short tags where possible.
 - **"Real-world examples" section**: ten headings actually used to organize in-game storage containers, each shown with its live visual render *and* its raw, syntax-highlighted code, with a copy button to the right of each row — the best practical demonstration of everything above.
 
+<a id="tab-colors"></a>
 ### 🎨 Colors Tab
 
 A complete reference table of the 59 color tags, featuring:
@@ -154,6 +156,7 @@ A complete reference table of the 59 color tags, featuring:
 
 > **🔧 Technical detail:** unlike the "Color" sort, the **brightness** sort does rely on an automated calculation — the standard ITU-R BT.601 perceptual luminance formula (`0.299×R + 0.587×G + 0.114×B`), which weights green more heavily than red and blue, matching the human eye's sensitivity to each color component.
 
+<a id="tab-icons"></a>
 ### 🖼️ Icons Tab
 
 A complete reference table of the 145 icon tags, grouped into **12 categories** (Resources, Interface, Frigates, Inventory, Voice / Network, Loot, Platforms / Controls, Portal Glyphs, Class (C→S), Game Modes, Base Building, Non-functional), with the following for each icon:
@@ -169,6 +172,7 @@ As with the Colors tab, a **search bar** and a **category filter** let you navig
 
 **Column alignment**: each category table uses fixed, identical column widths (`table-layout: fixed`), with the "Tag" column sized to the longest tag name in the entire guide (`BULLETPOINT_OFF`, 15 characters) — guaranteeing that no name is ever truncated and that alignment stays perfectly consistent from one category to the next, regardless of the category title's length or its rows' content.
 
+<a id="tab-about"></a>
 ### ℹ️ About Tab
 
 The guide's context and methodological transparency:

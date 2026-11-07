@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 2.4
+> Version : 2.5
 > Dernière modification : 2026-11-07
 -->
 
@@ -41,10 +41,10 @@
 - [Le guide interactif est multilingue](#le-guide-interactif-est-multilingue)
 - [Chiffres clés](#chiffres-clés)
 - [Structure de l'interface](#structure-de-linterface)
-  - [Onglet Infos](#-onglet-infos)
-  - [Onglet Couleurs](#-onglet-couleurs)
-  - [Onglet Icônes](#-onglet-icônes)
-  - [Onglet À propos](#-onglet-à-propos)
+  - [Onglet Infos](#tab-infos)
+  - [Onglet Couleurs](#tab-colors)
+  - [Onglet Icônes](#tab-icons)
+  - [Onglet À propos](#tab-about)
 - [Le simulateur en direct](#le-simulateur-en-direct)
 - [La technique de teinte d'icône](#la-technique-de-teinte-dicône)
 - [Copier-coller en un clic](#copier-coller-en-un-clic)
@@ -119,6 +119,7 @@ Le guide interactif existe en **plusieurs langues dans un seul et même fichier*
 
 Le guide s'organise en **4 onglets**, pensés comme un parcours de lecture logique : on apprend la syntaxe avant de consulter les tables de référence. Un **sélecteur de langue**, en haut à droite, change la langue de l'ensemble du guide interactif.
 
+<a id="tab-infos"></a>
 ### 📘 Onglet Infos
 
 Le point d'entrée du guide. Il regroupe tout ce qu'il faut savoir pour utiliser les balises, sans avoir à fouiller :
@@ -129,6 +130,7 @@ Le point d'entrée du guide. Il regroupe tout ce qu'il faut savoir pour utiliser
 - **Encadré Astuce** sur la limite de caractères des champs de texte en jeu, avec recommandation de privilégier des balises courtes.
 - **Section "Exemples concrets"** : dix intitulés réellement utilisés pour organiser des conteneurs de stockage en jeu, chacun affiché avec son rendu visuel en direct *et* son code brut coloré, avec un bouton de copie à droite de chaque ligne — la meilleure démonstration pratique de tout ce qui précède.
 
+<a id="tab-colors"></a>
 ### 🎨 Onglet Couleurs
 
 Une table de référence complète des 59 balises de couleur, avec :
@@ -144,6 +146,7 @@ Une table de référence complète des 59 balises de couleur, avec :
 
 > **🔧 Détail technique :** contrairement au tri "Couleur", le tri par **luminosité** repose bien sur un calcul automatique — la formule de luminance perceptuelle standard ITU-R BT.601 (`0.299×R + 0.587×G + 0.114×B`), qui pondère plus fortement le vert que le rouge et le bleu, conformément à la sensibilité de l'œil humain à chaque composante de couleur.
 
+<a id="tab-icons"></a>
 ### 🖼️ Onglet Icônes
 
 Une table de référence complète des 145 balises d'icônes, groupées en **12 catégories** (Ressources, Interface, Frégates, Inventaire, Voix/Réseau, Butin, Plateformes/Contrôles, Symboles de portail, Classe (C→S), Modes de jeu, Édition de base, Non fonctionnel), avec pour chaque icône :
@@ -159,6 +162,7 @@ Comme pour l'onglet Couleurs, une **barre de recherche** et un **filtre par cat�
 
 **Alignement des colonnes** : chaque tableau de catégorie utilise des largeurs de colonnes fixes et identiques (`table-layout: fixed`), la colonne "Balise" étant dimensionnée sur le nom de balise le plus long de tout le guide (`BULLETPOINT_OFF`, 15 caractères) — garantissant qu'aucun nom n'est jamais tronqué et que l'alignement reste rigoureusement identique d'une catégorie à l'autre, indépendamment de la longueur du titre de la catégorie ou du contenu de ses lignes.
 
+<a id="tab-about"></a>
 ### ℹ️ Onglet À propos
 
 Le contexte et la transparence méthodologique du guide :
