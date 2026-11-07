@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 3.12
+> Version : 3.13
 > Dernière modification : 2026-11-07
 -->
 
@@ -169,22 +169,24 @@ NMS_TC/
 ├── docs/                   → Additional documentation
 │   ├── _legacy/            → older versions (html's / readme's / prompts)
 │   ├── assets/             → Graphic elements of NMS_TC
-│   │   └── BANK_ICONS/     → Standalone icon assets (64×64 PNGs + archive) and SOURCES.csv
+│   │   └── BANK_ICONS/     → Icon bank (64×64 PNGs, archive, SOURCES.csv)
 │   ├── guides/             → Standalone guides (GitHub Pages, Nexus Mods badge)
 │   ├── img/                → All banner/InGame_screenshot/Guide_screenshot etc.
 │   ├── prompts/            → Prompts: translation, new language, review
-│   ├── scripts/            → Check scripts (keys, behavior, robustness, render, fault injection)
+│   ├── scripts/            → Check scripts for the guide and its translations
 │   ├── pitfalls.md         → Known pitfalls and their solutions
-│   ├── revision.md         → Review procedure (tools, code, docs)
-│   └── RELEASE_NOTES_*.md  → Release notes of the latest version
+│   ├── RELEASE_NOTES_*.md  → Release notes of the latest version
+│   └── revision.md         → Review procedure (tools, code, docs)
 ├── LANG/                   → The multilingual guide + one README per language
 │   ├── EN/                 → Detailed English README
 │   ├── ES/                 → Detailed Spanish README
 │   ├── FR/                 → Detailed French README
 │   └── NMS_txt_code.html   → The guide (single standalone multilingual file)
-├── _config.yml             → GitHub Pages settings (no home page; the guide stays online).
+├── _config.yml             → GitHub Pages settings (no home page)
+├── CHANGELOG.md            → Version history (a short summary of each release)
 ├── LICENSE.md              → License file for this repo.
-└── README.md               → this file
+├── README.md               → this file
+└── ROADMAP.md              → What is planned next
 ```
 
 ---
