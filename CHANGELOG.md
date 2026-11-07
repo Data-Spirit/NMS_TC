@@ -10,7 +10,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 ## [Unreleased]
 
 ### Changed
-- README v3.13: repository tree now lists `CHANGELOG.md` and `ROADMAP.md`, follows the Windows Explorer order (folders first, then files, alphabetically), and uses shorter descriptions so that no line overflows on GitHub.
+- README v3.13 and v3.14: repository tree now lists `CHANGELOG.md` and `ROADMAP.md`, follows the Windows Explorer order (folders first, then files, alphabetically), uses shorter descriptions so that no line overflows on GitHub, and its descriptions start three spaces further right.
 
 ---
 
