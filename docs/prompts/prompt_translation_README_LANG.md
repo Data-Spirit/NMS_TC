@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 5.2
+> Version : 5.3
 > Dernière modification : 2026-11-07
 -->
 
 # Translation Prompt — NMS_TC README
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 5.2, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » ci-dessous (dernière entrée : version 5.3, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au contenu du prompt, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt réutilisable pour traduire le README du projet NMS_TC dans une nouvelle langue.
 Pour une nouvelle traduction : copier ce fichier, changer uniquement le bloc `TARGET`, et donner ce fichier + le `README_FR.md` source à Claude.
@@ -22,6 +22,7 @@ Une ligne par version, de la plus récente à la plus ancienne. À compléter à
 
 | Version | Date | Résumé |
 |---|---|---|
+| 5.3 | 2026-11-07 | Entrées d'historique EN et ES du 2026-11-07 (mise à jour ciblée v2.3 → v2.4 : guide v2.2, accessibilité, CSP, noscript). Aucune règle modifiée. |
 | 5.2 | 2026-11-07 | Entrées d'historique EN et ES du 2026-11-07 (mise à jour ciblée v2.2 → v2.3 : banque d'icônes extraite du jeu, guide v2.1). Aucune règle modifiée. |
 | 5.1 | 2026-10-28 | Ajout de la section « MISE À JOUR INCRÉMENTALE D'UNE TRADUCTION EXISTANTE » (exception encadrée à la règle « jamais compléter une ancienne traduction », avec conditions, procédure et vérifications) ; entrées d'historique ES et EN du 2026-10-27 (mise à jour ciblée pour la fonctionnalité `?lang=`). |
 | 5.0 | 2026-10-25 | Adaptation au guide multilingue en un seul fichier `NMS_txt_code.html` (v2.0) : règle §0 réécrite (plus de suffixe de langue sur le fichier HTML), `companion_html_guide` = bloc `i18n-<lang_code>` du guide (fraîcheur vérifiée par `trans_script_1_check_keys.py --todo`), placeholders pédagogiques repris du bloc de la langue, ancres GitHub corrigées (accents conservés, emojis supprimés, double tiret), repères de fraîcheur du README source mis à jour, ton par défaut du README = `compromise` (valeurs de `tone` définies), vérification que le README source reflète les langues du guide. Ajouts : commentaires d'en-tête (version traduite + « Translation parameters »), règle de l'ancien README de la langue cible (référence de vocabulaire seulement), rapport de livraison standard, vérifications techniques formalisées (structure ligne à ligne, nombres, URLs, emojis, ancres), règle de démarrage alignée sur le prompt HTML v4.2 (langue sans historique, fenêtre de 3 questions), tables et journal mis à jour sur proposition, colonne `md5 du livrable`, entrées d'historique ES et EN du 2026-10-25. Ce journal remplace la ligne de changelog unique. |
@@ -312,3 +313,5 @@ Table à compléter à chaque usage de ce prompt, pour tracer quelle version de 
 | 2026-10-27 | `README_FR.md` v2.2 (310 lignes, md5 `cd377f8f5d862542265d60d9aac220ac`) | `README_EN.md` v2.2 — **mise à jour ciblée** depuis v2.1 (2 puces, 1 phrase, taille ~359 KB) | `489199202b20044096f9149df2e9602c` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-en` du même fichier HTML, fraîcheur confirmée |
 | 2026-11-07 | `README_FR.md` v2.3 (315 lignes, md5 `1c53d801b81b2f0e53f4212f78c79c93`) — v2.2 → v2.3 : banque d'icônes extraite du jeu (guide v2.1) | `README_EN.md` v2.3 — **mise à jour ciblée** depuis v2.2 (section d'extraction réécrite, 1 encadré 🔧 ajouté, 1 ligne de tableau, 6 retouches, ~447 KB) | `ef0ddbf05aafee86e60ecdb7fedba03e` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-en` de `NMS_txt_code.html` v2.1 (md5 `ab8a214b3390424ab7ef6a58eac9ab48`), fraîcheur confirmée |
 | 2026-11-07 | `README_FR.md` v2.3 (315 lignes, md5 `1c53d801b81b2f0e53f4212f78c79c93`) | `README_ES.md` v2.3 — **mise à jour ciblée** depuis v2.2 (mêmes passages, ~447 KB) | `c90e8a7a9841e71ddf8cc81aca9a339f` | Español | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-es` du même fichier HTML, fraîcheur confirmée |
+| 2026-11-07 | `README_FR.md` v2.4 (316 lignes, md5 `fe6cb44cc5ed3efeb744e868556a2a1e`) — v2.3 → v2.4 : guide v2.2 (accessibilité, CSP, noscript) | `README_EN.md` v2.4 — **mise à jour ciblée** depuis v2.3 (8 retouches, 1 puce ajoutée, ~451 KB) | `48424bcc875c4245bda72b31cae48046` | English | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-en` de `NMS_txt_code.html` v2.2 (md5 `18555c101a4a8ea672926d4d0c1b38bb`), fraîcheur confirmée |
+| 2026-11-07 | `README_FR.md` v2.4 (316 lignes, md5 `fe6cb44cc5ed3efeb744e868556a2a1e`) | `README_ES.md` v2.4 — **mise à jour ciblée** depuis v2.3 (mêmes passages) | `0b2364d38795b4506af19f3c8abc7a1c` | Español | neutral/standard | compromise (sober, key imagery kept) | idiomatic | bloc `i18n-es` du même fichier HTML, fraîcheur confirmée |
