@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.1
-> Dernière modification : 2026-11-07
+> Version : 1.2
+> Dernière modification : 2026-11-16
 -->
 
 # Add a Language Prompt — NMS_TC (ajout d'une nouvelle langue, de bout en bout)
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.1, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport aux autres prompts du projet, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.2, 2026-11-16). Si ce journal est absent, ou visiblement ancien par rapport aux autres prompts du projet, traiter ce prompt comme potentiellement obsolète et le signaler à la personne avant de l'utiliser.
 
 Prompt **chef d'orchestre** pour ajouter une langue à NMS_TC : le bloc de langue du guide, son README, et tout ce qui doit suivre dans le dépôt pour que la nouvelle langue soit complète, cohérente et sans oubli.
 
@@ -69,7 +69,7 @@ Les valeurs pré-remplies sont celles des langues existantes (lues dans `_meta.t
 1. **Rien n'est modifié sans feu vert explicite.** Chaque étape se propose, puis attend son propre feu vert ; le feu vert d'une étape n'autorise jamais la suivante.
 2. **Une étape = un périmètre.** L'étape A ne touche que le bloc de la langue cible ; l'étape B, que le `<noscript>` (et l'en-tête du fichier) ; l'étape C, que le nouveau README ; l'étape D, que les documents listés. Tout écart se signale et se valide à part.
 3. **Écrire par script, prouver par comparaison.** Chaque fichier modifié est écrit sur le disque par un petit script (UTF-8 sans BOM, fins de ligne conservées), avec une copie intacte de l'avant ; la comparaison avant/après est citée dans le rapport.
-4. **Jamais de commit, de tag, de push ni de release** : la personne s'en charge. Le rapport final propose les titres et messages de commit (style `type : description`, en anglais).
+4. **Jamais de commit, de tag, de push ni de release** : la personne s'en charge. Le rapport final propose les titres et messages de commit (style `type : description`, en anglais). Forme des commits, tag et release : [github.md](../github.md).
 5. **Les historiques et tableaux d'état des prompts se mettent à jour sur proposition**, avec un feu vert distinct (règle « PROTECTION DES MODIFICATIONS DE CE PROMPT » de chaque prompt).
 6. **Commandes** : `python3` ou, sous Windows, `py -3` (ajouter `-X utf8` pour l'affichage console) ; les scripts 2 à 4 demandent Node.js et `jsdom` installé dans un dossier temporaire (`NODE_PATH` vers son `node_modules`).
 
@@ -146,7 +146,7 @@ grep -n -E "readme_|guide_" README.md
 - Termes notables choisis pour la langue (noms de catégories, libellés, pseudo-noms de balises) : ils feront référence pour les mises à jour.
 - Lignes d'historique **proposées** pour chaque prompt concerné, ce prompt compris.
 - **Propositions de commit** (la personne commite elle-même), par exemple :
-  - `add : <language> translation - guide i18n block (<code>)` ;
+  - `release : HTML guide v<x.y> - <language> added (i18n-<code> block, noscript)` (commit du guide seul ; le tag `v<x.y>` se pose sur lui) ;
   - `add : README_<CODE> v<x.y> - <language> README` ;
   - `update : README / docs - <language> added (language table, sizes)` ;
   - `update : prompts history - <language> added`.
@@ -193,6 +193,7 @@ Si l'ajout se fait en plusieurs conversations, reprendre avec le même message e
 
 | Version | Date | Modification |
 |---|---|---|
+| 1.2 | 2026-11-16 | Règle 4 : renvoi vers `docs/github.md` ; étape F : le commit du guide prend le type `release` (`release : HTML guide v<x.y> - …`), et le tag se pose sur lui. Aucune autre règle modifiée. |
 | 1.1 | 2026-11-07 | Renvois vers le nouveau système de révision (`prompt_revision_NMS_TC.md`, `revision.md`, `pitfalls.md`), qui remplace `prompt_code_review_NMS_TC.md` (archivé). Aucune règle modifiée. |
 | 1.0 | 2026-11-07 | Création. Remplace `prompt_translation_transfert.md` (messages de lancement écrits pour un guide en un fichier par langue, obsolètes depuis le guide multilingue v2.0). |
 
