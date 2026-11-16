@@ -1,16 +1,16 @@
 <!-- Versión del archivo 
-> Versión : 2.7
-> Última modificación : 2026-11-07
+> Versión : 2.8
+> Última modificación : 2026-11-16
 -->
 <!-- Parámetros de traducción
-> source_file: README_FR.md v2.7 (md5 314db18c564b7ca1d21d22f61fef7756)
+> source_file: README_FR.md v2.8 (md5 e9c02b9294b4abf1df4f3e195e6d3c4a)
 > target_language: Español
 > target_variant: neutral/standard
 > lang_code: ES
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.2, bloque i18n-es (md5 18555c101a4a8ea672926d4d0c1b38bb)
-> translated_on: 2026-11-07
+> companion_html_guide: NMS_txt_code.html v2.4, bloque i18n-es (md5 0a5dc9ce7f462177e080852f0db61db8)
+> translated_on: 2026-11-16
 -->
 
 <h1 align="center">NMS // TEXT CODES — Documentación de diseño</h1>
@@ -36,7 +36,7 @@
 
 **Una guía interactiva, autónoma y exhaustiva de los códigos de formato de texto de No Man's Sky** — colores e iconos, completamente documentados, probados y reunidos en un único archivo HTML. Está **disponible en varios idiomas**, gracias a un selector de idioma integrado en el archivo.
 
-`NMS_txt_code.html` · ~451 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
+`NMS_txt_code.html` · ~466 KB · multilingüe · sin dependencias externas críticas · funciona sin conexión
 
 > **¿Qué es qué?**
 > - **La guía interactiva** (`NMS_txt_code.html`) es el producto: un archivo HTML autónomo, **multilingüe**, con un selector de idioma integrado.
@@ -87,7 +87,7 @@ En concreto, esto significa:
 - **Funciona sin conexión.** Todos los datos (colores, iconos, lógica de ordenación, simulador, textos de todos los idiomas) están embebidos directamente en el archivo — consulta la sección [Cómo se extrajeron e integraron los iconos](#cómo-se-extrajeron-e-integraron-los-iconos) para el detalle técnico de la integración de las imágenes.
 - **Una única dependencia externa no crítica**: las fuentes tipográficas (Google Fonts, vía CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sin conexión a internet, el renderizado simplemente recurre a las fuentes del sistema por defecto del navegador; no se pierde ninguna funcionalidad.
 
-Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~451 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
+Esta decisión de diseño (integrarlo todo en lugar de depender de una carpeta de recursos externa) tiene un coste —un archivo más pesado (~466 KB) que una versión con imágenes externas— pero garantiza que un único archivo siempre baste para que todo funcione, lo cual responde directamente al uso previsto: una herramienta que se comparte, se descarga o se mueve sin tener nunca que preocuparse por archivos que falten.
 
 ---
 
@@ -98,7 +98,7 @@ La guía interactiva existe en **varios idiomas dentro de un mismo archivo**: no
 - **Selector de idioma**: arriba a la derecha de la pantalla, un menú muestra cada idioma con su propio nombre, precedido de una bandera (por ejemplo «Français», «English», «Español»). La elección se aplica de inmediato a toda la guía: textos, tablas, mensajes del simulador.
 - **Idioma elegido automáticamente**: un idioma indicado en la dirección (`?lang=es`) tiene prioridad; si no, la guía adopta la elección guardada y, después, el idioma del navegador si está disponible y, si no, el francés. El idioma mostrado se guarda después en el navegador.
 - **Enlace directo a un idioma**: cada vez que cambia el idioma, la dirección de la guía se actualiza (`…/NMS_txt_code.html?lang=es`); basta con copiarla para compartir la guía en el idioma mostrado. Un valor desconocido simplemente se ignora. Este enlace se aplica a la versión en línea.
-- **Idiomas disponibles actualmente**: el **francés** (idioma de origen), el **inglés** y el **español**.
+- **Idiomas disponibles actualmente**: el **francés** (idioma de origen), el **inglés**, el **español** y el **italiano**.
 - **Texto que falta en un idioma**: se muestra entonces la versión francesa en su lugar, nunca un mensaje de error.
 
 > **Distinción importante.** Solo la **guía interactiva** es multilingüe. Este README, en cambio, está escrito en un único idioma; existe una versión por idioma (`README_FR.md`, `README_EN.md`…), cada una traducida por separado.
@@ -120,7 +120,7 @@ La guía interactiva existe en **varios idiomas dentro de un mismo archivo**: no
 | 🖼️ Iconos integrados en base64 en el archivo | **145 / 145** |
 | 🎯 Iconos idénticos píxel a píxel a las texturas del juego | **97 / 129** |
 | 📝 Ejemplos concretos de uso real | **10** |
-| 🌍 Idiomas de la guía interactiva | **3** |
+| 🌍 Idiomas de la guía interactiva | **4** |
 | 🔤 Textos por traducir (claves de traducción) | **116** |
 
 ---
@@ -256,7 +256,7 @@ Desde la versión 2.1, los iconos ya no se recortan de capturas de pantalla: son
 
 > **🔧 Detalle técnico:** la columna «Textura de la etiqueta» de la guía indica el archivo `.DDS` al que apunta la etiqueta en las tablas de configuración del juego. No siempre es el archivo del que procede la imagen del banco, que puede ser una versión más grande del mismo dibujo, guardada en otro lugar. Para cada icono, el archivo `SOURCES.csv` de la carpeta `BANK_ICONS/` da la correspondencia completa: textura de la etiqueta, fuente de la imagen, resolución original y nivel de correspondencia.
 
-Este enfoque explica tanto el peso del archivo (~451 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
+Este enfoque explica tanto el peso del archivo (~466 KB, frente a unas pocas decenas de KB de una versión solo de texto) como su portabilidad total: mover, renombrar o compartir el archivo nunca rompe la visualización de los iconos.
 
 Este bloque de datos (`ICON_DATA`) está deliberadamente aislado al final del script, separado de toda la lógica JavaScript que lo precede (solo los bloques de idioma, simples datos JSON, vienen después) — una organización pensada para que la lectura del código nunca quede saturada por esas 145 larguísimas líneas de texto codificado, y para facilitar que la comunidad añada iconos en el futuro.
 
@@ -307,7 +307,7 @@ La guía se esfuerza por ser honesta sobre lo que está confirmado y lo que no:
 - **Navegadores modernos**: Chrome, Firefox, Edge, Safari — se apoya en CSS Grid, `mask-image` y la API Clipboard, disponibles en todas las versiones recientes.
 - **Accesibilidad básica**: las dos barras de búsqueda y el filtro de categoría se anuncian correctamente a los lectores de pantalla (`aria-label`), el campo del simulador está asociado a un verdadero `<label>` en lugar de a un simple texto flotante, y el botón de copia y la cruz de borrado del simulador llevan también un `aria-label`. El **selector de idioma** es un menú nativo etiquetado para los lectores de pantalla, y el atributo `lang` de la página sigue el idioma elegido. Las **pestañas** siguen el modelo de accesibilidad estándar (ARIA *tabs*): se anuncia la pestaña activa y se pasa de una a otra con el teclado mediante las flechas, Inicio y Fin. Cada botón de copia de las tablas lleva también un `aria-label`, y los campos donde se escriben etiquetas desactivan la corrección ortográfica.
 - **No se envía ningún dato a ningún sitio**: todo se ejecuta localmente en el navegador, sin necesidad de conexión de red tras la primera carga de las fuentes tipográficas. Solo la **elección de idioma** se guarda, localmente, en el navegador; nunca se envía. Una **política de seguridad de contenido** (CSP) integrada en el archivo lo impone al navegador: la página solo puede cargar las fuentes tipográficas y no puede contactar con ningún otro servidor.
-- **Sin JavaScript**: un breve mensaje, en francés, inglés y español, indica que la guía lo necesita, en lugar de mostrar una página vacía.
+- **Sin JavaScript**: un breve mensaje, en francés, inglés, español e italiano, indica que la guía lo necesita, en lugar de mostrar una página vacía.
 
 ---
 
