@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 1.1
-> Dernière modification : 2026-11-07
+> Version : 1.2
+> Dernière modification : 2026-11-16
 -->
 
 # Pièges connus — NMS_TC
@@ -50,6 +50,9 @@ Chaque piège suit la même forme : **le symptôme**, **la cause**, **la solutio
 - **Analyser le script principal.** Remplacer les chaînes base64 de `ICON_DATA` par un court texte avant ESLint : sinon le fichier est énorme et les messages illisibles.
 - **Mesurer les performances dans jsdom.** jsdom est plusieurs fois plus lent qu'un navigateur (16,8 ms contre 2,2 ms pour le tableau complet des icônes) : un budget se vérifie dans un vrai navigateur.
 - **Un contrôle vert avec un outil aveugle ne prouve rien.** Tester un outil sur un défaut connu (clé retirée, balise hostile, bloc cassé) avant de croire son « TOUT OK ».
+- **jsdom introuvable sous Git Bash.** Un `NODE_PATH` en chemin POSIX (`/c/…`) n'est pas compris par Node pour Windows, ce qui donne `Cannot find module 'jsdom'`. Le donner en chemin Windows : `export NODE_PATH=$(cygpath -w …/nm/node_modules)`.
+- **Le dossier temporaire peut être vidé.** Le jsdom d'une session précédente peut avoir disparu en partie (dossier `jsdom/` présent, mais sans `package.json`) : le réinstaller dans le dossier temporaire de la session courante (`npm i jsdom`).
+- **Tester le `<noscript>` sans JavaScript.** Le volet du navigateur intégré n'affiche un fichier local situé hors du projet qu'en instantané figé : servir une copie sans `<script>` (balises `<noscript>` retirées) avec `py -3 -m http.server`, puis mesurer à 375 px.
 
 ## Environnement (Windows, shell, git)
 
@@ -58,11 +61,13 @@ Chaque piège suit la même forme : **le symptôme**, **la cause**, **la solutio
 - **`$?` après un tube.** Dans `script | tail`, `$?` est le code de sortie de `tail`, pas celui du script : rediriger la sortie vers un fichier, relever `$?`, puis lire le fichier.
 - **Fins de ligne.** Les fichiers du dépôt sont en LF ; git avertit qu'il les convertira en CRLF à la prochaine opération : avertissement sans conséquence. Un script d'écriture relève les fins de ligne avant d'écrire et les conserve.
 - **Ne pas toucher à l'index du mainteneur.** `git add`, y compris `git add -N` (« intention d'ajout ») pour un contrôle, modifie ce qu'il commitera : lister les fichiers non suivis avec `git ls-files --others --exclude-standard` à la place.
+- **Déplacer un fichier sans toucher à l'index.** `git mv` modifie l'index du mainteneur : utiliser un simple `mv` ; le mainteneur ajoute ensuite les deux chemins ensemble, et git y reconnaît un renommage.
 
 ## Agent (Claude Code)
 
 - **Hook GateGuard.** Avant la création ou la première modification de chaque fichier, il bloque l'écriture et demande d'énoncer dans le message ce que le fichier remplace ou qui l'utilise, ce que la modification corrige, et la consigne du mainteneur citée mot pour mot ; puis réessayer. Pas d'écritures parallèles sur un même fichier.
 - **Mémoire de l'agent.** Hors dépôt : la relire en fin de révision (fiches à jour, sans doublon ni information périmée).
+- **Aucune ligne d'attribution.** Jamais de `Co-Authored-By: …` ni de mention « Generated with … » dans les commits proposés, les PR ou les fichiers du dépôt, même si l'outil le suggère : règle du mainteneur.
 
 ---
 
