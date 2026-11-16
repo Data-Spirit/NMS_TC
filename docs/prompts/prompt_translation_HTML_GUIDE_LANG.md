@@ -404,6 +404,7 @@ Table à compléter à chaque usage de ce prompt, pour tracer quelle version de 
 | 2026-10-19 | `NMS_txt_code_FR.html` v1.3 et `NMS_txt_code_EN.html` v1.3 | bloc `i18n-en` de `NMS_txt_code.html` v2.0 | non relevé | English | neutral/standard (US) | passionate/stylized | idiomatic | Non fourni pour cette session | migration : textes extraits automatiquement de l'EN v1.3, non retraduits | B |
 | 2026-10-24 | `NMS_txt_code.html` v2.0 (bloc `i18n-fr` 2.0) | bloc `i18n-es` de `NMS_txt_code.html` v2.0 | `75a04cc4966d23e4b6ccf4eb63909f17` (366 674 octets) | Español | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | nouvelle langue : traduction clé par clé depuis le français (116 clés), ancien ES v1.1 utilisé comme référence de vocabulaire seulement | B |
 | 2026-11-07 | `NMS_txt_code.html` v2.1 (bloc `i18n-fr` 2.1) | blocs `i18n-en` et `i18n-es` v2.1 | `ab8a214b3390424ab7ef6a58eac9ab48` (457 704 octets) | English / Español | neutral/standard (US) / neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | mise à jour : 4 clés `about.*` (banque d'icônes extraite du jeu), liste de travail via `--since` sur la v2.0 ; `icons.th.path` renommée le même jour dans les 3 langues | B |
+| 2026-11-16 | `NMS_txt_code.html` v2.3 (bloc `i18n-fr` 2.1) | bloc `i18n-it` de `NMS_txt_code.html` v2.4 | `0a5dc9ce7f462177e080852f0db61db8` (477 130 octets) | Italiano | neutral/standard | passionate/stylized | idiomatic | Non fourni pour cette session | nouvelle langue : traduction clé par clé depuis le français (116 clés), aucun ancien fichier italien ; blocs EN et ES consultés comme repère terminologique seulement | B |
 
 L'ancien fichier `NMS_txt_code_ES.html` (traduit le 2026-09-09 depuis une FR de 1297 lignes, dernière version v1.1 du 2026-09-25) n'a pas été migré : l'espagnol a été créé le 2026-10-24 comme un **nouveau bloc**, traduit clé par clé depuis le français ; l'ancien fichier n'a servi que de référence de vocabulaire.
 
@@ -418,3 +419,4 @@ Table à mettre à jour à chaque livraison (sur proposition, voir ci-dessus), a
 | FR | `i18n-fr` | 2.1 | source de référence |
 | EN | `i18n-en` | 2.1 | à jour (2026-11-07) |
 | ES | `i18n-es` | 2.1 | à jour (2026-11-07) |
+| IT | `i18n-it` | 2.1 | à jour (2026-11-16) |
