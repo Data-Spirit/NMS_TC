@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 3.14
-> Dernière modification : 2026-11-07
+> Version : 3.15
+> Dernière modification : 2026-11-16
 -->
 
 <!-- BANNIERE CENTRE + TITRE CENTRE -->
@@ -85,8 +85,8 @@
 | 🇬🇧 | **English** | 📝 [README_EN][readme_en] | 🌐 [Guide : EN ↗️][guide_en] |
 | 🇫🇷 | **Français** | 📝 [README_FR][readme_fr] | 🌐 [Guide : FR ↗️][guide_fr] |
 | 🇪🇸 | **Español** | 📝 [README_ES][readme_es] | 🌐 [Guide : ES ↗️][guide_es] |
+| 🇮🇹 | **Italiano** | 📝 [README_IT][readme_it] | 🌐 [Guide : IT ↗️][guide_it] |
 | 🇩🇪 | **Deutsch** | 🔜 Planned | 🔜 Planned |
-| 🇮🇹 | **Italiano** | 🔜 Planned | 🔜 Planned |
 
 </div>
 
@@ -181,6 +181,7 @@ NMS_TC/
 │   ├── EN/                    → Detailed English README
 │   ├── ES/                    → Detailed Spanish README
 │   ├── FR/                    → Detailed French README
+│   ├── IT/                    → Detailed Italian README
 │   └── NMS_txt_code.html      → The guide (single standalone multilingual file)
 ├── _config.yml                → GitHub Pages settings (no home page)
 ├── CHANGELOG.md               → Version history (a short summary of each release)
@@ -230,12 +231,14 @@ NMS_TC/
 [readme_en]: ./LANG/EN/README_EN.md
 [readme_fr]: ./LANG/FR/README_FR.md
 [readme_es]: ./LANG/ES/README_ES.md
+[readme_it]: ./LANG/IT/README_IT.md
 
 <!-- Guide en ligne (GitHub Pages) : lien général + un lien direct par langue (?lang=xx) -->
 [guide_mltlg]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html
 [guide_en]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html?lang=en
 [guide_fr]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html?lang=fr
 [guide_es]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html?lang=es
+[guide_it]: https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html?lang=it
 
 <!-- Mémo : icône SVG de téléchargement, non utilisée en référence dans le tableau -->
 <!-- (une image en référence casse dans une cellule de tableau GitHub) ; le tableau utilise -->
