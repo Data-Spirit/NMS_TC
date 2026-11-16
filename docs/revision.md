@@ -161,6 +161,7 @@ Une ligne par révision effectuée, proposée dans le compte rendu et ajoutée a
 
 | Date | Mode | Fichiers révisés (version, md5) | Livré (version, md5) | Résumé |
 |---|---|---|---|---|
+| 2026-11-16 | Ajout de langue (prompt d'ajout de langue, hors révision) | `NMS_txt_code.html` v2.3 (`b38724a6…`, 462 400 octets) | v2.4, `0a5dc9ce…` (477 130 octets) | Bloc `i18n-it` ajouté ; seule modification du code : phrase italienne du `<noscript>` et en-tête v2.4. Scripts 1 à 5 verts ; script 4 identique une fois le `<noscript>` neutralisé. |
 | 2026-11-07 | Complète (première avec ce prompt) | scripts 1.0 ; `NMS_txt_code.html` v2.2 (`18555c10…`, 462 234 octets) ; documentation | scripts 1.1 ; v2.3, `b38724a633078bbd6ffe4188ea32131f` (462 400 octets) ; docs mises à jour | Outils : 4 défauts majeurs prouvés par injection de défauts (bloc en double et bloc mal formé ignorés par le n° 1, langue inexistante acceptée par le n° 4, `?lang=` jamais testé) et 4 mineurs, tous corrigés et revérifiés. Code : aucun bug ; accessibilité (icônes décoratives masquées, panneaux d'onglets atteignables au clavier) ; performances dans les budgets. Doc : arborescence du README, tableau des outils, pièges, poids d'une langue. |
 | 2026-11-07 | Code (avec l'ancien prompt) | `NMS_txt_code.html` v2.1 (`ab8a214b…`, 457 704 octets) | v2.2, `18555c10…` (462 234 octets) | 12 bugs ou défauts corrigés (dont 3 d'affichage mobile, 1 de robustesse de la langue mémorisée, 1 de polices), CSP, `<noscript>`, motif ARIA des onglets, nettoyage et commentaires harmonisés en français. |
 
