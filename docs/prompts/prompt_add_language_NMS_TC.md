@@ -202,3 +202,4 @@ Une ligne par langue ajoutée avec ce prompt, proposée dans le rapport final et
 
 | Date | Langue (`code`) | Guide (version, md5) | README (version, md5) | Étapes réalisées | Remarques |
 |---|---|---|---|---|---|
+| 2026-11-16 | Italiano (`it`) | v2.4, `0a5dc9ce7f462177e080852f0db61db8` (477 130 octets) | `README_IT.md` v2.8, `793bf3222bcec20ec3a8fb8500b6d27e` | 0, A à F | Guide en passionate/stylized, README en compromise ; onglet « À propos » traduit « Note » ; termes de jeu à vérifier en jeu (Simboli del portale, multiutensili, Compagni, Costruzione base) ; `<noscript>` sur 6 lignes à 375 px, mise en forme à revoir vers 5 ou 6 langues ; relecture par un locuteur natif à faire. |
