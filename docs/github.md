@@ -20,7 +20,7 @@ Il s'adresse au mainteneur, à toute personne qui contribue, et à tout agent (C
 
 ## 2. Messages de commit
 
-**Forme** : un titre `type : description`, en anglais, puis un corps facultatif en anglais (puces ou phrases courtes).
+**Forme** : un titre `type : description`, en anglais, puis un corps facultatif en anglais, sous forme de liste.
 
 ```
 update : README_FR v2.8 - Italian added (4 languages, ~466 KB)
@@ -41,6 +41,16 @@ update : README_FR v2.8 - Italian added (4 languages, ~466 KB)
   Les anciens types (`test`, `sup`, `chgt`, `upgrade`…) appartiennent aux premières versions et ne s'emploient plus. Les commits déjà publiés ne se réécrivent pas : avant la v2.5, les commits du guide portent `add` ou `fix`.
 - **Description** : le fichier ou le sujet, sa nouvelle version s'il en a une, puis l'essentiel après un tiret (`README_EN v2.8 - Italian added (…)`).
 - **Corps** : ce qui a changé et comment cela a été vérifié (scripts lancés, md5 du livrable) ; ne pas répéter le titre.
+- **Corps en liste classique** : une puce `- ` par changement ou par vérification, une idée par puce, avec des sous-puces indentées si un point se détaille. Ne pas enchaîner plusieurs éléments dans une même phrase séparés par des `/` ou des points-virgules : une liste se lit d'un coup d'œil, une énumération en ligne non.
+
+  ```
+  update : README_FR v2.8 - Italian added (4 languages, ~466 KB)
+
+  - Available languages: French, English, Spanish and Italian.
+  - Key figures: 4 languages in the interactive guide.
+  - File size: ~451 KB → ~466 KB (3 mentions).
+  - No heading changed: table of contents anchors unchanged.
+  ```
 - **Aucune ligne d'attribution.** Jamais de `Co-Authored-By: …`, de « Generated with … » ni d'autre mention d'un outil ou d'une IA, ni dans les commits, ni dans le texte d'une release, ni dans aucun fichier du dépôt — même si un outil le propose automatiquement. Règle permanente du mainteneur.
 
 ## 3. Versions et tags
