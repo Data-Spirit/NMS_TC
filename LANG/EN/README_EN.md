@@ -1,16 +1,16 @@
 <!-- File version 
-> Version: 2.7
-> Last modified: 2026-11-07
+> Version: 2.8
+> Last modified: 2026-11-16
 -->
 <!-- Translation parameters
-> source_file: README_FR.md v2.7 (md5 314db18c564b7ca1d21d22f61fef7756)
+> source_file: README_FR.md v2.8 (md5 e9c02b9294b4abf1df4f3e195e6d3c4a)
 > target_language: English
 > target_variant: neutral/standard
 > lang_code: EN
 > tone: compromise (sober, key imagery kept)
 > fidelity_style: idiomatic
-> companion_html_guide: NMS_txt_code.html v2.2, i18n-en block (md5 18555c101a4a8ea672926d4d0c1b38bb)
-> translated_on: 2026-11-07
+> companion_html_guide: NMS_txt_code.html v2.4, i18n-en block (md5 0a5dc9ce7f462177e080852f0db61db8)
+> translated_on: 2026-11-16
 -->
 
 <h1 align="center">NMS // TEXT CODES — Design Documentation</h1>
@@ -36,7 +36,7 @@
 
 **An interactive, self-contained, exhaustive guide to No Man's Sky's text formatting codes** — colors and icons, fully documented, tested, and packed into a single HTML file. It is **available in several languages**, thanks to a language selector built into the file.
 
-`NMS_txt_code.html` · ~451 KB · multilingual · no critical external dependencies · works offline
+`NMS_txt_code.html` · ~466 KB · multilingual · no critical external dependencies · works offline
 
 > **Who's who?**
 > - **The interactive guide** (`NMS_txt_code.html`) is the product: a self-contained, **multilingual** HTML file with a built-in language selector.
@@ -87,7 +87,7 @@ In practice, that means:
 - **Works offline.** All the data (colors, icons, sorting logic, simulator, texts in every language) is embedded directly in the file — see [How the icons were extracted and embedded](#how-the-icons-were-extracted-and-embedded) for the technical details of how the images are packed in.
 - **One non-critical external dependency**: fonts (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Without an internet connection, rendering simply falls back to the browser's default system fonts — no functionality is lost.
 
-This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~451 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
+This design choice (embedding everything rather than relying on an external assets folder) comes at a cost — a heavier file (~466 KB) than a version with external images — but it guarantees that a single file is always enough to make everything work, which matches the intended use case exactly: a tool you share, download, or move around without ever having to worry about missing files.
 
 ---
 
@@ -98,7 +98,7 @@ The interactive guide exists in **several languages within a single file**: ther
 - **Language selector**: at the top right of the screen, a menu lists each language under its own name, preceded by a flag (for example "Français", "English", "Español"). The choice applies immediately to the whole guide: texts, tables, simulator messages.
 - **Automatically chosen language**: a language requested in the address (`?lang=es`) takes priority; otherwise the guide uses the saved choice, then the browser's language if it is available, otherwise French. The displayed language is then remembered in the browser.
 - **Direct link to a language**: each time the language changes, the guide's address is updated (`…/NMS_txt_code.html?lang=en`); just copy it to share the guide in the displayed language. An unknown value is simply ignored. This link applies to the online version.
-- **Currently available languages**: **French** (the source language), **English**, and **Spanish**.
+- **Currently available languages**: **French** (the source language), **English**, **Spanish**, and **Italian**.
 - **Missing text in a language**: the French version is shown in its place, never an error message.
 
 > **Important distinction.** Only the **interactive guide** is multilingual. This README is written in a single language; there is one version per language (`README_FR.md`, `README_EN.md`…), each translated separately.
@@ -120,7 +120,7 @@ The interactive guide exists in **several languages within a single file**: ther
 | 🖼️ Icons embedded as base64 in the file | **145 / 145** |
 | 🎯 Icons pixel-identical to the game textures | **97 / 129** |
 | 📝 Real-world usage examples | **10** |
-| 🌍 Languages in the interactive guide | **3** |
+| 🌍 Languages in the interactive guide | **4** |
 | 🔤 Texts to translate (translation keys) | **116** |
 
 ---
@@ -256,7 +256,7 @@ Since version 2.1, the icons are no longer cut out of screenshots: they are the 
 
 > **🔧 Technical detail:** the guide's "Tag texture" column shows the `.DDS` file the tag points to in the game's configuration tables. It isn't always the file the bank image comes from, which may be a larger version of the same artwork, stored elsewhere. For each icon, the `SOURCES.csv` file in the `BANK_ICONS/` folder gives the full mapping: tag texture, image source, original resolution and match level.
 
-This approach accounts for both the file's size (~451 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
+This approach accounts for both the file's size (~466 KB, versus a few dozen KB for a text-only version) and its total portability: moving, renaming, or sharing the file never breaks icon rendering.
 
 This data block (`ICON_DATA`) is deliberately isolated at the very end of the script, separate from all the JavaScript logic that precedes it (only the language blocks, simple JSON data, come after) — an organization designed so that reading the code is never drowned out by these 145 very long lines of encoded text, and to make it easier for the community to add icons in the future.
 
@@ -307,7 +307,7 @@ The guide aims to be upfront about what's confirmed and what isn't:
 - **Modern browsers**: Chrome, Firefox, Edge, Safari — relies on CSS Grid, `mask-image`, and the Clipboard API, all available in every recent version.
 - **Basic accessibility**: both search bars and the category filter are properly announced to screen readers (`aria-label`), the simulator field is tied to a real `<label>` rather than plain floating text, and the simulator's copy button and clear button carry an `aria-label` too. The **language selector** is a native menu labeled for screen readers, and the page's `lang` attribute follows the chosen language. The **tabs** follow the standard accessibility pattern (ARIA *tabs*): the active tab is announced, and you can move from one to the next with the arrow keys, Home and End. Every copy button in the tables also carries an `aria-label`, and the fields where you type tags turn off spell-checking.
 - **No data sent anywhere**: everything runs locally in the browser; no network connection is required after the initial font load. Only the **language choice** is remembered, locally, in the browser; it is never sent. A **Content Security Policy** (CSP) built into the file enforces this in the browser: the page can only load the fonts and cannot contact any other server.
-- **Without JavaScript**: a short message, in French, English and Spanish, explains that the guide needs it, rather than showing a blank page.
+- **Without JavaScript**: a short message, in French, English, Spanish and Italian, explains that the guide needs it, rather than showing a blank page.
 
 ---
 
