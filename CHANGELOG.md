@@ -9,6 +9,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 
 ## [Unreleased]
 
+### Added
+- `docs/github.md`: how the repository is maintained on GitHub (who does what, commit messages with the new `release` type for the guide's version commits, versions and tags, releases, CHANGELOG and ROADMAP, deliberate choices, files, checks after publishing).
+
+### Changed
+- References to `docs/github.md`: pitfalls v1.3 (git pitfalls moved there), review procedure v1.3, master review prompt v1.2, add language prompt v1.2 (guide commit typed `release`), README v3.16 (repository tree).
+
 ---
 
 ## [2.4] — 2026-11-16 · *Now in Italian*
