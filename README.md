@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 3.15
+> Version : 3.16
 > Dernière modification : 2026-11-16
 -->
 
@@ -174,6 +174,7 @@ NMS_TC/
 │   ├── img/                   → All banner/InGame_screenshot/Guide_screenshot etc.
 │   ├── prompts/               → Prompts: translation, new language, review
 │   ├── scripts/               → Check scripts for the guide and its translations
+│   ├── github.md              → Repo rules (commits, tags, releases, Pages)
 │   ├── pitfalls.md            → Known pitfalls and their solutions
 │   ├── RELEASE_NOTES_*.md     → Release notes of the latest version
 │   └── revision.md            → Review procedure (tools, code, docs)
