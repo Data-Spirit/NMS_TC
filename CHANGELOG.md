@@ -9,15 +9,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/): **A
 
 ## [Unreleased]
 
+---
+
+## [2.4] — 2026-11-16 · *Now in Italian*
+
+Italian added to the guide and the documentation. Same tags, icons and data as 2.3. ≈ 451 KB → ≈ 466 KB.
+[Release notes](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/RELEASE_NOTES_v2.4.md)
+
+### Added
+- Italian in the guide (`?lang=it`): `i18n-it` language block (116 keys, translated from French), and an Italian sentence in the message shown without JavaScript.
+- `LANG/IT/README_IT.md`: Italian README (v2.8).
+
 ### Changed
-- README v3.13 and v3.14: repository tree now lists `CHANGELOG.md` and `ROADMAP.md`, follows the Windows Explorer order (folders first, then files, alphabetically), uses shorter descriptions so that no line overflows on GitHub, and its descriptions start three spaces further right.
+- READMEs FR, EN and ES v2.8: four languages, file size ~466 KB.
+- README v3.13 to v3.15: repository tree (CHANGELOG, ROADMAP, Windows Explorer order, shorter lines, descriptions three spaces further right, `LANG/IT/`), Italian now available in the language table.
+- ROADMAP: German is the next planned language.
 
 ---
 
 ## [2.3] — 2026-11-07 · *Reviewed from top to bottom*
 
 First full review of the project (tools, code and docs) with the new review procedure. Same content, data and translations as 2.2. ≈ 451 KB.
-[Release notes](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/RELEASE_NOTES_v2.3.md)
+[Release notes](https://github.com/Data-Spirit/NMS_TC/blob/main/docs/_legacy/RELEASE_NOTES_v2.3.md)
 
 ### Added
 - `docs/scripts/trans_script_5_test_mutations.py`: checks the check scripts themselves, by injecting 13 known faults into copies of the guide.
@@ -133,7 +146,8 @@ Separate file per language: French guide 1.1 on 2026-09-07, English 1.1 on 2026-
 
 ---
 
-[Unreleased]: https://github.com/Data-Spirit/NMS_TC/compare/v2.3...HEAD
+[Unreleased]: https://github.com/Data-Spirit/NMS_TC/compare/v2.4...HEAD
+[2.4]: https://github.com/Data-Spirit/NMS_TC/compare/v2.3...v2.4
 [2.3]: https://github.com/Data-Spirit/NMS_TC/compare/v2.2...v2.3
 [2.2]: https://github.com/Data-Spirit/NMS_TC/compare/v2.1...v2.2
 [2.1]: https://github.com/Data-Spirit/NMS_TC/compare/v2.0...v2.1
