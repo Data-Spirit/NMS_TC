@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 2.3
-> Dernière modification : 2026-11-07
+> Version : 2.4
+> Dernière modification : 2026-11-16
 -->
 
 <!DOCTYPE html>
@@ -415,7 +415,7 @@
 </head>
 <body>
 
-<noscript><p class="noscript" lang="mul">Ce guide nécessite JavaScript pour s'afficher. · This guide needs JavaScript to display. · Esta guía necesita JavaScript para mostrarse.</p></noscript>
+<noscript><p class="noscript" lang="mul">Ce guide nécessite JavaScript pour s'afficher. · This guide needs JavaScript to display. · Esta guía necesita JavaScript para mostrarse. · Questa guida richiede JavaScript per essere visualizzata.</p></noscript>
 
 <header class="hero">
   <div class="lang-switch"><select id="lang-select" class="lang-select" data-i18n-attr="aria-label:lang.label"></select></div>
@@ -2195,6 +2195,208 @@ else initPage();
   "cat.titles": "Títulos",
   "cat.missions": "Misiones",
   "cat.class_c_s.desc": "Nota de calidad genérica del juego (C = la más baja, S = la más alta) — se aplica a naves, multiherramientas, fragatas, armas y tecnologías, no solo a las naves."
+}
+</script>
+
+<!-- ============================================================================
+     LANGUE : ITALIANO
+     ============================================================================ -->
+<script type="application/json" id="i18n-it">
+{
+  "_meta": {
+    "native_name": "Italiano",
+    "flag": "🇮🇹",
+    "lang_code": "it",
+    "role": "traduction",
+    "translation_version": "2.1",
+    "updated": "2026-11-16",
+    "source_version": "fr 2.1",
+    "target": {
+      "variant": "neutral/standard",
+      "tone": "passionate/stylized",
+      "fidelity_style": "idiomatic",
+      "aria_label_style": "B (libellé autonome)",
+      "origin": "traduit depuis le français (bloc i18n-fr) ; aucun ancien fichier italien ; blocs i18n-en et i18n-es consultés comme repère terminologique seulement"
+    }
+  },
+
+  "page.title": "NMS // TEXT CODES — Guida ai tag di No Man's Sky",
+
+  "lang.label": "Lingua",
+
+  "hero.eyebrow": "Guida di Spirit: Formattazione dei codici di testo di No Man's Sky",
+  "hero.h1": "NMS <span>//</span> TEXT CODES",
+  "hero.lede": "Tutti i tag di colore e di icona utilizzabili nei campi di testo di No Man's Sky (nomi di basi, astronavi, casse, salvataggi…), raccolti dalle tabelle di configurazione del gioco e verificati dalla community.",
+  "hero.label": "Simulatore — scrivi del testo con i tag",
+  "hero.sim_input.placeholder": "Incolla o scrivi qui il tuo codice per vedere l'anteprima…",
+  "hero.sim_clear.aria": "Cancella il campo del simulatore",
+  "hero.sim_clear.title": "Cancella",
+  "hero.copy.aria": "Copia il codice del simulatore",
+  "hero.copy.title": "Copia il codice del simulatore",
+  "hero.hint.div.01": "Sintassi colore: <code><span class='syn-bracket'>&lt;</span><span class='syn-tag'>NOME_COLORE</span><span class='syn-bracket'>&gt;</span><span class='syn-text'>Testo</span><span class='syn-bracket'>&lt;/&gt;</span></code>",
+  "hero.hint.div.02": "Sintassi icona: <code><span class='syn-bracket'>&lt;IMG&gt;</span><span class='syn-tag'>NOME_ICONA</span><span class='syn-bracket'>&lt;&gt;</span></code>",
+
+  "nav.tab.infos": "Info",
+  "nav.tab.colors": "Colori",
+  "nav.tab.icons": "Icone",
+  "nav.tab.notes": "Note",
+
+  "infos.h2": "Come usare i tag",
+  "infos.h3.01": "Sintassi",
+  "infos.li.01": "<strong>Colore:</strong> <code><span class='syn-bracket'>&lt;</span><span class='syn-tag'>NOME_COLORE</span><span class='syn-bracket'>&gt;</span><span class='syn-text'>Testo</span><span class='syn-bracket'>&lt;/&gt;</span></code> — si apre con il nome del tag, si chiude con <code>&lt;/&gt;</code>.",
+  "infos.li.02": "<strong>Icona:</strong> <code><span class='syn-bracket'>&lt;IMG&gt;</span><span class='syn-tag'>NOME_ICONA</span><span class='syn-bracket'>&lt;&gt;</span></code> — si apre con <code>&lt;IMG&gt;</code>, si chiude con <code>&lt;&gt;</code> (non con <code>&lt;/&gt;</code>).",
+  "infos.li.03": "I due si combinano liberamente nello stesso campo, purché si resti entro il limite di caratteri del campo in questione.",
+  "infos.li.04": "Funziona in qualsiasi campo di testo modificabile del gioco (nomi di basi, astronavi, casse, salvataggi…), su tutte le piattaforme su cui il gioco è disponibile (PC, PlayStation, Xbox e Nintendo Switch).",
+  "infos.highlight": [
+    "Rispetta esattamente maiuscole e ortografia (maiuscole, underscore): basta un errore di battitura e il codice non funzionerà.<br>",
+    "In caso di errore, il tag apparirà così com'è, come testo semplice."
+  ],
+  "infos.protip.strong": "Consiglio:",
+  "infos.strong": "I campi di testo del gioco hanno un limite di caratteri, e i tag contano nel totale.",
+  "infos.protip.li": [
+    "<strong>Per non esaurire troppo in fretta questo limite di caratteri, preferisci i tag corti.</strong><br>",
+    "(Soprattutto se combini più tag nello stesso nome.)"
+  ],
+  "infos.sub.li.01": "Esempio: (<code>RED</code>, <code>PET1</code>, <code>PET2</code>, <code>SCLASS</code>…) anziché nomi chilometrici (<code>MISSIONSECOND</code>, <code>GAL_TITLE_VISIT</code>…)",
+  "infos.h3.02": "Tecnica avanzata: tingere un'icona con un tag di colore",
+  "infos.li.05": "Un tag di colore posto subito prima di un'icona (cioè subito prima di un tag <code><span class='syn-bracket'>&lt;IMG&gt;</span></code>), attaccato senza spazi, applica il suo colore all'icona — un po' come un filtro semitrasparente appoggiato sopra.",
+  "infos.sub.li.02": "Sulle icone bianche/monocromatiche funziona sempre.",
+  "infos.sub.li.03": "Sulle icone che hanno già un proprio colore, la tinta tende piuttosto a <strong>sostituire</strong> il colore originale anziché mescolarsi con esso.",
+  "infos.li.06": "Ogni tag deve comunque essere chiuso — <code><span class='syn-bracket'>&lt;IMG&gt;</span><span class='syn-tag'>NOME_ICONA</span><span class='syn-bracket'>&lt;&gt;</span></code> si chiude sempre con il proprio <code><span class='syn-bracket'>&lt;&gt;</span></code>, e il colore si chiude sempre con il proprio <code><span class='syn-bracket'>&lt;/&gt;</span></code>.",
+  "infos.important.div": "<strong>Importante:</strong> l'unica libertà è dove mettere il tag di chiusura <code><span class='syn-bracket'>&lt;/&gt;</span></code> del colore:",
+  "infos.important.li.01": "subito dopo l'icona (solo lei viene tinta),",
+  "infos.important.li.02": "oppure dopo un pezzo di testo che la segue (l'icona E il testo prendono allora il colore).",
+  "infos.tint_label.01": "Solo l'icona tinta",
+  "infos.tint_label.02": "Icona + testo tinti",
+  "infos.warning.div": [
+    "<strong>Non garantito al 100%:</strong> questo comportamento è stato osservato in gioco dai giocatori, ma non è documentato ufficialmente da nessuna parte.<br>",
+    "Alcune icone già colorate sembrano resistere alla tinta (l'icona PlayStation ne è un esempio noto), senza che esista un elenco completo di tutte le eccezioni.<br>",
+    "Non esitare a fare una prova in gioco per essere sicuro del risultato.<br><br>",
+    "<strong>Nota su questo simulatore:</strong> per maggiore leggibilità, non applica di proposito la tinta alle icone già fortemente colorate (badge di classe, icone delle risorse, ecc.) e le mostra con il loro colore originale.<br>",
+    "In gioco la tinta può applicarsi davvero e dare un risultato diverso da quello mostrato qui in anteprima."
+  ],
+  "infos.h3.03": "Esempi concreti",
+  "infos.p": "Dieci nomi realmente usati in gioco per rinominare i contenitori di stoccaggio, così da avere categorie visive più chiare di «Contenitore 1, 2, 3…» — un buon assaggio di ciò che dà la combinazione colore + icona tinta + testo.",
+
+  "colors.info.div": [
+    "Ordinati come uno spettro luminoso (dal rosso, passando per l'arancione, il giallo, il verde, il ciano, il blu, il viola), poi i toni neutri (nero / grigio / bianco) alla fine.<br>",
+    "Clicca su un'intestazione qui sotto per cambiare l'ordinamento."
+  ],
+  "colors.color_search.placeholder": "Cerca un tag di colore (es: RED, VISOR, PET2)…",
+  "colors.color_search.aria": "Campo di ricerca dei tag di colore",
+  "colors.sort.name": "Tag",
+  "colors.sort.spectrum": "Colore",
+  "colors.sort.hex_alpha": "Hex A→Z",
+  "colors.sort.hex_lum": "Hex ☀ Lum",
+  "colors.col.01": "Alfa",
+  "colors.col.02": "Categoria",
+
+  "icons.icon_search.placeholder": "Cerca un tag icona (es: FUEL, SCLASS, HOT_1)…",
+  "icons.icon_search.aria": "Campo di ricerca dei tag icona",
+  "icons.icon_cat_filter.aria": "Filtro per categoria di icone",
+
+  "about.h2": "Informazioni su questa guida",
+  "about.p.01": [
+    "Questo sistema di tag <strong>non è documentato ufficialmente da nessuna parte</strong> da Hello Games. ",
+    "I dati qui sopra provengono da tabelle di configurazione interne del gioco (fogli che elencano ogni tag, la sua destinazione in memoria RGBA e, per le icone, il percorso del file texture <code>.DDS</code>) che circolano e sono mantenute dalla community da diversi anni.<br>",
+    "<strong class='highlight'>Funzionano su tutte le piattaforme su cui il gioco è disponibile (PC, PlayStation, Xbox e Nintendo Switch), in qualsiasi campo di testo modificabile.</strong>"
+  ],
+  "about.h3.01": "Banca delle icone",
+  "about.li.01": [
+    "Le 129 icone mostrate nella scheda «Icone» provengono direttamente dai file del gioco: gli archivi <code>.pak</code> di No Man's Sky sono stati estratti con <strong>NMSModTool v1.1.0.0</strong>, poi ogni texture <code>.DDS</code> originale è stata convertita in PNG con sfondo trasparente, scegliendo sempre la versione con la risoluzione più alta disponibile. ",
+    "97 di esse sono identiche al pixel alla texture originale; le altre sono state ritoccate, ingrandite o ricomposte quando il gioco ne forniva solo una versione troppo piccola o inadatta."
+  ],
+  "about.li.02": [
+    "Le icone sono integrate direttamente in questo file HTML (il file HTML è autosufficiente; nessuna cartella esterna richiesta). ",
+    "Puoi quindi spostare o rinominare liberamente questo file."
+  ],
+  "about.li.03": "Le icone sono integrate a 64 × 64 pixel, nitide anche sugli schermi ad alta densità. Sono codificate in base64 direttamente nel codice JavaScript del file HTML, sotto forma di un oggetto <code>ICON_DATA</code> che associa ogni nome di file a una stringa <code>data:image/png;base64,...</code>.",
+  "about.info.div.01": "In pratica, ogni PNG (già scontornato, sfondo trasparente) viene convertito in una lunga stringa di testo codificata in base64, e questa stringa viene usata direttamente come attributo <code>src</code> dei tag <code>&lt;img&gt;</code> — esattamente come se l'immagine fosse ospitata online, solo che è «scolpita» nel file stesso.",
+  "about.info.div.02": [
+    "Le icone sono disponibili anche separatamente, come PNG singoli (uno per tag, con nome in minuscolo, es. <code>sclass.png</code>), nella cartella <code>BANK_ICONS/</code> del repository GitHub, insieme a un archivio che raccoglie diverse risoluzioni e gli originali. ",
+    "Il file <code>SOURCES.csv</code> indica per ciascuna la texture <code>.DDS</code> d'origine: una banca di icone riutilizzabile in altri progetti."
+  ],
+  "about.h3.02": "Duplicati individuati",
+  "about.p.02": [
+    "Diversi tag puntano in realtà allo <strong>stesso file texture</strong> (quindi, visivamente, alla stessa icona o allo stesso colore) con nomi diversi.<br>",
+    "Sono segnalati da un badge <span class='flag dup'>duplicato</span> nelle tabelle."
+  ],
+  "about.p.03": "Esempi: <code>DMINERAL</code> / <code>MINERAL</code>, <code>TRADE1</code> / <code>TRADEABLE</code>, <code>MINERAL1</code> / <code>COMMODITY</code>, <code>TECH1</code> / <code>TECHNOLOGY</code>, <code>SALVAGE</code> / <code>BONES</code>.",
+  "about.h3.03": "Simboli del portale (da PR_0 a PR_15)",
+  "about.p.04": [
+    "La serie da <code>PR_0</code> a <code>PR_15</code> corrisponde ai simboli usati sui portali.<br>",
+    "Confermati funzionanti in gioco dalla community (diversi giocatori li hanno usati per rinominare sistemi stellari).<br>",
+    "Hanno una propria categoria nella scheda Icone."
+  ],
+  "about.h3.04": "Tag elencati ma non funzionanti",
+  "about.p.05": [
+    "Un gruppo di tag (pulsanti generici del controller: <code>CIRCLE_W</code>, <code>SQUARE_W</code>, <code>TRIANGLE_W</code>, <code>CROSS_W</code>, <code>LS_W</code>, <code>RS_W</code>, <code>L1_W</code>–<code>L3_W</code>, <code>R1_W</code>–<code>R3_W</code>, <code>UP_W</code>, <code>DOWN_W</code>, <code>LEFT_W</code>, <code>RIGHT_W</code>) compare nelle tabelle di configurazione ma <strong>senza alcun percorso di texture assegnato</strong>.<br>",
+    "Sono contrassegnati come <span class='flag warn'>non funzionante</span>: probabilmente segnaposto riservati, non attivi nella versione attuale del gioco."
+  ],
+  "about.h3.05": "Fonti",
+  "about.p.06": [
+    "Questa guida si basa sulla raccolta e sul confronto di diverse fonti d'informazione e di test condotti da me e dalla community. ",
+    "Le varie fonti sono:"
+  ],
+  "about.sources.li.01": "L'utilissima guida della community «Azure's Text Styles Formatting Guide» (un riferimento ampiamente ripreso, anche su Nexus Mods).",
+  "about.sources.li.02": "Discussioni della community (Steam, Reddit...) che confermano il funzionamento attuale dei tag di codice e i loro utilizzi in gioco.",
+  "about.sources.li.03": "I file del gioco stessi (texture estratte dagli archivi <code>.pak</code> con NMSModTool v1.1.0.0), oltre a numerosi screenshot del gioco e tabelle trovate sul web.",
+
+  "footer.footer": [
+    "Guida non ufficiale creata da <span class='footer-name'>Spirit</span><br>",
+    " <span class='footer-line2'>— <a href='https://github.com/Data-Spirit/NMS_TC' class='footer-github' target='_blank' rel='noopener'>GitHub</a> —</span> <span class='footer-copyright'>© No Man's Sky e tutti gli asset associati appartengono a Hello Games.</span>"
+  ],
+
+  "copy.template_word": "Testo",
+  "copy.title": "Copia: {text}",
+
+  "count.tags": "{n} / {total} tag",
+
+  "colors.alpha_pill": "trasparenza {pct}%",
+
+  "icons.th.preview": "Anteprima",
+  "icons.th.tag": "Tag",
+  "icons.th.path": "Texture del tag",
+  "icons.none": "Nessun risultato.",
+  "icons.all_categories": "Tutte le categorie",
+
+  "icon.tinted_title": "{icon} tinta di {color}",
+
+  "sim.err.keyword": "{name}: scrivi {fix} in maiuscolo",
+  "sim.err.case_fix": "{name}: scrivi {fix} (maiuscole obbligatorie)",
+  "sim.err.unknown_color": "Colore sconosciuto: {name}",
+  "sim.err.unknown_icon": "Icona sconosciuta: {name}",
+
+  "flag.dup": "duplicato",
+  "flag.warn": "non funzionante",
+  "flag.unk": "da verificare",
+
+  "path.unlisted": "(percorso non elencato)",
+  "path.portal": "— simbolo del portale",
+  "path.none": "— nessun percorso assegnato",
+
+  "cat.resources": "Risorse",
+  "cat.interface": "Interfaccia",
+  "cat.frigates": "Fregate",
+  "cat.portal_glyphs": "Simboli del portale",
+  "cat.inventory": "Inventario",
+  "cat.voice_network": "Voce / Rete",
+  "cat.loot": "Bottino",
+  "cat.platforms_controls": "Piattaforme / Controlli",
+  "cat.class_c_s": "Classe (C→S)",
+  "cat.game_modes": "Modalità di gioco",
+  "cat.base_building": "Costruzione base",
+  "cat.non_functional": "Non funzionante",
+  "cat.players": "Giocatori",
+  "cat.generic": "Generici",
+  "cat.goods_tech": "Merci / Tech",
+  "cat.transmissions_missions": "Trasmissioni / Missioni",
+  "cat.companions": "Compagni",
+  "cat.galactic_map": "Mappa galattica",
+  "cat.states_values": "Stati / valori",
+  "cat.titles": "Titoli",
+  "cat.missions": "Missioni",
+  "cat.class_c_s.desc": "Valutazione di qualità generica del gioco (C = la più bassa, S = la più alta) — si applica ad astronavi, multiutensili, fregate, armi e tecnologie, non solo alle astronavi."
 }
 </script>
 
