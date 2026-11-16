@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.2
-> Dernière modification : 2026-11-07
+> Version : 1.3
+> Dernière modification : 2026-11-16
 -->
 
 # Révision — NMS_TC
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS » en fin de fichier (dernière entrée : version 1.2, 2026-11-07).
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS » en fin de fichier (dernière entrée : version 1.3, 2026-11-16).
 
 Comment réviser ce projet : les **outils** (`docs/scripts/`), le **code** (le guide `LANG/NMS_txt_code.html`), la **documentation** (README, prompts, guides, journaux, structure du dépôt), ou **les trois** à la suite. Cette page est la **procédure** ; le texte à donner à un agent est le [prompt maître](prompts/prompt_revision_NMS_TC.md). Les erreurs déjà rencontrées sont dans [pitfalls.md](pitfalls.md).
 
@@ -114,7 +114,7 @@ Un contrôle vert avec un outil aveugle ne prouve rien. À chaque révision, pou
 3. **Chaîne des traductions** : `README_FR.md` est la source ; chaque README traduit cite le md5 de la source qu'il reflète ; les historiques des prompts de traduction sont remplis. Une traduction en retard se signale et se met à jour **avec le prompt de traduction** concerné, jamais au fil de la révision.
 4. **Liens et ancres** : tous les fichiers suivis (hors `docs/_legacy/`, archives figées) ; ancres réelles de GitHub ([pitfalls.md](pitfalls.md#documentation-github-et-github-pages)).
 5. **Navigation** : le README racine mène aux README de langue, aux guides et au téléchargement ; **test du nouvel arrivant** : un agent trouve une information donnée en deux lectures sans ouvrir de gros fichiers.
-6. **Dépôt** : licence, [CHANGELOG.md](../CHANGELOG.md) (section `[Unreleased]` à jour), [ROADMAP.md](../ROADMAP.md) (rien de fait n'y reste), journaux et historiques des prompts, versions cohérentes (en-têtes des fichiers, `_meta` des blocs, notes de version), `_config.yml` et ce que GitHub Pages publie.
+6. **Dépôt** : licence, [CHANGELOG.md](../CHANGELOG.md) (section `[Unreleased]` à jour), [ROADMAP.md](../ROADMAP.md) (rien de fait n'y reste), journaux et historiques des prompts, versions cohérentes (en-têtes des fichiers, `_meta` des blocs, notes de version), `_config.yml` et ce que GitHub Pages publie. Règles git et GitHub : [github.md](github.md).
 7. **Mémoire de l'agent** (hors dépôt) : fiches regroupées, sans doublon ni information périmée.
 
 ## Mode « Complète »
@@ -127,7 +127,7 @@ Outils, puis Code, puis Doc. Entre le code et la doc, noter tout ce que le code 
 
 - **Rapport d'abord, écriture ensuite.** L'agent explore, mesure, crée et lance ses outils **seul et hors du dépôt** ; il **n'écrit rien dans le dépôt** avant le feu vert explicite du mainteneur. Chaque lot validé s'applique séparément ; un feu vert ne vaut pas pour le lot suivant.
 - **Dans le doute, ne pas modifier** ; le point va dans le compte rendu avec son niveau de certitude.
-- **Ne jamais commiter, taguer, pousser ni publier** : le mainteneur le fait lui-même. Proposer à la fin les titres et messages de commit (`type : description`, en anglais). Ne pas envoyer de contenu à un service extérieur sans demande explicite.
+- **Ne jamais commiter, taguer, pousser ni publier** : le mainteneur le fait lui-même. Proposer à la fin les titres et messages de commit (`type : description`, en anglais). Ne pas envoyer de contenu à un service extérieur sans demande explicite. Forme des commits, tags et releases : [github.md](github.md).
 - **Ne pas traduire pendant une révision** : une traduction se fait avec [prompt_translation_HTML_GUIDE_LANG.md](prompts/prompt_translation_HTML_GUIDE_LANG.md) ou [prompt_translation_README_LANG.md](prompts/prompt_translation_README_LANG.md), qui ont leurs propres règles et leur propre feu vert.
 - **Dire ce qui n'est vérifié que dans jsdom ou par analyse**, et ce qui reste à voir dans un vrai navigateur, sur GitHub après le push, ou en jeu.
 
@@ -151,6 +151,7 @@ Une ligne par version, de la plus récente à la plus ancienne. Toute modificati
 
 | Version | Date | Résumé |
 |---|---|---|
+| 1.3 | 2026-11-16 | Renvois vers [github.md](github.md) (règles git et GitHub : commits, tags, releases) dans le point « Dépôt » du mode Doc, les règles pendant une révision et « Voir aussi ». Aucune règle de révision modifiée. |
 | 1.2 | 2026-11-07 | Script n° 5 (banc de défauts connus) ajouté au tableau des outils, à « Questionner les outils », aux lacunes et au mode Outils. |
 | 1.1 | 2026-11-07 | Après la première révision complète : tableau des outils mis à jour (scripts 1.1), règles Stylelint de notation ajoutées aux écarts acceptés, budgets mesurés dans le navigateur, lacune `?lang=` comblée. |
 | 1.0 | 2026-11-07 | Création, sur le modèle de la procédure de révision du projet Tizen_free, adaptée à NMS_TC : trois types de révision (outils, code, doc) et quatre modes, dont la révision complète dans l'ordre outils, code, doc ; reprend les outils, la configuration ESLint, les écarts acceptés et les budgets de `prompt_code_review_NMS_TC.md` (archivé). |
@@ -169,4 +170,4 @@ Une ligne par révision effectuée, proposée dans le compte rendu et ajoutée a
 
 ## Voir aussi
 
-[Prompt maître](prompts/prompt_revision_NMS_TC.md) · [Pièges](pitfalls.md) · [Scripts de contrôle](scripts/trans_script_0_README.md) · [Ajout d'une langue](prompts/prompt_add_language_NMS_TC.md) · [Feuille de route](../ROADMAP.md)
+[Prompt maître](prompts/prompt_revision_NMS_TC.md) · [Pièges](pitfalls.md) · [Scripts de contrôle](scripts/trans_script_0_README.md) · [Ajout d'une langue](prompts/prompt_add_language_NMS_TC.md) · [Maintenir le dépôt sur GitHub](github.md) · [Feuille de route](../ROADMAP.md)
