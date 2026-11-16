@@ -24,6 +24,7 @@ Italian added to the guide and the documentation. Same tags, icons and data as 2
 - READMEs FR, EN and ES v2.8: four languages, file size ~466 KB.
 - README v3.13 to v3.15: repository tree (CHANGELOG, ROADMAP, Windows Explorer order, shorter lines, descriptions three spaces further right, `LANG/IT/`), Italian now available in the language table.
 - ROADMAP: German is the next planned language.
+- Docs: usage history of the translation and add-language prompts, review history, pitfalls v1.2 (jsdom path under Git Bash, testing the message shown without JavaScript, moving a file without touching the git index, no attribution line).
 
 ---
 
