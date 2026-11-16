@@ -1,11 +1,11 @@
 <!-- Version du fichier 
-> Version : 1.1
-> Dernière modification : 2026-11-07
+> Version : 1.2
+> Dernière modification : 2026-11-16
 -->
 
 # Prompt maître de révision — NMS_TC
 
-> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.1, 2026-11-07). Si ce journal est absent, ou visiblement ancien par rapport au guide ou aux scripts, traiter ce prompt comme potentiellement obsolète et le signaler au mainteneur avant de l'utiliser.
+> **Journal des modifications** : voir la section « JOURNAL DES MODIFICATIONS DE CE PROMPT » en fin de fichier (dernière entrée : version 1.2, 2026-11-16). Si ce journal est absent, ou visiblement ancien par rapport au guide ou aux scripts, traiter ce prompt comme potentiellement obsolète et le signaler au mainteneur avant de l'utiliser.
 
 Le texte à donner à un agent pour réviser les **outils**, le **code**, la **documentation**, ou **les trois**. La procédure (quel mode choisir, quels outils, leurs limites, quel compte rendu) est dans [revision.md](../revision.md) : **la lire d'abord**. Les erreurs déjà rencontrées sont dans [pitfalls.md](../pitfalls.md).
 
@@ -84,7 +84,7 @@ Couvrir **tous les cas** (y compris les rares), et en particulier :
 4. **Dans le doute sur une régression, ne pas modifier** : documenter le point dans le compte rendu.
 5. **Ne jamais inventer.** Aucune API dont le support n'est pas certain dans les navigateurs visés sans détection et repli ; aucun fait sur le jeu non vérifié présenté comme acquis ; le signaler.
 6. **Pas de précaution spéculative** : n'ajouter une protection que pour une cause prouvée.
-7. **Ne jamais commiter, taguer, publier, ni envoyer de données** (code, tests) à un service extérieur sans demande explicite. Proposer à la fin les titres et messages de commit (`type : description`, en anglais).
+7. **Ne jamais commiter, taguer, publier, ni envoyer de données** (code, tests) à un service extérieur sans demande explicite. Proposer à la fin les titres et messages de commit (`type : description`, en anglais). Forme des commits, tag et release : [github.md](../github.md).
 8. **Ne pas traduire pendant une révision** : un texte à traduire ou une traduction en retard se signale, et se traite ensuite avec [prompt_translation_HTML_GUIDE_LANG.md](prompt_translation_HTML_GUIDE_LANG.md) ou [prompt_translation_README_LANG.md](prompt_translation_README_LANG.md).
 
 ### Méthode
@@ -158,6 +158,7 @@ Une ligne par version, de la plus récente à la plus ancienne. Toute modificati
 
 | Version | Date | Résumé |
 |---|---|---|
+| 1.2 | 2026-11-16 | Règle 7 : renvoi vers `docs/github.md` (forme des commits, tag sur le commit `release` du guide, release). Aucune autre règle modifiée. |
 | 1.1 | 2026-11-07 | Passe 1 : renvoi vers le script n° 5 (banc de défauts connus), issu de la première révision complète. |
 | 1.0 | 2026-11-07 | Création, sur le modèle du prompt maître de révision du projet Tizen_free (paragraphe sur les nuances repris tel quel, exemple de compatibilité adapté aux navigateurs, quatre nuances propres à NMS_TC ajoutées). Trois types de révision (outils, code, doc), quatre modes, passes 0 à 9. Remplace `prompt_code_review_NMS_TC.md` (archivé dans `docs/_legacy/`), dont les invariants et les règles de code sont repris ici, les outils et budgets dans [revision.md](../revision.md), les pièges dans [pitfalls.md](../pitfalls.md). Règle d'autonomie de NMS_TC conservée : rapport d'abord, rien n'est écrit dans le dépôt sans feu vert. |
 
