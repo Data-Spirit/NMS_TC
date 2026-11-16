@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 2.7
-> Dernière modification : 2026-11-07
+> Version : 2.8
+> Dernière modification : 2026-11-16
 -->
 
 <h1 align="center">NMS // TEXT CODES — Documentation de conception</h1>
@@ -26,7 +26,7 @@
 
 **Un guide interactif, autonome et exhaustif des codes de formatage de texte de No Man's Sky** — couleurs et icônes, entièrement documentés, testés, et rassemblés dans un unique fichier HTML. Il est **disponible en plusieurs langues**, grâce à un sélecteur de langue intégré au fichier.
 
-`NMS_txt_code.html` · ~451 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
+`NMS_txt_code.html` · ~466 Ko · multilingue · aucune dépendance externe critique · fonctionne hors-ligne
 
 > **Qui est quoi ?**
 > - **Le guide interactif** (`NMS_txt_code.html`) est le produit : un fichier HTML autonome, **multilingue**, avec un sélecteur de langue intégré.
@@ -77,7 +77,7 @@ Concrètement, cela signifie :
 - **Fonctionne hors-ligne.** Toutes les données (couleurs, icônes, logique de tri, simulateur, textes de toutes les langues) sont embarquées directement dans le fichier — voir la section [Comment les icônes ont été extraites et intégrées](#comment-les-icônes-ont-été-extraites-et-intégrées) pour le détail technique de l'intégration des images.
 - **Une seule dépendance externe non critique** : les polices (Google Fonts, via CDN — *Rajdhani*, *IBM Plex Sans*, *JetBrains Mono*). Sans connexion internet, le rendu bascule simplement sur les polices système par défaut du navigateur ; aucune fonctionnalité n'est perdue.
 
-Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~451 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
+Ce choix de conception (tout embarquer plutôt que de dépendre d'un dossier d'assets externes) a un coût — un fichier plus lourd (~466 Ko) qu'une version avec images externes — mais il garantit qu'un seul fichier suffit toujours à tout faire fonctionner, ce qui correspond directement à l'usage visé : un outil qu'on partage, télécharge ou déplace sans jamais avoir à se soucier de fichiers manquants.
 
 ---
 
@@ -88,7 +88,7 @@ Le guide interactif existe en **plusieurs langues dans un seul et même fichier*
 - **Sélecteur de langue** : en haut à droite de l'écran, un menu affiche chaque langue sous son propre nom, précédé d'un drapeau (par exemple « Français », « English », « Español »). Le choix s'applique immédiatement à tout le guide : textes, tableaux, messages du simulateur.
 - **Langue choisie automatiquement** : une langue demandée dans l'adresse (`?lang=es`) est prioritaire ; sinon le guide reprend le choix mémorisé, puis la langue du navigateur si elle est disponible, sinon le français. La langue affichée est ensuite mémorisée dans le navigateur.
 - **Lien direct vers une langue** : à chaque changement de langue, l'adresse du guide se met à jour (`…/NMS_txt_code.html?lang=fr`) ; il suffit de la copier pour partager le guide dans la langue affichée. Une valeur inconnue est simplement ignorée. Ce lien concerne la version en ligne.
-- **Langues actuellement disponibles** : le **français** (langue source), l'**anglais** et l'**espagnol**.
+- **Langues actuellement disponibles** : le **français** (langue source), l'**anglais**, l'**espagnol** et l'**italien**.
 - **Texte manquant dans une langue** : c'est alors la version française qui s'affiche à sa place, jamais un message d'erreur.
 
 > **Distinction importante.** Seul le **guide interactif** est multilingue. Ce README, lui, est écrit dans une seule langue ; il existe une version par langue (`README_FR.md`, `README_EN.md`…), chacune traduite séparément.
@@ -110,7 +110,7 @@ Le guide interactif existe en **plusieurs langues dans un seul et même fichier*
 | 🖼️ Icônes intégrées en base64 dans le fichier | **145 / 145** |
 | 🎯 Icônes identiques au pixel près aux textures du jeu | **97 / 129** |
 | 📝 Exemples concrets d'utilisation réelle | **10** |
-| 🌍 Langues du guide interactif | **3** |
+| 🌍 Langues du guide interactif | **4** |
 | 🔤 Textes à traduire (clés de traduction) | **116** |
 
 ---
@@ -246,7 +246,7 @@ Depuis la version 2.1, les icônes ne sont plus découpées dans des captures d'
 
 > **🔧 Détail technique :** la colonne « Texture de la balise » du guide indique le fichier `.DDS` vers lequel pointe la balise dans les tableaux de configuration du jeu. Ce n'est pas toujours le fichier d'où provient l'image de la banque, qui peut être une version plus grande du même dessin, rangée ailleurs. Pour chaque icône, le fichier `SOURCES.csv` du dossier `BANK_ICONS/` donne la correspondance complète : texture de la balise, source de l'image, résolution d'origine et niveau de correspondance.
 
-Cette approche explique à la fois le poids du fichier (~451 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
+Cette approche explique à la fois le poids du fichier (~466 Ko, contre quelques dizaines de Ko pour une version texte seule) et sa portabilité totale : déplacer, renommer ou partager le fichier ne casse jamais l'affichage des icônes.
 
 Ce bloc de données (`ICON_DATA`) est volontairement isolé en fin de script, séparé de toute la logique JavaScript qui le précède (seuls les blocs de langue, de simples données JSON, viennent après) — une organisation pensée pour que la lecture du code ne soit jamais noyée par ces 145 très longues lignes de texte encodé, et pour faciliter l'ajout futur d'icônes par la communauté.
 
@@ -297,7 +297,7 @@ Le guide s'efforce d'être honnête sur ce qui est confirmé et ce qui ne l'est 
 - **Navigateurs modernes** : Chrome, Firefox, Edge, Safari — s'appuie sur CSS Grid, `mask-image` et l'API Clipboard, disponibles dans toutes les versions récentes.
 - **Accessibilité de base** : les deux barres de recherche et le filtre de catégorie sont annoncés correctement aux lecteurs d'écran (`aria-label`), le champ du simulateur est associé à un vrai `<label>` plutôt qu'à un simple texte flottant, et le bouton de copie ainsi que la croix d'effacement du simulateur portent eux aussi un `aria-label`. Le **sélecteur de langue** est un menu natif étiqueté pour les lecteurs d'écran, et l'attribut `lang` de la page suit la langue choisie. Les **onglets** suivent le modèle d'accessibilité standard (ARIA *tabs*) : l'onglet actif est annoncé, et l'on passe de l'un à l'autre au clavier avec les flèches, Début et Fin. Chaque bouton de copie des tableaux porte aussi un `aria-label`, et les champs où l'on tape des balises désactivent la correction orthographique.
 - **Aucune donnée envoyée nulle part** : tout s'exécute localement dans le navigateur, aucune connexion réseau requise après le premier chargement des polices. Seul le **choix de langue** est mémorisé, localement, dans le navigateur ; il n'est jamais envoyé. Une **politique de sécurité du contenu** (CSP), intégrée au fichier, l'impose au navigateur : la page ne peut charger que les polices et ne peut contacter aucun autre serveur.
-- **Sans JavaScript** : un court message, en français, anglais et espagnol, indique que le guide en a besoin, plutôt qu'une page vide.
+- **Sans JavaScript** : un court message, en français, anglais, espagnol et italien, indique que le guide en a besoin, plutôt qu'une page vide.
 
 ---
 
