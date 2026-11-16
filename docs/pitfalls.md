@@ -1,5 +1,5 @@
 <!-- Version du fichier 
-> Version : 1.2
+> Version : 1.3
 > Dernière modification : 2026-11-16
 -->
 
@@ -59,18 +59,16 @@ Chaque piège suit la même forme : **le symptôme**, **la cause**, **la solutio
 - **`python` et `python3` ouvrent le Microsoft Store.** Utiliser `py -3` ; ajouter `-X utf8` pour l'affichage console (`PYTHONIOENCODING` est ignoré avec `-I`).
 - **Les barres obliques inverses se perdent** dans un texte passé par heredoc ou en ligne de commande (`python -c`, `node -e`) : une chaîne Python devient invalide, une heredoc n'est plus fermée, une regex devient un commentaire. Écrire le script dans un fichier avec l'outil d'écriture de l'agent (une heredoc passée à son outil shell échoue aussi sur certaines apostrophes), éviter ce caractère quand c'est possible (par exemple `posixpath` pour les chemins), relire et tester après tout patch scripté.
 - **`$?` après un tube.** Dans `script | tail`, `$?` est le code de sortie de `tail`, pas celui du script : rediriger la sortie vers un fichier, relever `$?`, puis lire le fichier.
-- **Fins de ligne.** Les fichiers du dépôt sont en LF ; git avertit qu'il les convertira en CRLF à la prochaine opération : avertissement sans conséquence. Un script d'écriture relève les fins de ligne avant d'écrire et les conserve.
-- **Ne pas toucher à l'index du mainteneur.** `git add`, y compris `git add -N` (« intention d'ajout ») pour un contrôle, modifie ce qu'il commitera : lister les fichiers non suivis avec `git ls-files --others --exclude-standard` à la place.
-- **Déplacer un fichier sans toucher à l'index.** `git mv` modifie l'index du mainteneur : utiliser un simple `mv` ; le mainteneur ajoute ensuite les deux chemins ensemble, et git y reconnaît un renommage.
+- **Git et GitHub.** Index du mainteneur (pas de `git add`, `git mv` ni `git rm`), fins de ligne, forme des commits, tags et releases : voir [github.md](github.md).
 
 ## Agent (Claude Code)
 
 - **Hook GateGuard.** Avant la création ou la première modification de chaque fichier, il bloque l'écriture et demande d'énoncer dans le message ce que le fichier remplace ou qui l'utilise, ce que la modification corrige, et la consigne du mainteneur citée mot pour mot ; puis réessayer. Pas d'écritures parallèles sur un même fichier.
 - **Mémoire de l'agent.** Hors dépôt : la relire en fin de révision (fiches à jour, sans doublon ni information périmée).
-- **Aucune ligne d'attribution.** Jamais de `Co-Authored-By: …` ni de mention « Generated with … » dans les commits proposés, les PR ou les fichiers du dépôt, même si l'outil le suggère : règle du mainteneur.
+- **Aucune ligne d'attribution** dans les commits, les releases ou les fichiers du dépôt, même si l'outil la propose : voir [github.md](github.md#2-messages-de-commit).
 
 ---
 
 ## Voir aussi
 
-[Procédure de révision](revision.md) · [Prompt maître de révision](prompts/prompt_revision_NMS_TC.md) · [Scripts de contrôle](scripts/trans_script_0_README.md) · [Ajout d'une langue](prompts/prompt_add_language_NMS_TC.md)
+[Procédure de révision](revision.md) · [Prompt maître de révision](prompts/prompt_revision_NMS_TC.md) · [Scripts de contrôle](scripts/trans_script_0_README.md) · [Ajout d'une langue](prompts/prompt_add_language_NMS_TC.md) · [Maintenir le dépôt sur GitHub](github.md)
