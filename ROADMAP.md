@@ -11,7 +11,6 @@ Where **NMS // TEXT CODES** is heading. This is a living list, not a promise: pr
 ## 📌 Planned
 
 - **More languages** — German next. Long-term goal: every language officially supported by No Man's Sky. Each new language follows `docs/prompts/prompt_add_language_NMS_TC.md`.
-- **Finer GitHub Pages publishing** — choose precisely which files are published on GitHub Pages (today every Markdown file outside `_` folders is), with `exclude:` in `_config.yml`.
 - **Controller icons (`*_W`)** — the controller button textures (Steam, Xbox, PlayStation, Switch…) have been found in the game files; test in game whether these 16 tags display them before updating the guide.
 
 ## 💡 Ideas (not scheduled)
