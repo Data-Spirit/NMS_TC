@@ -1,8 +1,18 @@
 # GitHub Pages (Jekyll) configuration for NMS // TEXT CODES
 #
+# Only the guide is published: LANG/NMS_txt_code.html.
+#
 # No home page: without an index.html, GitHub Pages would turn README.md into the
 # site's home page. This disables it, so the site root returns a 404 on purpose.
-# The guide stays online at /LANG/NMS_txt_code.html. Folders starting with "_"
-# (such as docs/_legacy/) are still excluded from the site by Jekyll.
 readme_index:
   enabled: false
+
+# Nothing else from the repository is published:
+# - "docs/" removes the whole documentation folder (prompts, scripts, images...);
+# - "*.md" removes every Markdown file, at any depth (READMEs, CHANGELOG...).
+# Folders starting with "_" (such as docs/_legacy/) and dotfiles are excluded by
+# Jekyll anyway. A new non-Markdown file at the root or in LANG/ would be
+# published: add it here (see docs/github.md, section 6).
+exclude:
+  - "docs/"
+  - "*.md"
