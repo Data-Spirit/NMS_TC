@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 3.3
-> Dernière modification : 2026-09-25
+> Version : 3.4
+> Dernière modification : 2026-11-17
 -->
 
 <a id="top"></a>
@@ -621,15 +621,15 @@ https://UTILISATEUR.github.io/NOM_DU_REPOSITORY/CHEMIN_DU_FICHIER
 Par exemple :
 
 ```text
-https://data-spirit.github.io/NMS_TC/LANG_FR/NMS_txt_code_FR.html
+https://data-spirit.github.io/NMS_TC/LANG/NMS_txt_code.html
 ```
 
 correspond à :
 
 ```text
 NMS_TC/
-└── LANG_FR/
-    └── NMS_txt_code_FR.html
+└── LANG/
+    └── NMS_txt_code.html
 ```
 
 lorsque la racine du repository est la source GitHub Pages.
