@@ -1,6 +1,6 @@
 <!-- Version du fichier 
-> Version : 1.0
-> Dernière modification : 2026-11-16
+> Version : 1.1
+> Dernière modification : 2026-11-17
 -->
 
 # Maintenir le dépôt sur GitHub — NMS_TC
@@ -15,6 +15,7 @@ Il s'adresse au mainteneur, à toute personne qui contribue, et à tout agent (C
 
 - **Le mainteneur fait toutes les opérations git et GitHub** : `git add`, commit, push, tag, release, réglages du dépôt. Personne d'autre, et aucun agent, ne commite, ne pousse, ne tague ni ne publie.
 - **Un agent prépare et vérifie** : il modifie les fichiers après un feu vert explicite, contrôle le résultat, puis **donne pour chaque commit un titre et un message à copier**, en texte dans la conversation. Jamais de message passé par un fichier (`git commit -F …`) : le mainteneur doit pouvoir lire exactement ce qu'il commite.
+- **Un seul bloc à copier par commit** : le titre, une ligne vide, puis le corps, dans un même bloc de code, précédé du nom du fichier concerné. Une seule copie par commit, jamais un bloc pour le titre et un autre pour le message.
 - **Un commit par fichier**, ou par lot très cohérent (par exemple un fichier et son déplacement). L'ordre des commits est donné ; après chaque commit annoncé par le mainteneur, l'agent vérifie l'état du dépôt avant de donner le suivant.
 - **L'index git appartient au mainteneur.** Un agent ne fait ni `git add` (même `git add -N` pour un contrôle), ni `git mv`, ni `git rm` : il déplace ou supprime avec les commandes ordinaires (`mv`, `rm`), et le mainteneur ajoute les deux chemins ensemble (git reconnaît alors un renommage). Pour lister les fichiers non suivis : `git ls-files --others --exclude-standard`.
 
@@ -82,10 +83,11 @@ Une release par version du guide, publiée par le mainteneur après le push du c
 
 - **Les issues GitHub sont désactivées.** Aucun document ne renvoie vers elles.
 - **Le badge Nexus Mods du README pointe vers une adresse provisoire** (`https://URL_NEXUSMOD`) jusqu'à la publication du guide sur Nexus Mods.
-- **GitHub Pages** publie le dépôt avec Jekyll :
-  - `_config.yml` désactive la page d'accueil générée depuis le README : la racine du site renvoie une 404, volontairement ; le guide reste en ligne à `/LANG/NMS_txt_code.html` ;
-  - les dossiers dont le nom commence par `_` ne sont pas publiés : **`docs/_legacy/` ne doit jamais l'être** (anciennes versions) ;
-  - tout autre fichier Markdown est publié ; choisir plus finement ce qui l'est (`exclude:`) est prévu dans la ROADMAP.
+- **GitHub Pages ne publie que le guide**, `LANG/NMS_txt_code.html` (avec Jekyll, réglé par `_config.yml`) :
+  - la page d'accueil générée depuis le README est désactivée : la racine du site renvoie une 404, volontairement ;
+  - `exclude:` retire tout le reste : le dossier `docs/` en entier, et tous les fichiers Markdown, où qu'ils soient (README, CHANGELOG, ROADMAP, licence) ;
+  - les dossiers dont le nom commence par `_` et les fichiers cachés ne sont de toute façon pas publiés : **`docs/_legacy/` ne doit jamais l'être** (anciennes versions) ;
+  - **un nouveau fichier qui n'est pas en Markdown, à la racine ou dans `LANG/`, serait publié** : l'ajouter à `exclude:`. Si la structure du dépôt se complique, passer à une publication par GitHub Actions qui n'envoie que le guide (liste blanche).
 
 ## 7. Fichiers et encodage
 
@@ -99,7 +101,7 @@ Après le push, le tag et la release, une vérification rapide (le mainteneur, o
 1. **Dépôt** : `main` local identique à `origin/main` ; aucune ligne d'attribution dans les derniers commits (`git log --format=%B | grep -ci "co-authored"` → `0`).
 2. **Tag** : `vX.Y` présent sur GitHub et posé sur le commit du guide, dont le titre commence par `release :` (`git log -1 --format=%s vX.Y`).
 3. **Release** : la dernière (« Latest »), ni brouillon ni préversion ; texte identique à `docs/RELEASE_NOTES_vX.Y.md` ; fichier joint au bon SHA-256 ; le lien de téléchargement du README sert ce même fichier.
-4. **GitHub Pages** : le guide en ligne identique au fichier du dépôt ; la racine en 404 ; rien de `docs/_legacy/` publié.
+4. **GitHub Pages** : le guide en ligne identique au fichier du dépôt ; tout le reste en 404 (la racine, un README, un document de `docs/`, `docs/_legacy/`).
 5. **Liens et rendu** : liens des notes de version et du README racine valides ; ancres des README (`#tab-infos`…) présentes sur GitHub.
 
 ---
